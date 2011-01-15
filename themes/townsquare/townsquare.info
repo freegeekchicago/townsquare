@@ -1,0 +1,11 @@
+core = 7.x
+description = Theme for FreeGeek Chicago's collaboration and volunteer management tool. 
+engine = phptemplate
+name = Townsquare
+
+; Regions =====================================================================
+
+; Stylesheets =================================================================
+
+
+
