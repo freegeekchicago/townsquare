@@ -1,3 +1,5 @@
+/* Fonts {{{ */
+// Sense Black looks bad, Sense thin looks great
 @font-face {
   font-family: "Sense";
   font-weight: normal;
@@ -11,15 +13,86 @@
   font-style: italic;
   src: local("Sense Italic"),
        url(../fonts/Sense/Sense_Italic.ttf) format("opentype");
-
 }
 @font-face {
   font-family: "Sense";
-  font-weight: normal;
-  font-style: italic;
-  src: local("Sense Italic"),
-       url(../fonts/Sense/Sense_Italic.ttf) format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  src: local("Sense Bold"),
+       url(../fonts/Sense/Sense_Bold.ttf) format("opentype");
 }
+@font-face {
+  font-family: "Sense";
+  font-weight: bold;
+  font-style: italic;
+  src: local("Sense Bold Italic"),
+       url(../fonts/Sense/Sense_Bold_Italic.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Light";
+  font-style: normal;
+  src: local("Sense Light"),
+       url(../fonts/Sense/Sense_Light.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Light";
+  font-style: italic;
+  src: local("Sense Light Italic"),
+       url(../fonts/Sense/Sense_Light_Italic.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Black";
+  font-style: normal;
+  src: local("Sense Black"),
+       url(../fonts/Sense/Sense_Black.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Black";
+  font-style: italic;
+  src: local("Sense Black Italic"),
+       url(../fonts/Sense/Sense_Black_Italic.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Thin";
+  font-style: normal;
+  src: local("Sense Thin"),
+       url(../fonts/Sense/Sense_Thin.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Thin";
+  font-style: italic;
+  src: local("Sense Thin Italic"),
+       url(../fonts/Sense/Sense_Thin_Italic.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Extra Light";
+  font-style: normal;
+  src: local("Sense Extra Light"),
+       url(../fonts/Sense/Sense_Extra_Light.ttf) format("opentype");
+}
+@font-face {
+  font-family: "Sense Extra Light";
+  font-style: italic;
+  src: local("Sense Extra Light Italic"),
+       url(../fonts/Sense/Sense_Extra_Light_Italic.ttf) format("opentype");
+}
+/* }}} */
+
 #site-name { 
   font-family: Sense;
+  font-size: 4em;
+  font-weight: bold;
+  font-style: italic;
+}
+h1 {
+  font-family: "Sense";
+}
+
+h2 {
+  font-family: "Sense Light";
+}
+
+h3 {
+  font-fmaily: "Sense Light";
+  font-style: italic;
 }
