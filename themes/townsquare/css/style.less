@@ -1,0 +1,363 @@
+/* --- Typography and fonts --- */
+.ubuntu_font {
+  font-family: Ubuntu, Verdana, sans-serif;
+}
+.lato_font {
+  font-family: Lato, Verdana, sans-serif;
+}
+
+/* --- Less CSS --- */
+/* Variables: Colors {{{ */
+@color_gradient_default_light: #dddddd; 
+@color_gradient_default_dark: #aaaaaa;
+@color_gradient_default_middle: #cccccc;
+
+@color_button_border: #aaaaaa;
+@color_button_text: #333333;
+@color_button_border_hover: #555555;
+@color_button_text_hover: #000000;
+/* }}} */
+/* Variables: Measurements {{{ */
+@default_corner_radius: 9px;
+@intense_corner_radius: 12px;
+/* }}} */
+/* Mixin: Rounded corners (.rounded_corner) {{{ */
+.rounded_corner(@topleft: @default_corner_radius; @topright: @default_corner_radius; @bottomright: @default_corner_radius; @bottomleft: @default_corner_radius;) {
+  border-radius: @topleft @topright @bottomright @bottomleft;
+  -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+  -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+}
+/* }}} */
+/* Mixin: Simple gradient (.gradient) {{{ */
+.gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@start', endColorstr='@end');
+  background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
+  background: -moz-linear-gradient(top,  @start, @end);
+}
+/* }}} */
+/* Glassy gradient {{{ */
+.gradient_glass {
+  filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end'); /* for IE */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.5, @middle), color-stop(1.0, @end)); /* for webkit browsers */
+  background: -moz-linear-gradient(top, #444 0%, #000 70%, #353535 100%); /* for firefox 3.6+ */
+}
+/* }}} */
+/* Mixin: Buttons {{{ */
+.button {
+  .rounded_corner;
+  .gradient;
+  text-shadow: 0 1px 1px #fff;
+  border: 1px solid @color_button_border;
+  color: @color_button_text;
+  text-align: center;
+  padding: 2px 7px;
+  cursor: pointer;
+  background-color: #ddd;
+  :hover { 
+    color: @color_button_text_hover;
+    border-color: @color_button_border_hover;
+    cursor: default; 
+  }
+}
+/* }}} */
+/* Mixin: Blocks and boxes {{{ */
+.box {
+  float: left;
+  display: block;
+}
+/* }}} */
+/* Mixin: Shadows {{{ */
+.no-shadow {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.shadow (@left: 1px; @top: 1px; @blur: 3px; @color: #888;) {
+  -moz-box-shadow: @left @top @blur @color;
+}
+.shadow_inset (@left: -2px; @top: -2px; @blur: 5px; @color: #444;) {
+  -moz-box-shadow: inset @left @top @blur @color;
+}
+
+/* }}} */
+/* Mixin: Lists {{{ */
+.reset_list {
+  padding: 0; 
+  margin: 0; 
+  list-style-type: none;
+  list-style-image: none;
+}
+/* }}} */
+/* Mixin: Image replace {{{ */
+.image_replace(@height: 0; @image: url('background.png');) {
+  padding: @height 0 0 0 ;
+  overflow: hidden;
+  background-image: @image;
+  background-repeat: no-repeat;
+  height: 0 !important;
+  //height: /**/:@height; 
+}
+/* }}} */
+/* Text shadow {{{ */
+.text_shadow {
+  text-shadow: 0 1px 1px #fff;
+}
+/* }}} */
+
+/* --- Page elements --- */
+/* Clearfix {{{ */
+.townsquare-clear:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.townsquare-clear {display: inline-block;}  /* for IE/Mac */
+/* }}} */
+/* Structure (body, etc) {{{ */
+body {
+  color: #333;
+  font-family: "Lato";
+  font-size: 100%;
+  background-color: #e5e5e5;
+}
+/* }}} */
+/* Header {{{ */
+#townsquare-toolbar {
+  .ubuntu_font;
+  height: 40px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #999;
+  .gradient_glass(#666, #333; #444;);
+  .shadow(0px; 3px; 5px; #333;);
+  .region {
+    .box;
+  }
+  #search-block-form {
+    width: 175px;
+    margin: 7px 9px 0 8px;
+    .box;
+    .form-item { 
+      .box;
+      font-size: 1em;
+    }
+    input { 
+      height: 19px;
+    }
+    .container-inline div { .box; }
+    .form-text {
+      .no-shadow;
+      .rounded_corner(@intense_corner_radius; 0; 0; @intense_corner_radius;);
+      padding-left: 8px;
+      padding-right: 8px;
+      background-color: #e9e9e9;
+      width: 130px;
+    }
+    #edit-actions {
+      .box;
+      .gradient(#ddd; #aaa;);
+      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
+    }
+    .form-submit {
+      .box;
+      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
+      border-left: 1px solid #aaa;
+      background: none;
+      .image_replace(23px; url('../img/magnifier.png'););
+      // Override basic image replace behavior for precise placement
+      background-position: 3px 3px;
+      width: 25px;
+    }
+    :hover .form-text {
+      background-color: #fff;
+    }
+    :hover .form-submit {
+    }
+  }
+  .main-menu {
+    .box;
+    .reset_list;
+    a {
+      .box;
+      text-shadow: 2px 2px 2px #444;
+      color: #fff;
+      padding: 2px 8px;
+      border: 1px solid rgba(255, 255, 255, 0);
+      margin: 7px 6px 0 0;
+      font-size: .875em;
+      line-height: 1.45;
+      .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+      :hover {
+        border: 1px solid #555;
+        .shadow_inset;
+        background-color: #444;
+      }
+    }
+    .active a {
+      border: 1px solid #888;
+      .shadow_inset(-2px; -2px; 5px; #666;);
+      background-color: #777;
+    }
+  }
+}
+#toolbar { 
+  .ubuntu_font;
+  .no-shadow;
+  border-bottom: 1px solid #999;
+  div.toolbar-menu {
+    background-color: #444;
+    .home a { background-color: #999; }
+  }
+}
+#site-links {
+  .ubuntu_font;
+  background-color: #e5e5e5;
+  margin-top: 40px;
+  height: 52px;
+  .site-name {
+    .box;
+    .lato_font;
+    margin: 15px 4px 0 12px;
+  }
+  a {
+    color: #37962f;
+  }
+  .site-name a {
+    .box;
+    background: url('../img/logo-icon.png') no-repeat 3px 3px;
+    padding: 0 0 0 32px;
+    font-size: 21px;
+    line-height: 24px;
+    height: 28px;
+  }
+  ul {
+    margin: 18px 0 0 16px;
+    .box;
+  }
+  ul li {
+    .box;
+    margin: 0 15px 0 0;
+  }
+  li a {
+    font-size: .875em;
+    font-weight: bold;
+    color: #444;
+    .text_shadow;
+  }
+  li.last a {
+    font-weight: normal;
+  }
+}
+/* }}} */
+/* Form items {{{ */
+input, button, textarea {
+  border: 1px solid #ccc;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 2px;
+}
+input, button {
+  line-height: 1;
+}
+input.form-submit, button {
+  .button;
+}
+input.form-text {
+  .shadow;
+}
+/* }}} */
+#page-tools {
+  .box;
+  width: 200px;
+  margin: 5px 0 0 0;
+  .block-wrapper {
+    color: #000;
+    font-size: .825em;
+    padding: 6px 9px 6px 9px;
+  }
+  li {
+    list-style-type: none;
+  }
+  li a {
+    .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0);
+    display: block;
+    padding: 6px 9px 6px 9px;
+    margin: 0 0 4px 0;
+    font-size: 1.25em;
+    .font_ubuntu;
+  }
+  li.active a {
+    background-color: #fff;
+   .shadow(3px; 1px; 4px; #777;);
+  }
+}
+
+#page {
+  padding-bottom: 1.5em;
+}
+
+#main-content {
+  .box;
+  .shadow(1px; 1px; 5px; #777;);
+  line-height: 1.5;
+  margin: 5px 0 0 12px;
+  padding: 14px 45px 14px 22px;
+  background-color: #fff;
+  width: 700px;
+
+  /* h tags {{{ */
+  h1, h2, h3, h4, h5, h6 {
+    .font_lato;
+    line-height: 1.3;
+    font-weight: normal;
+  }
+  h1 {
+    font-size: 2.25em;
+    margin-bottom: .5em;
+    border-bottom: 1px solid #ccc;
+  }
+  h1 {
+    font-size: 2.15em;
+  }
+  h2 {
+    font-size: 1.9em;
+  }
+  h3 {
+    font-size: 1.7em;
+  }
+  h4 {
+    font-size: 1.35em;
+  }
+  h5, h6 {
+    font-size: 1.25em;
+  }
+  h6 {
+    font-style: italic;
+  }
+  /* }}} */
+
+  hr {
+    margin: 2.75em 0;
+    color: #ccc;
+  }
+
+  .section {
+    margin-bottom: 1.5em;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+    line-height: 1.5;
+  }
+}
+
+/* Links {{{ */
+a {
+  text-decoration: none;
+}
+/* }}} */

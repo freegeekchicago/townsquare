@@ -3,9 +3,17 @@ description = Theme for FreeGeek Chicago's collaboration and volunteer managemen
 engine = phptemplate
 name = Townsquare
 
+base theme = tao
+
 ; Regions =====================================================================
+regions[page_tools] = Page tools
+regions[content] = Content
+regions[help] = Help
+regions[footer] = Footer
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
 
 ; Stylesheets =================================================================
-stylesheets[screen][] = css/style.css.less
-
+stylesheets[screen][] = css/style.less
 
