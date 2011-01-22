@@ -1,0 +1,3 @@
+<?php
+
+include_once('townsquare_core.features.inc');
