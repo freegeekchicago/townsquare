@@ -1,13 +1,12 @@
-/* --- Typography and fonts --- */
-.ubuntu_font {
-  font-family: Ubuntu, Verdana, sans-serif;
-}
-.lato_font {
-  font-family: Lato, Verdana, sans-serif;
-}
+/**
+ * @file style.less
+ *
+ * Copyright David Eads (c) 2011 (davideads@gmail.com) for FreeGeek 
+ * Chicago. Released under the GNU GPL.
+ */
 
-/* --- Less CSS --- */
-/* Variables: Colors {{{ */
+/* --- Less CSS variables --- */
+/* Colors {{{ */
 @color_gradient_default_light: #dddddd; 
 @color_gradient_default_dark: #aaaaaa;
 @color_gradient_default_middle: #cccccc;
@@ -17,32 +16,35 @@
 @color_button_border_hover: #555555;
 @color_button_text_hover: #000000;
 /* }}} */
-/* Variables: Measurements {{{ */
+/* Measurements {{{ */
 @default_corner_radius: 9px;
 @intense_corner_radius: 12px;
 /* }}} */
-/* Mixin: Rounded corners (.rounded_corner) {{{ */
+
+/* --- Less CSS mixins --- */
+/* Rounded corners (.rounded_corner) {{{ */
 .rounded_corner(@topleft: @default_corner_radius; @topright: @default_corner_radius; @bottomright: @default_corner_radius; @bottomleft: @default_corner_radius;) {
   border-radius: @topleft @topright @bottomright @bottomleft;
   -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
   -moz-border-radius: @topleft @topright @bottomright @bottomleft;
 }
 /* }}} */
-/* Mixin: Simple gradient (.gradient) {{{ */
+/* Simple gradient (.gradient) {{{ */
 .gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@start', endColorstr='@end');
   background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
   background: -moz-linear-gradient(top,  @start, @end);
 }
 /* }}} */
-/* Glassy gradient {{{ */
+/* Glassy gradient (.gradient_glass) {{{ */
+// @TODO add arguments
 .gradient_glass {
   filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end'); /* for IE */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.5, @middle), color-stop(1.0, @end)); /* for webkit browsers */
   background: -moz-linear-gradient(top, #444 0%, #000 70%, #353535 100%); /* for firefox 3.6+ */
 }
 /* }}} */
-/* Mixin: Buttons {{{ */
+/* Buttons (.button) {{{ */
 .button {
   .rounded_corner;
   .gradient;
@@ -60,14 +62,14 @@
   }
 }
 /* }}} */
-/* Mixin: Blocks and boxes {{{ */
+/* Blocks and boxes (.box) {{{ */
 .box {
   float: left;
   display: block;
 }
 /* }}} */
-/* Mixin: Shadows {{{ */
-.no-shadow {
+/* Shadows (.shadow, .shadow_inset, .no_shadow) {{{ */
+.no_shadow {
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -78,9 +80,8 @@
 .shadow_inset (@left: -2px; @top: -2px; @blur: 5px; @color: #444;) {
   -moz-box-shadow: inset @left @top @blur @color;
 }
-
 /* }}} */
-/* Mixin: Lists {{{ */
+/* Lists (.reset_list) {{{ */
 .reset_list {
   padding: 0; 
   margin: 0; 
@@ -88,7 +89,7 @@
   list-style-image: none;
 }
 /* }}} */
-/* Mixin: Image replace {{{ */
+/* Image replace (.image_replace) {{{ */
 .image_replace(@height: 0; @image: url('background.png');) {
   padding: @height 0 0 0 ;
   overflow: hidden;
@@ -98,7 +99,16 @@
   //height: /**/:@height; 
 }
 /* }}} */
-/* Text shadow {{{ */
+/* Fonts (.ubuntu_font, .lato_font) {{{ */
+.ubuntu_font {
+  font-family: Ubuntu, Verdana, sans-serif;
+}
+.lato_font {
+  font-family: Lato, Verdana, sans-serif;
+}
+/* }}} */
+/* Text shadow (.text_shadow) {{{ */
+// @TODO add arguments
 .text_shadow {
   text-shadow: 0 1px 1px #fff;
 }
@@ -115,12 +125,43 @@
 }
 .townsquare-clear {display: inline-block;}  /* for IE/Mac */
 /* }}} */
-/* Structure (body, etc) {{{ */
+/* Body {{{ */
 body {
   color: #333;
   font-family: "Lato";
   font-size: 100%;
   background-color: #e5e5e5;
+}
+/* }}} */
+/* Form items {{{ */
+input, button, textarea {
+  border: 1px solid #ccc;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 2px;
+}
+input, button {
+  line-height: 1;
+}
+input.form-submit, button {
+  .button;
+}
+input.form-text {
+  .shadow;
+}
+/* }}} */
+/* Links {{{ */
+a {
+  text-decoration: none;
+}
+/* }}} */
+
+/* --- Theme elements --- */
+/* Page {{{ */
+#page {
+  padding-bottom: 1.5em;
 }
 /* }}} */
 /* Header {{{ */
@@ -149,7 +190,7 @@ body {
     }
     .container-inline div { .box; }
     .form-text {
-      .no-shadow;
+      .no_shadow;
       .rounded_corner(@intense_corner_radius; 0; 0; @intense_corner_radius;);
       padding-left: 8px;
       padding-right: 8px;
@@ -205,7 +246,7 @@ body {
 }
 #toolbar { 
   .ubuntu_font;
-  .no-shadow;
+  .no_shadow;
   border-bottom: 1px solid #999;
   div.toolbar-menu {
     background-color: #444;
@@ -252,25 +293,22 @@ body {
   }
 }
 /* }}} */
-/* Form items {{{ */
-input, button, textarea {
-  border: 1px solid #ccc;
-  -ms-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  padding: 2px;
-}
-input, button {
-  line-height: 1;
-}
-input.form-submit, button {
-  .button;
-}
-input.form-text {
-  .shadow;
+/* Blocks and box-module boxes {{{ */
+.block {
+  .block-title {
+    font-size: 1.5em;
+    line-height: 1.5;
+    text-shadow: 1px 1px 2px #fff;
+    margin-bottom: .75em;
+  }
+  .boxes-box {
+    .boxes-box-controls {
+      display: none; // Drupal provides a little link now!! 
+    }
+  }
 }
 /* }}} */
+/* Page tools {{{ */
 #page-tools {
   .box;
   width: 200px;
@@ -297,12 +335,6 @@ input.form-text {
     background-color: #fff;
    .shadow(3px; 1px; 4px; #777;);
   }
-  .block-title {
-    font-size: 1.5em;
-    line-height: 1.5;
-    text-shadow: 1px 1px 2px #fff;
-    margin-bottom: .75em;
-  }
   .block-views {
     margin: 6px 0 6px 9px;
     font-size: 12px;
@@ -323,11 +355,8 @@ input.form-text {
     }
   }
 }
-
-#page {
-  padding-bottom: 1.5em;
-}
-
+/* }}} */
+/* Main content {{{ */
 #main-content {
   .box;
   .shadow(1px; 1px; 5px; #777;);
@@ -336,7 +365,6 @@ input.form-text {
   padding: 14px 45px 14px 22px;
   background-color: #fff;
   width: 700px;
-
   /* h tags {{{ */
   h1, h2, h3, h4, h5, h6 {
     .font_lato;
@@ -367,24 +395,20 @@ input.form-text {
     font-style: italic;
   }
   /* }}} */
-
-  hr {
-    margin: 2.75em 0;
-    color: #ccc;
-  }
-
-  .section {
-    margin-bottom: 1.5em;
-  }
-
+  /* Paragraphs and other common elements {{{ */
   p {
     margin-bottom: 1.5em;
     line-height: 1.5;
   }
-}
-
-/* Links {{{ */
-a {
-  text-decoration: none;
+  hr {
+    margin: 2.75em 0;
+    color: #ccc;
+  }
+  /* }}} */
+  /* Section {{{ */
+  .section {
+    margin-bottom: 1.5em;
+  }
+  /* }}} */
 }
 /* }}} */
