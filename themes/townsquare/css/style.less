@@ -29,16 +29,21 @@
   -moz-border-radius: @topleft @topright @bottomright @bottomleft;
 }
 /* }}} */
-/* Simple gradient (.gradient) {{{ */
-.gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@start', endColorstr='@end');
+/* Simple gradient (.vertical_gradient) {{{ */
+.vertical_gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
+  filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end');
   background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
   background: -moz-linear-gradient(top,  @start, @end);
 }
+.horizontal_gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
+  //@TODO correct MS invocation
+  background: -webkit-gradient(linear, left center, left center, from(@start), to(@end));
+  background: -moz-linear-gradient(left,  @start, @end);
+}
 /* }}} */
-/* Glassy gradient (.gradient_glass) {{{ */
+/* Glassy gradients (.vertical_gradient_glass) {{{ */
 // @TODO add arguments
-.gradient_glass {
+.vertical_gradient_glass {
   filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end'); /* for IE */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.5, @middle), color-stop(1.0, @end)); /* for webkit browsers */
   background: -moz-linear-gradient(top, #444 0%, #000 70%, #353535 100%); /* for firefox 3.6+ */
@@ -47,7 +52,7 @@
 /* Buttons (.button) {{{ */
 .button {
   .rounded_corner;
-  .gradient;
+  .vertical_gradient;
   text-shadow: 0 1px 1px #fff;
   border: 1px solid @color_button_border;
   color: @color_button_text;
@@ -157,6 +162,16 @@ a {
   text-decoration: none;
 }
 /* }}} */
+/* Pre {{{ */
+// Wrap words; from http://users.tkk.fi/tkarvine/pre-wrap-css3-mozilla-opera-ie.html
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+/* }}} */
 
 /* --- Theme elements --- */
 /* Page {{{ */
@@ -172,7 +187,7 @@ a {
   width: 100%;
   z-index: 1000;
   border-bottom: 1px solid #999;
-  .gradient_glass(#666, #333; #444;);
+  .vertical_gradient_glass(#666, #333; #444;);
   .shadow(0px; 3px; 5px; #333;);
   .region {
     .box;
@@ -196,26 +211,32 @@ a {
       padding-right: 8px;
       background-color: #e9e9e9;
       width: 130px;
+      border-right: none;
     }
     #edit-actions {
       .box;
-      .gradient(#ddd; #aaa;);
+      .vertical_gradient(#ddd; #aaa;);
       .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
     }
     .form-submit {
       .box;
       .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
       border-left: 1px solid #aaa;
-      background: none;
+      .vertical_gradient;
       .image_replace(23px; url('../img/magnifier.png'););
       // Override basic image replace behavior for precise placement
       background-position: 3px 3px;
       width: 25px;
     }
+    :hover .form-text, :hover .form-submit {
+      border-color: #555;
+    }
     :hover .form-text {
       background-color: #fff;
     }
     :hover .form-submit {
+      border-left: 1px solid #999;
+      .vertical_gradient(#fff; #ccc;);
     }
   }
   .main-menu {
@@ -311,39 +332,40 @@ a {
 /* Page tools {{{ */
 #page-tools {
   .box;
-  width: 200px;
-  margin: 5px 0 0 0;
-  .block-wrapper {
-    color: #000;
-    font-size: .825em;
-    padding: 6px 9px 6px 9px;
-  }
+  width: 170px;
+  left: 809px;
+  margin-top: 5px;
   li {
+    .box;
+    width: 170px;
     list-style-type: none;
   }
   li a {
     .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0);
     display: block;
-    padding: 6px 9px 6px 9px;
-    margin: 0 0 4px 0;
+    padding: 6px 9px 6px 11px;
+    margin: 0 0 3px 0;
     .font_ubuntu;
     text-shadow: 1px 1px 2px #fff;
-    color: #37962F;
+    color: #444;
+    background-color: #ccc;
   }
   li.active a {
+    .shadow(3px; 1px; 4px; #777;);
+    .horizontal_gradient(#fff; #ddd;);
+    margin: 0 0 5px 0;
     color: #000;
     background-color: #fff;
-   .shadow(3px; 1px; 4px; #777;);
   }
   .block-views {
-    margin: 6px 0 6px 9px;
+    margin: 6px 0 6px 11px;
     font-size: 12px;
     line-height: 14px;
     .views-row {
       margin-bottom: 14px;
     }
-    .views-field-picture, .views-field-timestamp, .views-field-vid, .views-field-log, .views-field-name {
-      //.box;
+    .views-field-picture, .views-field-timestamp, .views-field-log {
+      .box;
     }
     .views-field-name {
       //clear: right;
@@ -352,6 +374,14 @@ a {
       .box;
       width: 28px;
       margin-right: 5px;
+    }
+    .views-field-timestamp {
+      .box;
+      width: 126px;
+    }
+    .views-field-log {
+      width: 136px;
+      font-style: italic;
     }
   }
 }
@@ -364,7 +394,7 @@ a {
   margin: 5px 0 0 12px;
   padding: 14px 45px 14px 22px;
   background-color: #fff;
-  width: 700px;
+  width: 730px;
   /* h tags {{{ */
   h1, h2, h3, h4, h5, h6 {
     .font_lato;
