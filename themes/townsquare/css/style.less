@@ -145,7 +145,7 @@ body {
 /* }}} */
 /* Form items {{{ */
 input, button, textarea {
-  border: 1px solid #ccc;
+  border: 1px solid #888;
   -ms-box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -158,8 +158,16 @@ input, button {
 input.form-submit, button {
   .button;
 }
-input.form-text {
-  .shadow;
+input.form-text, select, textarea {
+  .shadow(2px; 1px; 3px; #aaa;);
+  border: 1px solid #888;
+}
+.form-item {
+  .body_block; 
+}
+.form-type-textfield label, .form-type-select label {
+  .box;
+  margin-right: 10px;
 }
 /* }}} */
 /* Links {{{ */
@@ -241,7 +249,9 @@ pre {
     }
     :hover .form-submit {
       border-left: 1px solid #999;
-      .vertical_gradient(#fff; #ccc;);
+      background-color: cccc;
+      .image_replace(23px; url('../img/magnifier.png'););
+      background-position: 3px 3px;
     }
   }
   .main-menu {
