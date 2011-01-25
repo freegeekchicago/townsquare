@@ -29,7 +29,7 @@
   -moz-border-radius: @topleft @topright @bottomright @bottomleft;
 }
 /* }}} */
-/* Simple gradient (.vertical_gradient) {{{ */
+/* Simple gradient (.vertical_gradient, .horizontal gradient) {{{ */
 .vertical_gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
   filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end');
   background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
@@ -79,7 +79,7 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
-.shadow (@left: 1px; @top: 1px; @blur: 3px; @color: #888;) {
+.shadow (@left: 1px; @top: 1px; @blur: 4px; @color: #bbb;) {
   -moz-box-shadow: @left @top @blur @color;
 }
 .shadow_inset (@left: -2px; @top: -2px; @blur: 5px; @color: #444;) {
@@ -116,6 +116,11 @@
 // @TODO add arguments
 .text_shadow {
   text-shadow: 0 1px 1px #fff;
+}
+/* }}} */
+/* CSS block elements (.body_block) {{{*/
+.body_block {
+  margin-bottom: 1.5em;
 }
 /* }}} */
 
