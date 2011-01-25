@@ -467,3 +467,63 @@ pre {
   /* }}} */
 }
 /* }}} */
+
+
+// Node editing
+
+body.page-node-edit {
+  .field-edit-link {
+    margin-left: .5em;
+    font-weight: normal;
+    font-size: .825em;
+  }
+  #main-content .filter-wrapper p {
+    text-align: right;
+    margin: 0;
+  }
+  .filter-wrapper {
+    .box;
+    font-size: .825em;
+    width: 100%;
+    .form-type-select {
+      .box;
+      margin-right: 10px;
+    }
+    .form-type-select label {
+      float: none;
+    }
+    .filter-guidelines {
+      .box;
+    }
+  }
+}
+
+.vertical-tabs {
+  .body_block;
+  .vertical-tabs-list {
+    li {
+      .rounded_corner(11px; 0; 0; 11px;);
+      margin-bottom: 2px;
+      font-size: .875em;
+      background-color: #ddd;
+      border: 1px solid #ddd;
+      padding: 2px 8px;
+      .summary {
+        font-size: .75em;
+      }
+    }
+    .selected {
+      background-color: #fff;
+      border: 1px solid #999;
+      border-right: 1px solid #fff;
+      margin-right: -2px;
+    }
+  }
+  .vertical-tabs-panes {
+    padding: 15px;
+    border: 1px solid #999;
+    min-height: 250px;
+  }
+}
+
+
