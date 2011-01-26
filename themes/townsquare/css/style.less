@@ -205,55 +205,6 @@ pre {
   .region {
     .box;
   }
-  #search-block-form {
-    width: 175px;
-    margin: 7px 9px 0 8px;
-    .box;
-    .form-item { 
-      .box;
-      font-size: 1em;
-    }
-    input { 
-      height: 19px;
-    }
-    .container-inline div { .box; }
-    .form-text {
-      .no_shadow;
-      .rounded_corner(@intense_corner_radius; 0; 0; @intense_corner_radius;);
-      padding-left: 8px;
-      padding-right: 8px;
-      background-color: #e9e9e9;
-      width: 130px;
-      border-right: none;
-    }
-    #edit-actions {
-      .box;
-      .vertical_gradient(#ddd; #aaa;);
-      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
-    }
-    .form-submit {
-      .box;
-      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0px;);
-      border-left: 1px solid #aaa;
-      .vertical_gradient;
-      .image_replace(23px; url('../img/magnifier.png'););
-      // Override basic image replace behavior for precise placement
-      background-position: 3px 3px;
-      width: 25px;
-    }
-    :hover .form-text, :hover .form-submit {
-      border-color: #555;
-    }
-    :hover .form-text {
-      background-color: #fff;
-    }
-    :hover .form-submit {
-      border-left: 1px solid #999;
-      background-color: cccc;
-      .image_replace(23px; url('../img/magnifier.png'););
-      background-position: 3px 3px;
-    }
-  }
   .main-menu {
     .box;
     .reset_list;
@@ -277,6 +228,49 @@ pre {
       border: 1px solid #888;
       .shadow_inset(-2px; -2px; 5px; #666;);
       background-color: #777;
+    }
+  }
+  #search-block-form {
+    .box;
+    margin: 7px 14px 0 8px;
+    .form-item-search-block-form {
+      .box;
+      font-size: 12px;
+      width: 144px;
+      .form-text {
+        .no_shadow;
+        .rounded_corner(@intense_corner_radius; 0; 0; @intense_corner_radius;);
+        width: 130px;
+        padding: 2px 7px;
+        height: 21px;
+        background-color: #eee;
+        border: 1px solid #888;
+        border-right: none;
+      }
+    }
+    .form-actions {
+      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0;);
+      .vertical_gradient;
+      .box;
+      height: 25px;
+      width: 26px;
+      border: 1px solid #888;
+      border-left: 1px solid #aaa;
+      .form-submit {
+        background: none;
+        border: none;
+        .image_replace(23px; url('../img/magnifier.png'););
+        background-position: 3px 3px;
+      }
+    }
+    :hover .form-item-search-block-form .form-text {
+      background-color: #fff;
+      border-color: #aaa;
+    }
+    :hover .form-actions {
+      .vertical_gradient(#eee; #bbb;);
+      border-color: #aaa;
+      border-left: 1px solid #ccc;
     }
   }
 }
