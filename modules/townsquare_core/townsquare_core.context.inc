@@ -19,7 +19,42 @@ function townsquare_core_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array();
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'toolbar',
+          'weight' => 0,
+        ),
+        'menu-menu-townsquare-toolbar' => array(
+          'module' => 'menu',
+          'delta' => 'menu-townsquare-toolbar',
+          'region' => 'toolbar',
+          'weight' => 1,
+        ),
+        'townsquare_core-login' => array(
+          'module' => 'townsquare_core',
+          'delta' => 'login',
+          'region' => 'toolbar',
+          'weight' => 2,
+        ),
+        'townsquare_core-primary_tasks' => array(
+          'module' => 'townsquare_core',
+          'delta' => 'primary_tasks',
+          'region' => 'page_actions',
+          'weight' => 0,
+        ),
+        'townsquare_core-secondary_tasks' => array(
+          'module' => 'townsquare_core',
+          'delta' => 'secondary_tasks',
+          'region' => 'page_actions',
+          'weight' => 1,
+        ),
+      ),
+    ),
+  );
   $context->condition_mode = 0;
 
   // Translatables
