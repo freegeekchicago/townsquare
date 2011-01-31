@@ -1,3 +1,64 @@
 <?php
 
 include_once('townsquare_core.features.inc');
+
+function townsquare_core_theme() {
+  return array(
+    'townsquare_login' => array(
+      'variables' => array('user' => NULL),
+      'template' => 'townsquare-login',
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function townsquare_core_block_info() {
+  $blocks['login']['info'] = t('Townsquare: User login & profile');
+  $blocks['login']['cache'] = DRUPAL_NO_CACHE;
+
+  $blocks['primary_tasks']['info'] = t('Townsquare: Primary local tasks');
+  $blocks['primary_tasks']['cache'] = DRUPAL_NO_CACHE;
+  
+  $blocks['secondary_tasks']['info'] = t('Townsquare: Secondary local tasks');
+  $blocks['secondary_tasks']['cache'] = DRUPAL_NO_CACHE;
+  
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function townsquare_core_block_view($delta = '') {
+  global $user;
+
+  $block = array();
+
+  switch ($delta) {
+    case 'login':
+      $block['content'] = theme('townsquare_login');
+      return $block;
+
+    case 'primary_tasks':
+      if ($tasks = menu_primary_local_tasks()) {
+        $block['content'] = render($tasks);
+        return $block;
+      }
+
+    case 'secondary_tasks':
+      if ($tasks = menu_secondary_local_tasks()) {
+        $block['content'] = render($tasks);
+        return $block;
+      }
+
+  }
+}
+
+/**
+ * Townsquare login block
+ */
+function template_preprocess_townsquare_login(&$vars) {
+  global $user;
+  $vars['user'] = $user;
+}
