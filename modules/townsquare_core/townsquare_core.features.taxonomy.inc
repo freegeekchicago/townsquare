@@ -8,7 +8,7 @@ function townsquare_core_taxonomy_default_vocabularies() {
     'tags' => array(
       'name' => 'Tags',
       'machine_name' => 'tags',
-      'description' => 'Use tags to group articles on similar topics into categories.',
+      'description' => '',
       'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
