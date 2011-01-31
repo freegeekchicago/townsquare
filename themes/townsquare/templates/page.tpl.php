@@ -1,5 +1,4 @@
 <div id='townsquare-toolbar'><div class='limiter clearfix'>
-  <?php if ($search_box): ?><?php print $search_box; ?><?php endif; ?>
   <?php print render($page['toolbar']); ?>
 </div></div>
 
@@ -30,8 +29,8 @@
     <div id='content' class='clearfix'><?php print render($page['content']) ?></div>
   </div>
 
-  <div id='page-tools'>
-    <?php print render($page['page_tools']) ?>
+  <div id='page-actions'>
+    <?php print render($page['page_actions']) ?>
   </div>
 
 </div></div>
