@@ -4,9 +4,7 @@
 
 <div id='site-links'><div class='limiter clearfix'>
   <?php if ($site_name): ?><h1 class='site-name'><?php print $site_name ?></h1><?php endif; ?>
-  <?php if (isset($secondary_menu)) : ?>
-    <?php print theme('links', array('links' => $secondary_menu, 'attributes' => array('class' => 'links secondary-menu'))) ?>
-  <?php endif; ?>
+  <?php print render($page['secondary_toolbar']); ?>
 </div></div>
 
 <?php if ($page['help'] || ($show_messages && $messages)): ?>
