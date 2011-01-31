@@ -213,7 +213,7 @@ pre {
     }
   }
   #block-townsquare-core-login {
-    color: #aaa;
+    color: #ccc;
     width: 130px;
     position: absolute;
     margin: 0;
@@ -231,8 +231,10 @@ pre {
       width: 92px;
       text-align: right;
       line-height: 1.25;
+      text-shadow: 1px 1px 2px #000;
       font-size: .75em;
       .username {
+        font-weight: bold;
         display: block;
       }
     }
@@ -259,7 +261,6 @@ pre {
       }
     }
   }
-
 
   #block-search-form {
     .form-item {
@@ -409,22 +410,22 @@ pre {
     color: #000;
     background-color: #fff;
   }
+  .block {
+    margin: 0 0 16px 0;
+  }
   .block-views {
-    margin: 6px 0 6px 11px;
-    font-size: 12px;
-    line-height: 14px;
+    margin-left: 11px;
+    .block-title {
+      font-size: 1.1em;
+    }
     .views-row {
-      margin-bottom: 14px;
-    }
-    .views-field-picture, .views-field-timestamp, .views-field-log {
-      .box;
-    }
-    .views-field-name {
-      //clear: right;
+      font-size: .77em;
+      line-height: 1.25;
+      margin-bottom: 8px;
     }
     .views-field-picture {
       .box;
-      width: 28px;
+      width: 29px;
       margin-right: 5px;
     }
     .views-field-timestamp {
@@ -432,6 +433,7 @@ pre {
       width: 126px;
     }
     .views-field-log {
+      margin: 4px 0 8px 0;
       width: 136px;
       font-style: italic;
     }
