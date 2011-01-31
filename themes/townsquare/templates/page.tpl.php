@@ -1,9 +1,6 @@
 <div id='townsquare-toolbar'><div class='limiter clearfix'>
   <?php if ($search_box): ?><?php print $search_box; ?><?php endif; ?>
-  <?php if (isset($main_menu)) : ?>
-    <?php print theme('links', array('links' => $main_menu, 'attributes' => array('class' => 'links main-menu'))) ?>
-  <?php endif; ?>
-  <php // @TODO User login block.. ?>
+  <?php print render($page['toolbar']); ?>
 </div></div>
 
 <div id='site-links'><div class='limiter clearfix'>

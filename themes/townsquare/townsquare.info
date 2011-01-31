@@ -6,7 +6,9 @@ name = Townsquare
 base theme = tao
 
 ; Regions =====================================================================
-regions[page_tools] = Page tools
+regions[toolbar] = Toolbar
+regions[page_toolbar] = Page toolbar
+regions[page_actions] = Page actions
 regions[content] = Content
 regions[help] = Help
 regions[footer] = Footer
