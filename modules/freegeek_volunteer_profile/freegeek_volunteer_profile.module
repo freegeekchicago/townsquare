@@ -1,0 +1,95 @@
+<?php
+/**
+ * FreeGeek Chicago townsquare volunteer
+ *
+ * Includes core content types (volunteer_session), event editing interface,
+ * and helper functions for interacting with volunteer hours.  Additional 
+ * features can add organization specific displays for volunteer hours.
+ */
+
+include_once('freegeek_volunteer_profile.features.inc');
+
+/**
+ * Implements hook_menu().
+ */
+function freegeek_volunteer_profile_menu() {
+  $items['event/create'] = array(
+    'title' => 'Create event',
+    'description' => 'Create event and volunteer sessions',
+    'page callback' => 'townsquare_core_edit_event',
+    //'access arguments' => array('create event content', 'create volunteer session content'),
+    'access callback' => TRUE,
+  );
+  $items['event/%node'] = array(
+    'title' => 'Edit event',
+    'description' => 'Edit an event and volunteer sessions',
+    'page callback' => 'townsquare_core_edit_event',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function freegeek_volunteer_profile_menu_alter(&$items) {
+  // Rename user tasks
+  $items['user/%user/view']['title'] = 'Profile';
+  $items['user/%user/edit']['title'] = 'Settings';
+}
+
+/**
+ * Integrated, AJAXy form for event + session creation
+ */
+function freegeek_volunteer_profile_edit_event($node = NULL) {
+  // Create event forms...
+  if (!$node || $node->type == 'event') {
+    dpm($node);
+    return 'stub';
+  }
+  else {
+    // access denied...
+  }
+}
+
+
+function freegeek_volunteer_profile_init() {
+  if (arg(0) == 'user' && is_numeric(arg(1))) {
+    $users = entity_load('user', array(arg(1)));
+    $sessions = freegeek_volunteer_profile_volunteer_sessions(array_keys($users), '2011-01-15 17:15:00', '2011-01-17 00:00:00');
+  }
+}
+
+/**
+ * Get volunteer sessions over a given span of time.
+ *
+ * @param $users
+ *   An array of uids
+ * @param $start
+ *   (optional) Start time (default: all sessions)
+ * @param $end
+ *   (optional) End time (default: now)
+ */ 
+
+function freegeek_volunteer_profile_volunteer_sessions($users = array(), $start = NULL, $end = NULL) {
+  $query = new EntityFieldQuery;
+
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'volunteer_session')
+    ->fieldCondition('field_session_user', 'uid', $users, 'in');
+
+  if ($start) {
+    $query->fieldCondition('field_session_hours', 'value', $start, '>');
+  }
+  if ($end) {
+    $query->fieldCondition('field_session_hours', 'value2', $end, '<');
+  }
+
+  $result = $query->execute();
+  
+  if ($result) {
+    return entity_load('node', array_keys($result['node']));
+  }  
+}
