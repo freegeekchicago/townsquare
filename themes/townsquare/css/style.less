@@ -214,33 +214,46 @@ pre {
   }
   #block-townsquare-core-login {
     color: #ccc;
-    width: 130px;
+    width: 280px;
     position: absolute;
-    margin: 0;
     top: 3px;
-    right: 0;
+    right: 1px;
+    margin: 0;
+    font-size: .75em;
     a { 
       color: #fff;
     }
-    .login-username, .user-picture {
-      display: inline;
-      display: table-cell;
-      vertical-align: top;
-    }
-    .login-username {
-      width: 92px;
-      text-align: right;
-      line-height: 1.25;
-      text-shadow: 1px 1px 2px #000;
-      font-size: .75em;
-      .username {
-        font-weight: bold;
-        display: block;
+    #login-meta {
+      .box;
+      width: 241px;
+      line-height: 1;
+      .login-username {
+        text-align: right;
+        text-shadow: 1px 1px 2px #000;
+        .username {
+          font-weight: bold;
+        }
+      }
+      .links {
+        margin-top: .5em;
+        text-align: right;
+        li {
+          float: right;
+          font-size: .9em;
+          font-weight: bold;
+          &.settings {
+            margin-left: 6px;
+            padding-left: 6px;
+            border-left: 1px solid #ccc;
+          }
+        }
       }
     }
     .user-picture {
-      padding-left: 10px;
+      .box;
+      margin-left: 10px;
       line-height: 1;
+      width: 29px;
     }
   }
   #block-menu-menu-townsquare-toolbar {
