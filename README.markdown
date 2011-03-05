@@ -52,16 +52,16 @@ Townsquare must satisfy several requirements for FreeGeek Chicago
 
 # Roadmap
 
- * Initial development (Q1, 2011): Content structure, architecture, and  
+ * **Initial development (Q1-Q2, 2011)**: Content structure, architecture, and  
    theme/UI. Our primary need is getting volunteer management to the point
    where it can be integrated into day-to-day FreeGeek process. The social 
    aspects of the site can come later. We'll create a rudimentary wiki, solid
    volunteer management, and stub conversations and calendars.
- * Feature expansion (Q2, 2011): FreeGeek's spring and summer project could
+ * **Feature expansion (Q2-Q3, 2011)**: FreeGeek's spring and summer project could
    be to build out several Townsquare areas. The effort at this point should
    be towards establishing Townsquare as a public project with a thoughtful
    social contract.
- * Device integration (Q3+, 2011): If we're really rolling, in the latter half
+ * **Device integration (Q3+, 2011)**: If we're really rolling, in the latter half
    of 2011 we should turn to notifications -- using Townsquare to keep
    participants in the loop.
 
