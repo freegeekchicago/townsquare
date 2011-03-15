@@ -189,3 +189,24 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
     return entity_load('node', array_keys($result['node']));
   }  
 }
+
+function townsquare_volunteer_event_date_combo($element) {
+  $element = $vars['element'];
+  $field = field_info_field($element['#field_name']);
+  $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
+  dpm($element);
+
+  if (!$field['settings']['todate']) {
+    return $element['#children'];
+  }
+
+  // Group from/to items together in fieldset.
+  $fieldset = array(
+    '#title' => check_plain($instance['label']) . ' ' . ($element['#delta'] > 0 ? intval($element['#delta'] + 1) : ''),
+    '#value' => '',
+    '#description' => $element['#fieldset_description'],
+    '#attributes' => array(),
+    '#children' => $element['#children'],
+  );
+  return theme('fieldset', array('element' => $fieldset));
+}
