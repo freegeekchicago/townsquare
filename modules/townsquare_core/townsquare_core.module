@@ -9,40 +9,6 @@
 include_once('townsquare_core.features.inc');
 
 /**
- * Implements hook_menu().
- */
-function townsquare_core_menu() {
-  $items['event/create'] = array(
-    'title' => 'Create event',
-    'description' => 'Create event and volunteer sessions',
-    'page callback' => 'townsquare_core_edit_event',
-    //'access arguments' => array('create event content', 'create volunteer session content'),
-    'access callback' => TRUE,
-  );
-  $items['event/%node'] = array(
-    'title' => 'Edit event',
-    'description' => 'Edit an event and volunteer sessions',
-    'page callback' => 'townsquare_core_edit_event',
-    'page arguments' => array(1),
-    'access callback' => TRUE,
-  );
-  return $items;
-}
-
-/**
- * Integrated, AJAXy form for event + session creation
- */
-function townsquare_core_edit_event($node = NULL) {
-  // Create event forms...
-  if (!$node || $node->type == 'event') {
-    dpm($node);
-    return 'stub';
-  }
-  else {
-    // access denied...
-  }
-}
-/**
  * Implements hook_theme().
  */
 function townsquare_core_theme() {

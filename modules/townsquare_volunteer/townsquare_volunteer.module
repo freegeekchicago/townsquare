@@ -16,14 +16,14 @@ function townsquare_volunteer_menu() {
   $items['event/create'] = array(
     'title' => 'Create event',
     'description' => 'Create event and volunteer sessions',
-    'page callback' => 'townsquare_core_edit_event',
+    'page callback' => 'townsquare_volunteer_edit_event',
     //'access arguments' => array('create event content', 'create volunteer session content'),
     'access callback' => TRUE,
   );
   $items['event/%node'] = array(
     'title' => 'Edit event',
     'description' => 'Edit an event and volunteer sessions',
-    'page callback' => 'townsquare_core_edit_event',
+    'page callback' => 'townsquare_volunteer_edit_event',
     'page arguments' => array(1),
     'access callback' => TRUE,
   );
