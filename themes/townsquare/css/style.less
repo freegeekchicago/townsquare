@@ -122,6 +122,17 @@
   margin-bottom: 1.5em;
 }
 /* }}} */
+/* Clearfix (.clearfix, .clear-block) {{{ */
+.clearfix { 
+  :after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+/* }}} */
 
 /* --- Page elements --- */
 /* Clearfix {{{ */
@@ -558,7 +569,6 @@ body.page-node-edit {
   .body_block;
   .vertical-tabs-list {
     li {
-      .rounded_corner(11px; 0; 0; 11px;);
       margin-bottom: 2px;
       font-size: .875em;
       background-color: #ddd;
@@ -607,3 +617,50 @@ body.page-node-edit {
   margin: 5px 15px;
 }
 /* }}} */
+
+/* --- Event + session editing UI --- */
+.page-event-edit {
+  #main-content {
+    width: 930px;
+  }
+  #event-form {
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid #aaa;
+  }
+  .volunteer-session-form {
+    .clearfix;
+    
+    .form-type-textfield label,
+    .form-type-textarea label,
+    .form-type-date-popup label,
+    .form-type-radios > label,
+    .form-type-checkboxes > label,
+    .form-type-select > label,
+    legend, .description { 
+      display: none;
+    }
+
+    .form-item, fieldset {
+      float: left;
+      display: block;
+      margin-right: 10px;
+      input, textarea, select {
+        width: 145px;
+      }
+      input#edit-field-session-user-und-0-uid {
+        //width: 100px;
+      }
+    }
+  }
+
+  #session-header {
+    width: 930px;
+    float: left;
+    li {
+      float: left;
+      display: block;
+      width: 155px;
+    }
+  }
+}
