@@ -40,17 +40,113 @@ function townsquare_volunteer_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function townsquare_volunteer_theme() {
+  return array(
+    'townsquare_volunteer_event_date_combo' => array(
+      'variables' => array('render element' => 'element'),
+    ),
+  );
+}
+
+function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
+  if (arg(0) == 'event') {
+    $form['#prefix'] = '<div id="event-form">';
+    $form['#suffix'] = '</div>';
+    $form['actions']['submit']['#ajax'] = array(
+      'callback' => 'townsquare_volunteer_return_submit',
+      'effect' => 'fade',
+      'wrapper' => 'event-form',
+    );
+    unset($form['menu'], $form['comment_settings'], $form['path'], 
+      $form['author'], $form['options'], $form['revision_information'],
+      $form['node_privacy_byrole'], $form['actions']['preview'], 
+      $form['actions']['delete'], $form['additional_settings']);
+  }
+}
+
+function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$form_state) {
+  if (arg(0) == 'event') {
+    $nid = $form['#node']->nid;
+    $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
+    $form['#suffix'] = '</div>';
+    $form['actions']['submit']['#ajax'] = array(
+      'callback' => 'townsquare_volunteer_return_submit',
+      'effect' => 'fade',
+      'wrapper' => 'event-form-'. $nid,
+    );
+    unset($form['menu'], $form['comment_settings'], $form['path'], 
+      $form['author'], $form['options'], $form['revision_information'],
+      $form['node_privacy_byrole'], $form['actions']['preview'], 
+      $form['actions']['delete'], $form['additional_settings'], 
+      $form['field_session_event']
+    );
+    $form['field_session_project']['und']['#type'] = 'select';
+    $form['field_session_project']['und']['#options']['_none'] = t('No project');
+
+    foreach (element_children($form['field_session_hours']['und']) as $key => $value) {
+      $form['field_session_hours']['und'][$key]['#theme'] = 'townsquare_volunteer_event_date_combo';
+    }
+  }
+}
+
+function townsquare_volunteer_return_submit($form, $form_state) {
+  return $form;
+}
+
+/**
  * Integrated, AJAXy form for event + session creation
  */
+module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
 function townsquare_volunteer_edit_event($node = NULL) {
   // Create event forms...
   if (!$node || $node->type == 'event') {
-    dpm($node);
-    return 'stub';
+    module_load_include('inc', 'node', 'node.pages');
+    $form = drupal_get_form('event_node_form', $node);
+    $output = array(
+      'event' => $form,
+      'sessions' => array(
+        '#name' => t('Volunteer sessions'),
+        'headers' => array(
+          '#theme' => 'item_list',
+          '#attributes' => array('id' => 'session-header'),
+          '#items' => array(
+            array('data' => t('Volunteer name'), 'class' => array('volunteer-name')),
+            array('data' => t('Start time'), 'class' => array('volunteer-start')),
+            array('data' => t('End time'), 'class' => array('volunteer-end')),
+            array('data' => t('Notes'), 'class' => array('volunteer-notes')),
+            array('data' => t('Project'), 'class' => array('volunteer-project')),
+          ),
+        ),
+        'sesssions' => array(),
+      ),
+    );
+    $sessions = townsquare_volunteer_event_sessions($node->nid);
+    foreach ($sessions as $session) {
+      $output['sessions']['sessions'][] = drupal_get_form('volunteer_session_node_form', $session);
+    }
+    return $output;
   }
-  else {
-    // access denied...
-  }
+}
+
+/**
+ * Get sessions for a given event
+ *
+ * @param
+ */
+function townsquare_volunteer_event_sessions($nid) {
+  $query = new EntityFieldQuery;
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'volunteer_session')
+    ->fieldCondition('field_session_event', 'nid', $nid, '=');
+
+  $result = $query->execute();
+  
+  if ($result) {
+    return entity_load('node', array_keys($result['node']));
+  }  
 }
 
 
