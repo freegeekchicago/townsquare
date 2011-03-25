@@ -116,6 +116,9 @@ function townsquare_volunteer_return_submit($form, $form_state) {
  */
 module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
 function townsquare_volunteer_edit_event($node = NULL) {
+  drupal_add_js(drupal_get_path('module', 'townsquare_volunteer') .'/lib/jquery.elastic.source.js');
+  drupal_add_js(drupal_get_path('module', 'townsquare_volunteer') .'/js/townsquare_volunteer.js');
+  
   // Create event forms...
   if (!$node || $node->type == 'event') {
     module_load_include('inc', 'node', 'node.pages');
