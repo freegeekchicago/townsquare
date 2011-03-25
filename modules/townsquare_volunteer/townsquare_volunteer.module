@@ -50,6 +50,9 @@ function townsquare_volunteer_theme() {
   );
 }
 
+/**
+ * Implements hook_form_event_node_form_alter().
+ */
 function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
     $form['#prefix'] = '<div id="event-form">';
@@ -66,6 +69,9 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
   }
 }
 
+/**
+ * Implements hook_form_volunteer_session_node_form_alter().
+ */
 function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
     $nid = $form['#node']->nid;
