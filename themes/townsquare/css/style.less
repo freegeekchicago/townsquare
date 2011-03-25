@@ -721,7 +721,7 @@ body.page-node-edit {
       margin-right: 25px;
       textarea { 
         width: 470px;
-        height: 5em;
+        max-height: 14em;
       }
       label {
         margin-bottom: .75em;
@@ -746,11 +746,23 @@ body.page-node-edit {
       }
     }
   }
+  #session-header {
+    width: 930px;
+    float: left;
+    li {
+      .box;
+      margin-right: 15px;
+    }
+  }
   .volunteer-session-form {
     .clearfix;
+
+    margin-bottom: .75em;
+
     .form-type-textfield label,
     .form-type-textarea label,
     .form-type-date-popup label,
+    .container-inline-date label,
     .form-type-radios > label,
     .form-type-checkboxes > label,
     .form-type-select > label,
@@ -758,26 +770,57 @@ body.page-node-edit {
       display: none;
     }
 
-    .form-item, fieldset {
-      float: left;
-      display: block;
-      margin-right: 10px;
-      input, textarea, select {
-        width: 145px;
-      }
-      input#edit-field-session-user-und-0-uid {
-        //width: 100px;
-      }
+    .form-item, fieldset, .container-inline-date {
+      .box;
+      margin: 0;
+      clear: none;
+    }
+    .form-item {
+      margin-right: 15px;
     }
   }
-  #session-header {
-    width: 930px;
-    float: left;
-    li {
-      float: left;
-      display: block;
-      width: 155px;
+
+  .field-name-field-session-user .form-item, 
+  #session-header .volunteer-name {
+    width: 200px;
+    input { 
+      width: 190px;
     }
   }
+  .field-name-field-session-hours fieldset {
+    .box;
+    width: 310px;
+  }
+  .field-name-field-session-hours .form-item,
+  #session-header .volunteer-start,
+  #session-header .volunteer-end {
+    width: 140px;
+    &.form-type-textfield {
+      margin: 0;
+    }
+    input {
+      width: 125px;
+    }
+  }
+  .field-name-field-session-notes .form-item,
+  #session-header .volunteer-notes {
+    width: 200px;
+    padding-top: 2px;
+    textarea {
+      width: 190px;
+      font-size: 13px;
+      line-height: 19px;
+    }
+  }
+  .field-name-field-session-project .form-item,
+  #session-header .volunteer-project {
+    width: 100px;
+    font-size: .92em;
+    select {
+      width: 90px;
+    }
+  }
+
+ 
 }
 /* }}} */
