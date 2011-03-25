@@ -62,6 +62,11 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       'effect' => 'fade',
       'wrapper' => 'event-form',
     );
+
+    // Bypass node validation by faking 'changed' date
+    // See http://www.elvisblogs.org/drupal/solved-how-bypass-nodevalidate-hookformalter
+    $form['changed']['#default_value'] = time() + 3600;
+    
     unset($form['menu'], $form['comment_settings'], $form['path'], 
       $form['author'], $form['options'], $form['revision_information'],
       $form['node_privacy_byrole'], $form['actions']['preview'], 
@@ -81,7 +86,12 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       'callback' => 'townsquare_volunteer_return_submit',
       'effect' => 'fade',
       'wrapper' => 'event-form-'. $nid,
+    
     );
+
+    // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
+    $form['changed']['#default_value'] = time() + 3600;
+    
     unset($form['menu'], $form['comment_settings'], $form['path'], 
       $form['author'], $form['options'], $form['revision_information'],
       $form['node_privacy_byrole'], $form['actions']['preview'], 
