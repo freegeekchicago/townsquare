@@ -15,6 +15,19 @@
 @color_button_text: #333333;
 @color_button_border_hover: #555555;
 @color_button_text_hover: #000000;
+
+@color_button_flat_background: #999999;
+@color_button_flat_background: #ff9e00;
+@color_button_flat_text: #ffffff;
+
+@color_messages_background: #ffd084;
+@color_messages_border: #ff9e00;
+@color_messages_text: #555555;
+
+@color_white: #ffffff;
+@color_black: #000000;
+@color_fg_green: #37962f;
+@color_fg_bright_green: #45bc3b;
 /* }}} */
 /* Measurements {{{ */
 @default_corner_radius: 9px;
@@ -43,16 +56,16 @@
 /* }}} */
 /* Glassy gradients (.vertical_gradient_glass) {{{ */
 // @TODO add arguments
-.vertical_gradient_glass (@start: #353535; @middle: #000; @end: #151515;) {
+.vertical_gradient_glass (@start: #353535; @middle: @color_black; @end: #151515;) {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.7, @middle), color-stop(1.0, @end)); /* for webkit browsers */
   background: -moz-linear-gradient(top, @start 0%, @middle 70%, @end 100%); /* for firefox 3.6+ */
 }
 /* }}} */
-/* Buttons (.button) {{{ */
+/* Buttons (.button, .button_flat) {{{ */
 .button {
   .rounded_corner;
   .vertical_gradient;
-  text-shadow: 0 1px 1px #fff;
+  text-shadow: 0 1px 1px @color_white;
   border: 1px solid @color_button_border;
   color: @color_button_text;
   text-align: center;
@@ -63,6 +76,17 @@
     color: @color_button_text_hover;
     border-color: @color_button_border_hover;
     cursor: default; 
+  }
+}
+.button_flat {
+  .rounded_corner;
+  color: @color_button_flat_text;
+  background: transparent;
+  background-color: @color_fg_green;
+  text-shadow: none;
+  border: none;
+  :hover {
+    background-color: @color_fg_bright_green;
   }
 }
 /* }}} */
@@ -114,7 +138,7 @@
 /* Text shadow (.text_shadow) {{{ */
 // @TODO add arguments
 .text_shadow {
-  text-shadow: 0 1px 1px #fff;
+  text-shadow: 0 1px 1px @color_white;
 }
 /* }}} */
 /* CSS block elements (.body_block) {{{*/
@@ -232,7 +256,7 @@ pre {
     margin: 0;
     font-size: .75em;
     a { 
-      color: #fff;
+      color: @color_white;
     }
     #login-meta {
       .box;
@@ -240,7 +264,7 @@ pre {
       line-height: 1;
       .login-username {
         text-align: right;
-        text-shadow: 1px 1px 2px #000;
+        text-shadow: 1px 1px 2px @color_black;
         .username {
           font-weight: bold;
         }
@@ -278,7 +302,7 @@ pre {
     }
     a {
       .box;
-      color: #fff;
+      color: @color_white;
       text-shadow: 1px 1px 2px #444;
       .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
       padding: 1px 8px;
@@ -326,7 +350,7 @@ pre {
       }
     }
     :hover .form-item-search-block-form .form-text {
-      background-color: #fff;
+      background-color: @color_white;
       border-color: #aaa;
     }
     :hover .form-actions {
@@ -359,7 +383,10 @@ pre {
     display: none;
   }
   a {
-    color: #37962f;
+    color: @color_fg_green;
+    :hover {
+      color: @color_fg_bright_green;
+    }
   }
   .site-name a {
     .box;
@@ -393,7 +420,7 @@ pre {
   .block-title {
     font-size: 1.5em;
     line-height: 1.5;
-    text-shadow: 1px 1px 2px #fff;
+    text-shadow: 1px 1px 2px @color_white;
     margin-bottom: .75em;
   }
   .boxes-box {
@@ -427,21 +454,21 @@ pre {
     .font_ubuntu;
     font-size: .875em;
     font-weight: bold;
-    text-shadow: 1px 1px 2px #fff;
+    text-shadow: 1px 1px 2px @color_white;
     color: #333;
     background-color: #ccc;
     :hover {
-      color: #000;
+      color: @color_black;
       background-color: #bbb;
     }
   }
   li.active a {
     .shadow(3px; 1px; 4px; #777;);
-    .horizontal_gradient(#fff; #ddd;);
+    .horizontal_gradient(@color_white; #ddd;);
     margin: 0 0 5px 0;
     padding-left: 7px;
-    color: #000;
-    background-color: #fff;
+    color: @color_black;
+    background-color: @color_white;
   }
   .block {
     margin: 0 0 16px 0;
@@ -480,7 +507,7 @@ pre {
   line-height: 1.5;
   margin: 5px 0 0 12px;
   padding: 14px 45px 14px 22px;
-  background-color: #fff;
+  background-color: @color_white;
   width: 730px;
   /* h tags {{{ */
   h1, h2, h3, h4, h5, h6 {
@@ -579,9 +606,9 @@ body.page-node-edit {
       }
     }
     .selected {
-      background-color: #fff;
+      background-color: @color_white;
       border: 1px solid #999;
-      border-right: 1px solid #fff;
+      border-right: 1px solid @color_white;
       margin-right: -2px;
     }
   }
@@ -596,16 +623,16 @@ body.page-node-edit {
 .messages {
   padding: 4px 7px;
   margin: 0 0 .5em 12px;
-  background-color: #ffd084;
-  border: 1px solid #ff9e00;
+  background-color: @color_messages_background;
+  border: 1px solid @color_messages_border;
   width: 979px;
   font-size: .75em;
-  color: #555;
+  color: @color_message_text;
   a { 
     color: #333; 
     text-decoration: underline;
     :hover {
-      color: #000;
+      color: @color_black;
     }
   }
 }
@@ -619,6 +646,7 @@ body.page-node-edit {
 /* }}} */
 
 /* --- Event + session editing UI --- */
+/* Edit event {{{ */
 .page-event-edit {
   #main-content {
     width: 930px;
@@ -652,6 +680,10 @@ body.page-node-edit {
         //width: 100px;
       }
     }
+
+    .form-submit {
+      .button_flat;
+    }
   }
 
   #session-header {
@@ -664,3 +696,4 @@ body.page-node-edit {
     }
   }
 }
+/* }}} */
