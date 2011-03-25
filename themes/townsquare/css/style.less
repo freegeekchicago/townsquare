@@ -86,6 +86,7 @@
   text-shadow: none;
   border: none;
   :hover {
+    color: @color_white;
     background-color: @color_fg_bright_green;
   }
 }
@@ -196,12 +197,25 @@ input.form-text, select, textarea {
   .shadow(2px; 1px; 3px; #aaa;);
   border: 1px solid #888;
 }
+fieldset {
+  legend {
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+}
 .form-item {
   .body_block; 
+  margin-bottom: .75em;
+}
+label {
+  margin-right: 10px;
 }
 .form-type-textfield label, .form-type-select label {
   .box;
-  margin-right: 10px;
+}
+.form-type-radios > label {
+  margin-bottom: .75em;
+  font-size: 1.25em;
 }
 /* }}} */
 /* Links {{{ */
@@ -622,10 +636,9 @@ body.page-node-edit {
 /* Messages {{{ */
 .messages {
   padding: 4px 7px;
-  margin: 0 0 .5em 12px;
+  margin: 0 0 1em 0;
   background-color: @color_messages_background;
   border: 1px solid @color_messages_border;
-  width: 979px;
   font-size: .75em;
   color: @color_message_text;
   a { 
@@ -652,13 +665,89 @@ body.page-node-edit {
     width: 930px;
   }
   #event-form {
+    .clearfix;
     padding-bottom: 1.5em;
     margin-bottom: 1.5em;
     border-bottom: 1px solid #aaa;
   }
+  .form-submit {
+    .button_flat;
+  }
+  #event-node-form {
+    .form-wrapper {
+      .box;
+      margin-right: 30px;
+    }
+    .field-name-field-event-type {
+      width: 220px;
+      margin-right: 0;
+    }
+    .field-name-field-event-date {
+      width: 325px;
+      label {
+        .box;
+        width: 90px;
+      }
+      input#edit-field-event-date-und-0-value-datepicker-popup-0,
+      input#edit-field-event-date-und-0-value2-datepicker-popup-0 {
+        width: 125px;
+        margin-right: 10px;
+      }
+      input#edit-field-event-date-und-0-value-timeEntry-popup-1,
+      input#edit-field-event-date-und-0-value2-timeEntry-popup-1 {
+        width: 65px;
+      }
+      select {
+        width: 190px;
+        display: block;
+      }
+      .form-item-field-event-date-und-0-value {
+        margin-bottom: .25em;
+        .description { display: none; }
+      }
+    }
+    .field-name-field-event-location {
+      width: 325px;
+      label {
+        .box;
+        width: 80px;
+      }
+      input {
+        max-width: 200px;
+      }
+    }
+    .field-name-field-event-description {
+      width: 475px;
+      margin-right: 25px;
+      textarea { 
+        width: 470px;
+        height: 5em;
+      }
+      label {
+        margin-bottom: .75em;
+      }
+    }
+    .field-name-field-tags {
+      width: 400px;
+      input { 
+        width: 400px;
+      }
+      label {
+        float: none;
+        margin-bottom: .75em;
+      }
+    }
+    .form-actions {
+      .box;
+      margin-top: .75em;
+      width: 930px;
+      .form-submit {
+        font-size: 1em;
+      }
+    }
+  }
   .volunteer-session-form {
     .clearfix;
-    
     .form-type-textfield label,
     .form-type-textarea label,
     .form-type-date-popup label,
@@ -680,12 +769,7 @@ body.page-node-edit {
         //width: 100px;
       }
     }
-
-    .form-submit {
-      .button_flat;
-    }
   }
-
   #session-header {
     width: 930px;
     float: left;
