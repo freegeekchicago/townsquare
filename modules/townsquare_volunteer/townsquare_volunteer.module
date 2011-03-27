@@ -50,28 +50,69 @@ function townsquare_volunteer_theme() {
   );
 }
 
+function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
+  // THIS IS SO CONFUZZLING, alter order has never made enough sense to me
+  if ($form_id == 'event_node_form' && arg(0) == 'event') {
+    $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_event_node_submit';
+    $form['actions']['delete']['#submit'][] = 'townsquare_volunteer_form_event_node_delete';
+  }
+  if ($form_id == 'volunteer_session_node_form' && arg(0) == 'event') {
+    $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_volunteer_session_node_submit';
+  }  
+}  
+
 /**
  * Implements hook_form_event_node_form_alter().
+ * 
  */
 function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
     $form['#prefix'] = '<div id="event-form">';
     $form['#suffix'] = '</div>';
-    $form['actions']['submit']['#ajax'] = array(
-      'callback' => 'townsquare_volunteer_return_submit',
-      'effect' => 'fade',
-      'wrapper' => 'event-form',
-    );
+
+    // Use ajax only after creation
+    if (arg(2) == 'edit') {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'townsquare_volunteer_return_submit',
+        'effect' => 'fade',
+        'wrapper' => 'event-form',
+      );
+    }
 
     // Bypass node validation by faking 'changed' date
     // See http://www.elvisblogs.org/drupal/solved-how-bypass-nodevalidate-hookformalter
     $form['changed']['#default_value'] = time() + 3600;
-    
-    unset($form['menu'], $form['comment_settings'], $form['path'], 
-      $form['author'], $form['options'], $form['revision_information'],
-      $form['node_privacy_byrole'], $form['actions']['preview'], 
-      $form['actions']['delete'], $form['additional_settings']);
+
+    // Refine further
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings') as $key) {
+      $form[$key]['#access'] = FALSE;
+    }
+    $form['actions']['preview']['#access'] = FALSE;    
   }
+}
+
+/**
+ * Submit/save callback for event editing form
+ */
+function townsquare_volunteer_form_event_node_submit($form, &$form_state) {
+  // Alter redirect
+  $form_state['redirect'] = 'event/'. $form_state['node']->nid .'/edit';
+}
+
+/**
+ * Delete callback for event editing form
+ */
+function townsquare_volunteer_form_event_node_delete($form, &$form_state) {
+  // @TODO cascade delete orphans, dangerous
+}
+
+
+/**
+ * Submit/save callback for embedded volunteer session editing form
+ */
+function townsquare_volunteer_form_volunteer_session_node_submit($form, &$form_state) {
+  // Alter redirect
+  $form_state['redirect'] = 'event/'. $form_state['node']->field_session_event['und'][0]['nid'] .'/edit';
 }
 
 /**
@@ -79,31 +120,40 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
  */
 function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
-    $nid = $form['#node']->nid;
+    $node = $form['#node'];
+    $nid = (!empty($node->nid)) ? $node->nid : 'new';
     $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
     $form['#suffix'] = '</div>';
-    $form['actions']['submit']['#ajax'] = array(
-      'callback' => 'townsquare_volunteer_return_submit',
-      'effect' => 'fade',
-      'wrapper' => 'event-form-'. $nid,
-    
-    );
+
+    // Only use AJAX if there's an nid (@TODO support ajax!)
+    if (!empty($node->nid)) {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'townsquare_volunteer_return_submit',
+        'effect' => 'fade',
+        'wrapper' => 'event-form-'. $nid,
+      );
+    }
 
     // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
     $form['changed']['#default_value'] = time() + 3600;
     
-    unset($form['menu'], $form['comment_settings'], $form['path'], 
-      $form['author'], $form['options'], $form['revision_information'],
-      $form['node_privacy_byrole'], $form['actions']['preview'], 
-      $form['actions']['delete'], $form['additional_settings'], 
-      $form['field_session_event']
-    );
+    // Refine further
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings') as $key) {
+      $form[$key]['#access'] = FALSE;
+    }
+    $form['actions']['preview']['#access'] = FALSE;    
+
+    $form['field_session_event']['und'][0]['#access'] = FALSE;
+    if (!$form['field_session_event']['und'][0]['nid']['#default_value']) {
+      $form['field_session_event']['und'][0]['nid']['#default_value'] = arg(1);
+    }
+
     $form['field_session_project']['und']['#type'] = 'select';
     $form['field_session_project']['und']['#options']['_none'] = t('No project');
 
-    foreach (element_children($form['field_session_hours']['und']) as $key => $value) {
+    /*foreach (element_children($form['field_session_hours']['und']) as $key => $value) {
       $form['field_session_hours']['und'][$key]['#theme'] = 'townsquare_volunteer_event_date_combo';
-    }
+    }*/
   }
 }
 
@@ -116,37 +166,67 @@ function townsquare_volunteer_return_submit($form, $form_state) {
  */
 module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
 function townsquare_volunteer_edit_event($node = NULL) {
+  global $user;
+  
+  if ($node && $node->type != 'event') {
+    drupal_not_found();
+  }
+
+  module_load_include('inc', 'node', 'node.pages');
+
   drupal_add_js(drupal_get_path('module', 'townsquare_volunteer') .'/lib/jquery.elastic.source.js');
   drupal_add_js(drupal_get_path('module', 'townsquare_volunteer') .'/js/townsquare_volunteer.js');
   
-  // Create event forms...
-  if (!$node || $node->type == 'event') {
-    module_load_include('inc', 'node', 'node.pages');
-    $form = drupal_get_form('event_node_form', $node);
-    $output = array(
-      'event' => $form,
-      'sessions' => array(
-        '#name' => t('Volunteer sessions'),
-        'headers' => array(
-          '#theme' => 'item_list',
-          '#attributes' => array('id' => 'session-header'),
-          '#items' => array(
-            array('data' => t('Volunteer name'), 'class' => array('volunteer-name')),
-            array('data' => t('Start time'), 'class' => array('volunteer-start')),
-            array('data' => t('End time'), 'class' => array('volunteer-end')),
-            array('data' => t('Notes'), 'class' => array('volunteer-notes')),
-            array('data' => t('Project'), 'class' => array('volunteer-project')),
-          ),
-        ),
-        'sesssions' => array(),
-      ),
-    );
-    $sessions = townsquare_volunteer_event_sessions($node->nid);
-    foreach ($sessions as $session) {
-      $output['sessions']['sessions'][] = drupal_get_form('volunteer_session_node_form', $session);
-    }
-    return $output;
+  $session_form = array();
+
+  if (!$node) {
+    $node = new stdClass();
+    $node->type = 'event';
+    $node->uid = $user->uid;
+    $node->language = 'und'; // @TODO make language selection more intelligent
   }
+  else {
+    $session_elements = array();
+
+    // @TODO why does order matter here?!
+    $empty_session = new stdClass();
+    $empty_session->nid = NULL;
+    $empty_session->type = 'volunteer_session';
+    $empty_session->uid = $user->uid;
+    $empty_session->language = 'und';
+    
+    $session_elements[] = drupal_get_form('volunteer_session_node_form', $empty_session);
+
+    $session_nodes = townsquare_volunteer_event_sessions($node->nid);
+
+    foreach ($session_nodes as $session) {
+      $session_elements[] = drupal_get_form('volunteer_session_node_form', $session);
+    }
+
+    $session_form = array(
+      '#name' => t('Volunteer sessions'),
+      'headers' => array(
+        '#theme' => 'item_list',
+        '#attributes' => array('id' => 'session-header'),
+        '#items' => array(
+          array('data' => t('Volunteer name'), 'class' => array('volunteer-name')),
+          array('data' => t('Start time'), 'class' => array('volunteer-start')),
+          array('data' => t('End time'), 'class' => array('volunteer-end')),
+          array('data' => t('Notes'), 'class' => array('volunteer-notes')),
+          array('data' => t('Project'), 'class' => array('volunteer-project')),
+        ),
+      ),
+      'sessions' => array_reverse($session_elements),
+    );
+  }
+    
+  $form = drupal_get_form('event_node_form', $node);
+  $output = array(
+    'event' => $form,
+    'sessions' => $session_form,
+  );
+  
+  return $output;
 }
 
 /**
@@ -165,7 +245,8 @@ function townsquare_volunteer_event_sessions($nid) {
   
   if ($result) {
     return entity_load('node', array_keys($result['node']));
-  }  
+  } 
+  return array();
 }
 
 
