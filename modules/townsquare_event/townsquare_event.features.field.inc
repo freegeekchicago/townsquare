@@ -83,9 +83,9 @@ function townsquare_event_field_default_fields() {
       'settings' => array(
         'default_format' => 'medium',
         'default_value' => 'now',
-        'default_value2' => 'blank',
+        'default_value2' => 'strtotime',
         'default_value_code' => '',
-        'default_value_code2' => '',
+        'default_value_code2' => '+6 hours',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
