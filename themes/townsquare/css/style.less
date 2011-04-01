@@ -263,53 +263,97 @@ pre {
   }
   #block-townsquare-core-login {
     color: #ccc;
-    width: 280px;
-    position: absolute;
-    top: 3px;
-    right: 1px;
-    margin: 0;
-    font-size: .75em;
+    float: right;
+    margin: 0 5px 0 0;
+    color: #ddd;
+    line-height: 1;
+    font-size: .875em;
     a { 
       color: @color_white;
+      :hover {
+        text-decoration: underline;
+      }
     }
-    #login-meta {
-      .box;
-      width: 241px;
-      line-height: 1;
-      .login-username {
-        text-align: right;
-        text-shadow: 1px 1px 2px @color_black;
-        .username {
-          font-weight: bold;
+    form {
+      margin-top: 7px;
+    }
+    .form-item, .form-actions, .links {
+      display: inline;
+      margin-right: 5px;
+    }
+    .links {
+      a {
+        font-weight: bold;
+      }
+    }
+    .form-actions {
+      margin-right: 10px;
+      input {
+        .button;
+        .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+        background: none;
+        padding: 1px 5px;
+        background-color: #e5e5e5;
+        border: 1px solid #888;
+        :hover {
+          background-color: @color_white;
+          border-color: #aaa;
         }
       }
-      .links {
-        margin-top: .5em;
-        text-align: right;
-        li {
-          float: right;
-          font-size: .9em;
-          font-weight: bold;
-          &.settings {
-            margin-left: 6px;
-            padding-left: 6px;
-            border-left: 1px solid #ccc;
+    }
+    .form-item {
+      label {
+        font-weight: normal;
+        margin-right: 4px;
+      }
+      input {
+        font-size: .85em;
+        padding-left: 6px;
+        padding-right: 6px;
+        width: 100px;
+      }
+    }
+
+    .login-wrapper {
+      margin-top: 4px;
+      #login-meta {
+        .box;
+        width: 241px;
+        font-size: .925em;
+        line-height: 1;
+        .login-username {
+          text-align: right;
+          text-shadow: 1px 1px 2px @color_black;
+          .username {
+            font-weight: bold;
+          }
+        }
+        .links {
+          text-align: right;
+          li {
+            margin-top: 4px;
+            float: right;
+            font-weight: bold;
+            &.settings {
+              margin-left: 6px;
+              padding-left: 6px;
+              border-left: 1px solid #ccc;
+            }
           }
         }
       }
-    }
-    .user-picture {
-      .box;
-      margin-left: 10px;
-      line-height: 1;
-      width: 29px;
+      .user-picture {
+        .box;
+        margin-left: 10px;
+        line-height: 1;
+        width: 29px;
+      }
     }
   }
   #block-menu-menu-townsquare-toolbar {
     .reset_list;
     margin-left: 3px;
     margin-top: 7px;
-    border-right: none;
     li {
       .box;
       margin-right: 4px;
