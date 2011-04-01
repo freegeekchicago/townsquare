@@ -17,15 +17,14 @@ function townsquare_volunteer_menu() {
     'title' => 'Create event',
     'description' => 'Create event and volunteer sessions',
     'page callback' => 'townsquare_volunteer_edit_event',
-    //'access arguments' => array('create event content', 'create volunteer session content'),
-    'access callback' => TRUE,
+    'access callback' => TRUE, // @TODO use correct callback
   );
   $items['event/%node'] = array(
     'title' => 'Edit event',
     'description' => 'Edit an event and volunteer sessions',
     'page callback' => 'townsquare_volunteer_edit_event',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => TRUE, // @TODO use correct callback
   );
   return $items;
 }
@@ -151,6 +150,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['field_session_project']['und']['#type'] = 'select';
     $form['field_session_project']['und']['#options']['_none'] = t('No project');
 
+    // @TODO add magic date widget
     /*foreach (element_children($form['field_session_hours']['und']) as $key => $value) {
       $form['field_session_hours']['und'][$key]['#theme'] = 'townsquare_volunteer_event_date_combo';
     }*/
@@ -158,6 +158,11 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
 }
 
 function townsquare_volunteer_return_submit($form, $form_state) {
+  // @TODO We rebuild the form, we can create a new node in place, but if we do
+  // that, we also screw up the volunteer editing list -- values somehow get
+  // assigned to the wrong form when they are POSTed.
+  /*$form_state['rebuild'] = TRUE;
+  drupal_rebuild_form($form['#form_id'], $form_state, $form);*/
   return $form;
 }
 
