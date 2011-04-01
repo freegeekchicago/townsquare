@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_event.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -59,6 +63,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'date_default',
           'weight' => 3,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -73,9 +83,9 @@ function townsquare_event_field_default_fields() {
       'settings' => array(
         'default_format' => 'medium',
         'default_value' => 'now',
-        'default_value2' => 'blank',
+        'default_value2' => 'strtotime',
         'default_value_code' => '',
-        'default_value_code2' => '',
+        'default_value_code2' => '+4 hours',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -85,13 +95,13 @@ function townsquare_event_field_default_fields() {
           'increment' => '1',
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
-          'label_position' => 'above',
+          'label_position' => 'none',
           'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -114,7 +124,7 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -143,6 +153,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'text_default',
           'weight' => 5,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -162,10 +178,10 @@ function townsquare_event_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '5',
+          'rows' => '1',
         ),
         'type' => 'text_textarea',
-        'weight' => '5',
+        'weight' => '4',
       ),
     ),
   );
@@ -196,7 +212,7 @@ function townsquare_event_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'event',
       'default_value' => array(
-        '0' => array(
+        0 => array(
           'administrative_area' => 'IL',
           'country' => 'US',
           'element_key' => 'node|event|field_event_location|und|0',
@@ -215,6 +231,12 @@ function townsquare_event_field_default_fields() {
           'settings' => array(),
           'type' => 'addressfield_default',
           'weight' => 4,
+        ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -240,7 +262,7 @@ function townsquare_event_field_default_fields() {
           'default_country' => 'US',
         ),
         'type' => 'addressfield_standard',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
@@ -263,13 +285,13 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'tid' => array(
-          '0' => 'tid',
+          0 => 'tid',
         ),
       ),
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          '0' => array(
+          0 => array(
             'parent' => '0',
             'vocabulary' => 'event_type',
           ),
@@ -298,6 +320,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 2,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -317,7 +345,7 @@ function townsquare_event_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
@@ -340,13 +368,13 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'tid' => array(
-          '0' => 'tid',
+          0 => 'tid',
         ),
       ),
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          '0' => array(
+          0 => array(
             'parent' => '0',
             'vocabulary' => 'tags',
           ),
@@ -375,6 +403,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 1,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -397,10 +431,18 @@ function townsquare_event_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '4',
+        'weight' => '5',
       ),
     ),
   );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Description');
+  t('Event date');
+  t('Event location');
+  t('Event type');
+  t('Tags');
 
   return $fields;
 }
