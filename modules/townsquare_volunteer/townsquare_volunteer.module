@@ -250,7 +250,9 @@ function townsquare_volunteer_event_sessions($nid) {
   $query
     ->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_event', 'nid', $nid, '=');
+    ->fieldCondition('field_session_event', 'nid', $nid, '=')
+    ->fieldOrderBy('field_session_hours', 'value', 'DESC')
+    ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
 
   $result = $query->execute();
   
