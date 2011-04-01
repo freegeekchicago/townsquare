@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * freegeek_volunteer_profile.context.inc
+ */
 
 /**
  * Implementation of hook_context_default_contexts().
@@ -10,7 +14,7 @@ function freegeek_volunteer_profile_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'freegeek_volunteer_profile';
-  $context->description = 'FreeGeek Chicago townsquare user';
+  $context->description = 'Townsquare user';
   $context->tag = 'townsquare';
   $context->conditions = array(
     'user_page' => array(
@@ -22,25 +26,14 @@ function freegeek_volunteer_profile_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-00af09155a0404cd3c32eaa5b5b00ea3' => array(
-          'module' => 'views',
-          'delta' => '00af09155a0404cd3c32eaa5b5b00ea3',
-          'region' => 'content',
-          'weight' => 0,
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('FreeGeek Chicago townsquare user');
+  t('Townsquare user');
   t('townsquare');
-  $export['user'] = $context;
+  $export['freegeek_volunteer_profile'] = $context;
 
   return $export;
 }
