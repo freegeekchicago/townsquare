@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_core.features.menu_links.inc
+ */
 
 /**
  * Implementation of hook_menu_default_menu_links().

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_core.features.user_role.inc
+ */
 
 /**
  * Implementation of hook_user_default_roles().

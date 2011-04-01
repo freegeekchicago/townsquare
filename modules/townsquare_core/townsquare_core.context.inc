@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_core.context.inc
+ */
 
 /**
  * Implementation of hook_context_default_contexts().
