@@ -187,7 +187,10 @@ function townsquare_volunteer_edit_event($node = NULL) {
   if (!$node) {
     $node = new stdClass();
     $node->type = 'event';
-    $node->uid = $user->uid;
+    $node->name = $user->name;
+    $node->status = 1;
+    $node->promote = 0;
+    $node->sticky = 0;
     $node->language = 'und'; // @TODO make language selection more intelligent
   }
   else {
@@ -197,7 +200,10 @@ function townsquare_volunteer_edit_event($node = NULL) {
     $empty_session = new stdClass();
     $empty_session->nid = NULL;
     $empty_session->type = 'volunteer_session';
-    $empty_session->uid = $user->uid;
+    $empty_session->name = $user->name;
+    $node->status = 1;
+    $node->promote = 0;
+    $node->sticky = 0;
     $empty_session->language = 'und';
     
     $session_elements[] = drupal_get_form('volunteer_session_node_form', $empty_session);
