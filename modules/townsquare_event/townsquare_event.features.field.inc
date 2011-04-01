@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_event.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -59,6 +63,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'date_default',
           'weight' => 3,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -114,7 +124,7 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -142,6 +152,12 @@ function townsquare_event_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => 5,
+        ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -196,7 +212,7 @@ function townsquare_event_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'event',
       'default_value' => array(
-        '0' => array(
+        0 => array(
           'administrative_area' => 'IL',
           'country' => 'US',
           'element_key' => 'node|event|field_event_location|und|0',
@@ -215,6 +231,12 @@ function townsquare_event_field_default_fields() {
           'settings' => array(),
           'type' => 'addressfield_default',
           'weight' => 4,
+        ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -263,13 +285,13 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'tid' => array(
-          '0' => 'tid',
+          0 => 'tid',
         ),
       ),
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          '0' => array(
+          0 => array(
             'parent' => '0',
             'vocabulary' => 'event_type',
           ),
@@ -297,6 +319,12 @@ function townsquare_event_field_default_fields() {
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
           'weight' => 2,
+        ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -340,13 +368,13 @@ function townsquare_event_field_default_fields() {
       ),
       'indexes' => array(
         'tid' => array(
-          '0' => 'tid',
+          0 => 'tid',
         ),
       ),
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
-          '0' => array(
+          0 => array(
             'parent' => '0',
             'vocabulary' => 'tags',
           ),
@@ -375,6 +403,12 @@ function townsquare_event_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => 1,
         ),
+        'example_node_list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -401,6 +435,14 @@ function townsquare_event_field_default_fields() {
       ),
     ),
   );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Description');
+  t('Event date');
+  t('Event location');
+  t('Event type');
+  t('Tags');
 
   return $fields;
 }

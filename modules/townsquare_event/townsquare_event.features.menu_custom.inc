@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_event.features.menu_custom.inc
+ */
 
 /**
  * Implementation of hook_menu_default_menu_custom().

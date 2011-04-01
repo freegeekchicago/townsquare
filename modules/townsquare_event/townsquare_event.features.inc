@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_event.features.inc
+ */
 
 /**
  * Implementation of hook_node_info().
