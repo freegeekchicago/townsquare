@@ -1,14 +1,8 @@
 <?php
-
 /**
- * Implementation of hook_ctools_plugin_api().
+ * @file
+ * townsquare_volunteer.features.inc
  */
-function townsquare_volunteer_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "context" && $api == "context") {
-    return array("version" => 3);
-  }
-}
 
 /**
  * Implementation of hook_node_info().
@@ -25,13 +19,4 @@ function townsquare_volunteer_node_info() {
     ),
   );
   return $items;
-}
-
-/**
- * Implementation of hook_views_api().
- */
-function townsquare_volunteer_views_api() {
-  return array(
-    'api' => '3.0-alpha1',
-  );
 }
