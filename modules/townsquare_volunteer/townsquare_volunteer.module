@@ -83,7 +83,7 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
     $form['changed']['#default_value'] = time() + 3600;
 
     // Refine further
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
       $form[$key]['#access'] = FALSE;
     }
     $form['actions']['preview']['#access'] = FALSE;    
@@ -137,7 +137,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['changed']['#default_value'] = time() + 3600;
     
     // Refine further
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
       $form[$key]['#access'] = FALSE;
     }
     $form['actions']['preview']['#access'] = FALSE;    
