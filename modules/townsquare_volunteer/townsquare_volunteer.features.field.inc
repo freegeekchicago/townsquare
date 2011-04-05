@@ -129,7 +129,7 @@ function townsquare_volunteer_field_default_fields() {
         'tz_handling' => 'user',
       ),
       'translatable' => '1',
-      'type' => 'datetime',
+      'type' => 'date',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
@@ -148,7 +148,7 @@ function townsquare_volunteer_field_default_fields() {
             'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => 4,
+          'weight' => 6,
         ),
         'example_node_list' => array(
           'label' => 'above',
@@ -179,8 +179,8 @@ function townsquare_volunteer_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
-          'increment' => '1',
-          'input_format' => 'm/d/Y - H:i:s',
+          'increment' => 1,
+          'input_format' => 'Y-m-d H:i:s',
           'input_format_custom' => 'H:i m-d-Y',
           'label_position' => 'above',
           'repeat_collapsed' => 0,
