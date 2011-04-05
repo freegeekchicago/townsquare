@@ -20,15 +20,6 @@ function townsquare_core_menu_default_menu_custom() {
   // Included for use with string extractors like potx.
   t('Townsquare toolbar');
 
-  // Exported menu: menu-townsquare-toolbar
-  $menus['menu-townsquare-secondary-tools'] = array(
-    'menu_name' => 'menu-townsquare-secondary-tools',
-    'title' => 'Townsquare secondary tools',
-    'description' => '',
-  );
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Townsquare secondary tools');
 
   return $menus;
 }
