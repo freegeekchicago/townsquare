@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_core.features.filter.inc
+ */
 
 /**
  * Implementation of hook_filter_default_formats().
@@ -7,11 +11,12 @@ function townsquare_core_filter_default_formats() {
   $formats = array();
 
   // Exported format: Markdown
-  $formats['Markdown'] = array(
+  $formats['markdown'] = array(
+    'format' => 'markdown',
     'name' => 'Markdown',
     'cache' => '1',
     'status' => '1',
-    'weight' => '0',
+    'weight' => '-10',
     'filters' => array(
       'filter_markdown' => array(
         'weight' => '0',
@@ -22,11 +27,12 @@ function townsquare_core_filter_default_formats() {
   );
 
   // Exported format: Plain text
-  $formats['Plain text'] = array(
+  $formats['plain_text'] = array(
+    'format' => 'plain_text',
     'name' => 'Plain text',
     'cache' => '1',
     'status' => '1',
-    'weight' => '10',
+    'weight' => '-9',
     'filters' => array(
       'filter_html_escape' => array(
         'weight' => '0',
