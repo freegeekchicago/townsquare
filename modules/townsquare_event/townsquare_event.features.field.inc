@@ -39,10 +39,10 @@ function townsquare_event_field_default_fields() {
         'repeat' => 0,
         'timezone_db' => 'UTC',
         'todate' => 'required',
-        'tz_handling' => 'date',
+        'tz_handling' => 'user',
       ),
       'translatable' => '1',
-      'type' => 'datetime',
+      'type' => 'date',
     ),
     'field_instance' => array(
       'bundle' => 'event',
@@ -61,7 +61,7 @@ function townsquare_event_field_default_fields() {
             'show_repeat_rule' => 'show',
           ),
           'type' => 'date_default',
-          'weight' => 3,
+          'weight' => 6,
         ),
         'example_node_list' => array(
           'label' => 'above',
@@ -92,8 +92,8 @@ function townsquare_event_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
-          'increment' => '1',
-          'input_format' => 'm/d/Y - H:i:s',
+          'increment' => '15',
+          'input_format' => 'H:i:s Y-m-d',
           'input_format_custom' => '',
           'label_position' => 'above',
           'repeat_collapsed' => 0,
@@ -262,7 +262,7 @@ function townsquare_event_field_default_fields() {
           'default_country' => 'US',
         ),
         'type' => 'addressfield_standard',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
@@ -345,7 +345,7 @@ function townsquare_event_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '3',
+        'weight' => '2',
       ),
     ),
   );
