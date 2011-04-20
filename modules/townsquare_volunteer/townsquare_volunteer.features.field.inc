@@ -129,7 +129,7 @@ function townsquare_volunteer_field_default_fields() {
         'tz_handling' => 'user',
       ),
       'translatable' => '1',
-      'type' => 'date',
+      'type' => 'datetime',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
