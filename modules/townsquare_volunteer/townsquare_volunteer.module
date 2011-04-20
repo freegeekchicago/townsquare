@@ -323,3 +323,98 @@ function townsquare_volunteer_event_date_combo($element) {
   );
   return theme('fieldset', array('element' => $fieldset));
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function townsquare_volunteer_block_info() {
+  // A simple summation of all a volunteers hours
+  $blocks['volunteer_hours'] = array(
+    'info' => t('Volunteer hours'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/** 
+ * Implements hook_block_view().
+ */
+function townsquare_volunteer_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'volunteer_hours':
+      if (arg(0) == 'user' && is_numeric(arg(1))) {
+        $user = user_load(arg(1)); 
+        $total = 0;
+        $sessions = townsquare_volunteer_user_sessions($user->uid);
+
+        $table = array(
+          '#theme' => 'table',
+          '#header' => array(t('Event'), t('Start'), t('End'), t('Hours'), t('Notes')),
+          '#rows' => array(),
+        );
+        foreach ($sessions as $session) {
+          $event = node_load($session->field_session_event['und'][0]['nid']);
+          $event_type = taxonomy_term_load($event->field_event_type['und'][0]['tid']);
+
+          $start = date_create($session->field_session_hours['und'][0]['value'],
+            timezone_open($session->field_session_hours['und'][0]['timezone']));
+          $end = date_create($session->field_session_hours['und'][0]['value2'],
+            timezone_open($session->field_session_hours['und'][0]['timezone']));
+          
+          $start_timestamp = date_timestamp_get($start);
+          $end_timestamp = date_timestamp_get($end);
+          
+          $elapsed = $end_timestamp - $start_timestamp;
+          
+          $notes = (!empty($session->field_session_notes['und'][0]['value'])) ?
+            $session->field_session_notes['und'][0]['value'] : NULL;
+
+          $table['#rows'][] = array(
+            $event_type->name,
+            $session->field_session_hours['und'][0]['value'],
+            $session->field_session_hours['und'][0]['value2'],
+            $elapsed / 3600,
+            $notes,
+          );
+
+          $total += $elapsed;
+        }
+
+        $table['#rows'][] = array(
+          NULL, NULL, 
+          array(
+            'header' => TRUE,
+            'data' => t('Total'),
+          ),
+          $total / 3600,
+          NULL,
+        );
+
+        $block['subject'] = t("@user's hours", array('@user' => $user->name));
+        $block['content'] = $table;
+      }
+  }
+  return $block;
+}
+
+/**
+ * Get sessions for a given user
+ */
+function townsquare_volunteer_user_sessions($uid) {
+  $query = new EntityFieldQuery;
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'volunteer_session')
+    ->fieldCondition('field_session_user', 'uid', $uid, '=')
+    ->fieldOrderBy('field_session_hours', 'value', 'DESC')
+    ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
+
+  $result = $query->execute();
+  
+  if ($result) {
+    return entity_load('node', array_keys($result['node']));
+  } 
+  return array();
+}
