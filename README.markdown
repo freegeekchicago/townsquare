@@ -50,6 +50,18 @@ Townsquare must satisfy several requirements for FreeGeek Chicago
  * **Device integration**: Email, text message, or web, we need to provide LOTS
    of ways for volunteers to hook into Townsquare.
 
+## Considerations
+
+### Language
+
+"Conversational" content types will use a single language.
+
+"Content" content types will allow translation into multiple languages.
+
+"Event" and "data" content types where complex form manipulation is required
+will be language neutral -- all note fields are assumed to be in the correct
+language of whoever will be reading.
+
 # Roadmap
 
  * **Initial development (Q1-Q2, 2011)**: Content structure, architecture, and  
