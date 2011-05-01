@@ -174,7 +174,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
   
   if ($node && $node->type != 'event') {
-    drupal_not_found();
+    return drupal_not_found();
   }
 
   module_load_include('inc', 'node', 'node.pages');
