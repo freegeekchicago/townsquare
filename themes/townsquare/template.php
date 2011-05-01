@@ -11,6 +11,15 @@ function townsquare_preprocess_page(&$vars) {
     $vars['search_box'] = drupal_render(drupal_get_form('search_block_form'));
   }
 
+  // Set 'type' page variable on nodes for now
+  if (!empty($vars['node'])) {
+    $type = node_type_get_type($vars['node']);
+    $vars['page']['type'] = array(
+      '#prefix' => '<div class="type">',
+      '#suffix' => '</div>',
+      '#markup' => $type->name,
+    );
+  }
   // @TODO user login "block"
 }
 
