@@ -28,6 +28,17 @@
 @color_black: #000000;
 @color_fg_green: #37962f;
 @color_fg_bright_green: #45bc3b;
+
+@color_pale_orange: #f37943;
+@color_orange: #ff5509;
+@color_blue: #365b81;
+@color_bright_blue: #266fc9;
+@color_pale_blue: #becde1;
+@color_yellow: #ffff99;
+
+// Some nice colors?
+// .vertical_gradient_glass(#3b3e58; #2d2f43; #3b3e58;);
+
 /* }}} */
 /* Measurements {{{ */
 @default_corner_radius: 9px;
@@ -173,9 +184,9 @@
 /* Body {{{ */
 body {
   color: #333;
-  font-family: "Lato";
+  font-family: "Lato", Verdana, sans-serif;
   font-size: 100%;
-  background-color: #d5d5d5;
+  background-color: #fff;
 }
 /* }}} */
 /* Form items {{{ */
@@ -220,7 +231,11 @@ label {
 /* }}} */
 /* Links {{{ */
 a {
+  color: @color_bright_blue;
   text-decoration: none;
+  :hover {
+    color: @color_blue;
+  }
 }
 /* }}} */
 /* Pre {{{ */
@@ -233,6 +248,55 @@ pre {
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 /* }}} */
+/* Table {{{ */
+table {
+  width: auto;
+  th, td {
+    color: #555;
+    text-align: left;
+    padding-right: 1.5em;
+  }
+  thead {
+    th {
+      border-bottom: 2px solid #aaa;
+    }
+  }
+  tbody {
+    tr {
+      td {
+        color: #555;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        padding-top: .5em;
+        padding-bottom: .5em;
+      }
+      :hover { 
+        td, th {
+          color: #000;
+        }
+      }
+    }
+  }
+  &.summary {
+    background-color: #eee;
+    font-size: 1.25em;
+    td {
+      border: none;
+      font-weight: bold;
+      padding-top: .15em;
+      padding-bottom: .15em;
+    }
+    th {
+      font-weight: normal;
+    }
+    th, td {
+      padding-left: .25em;
+      border-bottom: 2px solid #fff;
+    }
+  }
+}
+/* }}} */
+
 
 /* --- Theme elements --- */
 /* Page {{{ */
@@ -242,7 +306,6 @@ pre {
 /* }}} */
 /* Header {{{ */
 #townsquare-toolbar {
-  .ubuntu_font;
   height: 37px;
   position: fixed;
   top: 0;
@@ -276,12 +339,14 @@ pre {
     }
   }
   .block {
-    padding: 0 6px;
     margin: 5px 0 0 0;
     .box;
     .block-title {
       display: none;
     }
+  }
+  #block-search-form {
+    margin-left: 6px;
   }
   #block-townsquare-core-login {
     color: #ccc;
@@ -291,6 +356,7 @@ pre {
     line-height: 1;
     font-size: .875em;
     a { 
+      font-weight: bold;
       color: @color_white;
       :hover {
         text-decoration: underline;
@@ -302,11 +368,6 @@ pre {
     .form-item, .form-actions, .links {
       display: inline;
       margin-right: 5px;
-    }
-    .links {
-      a {
-        font-weight: bold;
-      }
     }
     .form-actions {
       margin-right: 10px;
@@ -341,21 +402,17 @@ pre {
       #login-meta {
         .box;
         width: 241px;
-        font-size: .925em;
+        font-size: .825em;
         line-height: 1;
         .login-username {
           text-align: right;
           text-shadow: 1px 1px 2px @color_black;
-          .username {
-            font-weight: bold;
-          }
         }
         .links {
           text-align: right;
           li {
             margin-top: 4px;
             float: right;
-            font-weight: bold;
             &.settings {
               margin-left: 6px;
               padding-left: 6px;
@@ -366,15 +423,19 @@ pre {
       }
       .user-picture {
         .box;
-        margin-left: 10px;
+        margin-left: 7px;
+        margin-right: 2px;
         line-height: 1;
-        width: 29px;
+        img {
+          height: 27px;
+          width: 27px;
+        }
       }
     }
   }
   #block-menu-menu-townsquare-toolbar {
     .reset_list;
-    margin-left: 3px;
+    margin-left: 7px;
     margin-top: 7px;
     li {
       .box;
@@ -386,9 +447,12 @@ pre {
       text-shadow: 1px 1px 2px #444;
       .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
       padding: 1px 8px;
-      font-size: 13px;
+      font-size: 15px;
       line-height: 22px;
-      :hover, &.active {
+      :hover { 
+        background-color: #aaa;
+      }
+      &.active {
         background-color: #888;
       }
     }
@@ -401,11 +465,11 @@ pre {
     .form-item-search-block-form {
       .box;
       font-size: 12px;
-      width: 174px;
+      width: 164px;
       height: 21px;
       .form-text {
-        width: 169px;
-        padding: 2px 7px;
+        width: 159px;
+        padding: 1px 7px;
         height: 21px;
         border-right: none;
       }
@@ -414,7 +478,7 @@ pre {
       .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0;);
       .vertical_gradient;
       .box;
-      height: 25px;
+      height: 23px;
       width: 26px;
       border: 1px solid #888;
       border-left: 1px solid #aaa;
@@ -422,7 +486,7 @@ pre {
         background: none;
         border: none;
         .image_replace(23px; url('../img/magnifier.png'););
-        background-position: 3px 3px;
+        background-position: 3px 2px;
       }
     }
     :hover .form-actions {
@@ -436,7 +500,6 @@ body.logged-in #townsquare-toolbar {
   top: 31px;
 }
 #toolbar { 
-  .ubuntu_font;
   .no_shadow;
   border-bottom: 1px solid #999;
   div.toolbar-menu {
@@ -445,49 +508,53 @@ body.logged-in #townsquare-toolbar {
   }
 }
 #site-links {
-  .ubuntu_font;
   margin-top: 40px;
   height: 52px;
+  background-color: #ddd;
   .site-name {
     .box;
     .lato_font;
-    margin: 15px 4px 0 12px;
+    margin: 10px 4px 0 12px;
   }
   h2 {
     display: none;
   }
   a {
-    color: @color_fg_green;
+    color: @color_white;
     :hover {
-      color: @color_fg_bright_green;
+      color: @color_white;
     }
   }
   .site-name a {
     .box;
     background: url('../img/logo-icon.png') no-repeat 3px 3px;
     padding: 0 0 0 32px;
-    font-size: 27px;
-    line-height: 22px;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 26px;
     height: 28px;
+    color: @color_fg_green;
   }
   ul {
-    margin: 18px 0 0 16px;
+    margin: 14px 0 0 16px;
     .box;
   }
   ul li {
     .box;
-    margin: 0 15px 0 0;
+    margin: 0 7px 0 0;
+    a {
+      .ubuntu_font;
+      .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+      background-color: @color_pale_orange;
+      padding: 3px 8px;
+      font-size: .875em;
+      //.text_shadow;
+      :hover {
+        background-color: @color_orange;
+      }
+    }
   }
-  li a {
-    font-size: .875em;
-    font-weight: bold;
-    color: #444;
-    .text_shadow;
-  }
-  li.last a {
-    font-weight: normal;
-  }
-}
+ }
 /* }}} */
 /* Blocks and box-module boxes {{{ */
 .block {
@@ -506,40 +573,39 @@ body.logged-in #townsquare-toolbar {
 /* }}} */
 /* Page actions {{{ */
 #page-actions {
-  .box;
-  width: 170px;
-  left: 809px;
-  margin-top: 5px;
+  background-color: #ddd;
+  padding-left: 10px;
+  .type {
+    margin-right: 10px;
+    .box;
+    font-size: .75em;
+    margin-top: .25em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
   li {
     .box;
-    width: 168px;
-    margin-left: 2px;
     list-style-type: none;
   }
   li.active {
-    width: 170px;
     margin: 0;
   }
   li a {
-    .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0);
+    .rounded_corner(@default_corner_radius; @default_corner_radius; 0; 0);
     display: block;
-    padding: 4px 9px 4px 5px;
-    margin: 0 0 3px 0;
+    padding: 2px 9px 2px 9px;
+    margin: 0 4px 0 0;
     .font_ubuntu;
-    font-size: .875em;
     font-weight: bold;
-    text-shadow: 1px 1px 2px @color_white;
-    color: #333;
-    background-color: #ccc;
+    text-shadow: 1px 1px 2px #ddd;
+    color: @color_black;
+    background-color: #bbb;
     :hover {
-      color: @color_black;
-      background-color: #bbb;
+      background-color: #999;
     }
   }
   li.active a {
-    .shadow(3px; 1px; 4px; #777;);
-    .horizontal_gradient(@color_white; #ddd;);
-    margin: 0 0 5px 0;
+    //.shadow(3px; 1px; 4px; #aaa;);
     padding-left: 7px;
     color: @color_black;
     background-color: @color_white;
@@ -576,13 +642,19 @@ body.logged-in #townsquare-toolbar {
 /* }}} */
 /* Main content {{{ */
 #main-content {
-  .box;
-  .shadow(1px; 1px; 5px; #777;);
   line-height: 1.5;
-  margin: 5px 0 0 12px;
+  margin: 0 0 0 12px;
   padding: 14px 45px 14px 22px;
   background-color: @color_white;
   width: 730px;
+  /* Links {{{ */
+  a {
+    text-decoration: underline;
+    :hover {
+      background-color: @color_yellow;
+    }
+  }
+  /* }}} */
   /* h tags {{{ */
   h1, h2, h3, h4, h5, h6 {
     .font_lato;
