@@ -12,7 +12,7 @@ function townsquare_preprocess_page(&$vars) {
   }
 
   // Set 'type' page variable on nodes for now
-  if (!empty($vars['node'])) {
+  if (arg(0) == 'node' && !empty($vars['node'])) {
     $type = node_type_get_type($vars['node']);
     $vars['page']['type'] = array(
       '#prefix' => '<div class="type">',
