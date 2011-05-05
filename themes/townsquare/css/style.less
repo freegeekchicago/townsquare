@@ -46,6 +46,14 @@
 /* }}} */
 
 /* --- Less CSS mixins --- */
+/* Fonts (.ubuntu_font, .lato_font) {{{ */
+.ubuntu_font {
+  font-family: Ubuntu, Verdana, sans-serif;
+}
+.lato_font {
+  font-family: Lato, Verdana, sans-serif;
+}
+/* }}} */
 /* Rounded corners (.rounded_corner) {{{ */
 .rounded_corner(@topleft: @default_corner_radius; @topright: @default_corner_radius; @bottomright: @default_corner_radius; @bottomleft: @default_corner_radius;) {
   border-radius: @topleft @topright @bottomright @bottomleft;
@@ -90,13 +98,14 @@
   }
 }
 .button_flat {
-  .rounded_corner;
-  color: @color_button_flat_text;
+  .ubuntu_font;
+  .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+  color: @color_white;
   background: transparent;
   background-color: @color_fg_green;
   text-shadow: none;
   border: none;
-  :hover {
+  :hover, &.active {
     color: @color_white;
     background-color: @color_fg_bright_green;
   }
@@ -137,14 +146,6 @@
   background-repeat: no-repeat;
   height: 0 !important;
   //height: /**/:@height; 
-}
-/* }}} */
-/* Fonts (.ubuntu_font, .lato_font) {{{ */
-.ubuntu_font {
-  font-family: Ubuntu, Verdana, sans-serif;
-}
-.lato_font {
-  font-family: Lato, Verdana, sans-serif;
 }
 /* }}} */
 /* Text shadow (.text_shadow) {{{ */
@@ -202,7 +203,8 @@ input, button {
   line-height: 1;
 }
 input.form-submit, button {
-  .button;
+  font-size: 100%;
+  .button_flat;
 }
 input.form-text, select, textarea {
   .shadow(2px; 1px; 3px; #aaa;);
@@ -254,7 +256,11 @@ table {
   th, td {
     color: #555;
     text-align: left;
-    padding-right: 1.5em;
+    padding: .25em .5em;
+    a {
+      text-decoration: none !important;
+      background: none !important;
+    }
   }
   thead {
     th {
@@ -264,14 +270,18 @@ table {
   tbody {
     tr {
       td {
+        padding: .25em .5em;
         color: #555;
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc;
-        padding-top: .5em;
-        padding-bottom: .5em;
+
+        &.active {
+          background-color: #eee;
+        }
       }
       :hover { 
         td, th {
+          background-color: #f5f5f5;
           color: #000;
         }
       }
@@ -349,6 +359,7 @@ table {
     margin-left: 6px;
   }
   #block-townsquare-core-login {
+    .ubuntu_font;
     color: #ccc;
     float: right;
     margin: 0 5px 0 0;
@@ -543,15 +554,9 @@ body.logged-in #townsquare-toolbar {
     .box;
     margin: 0 7px 0 0;
     a {
-      .ubuntu_font;
-      .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
-      background-color: @color_pale_orange;
+      .button_flat;
       padding: 3px 8px;
       font-size: .875em;
-      //.text_shadow;
-      :hover {
-        background-color: @color_orange;
-      }
     }
   }
  }
@@ -646,7 +651,6 @@ body.logged-in #townsquare-toolbar {
   margin: 0 0 0 12px;
   padding: 14px 45px 14px 22px;
   background-color: @color_white;
-  width: 730px;
   /* Links {{{ */
   a {
     text-decoration: underline;
@@ -802,9 +806,6 @@ body.page-node-edit {
     margin-bottom: 1.5em;
     border-bottom: 1px solid #aaa;
   }
-  .form-submit {
-    .button_flat;
-  }
   #event-node-form {
     .form-wrapper {
       .box;
@@ -953,5 +954,39 @@ body.page-node-edit {
       width: 90px;
     }
   }
+}
+/* }}} */
+/* Views: Tables {{{ */
+table.views-table {
+  th {
+    padding: 0;
+    a, span {
+      display: block;
+      padding: .25em .5em; 
+    }
+    :hover {
+      a {
+        background-color: #ddd !important;
+      }
+    }
+  }
+  tr {
+    :hover {
+      td.active {
+        background-color: #ddd;  
+      }
+    }
+  }
+  div {
+    float: left;
+  }
+  .user-picture {
+    margin-right: 6px;
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
 }
 /* }}} */
