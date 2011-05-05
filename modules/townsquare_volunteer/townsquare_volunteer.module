@@ -310,7 +310,6 @@ function townsquare_volunteer_event_date_combo($element) {
   $element = $vars['element'];
   $field = field_info_field($element['#field_name']);
   $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
-  dpm($element);
 
   if (!$field['settings']['todate']) {
     return $element['#children'];
@@ -352,8 +351,6 @@ function townsquare_volunteer_block_view($delta = '') {
         $total = 0;
         $now = date_create('now', timezone_open($user->timezone));
 
-        $sessions = array();
-        
         $query = new EntityFieldQuery;
         $query
           ->entityCondition('entity_type', 'node')
@@ -363,7 +360,7 @@ function townsquare_volunteer_block_view($delta = '') {
           ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
 
         $result = $query->execute();
-        $sessions = ($result) ? entity_load('node', array_keys($result['node'])) : $sessions;
+        $sessions = ($result) ? entity_load('node', array_keys($result['node'])) : array();
 
         $table = array(
           '#theme' => 'table',
