@@ -199,39 +199,61 @@ function townsquare_volunteer_edit_event($node = NULL) {
   else {
     $session_elements = array();
 
-    // @TODO why does order matter here?!
-    $empty_session = new stdClass();
-    $empty_session->nid = NULL;
-    $empty_session->type = 'volunteer_session';
-    $empty_session->name = $user->name;
-    $node->status = 1;
-    $node->promote = 0;
-    $node->sticky = 0;
-    $empty_session->language = 'und';
-    
-    $session_elements[] = drupal_get_form('volunteer_session_node_form', $empty_session);
+    if (node_access('create', 'volunteer_session')) {
+      // @TODO why does order matter here?!
+      $empty_session = new stdClass();
+      $empty_session->nid = NULL;
+      $empty_session->type = 'volunteer_session';
+      $empty_session->name = $user->name;
+      $node->status = 1;
+      $node->promote = 0;
+      $node->sticky = 0;
+      $empty_session->language = 'und';
+      $session_elements[] = drupal_get_form('volunteer_session_node_form', 
+        $empty_session);
+    }
 
     $session_nodes = townsquare_volunteer_event_sessions($node->nid);
 
     foreach ($session_nodes as $session) {
-      $session_elements[] = drupal_get_form('volunteer_session_node_form', $session);
+      if (node_access('update', $session)) {
+        $session_elements[] = drupal_get_form('volunteer_session_node_form',
+          $session);
+      }
     }
 
-    $session_form = array(
-      '#name' => t('Volunteer sessions'),
-      'headers' => array(
-        '#theme' => 'item_list',
-        '#attributes' => array('id' => 'session-header'),
-        '#items' => array(
-          array('data' => t('Volunteer name'), 'class' => array('volunteer-name')),
-          array('data' => t('Start time'), 'class' => array('volunteer-start')),
-          array('data' => t('End time'), 'class' => array('volunteer-end')),
-          array('data' => t('Notes'), 'class' => array('volunteer-notes')),
-          array('data' => t('Project'), 'class' => array('volunteer-project')),
+    if (!empty($session_elements)) {
+      $session_form = array(
+        '#name' => t('Volunteer sessions'),
+        'headers' => array(
+          '#theme' => 'item_list',
+          '#attributes' => array('id' => 'session-header'),
+          '#items' => array(
+            array(
+              'data' => t('Volunteer name'), 
+              'class' => array('volunteer-name')
+            ),
+            array(
+              'data' => t('Start time'), 
+              'class' => array('volunteer-start')
+            ),
+            array(
+              'data' => t('End time'),
+              'class' => array('volunteer-end')
+            ),
+            array(
+              'data' => t('Notes'),
+              'class' => array('volunteer-notes')
+            ),
+            array(
+              'data' => t('Project'),
+              'class' => array('volunteer-project')
+            ),
+          ),
         ),
-      ),
-      'sessions' => array_reverse($session_elements),
-    );
+        'sessions' => array_reverse($session_elements),
+      );
+    }
   }
     
   $form = drupal_get_form('event_node_form', $node);
