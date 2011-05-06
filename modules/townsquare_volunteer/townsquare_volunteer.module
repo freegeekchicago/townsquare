@@ -52,6 +52,34 @@ function townsquare_volunteer_theme() {
   );
 }
 
+/**
+ * Implements hook_perm().
+ */
+function townsquare_volunteer_permission() {
+  return array(
+    'access event views' => array(
+      'title' => t('Access event Views'),
+      'description' => t('Access Drupal Views related to events.'),
+    ), 
+    'access public volunteer views' => array(
+      'title' => t('Access public volunteer views'),
+      'description' => t('Access public Drupal Views related to volunteers, 
+        such as a list of all public profiles.'),
+    ), 
+    'view own volunteer hours' => array(
+      'title' => t('View own volunteer hours'),
+      'description' => t('View one\'s own volunteer hours.'),
+    ),
+    'view all volunteer hours' => array(
+      'title' => t('View all volunteer hours'),
+      'description' => t('View everyone\'s volunteer hours.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
   // THIS IS SO CONFUZZLING, alter order has never made enough sense to me
   if ($form_id == 'event_node_form' && arg(0) == 'event') {
