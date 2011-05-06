@@ -11,9 +11,9 @@
 @color_gradient_default_dark: #aaaaaa;
 @color_gradient_default_middle: #cccccc;
 
-@color_button_border: #aaaaaa;
-@color_button_text: #333333;
-@color_button_border_hover: #555555;
+@color_button_border: #777777;
+@color_button_text: #444444;
+@color_button_border_hover: #444444;
 @color_button_text_hover: #000000;
 
 @color_button_flat_background: #999999;
@@ -42,7 +42,7 @@
 /* }}} */
 /* Measurements {{{ */
 @default_corner_radius: 9px;
-@intense_corner_radius: 12px;
+@intense_corner_radius: 15px;
 /* }}} */
 
 /* --- Less CSS mixins --- */
@@ -82,13 +82,13 @@
 /* }}} */
 /* Buttons (.button, .button_flat) {{{ */
 .button {
-  .rounded_corner;
+  .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
   .vertical_gradient;
   text-shadow: 0 1px 1px @color_white;
   border: 1px solid @color_button_border;
   color: @color_button_text;
   text-align: center;
-  padding: 2px 7px;
+  padding: 0 5px;
   cursor: pointer;
   background-color: #ddd;
   :hover { 
@@ -203,8 +203,8 @@ input, button {
   line-height: 1;
 }
 input.form-submit, button {
-  font-size: 100%;
-  .button_flat;
+  .button;
+  font-size: .925em;
 }
 input.form-text, select, textarea {
   .shadow(2px; 1px; 3px; #aaa;);
@@ -233,10 +233,10 @@ label {
 /* }}} */
 /* Links {{{ */
 a {
-  color: @color_bright_blue;
+  color: @color_fg_green;
   text-decoration: none;
   :hover {
-    color: @color_blue;
+    color: @color_orange;
   }
 }
 /* }}} */
@@ -274,14 +274,16 @@ table {
         color: #555;
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc;
-
+        a {
+          font-weight: bold;
+        }
         &.active {
           background-color: #eee;
         }
       }
       :hover { 
         td, th {
-          background-color: #f5f5f5;
+          background-color: #e6e6e6;
           color: #000;
         }
       }
@@ -507,7 +509,7 @@ table {
     }
   }
 }
-body.logged-in #townsquare-toolbar {
+body.toolbar #townsquare-toolbar {
   top: 31px;
 }
 #toolbar { 
@@ -520,6 +522,7 @@ body.logged-in #townsquare-toolbar {
 }
 #site-links {
   margin-top: 40px;
+  padding: 5px 0;
   height: 52px;
   background-color: #ddd;
   .site-name {
@@ -538,13 +541,17 @@ body.logged-in #townsquare-toolbar {
   }
   .site-name a {
     .box;
-    background: url('../img/logo-icon.png') no-repeat 3px 3px;
+    background: url('../img/logo-icon.png') no-repeat 0 0;
     padding: 0 0 0 32px;
     font-size: 22px;
     text-transform: uppercase;
     line-height: 26px;
     height: 28px;
     color: @color_fg_green;
+    :hover {
+      color: @color_fg_bright_green;
+      background-position: 0 -30px;
+    }
   }
   ul {
     margin: 14px 0 0 16px;
@@ -579,7 +586,7 @@ body.logged-in #townsquare-toolbar {
 /* Page actions {{{ */
 #page-actions {
   background-color: #ddd;
-  padding-left: 10px;
+  padding-left: 12px;
   .type {
     margin-right: 10px;
     .box;
@@ -614,9 +621,6 @@ body.logged-in #townsquare-toolbar {
     padding-left: 7px;
     color: @color_black;
     background-color: @color_white;
-  }
-  .block {
-    margin: 0 0 16px 0;
   }
   .block-views {
     margin-left: 11px;
@@ -770,9 +774,13 @@ body.page-node-edit {
 }
 /* }}} */
 /* Messages {{{ */
+#console {
+  background-color: #ddd;
+  padding: 0 12px;
+}
 .messages {
   padding: 4px 7px;
-  margin: 0 0 1em 0;
+  margin: 0 0 1.5em 0;
   background-color: @color_messages_background;
   border: 1px solid @color_messages_border;
   font-size: .75em;
@@ -875,7 +883,6 @@ body.page-node-edit {
       margin-top: .75em;
       width: 930px;
       .form-submit {
-        font-size: 1em;
         margin-right: 6px;
       }
     }
@@ -890,9 +897,7 @@ body.page-node-edit {
   }
   .volunteer-session-form {
     .clearfix;
-
     margin-bottom: .75em;
-
     .form-type-textfield label,
     .form-type-textarea label,
     .form-type-date-popup label,
@@ -903,7 +908,6 @@ body.page-node-edit {
     legend, .description { 
       display: none;
     }
-
     .form-item, fieldset, .container-inline-date {
       .box;
       margin: 0;
@@ -912,9 +916,7 @@ body.page-node-edit {
     .form-item {
       margin-right: 15px;
     }
-  
     .form-submit {
-      font-size: .875em;
       margin-bottom: .25em;
     }
   }

@@ -22,10 +22,10 @@
 
 <div id='page'><div class='limiter clearfix'>
 
-  <div id='page-actions'>
+  <div id='page-actions'><div class='limiter clearfix'>
     <?php print render($page['type']) ?>
     <?php print render($page['page_actions']) ?>
-  </div>
+  </div></div>
 
   <div id='main-content'>
     <?php if ($title): ?><h1 class='page-title'><?php print $title ?></h1><?php endif; ?>

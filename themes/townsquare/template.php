@@ -20,7 +20,6 @@ function townsquare_preprocess_page(&$vars) {
       '#markup' => $type->name,
     );
   }
-  // @TODO user login "block"
 }
 
 
