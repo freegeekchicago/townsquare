@@ -393,21 +393,29 @@ function townsquare_volunteer_block_info() {
  * Implements hook_block_view().
  */
 function townsquare_volunteer_block_view($delta = '') {
+  global $user;
   $block = array();
 
   switch ($delta) {
     case 'volunteer_hours':
       if (arg(0) == 'user' && is_numeric(arg(1))) {
-        $user = user_load(arg(1));
+        $volunteer = user_load(arg(1));
+
+        if (!(user_access('view all volunteer hours', $user) 
+          || (user_access('view own volunteer hours') 
+             && $user->uid == $volunteer->uid))) {
+          break;
+        }
+
         $total = 0;
-        $now = date_create('now', timezone_open($user->timezone));
+        $now = date_create('now', timezone_open($volunteer->timezone));
 
         $query = new EntityFieldQuery;
         $query
           ->entityCondition('entity_type', 'node')
           ->propertyCondition('type', 'volunteer_session')
           ->fieldOrderBy('field_session_hours', 'value', 'DESC')
-          ->fieldCondition('field_session_user', 'uid', $user->uid, '=')
+          ->fieldCondition('field_session_user', 'uid', $volunteer->uid, '=')
           ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
 
         $result = $query->execute();
@@ -485,7 +493,7 @@ function townsquare_volunteer_block_view($delta = '') {
         );
 
 
-        $block['subject'] = t("@user's hours", array('@user' => $user->name));
+        $block['subject'] = t("@volunteer's hours", array('@volunteer' => $volunteer->name));
         $block['content'] = array(
           'totals' => $totals,
           'table' => $table,
