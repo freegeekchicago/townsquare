@@ -113,9 +113,12 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
     // See http://www.elvisblogs.org/drupal/solved-how-bypass-nodevalidate-hookformalter
     $form['changed']['#default_value'] = time() + 3600;
 
-    // Refine further
+    // Strip out form elements; @TODO refine further
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
       $form[$key]['#access'] = FALSE;
+    }
+    foreach (array('premise', 'country') as $key) {
+      $form['field_event_location']['und'][0][$key]['#access'] = FALSE;
     }
     $form['actions']['preview']['#access'] = FALSE;    
   }
