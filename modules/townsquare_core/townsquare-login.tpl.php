@@ -18,6 +18,7 @@
           array('!user' => theme('username', array('account' => $user)))
         );
         ?>
+        <?php print '('. l('Logout', 'user/logout') .')'; ?>
       </div>
       <ul class="links">
         <li class="settings"><?php print l(t('Account settings'), 'user/'. $user->uid .'/edit'); ?></li>
