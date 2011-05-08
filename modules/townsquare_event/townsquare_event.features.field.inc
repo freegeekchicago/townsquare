@@ -22,13 +22,6 @@ function townsquare_event_field_default_fields() {
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 0,
-          'edit own' => 0,
-          'view' => 0,
-          'view own' => 0,
-        ),
         'granularity' => array(
           'day' => 'day',
           'hour' => 'hour',
@@ -63,12 +56,6 @@ function townsquare_event_field_default_fields() {
           'type' => 'date_default',
           'weight' => 6,
         ),
-        'example_node_list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -92,8 +79,8 @@ function townsquare_event_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
-          'increment' => '15',
-          'input_format' => 'H:i:s Y-m-d',
+          'increment' => '1',
+          'input_format' => 'Y-m-d H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
           'repeat_collapsed' => 0,
@@ -217,9 +204,13 @@ function townsquare_event_field_default_fields() {
           'country' => 'US',
           'element_key' => 'node|event|field_event_location|und|0',
           'locality' => 'Chicago',
+          'name_line' => 'FreeGeek Chicago',
           'postal_code' => '60647',
           'premise' => '',
           'thoroughfare' => '3411 W. Diversey Ave.',
+          'xal' => '',
+          'xnl' => '<NameDetails PartyType="Person"><NameLine>FreeGeek Chicago</NameLine></NameDetails>
+',
         ),
       ),
       'deleted' => '0',
@@ -230,13 +221,7 @@ function townsquare_event_field_default_fields() {
           'module' => 'addressfield',
           'settings' => array(),
           'type' => 'addressfield_default',
-          'weight' => 4,
-        ),
-        'example_node_list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'weight' => 7,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -248,7 +233,7 @@ function townsquare_event_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_event_location',
       'label' => 'Event location',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -256,10 +241,8 @@ function townsquare_event_field_default_fields() {
         'active' => 1,
         'module' => 'addressfield',
         'settings' => array(
-          'available_countries' => array(
-            'US' => 'US',
-          ),
-          'default_country' => 'US',
+          'available_countries' => array(),
+          'name_format' => 'name_line',
         ),
         'type' => 'addressfield_standard',
         'weight' => '3',
