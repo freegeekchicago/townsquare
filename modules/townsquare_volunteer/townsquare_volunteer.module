@@ -438,8 +438,8 @@ function townsquare_volunteer_block_view($delta = '') {
           $end = date_create($session->field_session_hours['und'][0]['value2'],
             timezone_open($session->field_session_hours['und'][0]['timezone']));
           
-          $start_timestamp = date_timestamp_get($start);
-          $end_timestamp = date_timestamp_get($end);
+          $start_timestamp = date_format($start, 'U'); 
+          $end_timestamp = date_format($end, 'U'); 
           
           $elapsed = $end_timestamp - $start_timestamp;
           
@@ -473,8 +473,8 @@ function townsquare_volunteer_block_view($delta = '') {
           $end = date_create($session->field_session_hours['und'][0]['value2'],
             timezone_open($session->field_session_hours['und'][0]['timezone']));
           
-          $start_timestamp = date_timestamp_get($start);
-          $end_timestamp = date_timestamp_get($end);
+          $start_timestamp = date_format($start, 'U');
+          $end_timestamp = date_format($end, 'U');
           
           $elapsed = $end_timestamp - $start_timestamp;
           $recent_total += $elapsed;
