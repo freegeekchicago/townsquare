@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * townsquare_conversation.features.field.inc
+ */
 
 /**
  * Implementation of hook_field_default_fields().
@@ -13,7 +17,7 @@ function townsquare_conversation_field_default_fields() {
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(
-        '0' => 'node',
+        0 => 'node',
       ),
       'field_name' => 'body',
       'foreign keys' => array(
@@ -26,7 +30,7 @@ function townsquare_conversation_field_default_fields() {
       ),
       'indexes' => array(
         'format' => array(
-          '0' => 'format',
+          0 => 'format',
         ),
       ),
       'module' => 'text',
@@ -86,6 +90,10 @@ function townsquare_conversation_field_default_fields() {
       'widget_type' => 'text_textarea_with_summary',
     ),
   );
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Body');
 
   return $fields;
 }
