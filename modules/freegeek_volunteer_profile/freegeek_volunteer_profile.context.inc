@@ -22,11 +22,22 @@ function freegeek_volunteer_profile_context_default_contexts() {
         'view' => 'view',
       ),
       'options' => array(
-        'mode' => 'current',
+        'mode' => 'all',
       ),
     ),
   );
-  $context->reactions = array();
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'freegeek_volunteer_profile-freegeek_volunteer_hours' => array(
+          'module' => 'freegeek_volunteer_profile',
+          'delta' => 'freegeek_volunteer_hours',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
   $context->condition_mode = 0;
 
   // Translatables
