@@ -9,6 +9,8 @@
 
 include_once('townsquare_volunteer.features.inc');
 
+module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
+
 /**
  * Implements hook_menu().
  */
@@ -188,19 +190,33 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
   }
 }
 
-function townsquare_volunteer_return_submit($form, $form_state) {
+function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
   // @TODO We rebuild the form, we can create a new node in place, but if we do
   // that, we also screw up the volunteer editing list -- values somehow get
   // assigned to the wrong form when they are POSTed.
-  /*$form_state['rebuild'] = TRUE;
-  drupal_rebuild_form($form['#form_id'], $form_state, $form);*/
-  return $form;
+  global $user;
+
+  $form_state['rebuild'] = TRUE;
+  $form = drupal_rebuild_form($form['#form_id'], $form_state, $form);
+
+  if ($form_state['values']['new']) {
+    // To create the new node form, we need to unset $_POST so that
+    // drupal_build_form won't use it to populate $form_state['input']
+    unset($_POST);
+    $new_form = node_add('volunteer_session');
+    $commands[] = ajax_command_replace('#volunteer-session-form-new', drupal_render($form));
+    $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
+  }
+  $commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }
 
 /**
  * Integrated, AJAXy form for event + session creation
  */
-module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
 function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
   
