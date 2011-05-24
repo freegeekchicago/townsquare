@@ -157,20 +157,27 @@ function townsquare_volunteer_form_volunteer_session_node_submit($form, &$form_s
  * Implements hook_form_volunteer_session_node_form_alter().
  */
 function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$form_state) {
-  if (arg(0) == 'event') {
+  if (arg(0) == 'event' || arg(0) == 'system') {
     $node = $form['#node'];
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
+
+    $form['new'] = array(
+      '#type' => 'value',
+      '#value' => FALSE,
+    );
+
+    if ($nid == 'new') {
+      $form['new']['#value'] = TRUE;
+    } 
+
     $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
     $form['#suffix'] = '</div>';
 
-    // Only use AJAX if there's an nid (@TODO support ajax!)
-    if (!empty($node->nid)) {
-      $form['actions']['submit']['#ajax'] = array(
-        'callback' => 'townsquare_volunteer_return_submit',
-        'effect' => 'fade',
-        'wrapper' => 'event-form-'. $nid,
-      );
-    }
+    $form['actions']['submit']['#ajax'] = array(
+      'callback' => 'townsquare_volunteer_volunteer_session_submit',
+      'effect' => 'fade',
+      'wrapper' => 'event-form-'. $nid,
+    );
 
     // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
     $form['changed']['#default_value'] = time() + 3600;
@@ -182,6 +189,9 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['actions']['preview']['#access'] = FALSE;    
 
     $form['field_session_event']['und'][0]['#access'] = FALSE;
+
+    // Add NID to form
+    // @todo Weird technique: Should this logic go elsewhere?
     if (!$form['field_session_event']['und'][0]['nid']['#default_value']) {
       $form['field_session_event']['und'][0]['nid']['#default_value'] = arg(1);
     }
@@ -302,7 +312,10 @@ function townsquare_volunteer_edit_event($node = NULL) {
             ),
           ),
         ),
-        'sessions' => array_reverse($session_elements),
+        'sessions' => array(
+          '#prefix' => '<div id="volunteer-sessions">',
+          '#suffix' => '</div>'
+        ) + array_reverse($session_elements),
       );
     }
   }
