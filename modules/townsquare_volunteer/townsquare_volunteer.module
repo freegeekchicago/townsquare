@@ -160,12 +160,12 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
   if (arg(0) == 'event' || arg(0) == 'system') {
     $node = $form['#node'];
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
+    $event_node = node_load($node->field_session_event['und'][0]['nid']);
 
     $form['new'] = array(
       '#type' => 'value',
       '#value' => FALSE,
     );
-
     if ($nid == 'new') {
       $form['new']['#value'] = TRUE;
     } 
@@ -186,20 +186,23 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
       $form[$key]['#access'] = FALSE;
     }
+    
     $form['actions']['preview']['#access'] = FALSE;    
-
     $form['field_session_event']['und'][0]['#access'] = FALSE;
 
-    // Add NID to form
-    // @todo Weird technique: Should this logic go elsewhere?
-    if (!$form['field_session_event']['und'][0]['nid']['#default_value']) {
-      $form['field_session_event']['und'][0]['nid']['#default_value'] = arg(1);
-    }
-
-    // @TODO add magic date widget
-    /*foreach (element_children($form['field_session_hours']['und']) as $key => $value) {
-      $form['field_session_hours']['und'][$key]['#theme'] = 'townsquare_volunteer_event_date_combo';
-    }*/
+    // Set default start and end values based on event node
+    // @TODO make configurable 
+    if (empty($form['field_session_hours']['und'][0]['#default_value']['value'])) {
+      $event_start = date_create($event_node->field_event_date['und']['0']['value']);
+      $event_start_day = date_format($event_start, 'Y-m-d');
+      $form['field_session_hours']['und'][0]['#default_value']['value'] = $event_start_day .' 11:00:00';
+    }  
+    
+    if (empty($form['field_session_hours']['und'][0]['#default_value']['value2'])) {
+      $event_end = date_create($event_node->field_event_date['und']['0']['value2']);
+      $event_end_day = date_format($event_end, 'Y-m-d');
+      $form['field_session_hours']['und'][0]['#default_value']['value2'] = $event_end_day .' 17:00:00';
+    }  
   }
 }
 
@@ -212,15 +215,23 @@ function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
   $form_state['rebuild'] = TRUE;
   $form = drupal_rebuild_form($form['#form_id'], $form_state, $form);
 
-  if ($form_state['values']['new']) {
+  $commands = array();
+
+  if ($form_state['values']['new'] && node_access('create', 'volunteer_session')) {
     // To create the new node form, we need to unset $_POST so that
     // drupal_build_form won't use it to populate $form_state['input']
     unset($_POST);
-    $new_form = node_add('volunteer_session');
+    
+    $event_node = node_load($form['#node']->field_session_event['und'][0]['nid']);
+    $new_session = _townsquare_volunteer_create_volunteer_session($event_node);
+    $new_form = drupal_get_form('volunteer_session_node_form', 
+      $new_session);
+    
     $commands[] = ajax_command_replace('#volunteer-session-form-new', drupal_render($form));
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
   }
-  $commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
+  
+  //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -257,17 +268,9 @@ function townsquare_volunteer_edit_event($node = NULL) {
     $session_elements = array();
 
     if (node_access('create', 'volunteer_session')) {
-      // @TODO why does order matter here?!
-      $empty_session = new stdClass();
-      $empty_session->nid = NULL;
-      $empty_session->type = 'volunteer_session';
-      $empty_session->name = $user->name;
-      $node->status = 1;
-      $node->promote = 0;
-      $node->sticky = 0;
-      $empty_session->language = 'und';
+      $new_session = _townsquare_volunteer_create_volunteer_session($node);
       $session_elements[] = drupal_get_form('volunteer_session_node_form', 
-        $empty_session);
+        $new_session);
     }
 
     $session_nodes = townsquare_volunteer_event_sessions($node->nid);
@@ -430,4 +433,33 @@ function townsquare_volunteer_user_sessions($uid) {
     return entity_load('node', array_keys($result['node']));
   } 
   return array();
+}
+
+/**
+ * Create a new volunteer session node object with dates and parent NID set 
+ * based on event node passed as parameter.
+ *
+ * @param $node
+ *   A node of type 'event'
+ * @return
+ *   A volunteer session node object
+ */
+function _townsquare_volunteer_create_volunteer_session($node) {
+  global $user;
+  if ($node->type == 'event') {
+    $empty_session = new stdClass();
+    $empty_session->nid = NULL;
+    $empty_session->type = 'volunteer_session';
+    $empty_session->name = $user->name;
+    $empty_session->status = 1;
+    $empty_session->promote = 0;
+    $empty_session->sticky = 0;
+    $empty_session->language = 'und';
+    $empty_session->field_session_event = array(
+      'und' => array(
+        array('nid' => $node->nid),
+      )
+    );
+    return $empty_session; 
+  }
 }
