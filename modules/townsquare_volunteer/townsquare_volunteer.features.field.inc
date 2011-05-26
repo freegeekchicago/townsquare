@@ -174,8 +174,8 @@ function townsquare_volunteer_field_default_fields() {
       'required' => 1,
       'settings' => array(
         'default_format' => 'medium',
-        'default_value' => 'now',
-        'default_value2' => 'strtotime',
+        'default_value' => 'blank',
+        'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '+4 hours',
         'user_register_form' => FALSE,

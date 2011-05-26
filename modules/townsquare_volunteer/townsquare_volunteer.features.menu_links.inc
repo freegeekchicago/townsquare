@@ -15,7 +15,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'menu_name' => 'menu-townsquare-secondary-tools',
     'link_path' => 'event/create',
     'router_path' => 'event/create',
-    'link_title' => 'Log volunteer hours',
+    'link_title' => 'Create event & log hours',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -40,11 +40,11 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-47',
+    'weight' => '0',
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Log volunteer hours');
+  t('Create event & log hours');
   t('Volunteers');
 
 
