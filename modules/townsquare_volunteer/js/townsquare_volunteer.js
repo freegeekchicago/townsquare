@@ -5,4 +5,19 @@ Drupal.behaviors.volunteerGrowTextarea = {
     $('.field-name-field-event-description textarea', context).elastic();
   }
 };
+Drupal.behaviors.autosaveSessions = {
+  attach: function(context) {
+    $('input[value="Save"]', context).hide();
+    $('.volunteer-session-form input, .volunteer-session-form select, .volunteer-session-form textarea').change(function(e) {
+      var parent_wrapper = $(this).parents('.volunteer-session-form');
+      var user = $('.field-name-field-session-user input', parent_wrapper);
+      if (user.val()) {
+        $('input[value="Save"]', parent_wrapper).trigger('mousedown');
+      }
+    });
+  }
+};
+
+
+
 })(jQuery);

@@ -79,6 +79,7 @@ function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
   }
   if ($form_id == 'volunteer_session_node_form' && arg(0) == 'event') {
     $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_volunteer_session_node_submit';
+    $form['actions']['delete']['#submit'] = array('townsquare_volunteer_volunteer_session_delete_submit'); 
   }  
 }  
 
@@ -165,8 +166,14 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['actions']['submit']['#ajax'] = array(
       'callback' => 'townsquare_volunteer_volunteer_session_submit',
       'effect' => 'fade',
-      'wrapper' => 'event-form-'. $nid,
+      'wrapper' => 'volunteer-session-form-'. $nid,
     );
+    $form['actions']['delete']['#ajax'] = array(
+      'callback' => 'townsquare_volunteer_volunteer_session_delete_submit',
+      'effect' => 'fade',
+      'wrapper' => 'volunteer-session-form-'. $nid,
+    );
+  }
 
     // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
     $form['changed']['#default_value'] = time() + 3600;
@@ -215,6 +222,9 @@ function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
     $commands[] = ajax_command_replace('#volunteer-session-form-new', drupal_render($form));
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
   }
+  else {
+    $commands[] = ajax_command_replace('#'. $form['#id'], drupal_render($form));
+  }
   
   //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
   return array(
@@ -222,6 +232,20 @@ function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
     '#commands' => $commands,
   );
 }
+
+/**
+ * Callback to delete volunteer sessions
+ */
+function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_state) {
+  $commands[] = ajax_command_replace('#volunteer-session-form-'. $form['#node']->nid, NULL);
+  //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
+  node_delete($form['#node']->nid);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
 
 /**
  * Integrated, AJAXy form for event + session creation
