@@ -44,17 +44,6 @@ function townsquare_volunteer_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_theme().
- */
-function townsquare_volunteer_theme() {
-  return array(
-    'townsquare_volunteer_event_date_combo' => array(
-      'variables' => array('render element' => 'element'),
-    ),
-  );
-}
-
-/**
  * Implements hook_perm().
  */
 function townsquare_volunteer_permission() {
@@ -202,14 +191,10 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       $event_end = date_create($event_node->field_event_date['und']['0']['value2']);
       $event_end_day = date_format($event_end, 'Y-m-d');
       $form['field_session_hours']['und'][0]['#default_value']['value2'] = $event_end_day .' 17:00:00';
-    }  
-  }
+    } 
 }
 
 function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
-  // @TODO We rebuild the form, we can create a new node in place, but if we do
-  // that, we also screw up the volunteer editing list -- values somehow get
-  // assigned to the wrong form when they are POSTed.
   global $user;
 
   $form_state['rebuild'] = TRUE;
@@ -393,26 +378,6 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
   if ($result) {
     return entity_load('node', array_keys($result['node']));
   }  
-}
-
-function townsquare_volunteer_event_date_combo($element) {
-  $element = $vars['element'];
-  $field = field_info_field($element['#field_name']);
-  $instance = field_info_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
-
-  if (!$field['settings']['todate']) {
-    return $element['#children'];
-  }
-
-  // Group from/to items together in fieldset.
-  $fieldset = array(
-    '#title' => check_plain($instance['label']) . ' ' . ($element['#delta'] > 0 ? intval($element['#delta'] + 1) : ''),
-    '#value' => '',
-    '#description' => $element['#fieldset_description'],
-    '#attributes' => array(),
-    '#children' => $element['#children'],
-  );
-  return theme('fieldset', array('element' => $fieldset));
 }
 
 /**
