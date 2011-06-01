@@ -9,8 +9,6 @@
 
 include_once('townsquare_volunteer.features.inc');
 
-module_load_include('inc', 'node', 'node.pages'); // @TODO something failing...
-
 /**
  * Implements hook_menu().
  */
@@ -89,7 +87,7 @@ function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['delete']['#submit'][] = 'townsquare_volunteer_form_event_node_delete';
   }
   if ($form_id == 'volunteer_session_node_form' && arg(0) == 'event') {
-    $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_volunteer_session_node_submit';
+    $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_volunteer_session_node_submit';
     $form['actions']['delete']['#submit'] = array('townsquare_volunteer_volunteer_session_delete_submit'); 
   }  
 }  
@@ -145,15 +143,6 @@ function townsquare_volunteer_form_event_node_delete($form, &$form_state) {
   // @TODO cascade delete orphans, dangerous
 }
 
-
-/**
- * Submit/save callback for embedded volunteer session editing form
- */
-function townsquare_volunteer_form_volunteer_session_node_submit($form, &$form_state) {
-  // Alter redirect
-  $form_state['redirect'] = 'event/'. $form_state['node']->field_session_event['und'][0]['nid'] .'/edit';
-}
-
 /**
  * Implements hook_form_volunteer_session_node_form_alter().
  */
@@ -163,19 +152,17 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
     $event_node = node_load($node->field_session_event['und'][0]['nid']);
 
+    // Set internal 'new' flag for later processing
     $form['new'] = array(
       '#type' => 'value',
-      '#value' => FALSE,
+      '#value' => ($nid == 'new') ? TRUE : FALSE,
     );
-    if ($nid == 'new') {
-      $form['new']['#value'] = TRUE;
-    } 
 
     $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
     $form['#suffix'] = '</div>';
 
     $form['actions']['submit']['#ajax'] = array(
-      'callback' => 'townsquare_volunteer_volunteer_session_submit',
+      'callback' => 'townsquare_volunteer_volunteer_session_node_ajax_submit',
       'effect' => 'fade',
       'wrapper' => 'volunteer-session-form-'. $nid,
     );
@@ -197,6 +184,8 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['field_session_event']['und'][0]['#access'] = FALSE;
 
     // Set default start and end values based on event node
+    // Using the standard widgets means this must be done here, not
+    // when the event object is created
     // @TODO make configurable 
     if (empty($form['field_session_hours']['und'][0]['#default_value']['value'])) {
       $event_start = date_create($event_node->field_event_date['und']['0']['value']);
@@ -214,9 +203,17 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
 }
 
 /**
- * Volunteer session submit callback
+ * Submit callback for embedded volunteer session edting form
  */
-function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
+function townsquare_volunteer_volunteer_session_node_submit($form, &$form_state) {
+  // Alter redirect
+  $form_state['redirect'] = 'event/'. $form_state['node']->field_session_event['und'][0]['nid'] .'/edit';
+}
+
+/**
+ * AJAX submit callback for embedded volunteer session edting form
+ */
+function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_state) {
   global $user;
 
   $form_state['rebuild'] = TRUE;
@@ -261,7 +258,6 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
   );
 }
 
-
 /**
  * Integrated, AJAXy form for event + session creation
  *
@@ -270,6 +266,9 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
  * @return
  *   Edit form(s)
  */
+
+// @TODO include below is failing
+module_load_include('inc', 'node', 'node.pages');
 function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
   
@@ -364,7 +363,11 @@ function townsquare_volunteer_edit_event($node = NULL) {
 /**
  * Get sessions for a given event
  *
- * @param
+ * @param $nid
+ *   Event object node ID
+ * @return
+ *   array of volunteer session node objects
+ *  
  */
 function townsquare_volunteer_event_sessions($nid) {
   $query = new EntityFieldQuery;
@@ -381,13 +384,6 @@ function townsquare_volunteer_event_sessions($nid) {
     return entity_load('node', array_keys($result['node']));
   } 
   return array();
-}
-
-
-function townsquare_volunteer_init() {
-  if (arg(0) == 'user' && is_numeric(arg(1))) {
-    $users = entity_load('user', array(arg(1)));
-  }
 }
 
 /**
