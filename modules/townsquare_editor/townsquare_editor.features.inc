@@ -20,14 +20,14 @@ function townsquare_editor_default_wysiwyg_profile() {
       "language" : "en",
       "buttons" : {
         "default" : {
+          "link" : 1,
+          "unlink" : 1,
           "bold" : 1,
           "italic" : 1,
           "bullist" : 1,
           "numlist" : 1,
           "undo" : 1,
           "redo" : 1,
-          "link" : 1,
-          "unlink" : 1,
           "image" : 1
         },
         "font" : { "formatselect" : 1, "styleselect" : 1 },
