@@ -726,9 +726,6 @@ body.page-node-edit {
     margin: 0;
   }
   .filter-wrapper {
-    .box;
-    font-size: .825em;
-    width: 100%;
     .form-type-select {
       .box;
       margin-right: 10px;
@@ -894,7 +891,6 @@ body.page-node-edit {
   }
   .volunteer-session-form {
     .clearfix;
-    margin-bottom: .75em;
     .form-type-textfield label,
     .form-type-textarea label,
     .form-type-date-popup label,
@@ -905,60 +901,70 @@ body.page-node-edit {
     legend, .description { 
       display: none;
     }
-    .form-item, fieldset, .container-inline-date {
+    .form-item, .container-inline-date {
       .box;
-      margin: 0;
+      height: 25px;
+      padding: 7px;
+      margin: 0 1px 1px 0;
+      background-color: #ddd;
       clear: none;
-    }
-    .form-item {
-      margin-right: 15px;
-    }
-    .form-submit {
-      margin-bottom: .25em;
+      input, textarea, select {
+        width: 100%;
+        font-size: 15px;
+        background-color: #eee;
+        :hover {
+          background-color: #fff;
+        }
+      }
+      .form-item {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
-
-
+  #session-header {
+    font-size: 1em;
+    font-weight: bold;
+  }
   .field-name-field-session-user .form-item, 
   #session-header .volunteer-name {
-    width: 200px;
-    input { 
-      width: 190px;
+    width: 155px;
+    input {
+      width: 140px;
     }
   }
   .field-name-field-session-hours fieldset {
     .box;
-    width: 310px;
   }
-  .field-name-field-session-hours .form-item,
-  #session-header .volunteer-start,
-  #session-header .volunteer-end {
-    width: 140px;
-    &.form-type-textfield {
-      margin: 0;
-    }
+  .field-name-field-session-hours .form-item .form-item-field-session-hours-und-0-value-time,
+  .field-name-field-session-hours .form-item .form-item-field-session-hours-und-0-value2-time {
+    width: 70px;
+    margin-right: 10px;
+  }
+  .field-name-field-session-hours .form-item .form-item-field-session-hours-und-0-value-date,
+  .field-name-field-session-hours .form-item .form-item-field-session-hours-und-0-value2-date {
+    width: 75px;
+    margin-right: 15px;
     input {
-      width: 125px;
+      font-size: 12px;
     }
+  }
+  #session-header .volunteer-start, #session-header .volunteer-end {
+    width: 172px;
   }
   .field-name-field-session-notes .form-item,
   #session-header .volunteer-notes {
-    width: 200px;
-    padding-top: 2px;
+    width: 140px;
     textarea {
-      width: 190px;
       font-size: 13px;
-      line-height: 19px;
+      line-height: 18px;
     }
   }
   .field-name-field-session-role .form-item,
   #session-header .volunteer-role {
-    width: 100px;
-    font-size: .92em;
-    select {
-      width: 90px;
-    }
+    width: 120px;
   }
+
 }
 /* }}} */
 /* Views: Tables {{{ */
