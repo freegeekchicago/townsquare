@@ -17,7 +17,4 @@ Drupal.behaviors.autosaveSessions = {
     });
   }
 };
-
-
-
 })(jQuery);

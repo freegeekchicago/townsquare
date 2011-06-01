@@ -19,7 +19,6 @@ function townsquare_volunteer_menu() {
     'title' => 'Create event',
     'description' => 'Create event and volunteer sessions',
     'page callback' => 'townsquare_volunteer_edit_event',
-    'access callback' => TRUE, // @TODO use correct callback
     'access callback' => 'node_access',
     'access arguments' => array('create', 'event'),
   );
@@ -72,7 +71,7 @@ function townsquare_volunteer_permission() {
  * Implements hook_form_alter().
  */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
-  // THIS IS SO CONFUZZLING, alter order has never made enough sense to me
+  // @TODO Apparently, these need to be attached late
   if ($form_id == 'event_node_form' && arg(0) == 'event') {
     $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_event_node_submit';
     $form['actions']['delete']['#submit'][] = 'townsquare_volunteer_form_event_node_delete';
@@ -173,7 +172,6 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       'effect' => 'fade',
       'wrapper' => 'volunteer-session-form-'. $nid,
     );
-  }
 
     // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
     $form['changed']['#default_value'] = time() + 3600;
@@ -201,6 +199,9 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     } 
 }
 
+/**
+ * Volunteer session submit callback
+ */
 function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
   global $user;
 
@@ -234,7 +235,7 @@ function townsquare_volunteer_volunteer_session_submit($form, $form_state) {
 }
 
 /**
- * Callback to delete volunteer sessions
+ * Volunteer session delete callback
  */
 function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_state) {
   $commands[] = ajax_command_replace('#volunteer-session-form-'. $form['#node']->nid, NULL);
@@ -249,6 +250,11 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
 
 /**
  * Integrated, AJAXy form for event + session creation
+ *
+ * @param $node
+ *   Event node object
+ * @return
+ *   Edit form(s)
  */
 function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
@@ -367,7 +373,6 @@ function townsquare_volunteer_event_sessions($nid) {
 function townsquare_volunteer_init() {
   if (arg(0) == 'user' && is_numeric(arg(1))) {
     $users = entity_load('user', array(arg(1)));
-    $sessions = townsquare_volunteer_volunteer_sessions(array_keys($users), '2011-01-15 17:15:00', '2011-01-17 00:00:00');
   }
 }
 
@@ -380,6 +385,8 @@ function townsquare_volunteer_init() {
  *   (optional) Start time (default: all sessions)
  * @param $end
  *   (optional) End time (default: now)
+ * @return
+ *   array of volunteer session node objects
  */ 
 
 function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL, $end = NULL) {
@@ -402,10 +409,16 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
   if ($result) {
     return entity_load('node', array_keys($result['node']));
   }  
+  return array();
 }
 
 /**
  * Get sessions for a given user
+ *
+ * @param $uid
+ *   uid of user to retrieve sessions for
+ * @return
+ *   array of volunteer session node objects
  */
 function townsquare_volunteer_user_sessions($uid) {
   $query = new EntityFieldQuery;
