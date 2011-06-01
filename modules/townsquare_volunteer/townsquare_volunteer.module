@@ -43,7 +43,19 @@ function townsquare_volunteer_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_perm().
+ * Implements hook_theme().
+ */
+function townsquare_volunteer_theme() {
+  return array(
+    // Override theme_field_multiple_value_form to change field order
+    'townsquare_volunteer_field_multiple_value_form' => array(
+      'render element' => 'element',  
+    ),
+  );
+}
+
+/**
+ * Implements hook_permission().
  */
 function townsquare_volunteer_permission() {
   return array(
@@ -196,7 +208,9 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       $event_end = date_create($event_node->field_event_date['und']['0']['value2']);
       $event_end_day = date_format($event_end, 'Y-m-d');
       $form['field_session_hours']['und'][0]['#default_value']['value2'] = $event_end_day .' 17:00:00';
-    } 
+    }
+    $form['field_session_hours']['und']['#theme'] = 'townsquare_volunteer_field_multiple_value_form'; 
+  }
 }
 
 /**
@@ -435,6 +449,31 @@ function townsquare_volunteer_user_sessions($uid) {
     return entity_load('node', array_keys($result['node']));
   } 
   return array();
+}
+
+/**
+ * Implements theme_townsquare_volunteer_field_value_value_form().
+ *
+ * We use a theme function to switch date and time in the date popup widget.
+ * @TODO You should be able do this higher in the stack, or in a better way.
+ */
+function theme_townsquare_volunteer_field_multiple_value_form($variables) {
+  $element = $variables['element'];
+
+  // Forcibly sort, because setting weight doesn't work
+  $date = $element[0]['value']['date'];
+  unset($element[0]['value']['date']);
+  $element[0]['value']['date'] = $date;
+
+  $date = $element[0]['value2']['date'];
+  unset($element[0]['value2']['date']);
+  $element[0]['value2']['date'] = $date;
+  
+  $output = '';
+  foreach (element_children($element) as $key) {
+    $output .= drupal_render($element[$key]);
+  }
+  return $output;
 }
 
 /**
