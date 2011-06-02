@@ -64,6 +64,11 @@ function townsquare_editor_filter_default_formats() {
           'absolute' => 1,
         ),
       ),
+      'syntaxhighlighter' => array(
+        'weight' => '-40',
+        'status' => '1',
+        'settings' => array(),
+      ),
     ),
   );
 
