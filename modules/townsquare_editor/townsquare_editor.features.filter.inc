@@ -18,8 +18,13 @@ function townsquare_editor_filter_default_formats() {
     'status' => '1',
     'weight' => '0',
     'filters' => array(
+      'filter_markdown' => array(
+        'weight' => '-47',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'htmlpurifier_basic' => array(
-        'weight' => '0',
+        'weight' => '-45',
         'status' => '1',
         'settings' => array(
           'htmlpurifier_help' => 1,
@@ -27,8 +32,12 @@ function townsquare_editor_filter_default_formats() {
             'Attr.EnableID' => '0',
             'AutoFormat.AutoParagraph' => '0',
             'AutoFormat.Linkify' => '0',
-            'AutoFormat.RemoveEmpty' => '0',
-            'HTML.Allowed' => 'a,p,blockquote,h2,h3,h4,h5,h6,div,span,table,tr,th,td,ul,ol,li',
+            'AutoFormat.RemoveEmpty' => '1',
+            'HTML.Allowed' => '*[class],
+  a[href],
+  div,p,pre,table,thead,tbody,tr,th,td,h2,h3,h4,h5,h6,
+  img[src|title|alt|width|height],
+  br,span,em,strong,cite,code,blockquote,ul,ol,li,dl,dt,dd',
             'HTML.ForbiddenAttributes' => '',
             'HTML.ForbiddenElements' => '',
             'HTML.SafeObject' => '0',
@@ -39,10 +48,21 @@ function townsquare_editor_filter_default_formats() {
           ),
         ),
       ),
-      'filter_markdown' => array(
-        'weight' => '0',
+      'oembed' => array(
+        'weight' => '-42',
         'status' => '1',
-        'settings' => array(),
+        'settings' => array(
+          'oembed_maxwidth' => '',
+          'oembed_maxheight' => '',
+        ),
+      ),
+      'pathologic' => array(
+        'weight' => '-41',
+        'status' => '1',
+        'settings' => array(
+          'local_paths' => '',
+          'absolute' => 1,
+        ),
       ),
     ),
   );

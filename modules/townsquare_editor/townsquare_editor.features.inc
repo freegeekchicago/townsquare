@@ -20,7 +20,7 @@ function townsquare_editor_default_wysiwyg_profile() {
       "language" : "en",
       "buttons" : {
         "default" : {
-          "link" : 1,
+          "linkit" : 1,
           "unlink" : 1,
           "bold" : 1,
           "italic" : 1,
