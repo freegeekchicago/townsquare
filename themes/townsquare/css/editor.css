@@ -1,5 +1,13 @@
 @import url('../../../../all/themes/tao/reset.css');
 
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
 /* Custom theme */
 @font-face {
   font-family: 'Ubuntu';
@@ -62,8 +70,15 @@ p {
   line-height: 1.5;
 }
 hr {
-  margin: 2.75em 0;
-  color: #ccc;
+  margin: 1.5em 0;
+  color: #ddd;
+}
+hr:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 pre {
   font-family: monospace;
@@ -123,4 +138,31 @@ ol li {
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre, blockquote, table {
   margin: 0px 0px 20px;
 }
-
+dl {
+    margin-left: 8px;
+}
+dt {
+  font-weight: bold;
+  margin-top: .75em;
+  margin-bottom: .75em;
+}
+dd {
+  margin-bottom: 1.5em;
+}
+.content-align-right {
+  text-align: right;
+}
+.content-align-center {
+  text-align: center;
+}
+.content-float-left {
+  float: left;
+  margin: 0 15px 15px 0;
+}
+.content-float-right {
+  float: right;
+  margin: 9px 0 0 9px;
+}
+.content-highlight {
+  background-color: #ffff99;
+}
