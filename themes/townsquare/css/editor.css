@@ -114,6 +114,12 @@ ol li, ul li {
   margin: 0px 0px 0px 30px;
   padding: 0px;
 }
+ul li {
+  list-style-type: disc;
+}
+ol li {
+  list-style-type: decimal;
+}
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre, blockquote, table {
   margin: 0px 0px 20px;
 }
