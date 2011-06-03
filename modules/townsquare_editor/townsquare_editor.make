@@ -12,6 +12,8 @@ projects[markdownify][type] = "module"
 
 projects[wysiwyg][subdir] = contrib
 projects[wysiwyg][version] = 2.x-dev
+
+; Exportable profiles
 projects[wysiwyg][patch][] = http://drupal.org/files/issues/wysiwyg-entity-exportables-624018-176.patch
 
 ; Libraries
