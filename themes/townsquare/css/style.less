@@ -35,6 +35,7 @@
 @color_bright_blue: #266fc9;
 @color_pale_blue: #becde1;
 @color_yellow: #ffff99;
+@color_dark_yellow: #d9a61b;
 
 // Some nice colors?
 // .vertical_gradient_glass(#3b3e58; #2d2f43; #3b3e58;);
@@ -198,6 +199,17 @@ input, button, textarea {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   padding: 2px;
+  // See http://blog.gesteves.com/post/475773360/css-glow-effects-with-box-shadow
+  outline:none;
+  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  :focus {
+    // @TODO update/create mixin
+    box-shadow: 0 0 7px @color_dark_yellow;
+    -webkit-box-shadow: @color_dark_yellow; 
+    -moz-box-shadow: 0 0 7px @color_dark_yellow; 
+  }
 }
 input, button {
   line-height: 1;
