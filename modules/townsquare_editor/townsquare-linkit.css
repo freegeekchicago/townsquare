@@ -1,0 +1,7 @@
+#linkit .form-item-link input {
+  width: 500px;
+}
+#linkit fieldset#edit-link {
+  border: none;
+  padding: 0;
+}

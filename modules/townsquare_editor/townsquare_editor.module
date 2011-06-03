@@ -14,3 +14,12 @@ function townsquare_editor_wysiwyg_editor_settings_alter(&$settings, $context) {
     drupal_add_css(drupal_get_path('module', 'townsquare_editor') .'/townsquare-editor.css');
   }
 }
+
+/**
+ * Implements hook_init().
+ */
+function townsquare_editor_init() {
+  if (arg(0) == 'linkit' && arg(1) == 'dashboard') {
+    drupal_add_css(drupal_get_path('module', 'townsquare_editor') .'/townsquare-linkit.css');
+  }
+}
