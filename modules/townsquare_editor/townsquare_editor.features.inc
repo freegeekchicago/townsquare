@@ -19,8 +19,8 @@ function townsquare_editor_default_wysiwyg_profile() {
       "theme" : "advanced",
       "language" : "en",
       "buttons" : {
+        "linkit" : { "linkit" : 1 },
         "default" : {
-          "linkit" : 1,
           "unlink" : 1,
           "bold" : 1,
           "italic" : 1,
@@ -28,7 +28,11 @@ function townsquare_editor_default_wysiwyg_profile() {
           "numlist" : 1,
           "undo" : 1,
           "redo" : 1,
-          "image" : 1
+          "image" : 1,
+          "blockquote" : 1,
+          "cut" : 1,
+          "copy" : 1,
+          "paste" : 1
         },
         "font" : { "formatselect" : 1, "styleselect" : 1 },
         "inlinepopups" : { "inlinepopups" : 1 },
@@ -44,10 +48,10 @@ function townsquare_editor_default_wysiwyg_profile() {
       "remove_linebreaks" : 0,
       "apply_source_formatting" : 0,
       "paste_auto_cleanup_on_paste" : 0,
-      "block_formats" : "p,address,pre,h2,h3,h4,h5,h6,div",
-      "css_setting" : "theme",
-      "css_path" : "",
-      "css_classes" : ""
+      "block_formats" : "p,pre,blockquote,h2,h3,h4,h5,h6,div",
+      "css_setting" : "self",
+      "css_path" : "%b%t\\/css\\/editor.css",
+      "css_classes" : "Align center=content-center\\r\\nAlign right=content-right\\r\\nFloat left=content-float-left\\r\\nFloat right=content-float-right\\r\\nHighlight=content-highlight"
     },
     "rdf_mapping" : []
   }');
