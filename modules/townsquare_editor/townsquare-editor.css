@@ -1,0 +1,92 @@
+.mceEditor td.mceToolbar {
+  filter:progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='#e4e4e4',endColorstr='#bbbbbb') !important;
+  background:-webkit-gradient(linear,left top,left bottom,from(#e4e4e4),to(#cccccc)) !important;
+  background:-moz-linear-gradient(top,#f4f4f4,#cccccc) !important;
+  padding-left: 3px;
+}
+.mceEditor .mceButton {
+  border: none !important;
+  background: transparent;
+  padding: 2px;
+  margin: 2px 1px;
+  border-radius: 5px; 
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+.mceEditor .mceButtonEnabled:hover {
+  border: none !important;
+  background-color: #fff !important;
+}
+.mceEditor .mceListBox {
+  margin: 2px 3px;
+  background: transparent;
+}
+.mceEditor .mceListBox .mceText {
+  padding: 0 8px;
+  background-color: #fff !important;
+  height: 22px !important;
+  line-height: 25px !important;
+  border-radius: 9px 0 0 9px;
+  -webkit-border-radius: 9px 0 0 9px;
+  -moz-border-radius: 9px 0 0 9px;
+}
+.mceEditor .mceListBox .mceOpen {
+  height: 22px !important;
+  width: 17px !important;
+  margin: 0 !important;
+  border-radius: 0 9px 9px 0; 
+  -webkit-border-radius: 0 9px 9px 0;
+  -moz-border-radius: 0 9px 9px 0;
+  background-color: #eee !important;
+}
+.mceEditor .mceListBox .mceOpen span {
+  display: block;
+  margin: 10px 0 0 4px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #444;
+}
+.mceMenu {
+  margin-left: 1px;
+  border-width: 1px !important;
+  border-color: #ccc !important;
+  -moz-box-shadow: 2px 2px 4px #999;
+  max-height: 220px;
+  background-color: #fff !important;
+}
+.mceMenu table {
+  background-color: #fff !important;
+}
+.mceMenuItemTitle { display: none; }
+.mceMenuItemTitle a {
+  background-color: #fff !important;
+  padding: 0 2px !important;
+  border-bottom: 1px solid #999;
+}
+.mceMenuItemTitle span.mceText {
+  color: #666 !important;
+  font-style: italic !important;
+}
+.mceMenu a {
+  padding: 2px 2px;
+}
+.mce_p span.mceText {
+  font-size: 1.25em !important;
+}
+.mce_h2 span.mceText {
+  font-size: 1.65em !important;
+}
+.mce_h3 span.mceText {
+  font-size: 1.5em !important;
+}
+.mce_h4 span.mceText {
+  font-size: 1.35em !important;
+}
+.mce_h5 span.mceText {
+  font-size: 1.25em !important;
+}
+.mce_h6 span.mceText {
+  font-size: 1em !important;
+}
