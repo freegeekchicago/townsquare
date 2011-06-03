@@ -4,3 +4,13 @@
  */
 
 include('townsquare_editor.features.inc');
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter.
+ */
+function townsquare_editor_wysiwyg_editor_settings_alter(&$settings, $context) {
+  $editor = $context['editor'];
+  if ($editor['name'] == 'tinymce' && (int) $editor['installed version'] >= 3) {
+    drupal_add_css(drupal_get_path('module', 'townsquare_editor') .'/townsquare-editor.css');
+  }
+}
