@@ -6,7 +6,7 @@
 include('townsquare_editor.features.inc');
 
 /**
- * Implements hook_wysiwyg_editor_settings_alter.
+ * Implements hook_wysiwyg_editor_settings_alter().
  */
 function townsquare_editor_wysiwyg_editor_settings_alter(&$settings, $context) {
   $editor = $context['editor'];
