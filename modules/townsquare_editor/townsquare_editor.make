@@ -16,6 +16,9 @@ projects[wysiwyg][version] = 2.x-dev
 ; Exportable profiles
 projects[wysiwyg][patch][] = http://drupal.org/files/issues/wysiwyg-entity-exportables-624018-176.patch
 
+; Fix bug in custom editor CSS 
+projects[wysiwyg][patch][] = http://drupal.org/files/issues/wysiwyg-835682-12.patch
+
 ; Libraries
 libraries[tinymce][download][type] = "get"
 libraries[tinymce][download][url] = "http://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
