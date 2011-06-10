@@ -207,7 +207,7 @@ function townsquare_volunteer_views_default_views() {
     'organisation' => 0,
   );
   $handler->display->display_options['fields']['field_event_location']['field_api_classes'] = 0;
-  /* Field: Global: PHP */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
@@ -228,10 +228,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['php']['hide_empty'] = 0;
   $handler->display->display_options['fields']['php']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print l(\'Edit\', \'event/\'. $row->nid .\'/edit\'); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Sort criterion: Fields: Event date (field_event_date) - value */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -488,7 +484,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['rid']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['rid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
-  /* Field: Global: PHP */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
@@ -508,34 +504,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['php']['hide_empty'] = 0;
   $handler->display->display_options['fields']['php']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_value'] = '$query = new EntityFieldQuery;
-$query
-  ->entityCondition(\'entity_type\', \'node\')
-  ->propertyCondition(\'type\', \'volunteer_session\')
-  ->fieldOrderBy(\'field_session_hours\', \'value\', \'DESC\')
-  ->fieldCondition(\'field_session_user\', \'uid\', $row->uid, \'=\')
-  ->fieldOrderBy(\'field_session_hours\', \'value2\', \'DESC\');
-
-$result = $query->execute();
-$sessions = ($result) ? entity_load(\'node\', array_keys($result[\'node\'])) : array();
-$total = 0;
-foreach ($sessions as $session) {
-  $start = date_create($session->field_session_hours[\'und\'][0][\'value\'],
-    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
-  $end = date_create($session->field_session_hours[\'und\'][0][\'value2\'],
-    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
-          
-  $start_timestamp = date_format($start, \'U\');
-  $end_timestamp = date_format($end, \'U\');
-          
-  $elapsed = $end_timestamp - $start_timestamp;
-  $total += $elapsed;
-}
-return $total;';
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%01.2f\', $value / 3600); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '4';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Sort criterion: User: Created date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'users';
