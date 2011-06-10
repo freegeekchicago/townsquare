@@ -1,0 +1,10 @@
+#!/bin/bash
+#Alex H's crappy bash script for fixing a permission problem.
+#Please make a better one.
+fix_permissions() {
+sudo chown -R alexh67:www-data $1
+sudo chmod -R 775 $1
+sudo chmod -R g+s $1
+}
+#fix_permissions /var/www/alexh67/townsquare/sites/default/files
+fix_permissions /var/www/alexh67/townsquare/sites/default/private
