@@ -27,3 +27,20 @@ function townsquare_wiki_views_api() {
     return array("version" => 3.0);
   }
 }
+
+/**
+ * Implementation of hook_node_info().
+ */
+function townsquare_wiki_node_info() {
+  $items = array(
+    'wiki' => array(
+      'name' => t('Wiki page'),
+      'base' => 'node_content',
+      'description' => t('An automatically versioned, community-edited page. Wiki pages do not support comments.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  return $items;
+}
