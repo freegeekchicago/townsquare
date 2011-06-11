@@ -2,9 +2,12 @@
 #Alex H's crappy bash script for fixing a permission problem.
 #Please make a better one.
 fix_permissions() {
-sudo chown -R alexh67:www-data $1
+user_name="alexh67"
+user_group="www-data"
+sudo chown -R ${user_name}:${user_group} $1
 sudo chmod -R 775 $1
 sudo chmod -R g+s $1
 }
-#fix_permissions /var/www/alexh67/townsquare/sites/default/files
-fix_permissions /var/www/alexh67/townsquare/sites/default/private
+path_to_townsquare="/var/www/alexh67/townsquare" 
+#fix_permissions ${path_to_townsquare}/sites/default/files
+fix_permissions ${path_to_townsquare}/sites/default/private
