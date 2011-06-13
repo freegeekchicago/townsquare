@@ -1,6 +1,5 @@
 #!/bin/bash
-#Alex H's crappy bash script for fixing a permission problem.
-#Please make a better one.
+#Alex H's crappy bash script for fixing a permission problem. Please make a better one.
 fix_permissions() {
 user_name="alexh67"
 user_group="www-data"
