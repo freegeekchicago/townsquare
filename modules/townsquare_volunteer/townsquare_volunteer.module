@@ -167,6 +167,13 @@ function townsquare_volunteer_form_event_node_delete($form, &$form_state) {
  * Implements hook_form_volunteer_session_node_form_alter().
  */
 function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$form_state) {
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'townsquare_volunteer')
+        .'/js/townsquare_volunteer-session-edit.js',
+    ),
+  );
+  
   if (arg(0) == 'event' || arg(0) == 'system') {
     $node = $form['#node'];
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
