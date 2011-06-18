@@ -408,7 +408,7 @@ function townsquare_volunteer_node_presave($node) {
     $end = date_create($node->field_session_hours['und'][0]['value2'],
       timezone_open($node->field_session_hours['und'][0]['timezone']));
 
-    $user = user_load($node->uid);
+    $user = user_load($node->field_session_user['und'][0]['uid']);
 
     if (!$node->field_session_calculate_duration['und'][0]['value']) {
       
