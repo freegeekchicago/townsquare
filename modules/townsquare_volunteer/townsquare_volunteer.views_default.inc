@@ -468,54 +468,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['rid']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['rid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Total hours';
-  $handler->display->display_options['fields']['php']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['php']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['php']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['php']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['php']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['php']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_value'] = '$query = new EntityFieldQuery;
-$query
-  ->entityCondition(\'entity_type\', \'node\')
-  ->propertyCondition(\'type\', \'volunteer_session\')
-  ->fieldOrderBy(\'field_session_hours\', \'value\', \'DESC\')
-  ->fieldCondition(\'field_session_user\', \'uid\', $row->uid, \'=\')
-  ->fieldOrderBy(\'field_session_hours\', \'value2\', \'DESC\');
-
-$result = $query->execute();
-$sessions = ($result) ? entity_load(\'node\', array_keys($result[\'node\'])) : array();
-$total = 0;
-foreach ($sessions as $session) {
-  $start = date_create($session->field_session_hours[\'und\'][0][\'value\'],
-    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
-  $end = date_create($session->field_session_hours[\'und\'][0][\'value2\'],
-    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
-          
-  $start_timestamp = date_format($start, \'U\');
-  $end_timestamp = date_format($end, \'U\');
-          
-  $elapsed = $end_timestamp - $start_timestamp;
-  $total += $elapsed;
-}
-return $total;';
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%01.2f\', $value / 3600); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '4';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Sort criterion: User: Created date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'users';

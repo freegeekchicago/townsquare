@@ -27,8 +27,8 @@ function townsquare_volunteer_field_default_fields() {
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          0 => 'No',
-          1 => 'Calculate duration?',
+          0 => '0',
+          1 => '1',
         ),
         'allowed_values_function' => '',
         'field_permissions' => array(
@@ -46,11 +46,11 @@ function townsquare_volunteer_field_default_fields() {
       'bundle' => 'volunteer_session',
       'default_value' => array(
         0 => array(
-          'value' => 1,
+          'value' => 0,
         ),
       ),
       'deleted' => '0',
-      'description' => 'When checked, the \'duration\' field will be automatically computed from the start and end times when the session is saved. When unchecked, duration can be adjusted independent of start and end time, and the "day" will be calculated from the session\'s parent event.',
+      'description' => 'When checked, the \'duration\' field will not be automatically computed from the start and end times when the session is saved. The "day" will be calculated from the session\'s parent event, and the duration value specified will be used in all calculations. This is useful for adjusting volunteer hours and accounting for missing dates.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -68,8 +68,8 @@ function townsquare_volunteer_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_session_calculate_duration',
-      'label' => 'Calculate duration',
-      'required' => 1,
+      'label' => 'Override duration',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -77,7 +77,7 @@ function townsquare_volunteer_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(
-          'display_label' => 0,
+          'display_label' => 1,
         ),
         'type' => 'options_onoff',
         'weight' => '4',
@@ -599,15 +599,15 @@ function townsquare_volunteer_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Calculate duration');
   t('Duration');
   t('Event');
   t('Notes');
+  t('Override duration');
   t('Role');
   t('Session hours');
   t('The number of hours logged by a volunteer.');
   t('Volunteer');
-  t('When checked, the \'duration\' field will be automatically computed from the start and end times when the session is saved. When unchecked, duration can be adjusted independent of start and end time, and the "day" will be calculated from the session\'s parent event.');
+  t('When checked, the \'duration\' field will not be automatically computed from the start and end times when the session is saved. The "day" will be calculated from the session\'s parent event, and the duration value specified will be used in all calculations. This is useful for adjusting volunteer hours and accounting for missing dates.');
 
   return $fields;
 }
