@@ -10,6 +10,151 @@
 function townsquare_volunteer_field_default_fields() {
   $fields = array();
 
+  // Exported field: 'node-volunteer_session-field_session_calculate_duration'
+  $fields['node-volunteer_session-field_session_calculate_duration'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_session_calculate_duration',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Calculate duration?',
+        ),
+        'allowed_values_function' => '',
+        'field_permissions' => array(
+          'create' => 0,
+          'edit' => 0,
+          'edit own' => 0,
+          'view' => 0,
+          'view own' => 0,
+        ),
+      ),
+      'translatable' => '1',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer_session',
+      'default_value' => array(
+        0 => array(
+          'value' => 1,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'When checked, the \'duration\' field will be automatically computed from the start and end times when the session is saved. When unchecked, duration can be adjusted independent of start and end time, and the "day" will be calculated from the session\'s parent event.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 8,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_session_calculate_duration',
+      'label' => 'Calculate duration',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-volunteer_session-field_session_duration'
+  $fields['node-volunteer_session-field_session_duration'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_session_duration',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'number',
+      'settings' => array(
+        'decimal_separator' => '.',
+        'field_permissions' => array(
+          'create' => 0,
+          'edit' => 0,
+          'edit own' => 0,
+          'view' => 0,
+          'view own' => 0,
+        ),
+      ),
+      'translatable' => '1',
+      'type' => 'number_float',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer_session',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The number of hours logged by a volunteer.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 2,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_decimal',
+          'weight' => 9,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_session_duration',
+      'label' => 'Duration',
+      'required' => 0,
+      'settings' => array(
+        'max' => '',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '5',
+      ),
+    ),
+  );
+
   // Exported field: 'node-volunteer_session-field_session_event'
   $fields['node-volunteer_session-field_session_event'] = array(
     'field_config' => array(
@@ -273,7 +418,7 @@ function townsquare_volunteer_field_default_fields() {
           'rows' => '1',
         ),
         'type' => 'text_textarea',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -350,7 +495,7 @@ function townsquare_volunteer_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -454,11 +599,15 @@ function townsquare_volunteer_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Calculate duration');
+  t('Duration');
   t('Event');
   t('Notes');
   t('Role');
   t('Session hours');
+  t('The number of hours logged by a volunteer.');
   t('Volunteer');
+  t('When checked, the \'duration\' field will be automatically computed from the start and end times when the session is saved. When unchecked, duration can be adjusted independent of start and end time, and the "day" will be calculated from the session\'s parent event.');
 
   return $fields;
 }

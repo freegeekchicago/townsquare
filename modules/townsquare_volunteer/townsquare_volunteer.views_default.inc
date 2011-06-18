@@ -27,6 +27,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'access event views';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
@@ -90,11 +91,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
@@ -111,17 +112,16 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_event_type']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_event_type']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_event_type']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_event_type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_type']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_event_type']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_event_type']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_event_type']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_event_type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_type']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_event_type']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_event_type']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_type']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_type']['click_sort_column'] = 'tid';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_event_type']['field_api_classes'] = 0;
   /* Field: Content: Event date */
@@ -134,11 +134,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_event_date']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_event_date']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_event_date']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_event_date']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_date']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_event_date']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_event_date']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_event_date']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_event_date']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_date']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_event_date']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_event_date']['element_default_classes'] = 1;
@@ -163,11 +163,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_1']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_event_date_1']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_event_date_1']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_event_date_1']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_event_date_1']['element_default_classes'] = 1;
@@ -191,11 +191,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_event_location']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_event_location']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_event_location']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_event_location']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_location']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_event_location']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_event_location']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_event_location']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_event_location']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_event_location']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_event_location']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_event_location']['element_default_classes'] = 1;
@@ -217,18 +217,22 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['php']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['php']['alter']['external'] = 0;
   $handler->display->display_options['fields']['php']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['php']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['php']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['php']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['php']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['php']['alter']['html'] = 0;
   $handler->display->display_options['fields']['php']['element_label_type'] = 'span';
   $handler->display->display_options['fields']['php']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['php']['hide_empty'] = 0;
   $handler->display->display_options['fields']['php']['empty_zero'] = 0;
-  /* Sort criterion: Fields: Event date (field_event_date) - value */
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php print l(\'Edit\', \'event/\'. $row->nid .\'/edit\'); ?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+  /* Sort criterion: Content: Event date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
   $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -260,27 +264,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '5';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
-  $translatables['townsquare_events'] = array(
-    t('Master'),
-    t('Townsquare: Events'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('Nid'),
-    t('Event type'),
-    t('event/[nid]'),
-    t('From'),
-    t('To'),
-    t('Event location'),
-    t('Edit'),
-    t('Page'),
-  );
   $export['townsquare_events'] = $view;
 
   $view = new view;
@@ -300,6 +283,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'view all volunteer hours';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
@@ -370,11 +354,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['uid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['external'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['uid']['element_default_classes'] = 0;
@@ -390,11 +374,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['picture']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['external'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
   $handler->display->display_options['fields']['picture']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
@@ -409,11 +393,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 0;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 0;
   $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['html'] = 0;
   $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
@@ -430,11 +414,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['created']['alter']['external'] = 0;
   $handler->display->display_options['fields']['created']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['created']['alter']['html'] = 0;
   $handler->display->display_options['fields']['created']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
@@ -451,11 +435,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['login']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['login']['alter']['external'] = 0;
   $handler->display->display_options['fields']['login']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['login']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['login']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['login']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['login']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['login']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['login']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['login']['alter']['html'] = 0;
   $handler->display->display_options['fields']['login']['element_type'] = 'span';
   $handler->display->display_options['fields']['login']['element_label_colon'] = 1;
@@ -473,18 +457,18 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['rid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['external'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['rid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['rid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['rid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['rid']['element_label_type'] = 'span';
   $handler->display->display_options['fields']['rid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['rid']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['rid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
@@ -494,16 +478,44 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['php']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['php']['alter']['external'] = 0;
   $handler->display->display_options['fields']['php']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['php']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['php']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['php']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['php']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['php']['alter']['html'] = 0;
   $handler->display->display_options['fields']['php']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['php']['hide_empty'] = 0;
   $handler->display->display_options['fields']['php']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_value'] = '$query = new EntityFieldQuery;
+$query
+  ->entityCondition(\'entity_type\', \'node\')
+  ->propertyCondition(\'type\', \'volunteer_session\')
+  ->fieldOrderBy(\'field_session_hours\', \'value\', \'DESC\')
+  ->fieldCondition(\'field_session_user\', \'uid\', $row->uid, \'=\')
+  ->fieldOrderBy(\'field_session_hours\', \'value2\', \'DESC\');
+
+$result = $query->execute();
+$sessions = ($result) ? entity_load(\'node\', array_keys($result[\'node\'])) : array();
+$total = 0;
+foreach ($sessions as $session) {
+  $start = date_create($session->field_session_hours[\'und\'][0][\'value\'],
+    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
+  $end = date_create($session->field_session_hours[\'und\'][0][\'value2\'],
+    timezone_open($session->field_session_hours[\'und\'][0][\'timezone\']));
+          
+  $start_timestamp = date_format($start, \'U\');
+  $end_timestamp = date_format($end, \'U\');
+          
+  $elapsed = $end_timestamp - $start_timestamp;
+  $total += $elapsed;
+}
+return $total;';
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%01.2f\', $value / 3600); ?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '4';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Sort criterion: User: Created date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'users';
@@ -523,27 +535,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Volunteers';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
-  $translatables['townsquare_volunteers'] = array(
-    t('Master'),
-    t('Townsquare: Volunteers'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('Uid'),
-    t('Picture'),
-    t('Name'),
-    t('Created date'),
-    t('Last login'),
-    t('Roles'),
-    t('Total hours'),
-    t('Page'),
-  );
   $export['townsquare_volunteers'] = $view;
 
   return $export;
