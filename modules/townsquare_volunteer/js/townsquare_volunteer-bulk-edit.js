@@ -11,9 +11,6 @@ Drupal.behaviors.autosaveSessions = {
     $('.volunteer-session-form input, .volunteer-session-form select, .volunteer-session-form textarea').change(function(e) {
       var parent_wrapper = $(this).parents('.volunteer-session-form');
       var user = $('.field-name-field-session-user input', parent_wrapper);
-      //console.log('val');
-      //console.log(user.val());
-      //console.log('change called');
       if (user.val()) {
         $('input[value="Save"]', parent_wrapper).trigger('mousedown');
       }
