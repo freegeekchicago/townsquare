@@ -207,7 +207,7 @@ function townsquare_volunteer_views_default_views() {
     'organisation' => 0,
   );
   $handler->display->display_options['fields']['field_event_location']['field_api_classes'] = 0;
-  /* Field: Broken/missing handler */
+  /* Field: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
