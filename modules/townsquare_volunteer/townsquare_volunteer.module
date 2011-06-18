@@ -117,6 +117,10 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
     $form['#prefix'] = '<div id="event-form">';
     $form['#suffix'] = '</div>';
 
+    // Disable title (handled in node_presave);
+    $form['title']['#access'] = FALSE;
+    $form['title']['#required'] = FALSE;
+
     // Use ajax only after creation
     if (arg(2) == 'edit') {
       $form['actions']['submit']['#ajax'] = array(
@@ -174,6 +178,10 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       '#value' => ($nid == 'new') ? TRUE : FALSE,
     );
 
+    // Disable title (handled in node_presave);
+    $form['title']['#access'] = FALSE;
+    $form['title']['#required'] = FALSE;
+
     $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
     $form['#suffix'] = '</div>';
 
@@ -192,12 +200,11 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['changed']['#default_value'] = time() + 3600;
     
     // Refine further
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event', 'field_session_calculate_duration', 'field_session_duration') as $key) {
       $form[$key]['#access'] = FALSE;
     }
     
     $form['actions']['preview']['#access'] = FALSE;    
-    $form['field_session_event']['und'][0]['#access'] = FALSE;
 
     // Set default start and end values based on event node
     // Using the standard widgets means this must be done here, not
@@ -379,6 +386,41 @@ function townsquare_volunteer_edit_event($node = NULL) {
   );
   
   return $output;
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function townsquare_volunteer_node_presave($node) {
+  // Compute volunteer session duration
+  if ($node->type == 'volunteer_session') { 
+    $start = date_create($node->field_session_hours['und'][0]['value'],
+      timezone_open($node->field_session_hours['und'][0]['timezone']));
+    $end = date_create($node->field_session_hours['und'][0]['value2'],
+      timezone_open($node->field_session_hours['und'][0]['timezone']));
+
+    $user = user_load($node->uid);
+
+    if ($node->field_session_calculate_duration['und'][0]['value']) {
+      
+      $start_timestamp = date_format($start, 'U'); 
+      $end_timestamp = date_format($end, 'U'); 
+      
+      $elapsed = ($end_timestamp - $start_timestamp) / 3600;
+      
+      $node->field_session_duration['und'][0]['value'] = $elapsed;
+    }
+
+    $node->title = date_format($start, 'Y-m-d') .' - '. $user->name .' ('.
+      $node->field_session_duration['und'][0]['value'] .' hours)';
+  }
+  if ($node->type == 'event') { 
+    $start = date_create($node->field_event_date['und'][0]['value'],
+      timezone_open($node->field_event_date['und'][0]['timezone']));
+
+    $term = taxonomy_term_load($node->field_event_type['und'][0]['tid']);
+    $node->title = date_format($start, 'Y-m-d') .' - '. $term->name;
+  }
 }
 
 /**
