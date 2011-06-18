@@ -18,5 +18,20 @@ Drupal.behaviors.autosaveSessions = {
   }
 };
 
+// Focus selector
+$.expr[':'].focus = function(a){ return (a == document.activeElement); }
 
+// World's tiniest jQuery plugin to be invoked with Drupal AJAX command
+$.fn.townsquareReplace = function(form) {
+  $(this).each(function(i) {
+    // Cache focused element
+    var focused_elem = $('*:focus', this);
+    
+    // Replace markup
+    $(this).html(form);
+
+    // Find element with same name in replacement form
+    $('*[name="'+ focused_elem.attr('name') +'"]', this).focus();
+  });
+}
 })(jQuery);

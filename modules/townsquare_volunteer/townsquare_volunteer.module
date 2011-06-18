@@ -254,7 +254,7 @@ function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_st
     $new_form = drupal_get_form('volunteer_session_node_form', 
       $new_session);
     
-    $commands[] = ajax_command_replace('#volunteer-session-form-new', drupal_render($form));
+    $commands[] = ajax_command_invoke('#volunteer-session-form-new', 'townsquareReplace', array(drupal_render($form)));
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
   }
   else {
