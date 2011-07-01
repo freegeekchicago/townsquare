@@ -1,31 +1,38 @@
 (function($) {
+
+// Disable duration field if override button isn't checked
 Drupal.behaviors.disableDuration = {
   attach: function(context) {
-    TownsquareVolunteer.toggleDuration(context, $('#edit-field-session-calculate-duration-und').attr('checked'));
-    $('#edit-field-session-calculate-duration-und', context).click(function(e) {
-      TownsquareVolunteer.toggleDuration(context, $(this).attr('checked'), true);
-    });
+    $('.field-name-field-session-override-duration')
+      .each(function(i) {
+        var field = this;
+        TownsquareVolunteer.toggleDuration(field);
+        $(field).click(function(e) {
+          TownsquareVolunteer.toggleDuration(field);
+        });
+      })
   }
 };
+
 TownsquareVolunteer = {}
-TownsquareVolunteer.toggleDuration = function(context, disabled, effect) {
-  var duration = $('#edit-field-session-duration', context);
+TownsquareVolunteer.toggleDuration = function(field) {
+  var form = $(field).parents('form');
+  var duration = $('.field-name-field-session-duration', form);
+  var hours = $('.form-item-field-session-hours-und-0-value-time, .form-item-field-session-hours-und-0-value-date, .form-item-field-session-hours-und-0-value2-time, .form-item-field-session-hours-und-0-value2-date', form);
+  var disabled = $('input', field).attr('checked');
+
   if (!disabled) {
     duration.addClass('form-disabled');
-    if (effect) {
-      duration.slideUp('fast');
-    } else {
-      duration.hide();
-    }
     $('input', duration).attr('disabled', true);
+    
+    hours.removeClass('form-disabled');
+    $('input', hours).removeAttr('disabled');
   } else {
     duration.removeClass('form-disabled');
-    if (effect) {
-      duration.slideDown('fast');
-    } else {
-      duration.show();
-    }
     $('input', duration).removeAttr('disabled');
+    
+    hours.addClass('form-disabled');
+    $('input', hours).attr('disabled', true);
   }
 }
 })(jQuery);
