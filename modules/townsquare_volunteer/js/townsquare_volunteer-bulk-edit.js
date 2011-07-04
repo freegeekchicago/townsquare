@@ -26,9 +26,9 @@ $.fn.townsquareReplace = function(form) {
   $(this).each(function(i) {
     // Cache focused element
     var focused_elem = $('*:focus', this);
-    
+
     // Replace markup
-    $(this).html(form);
+    $(this).replaceWith(form);
 
     // Find element with same name in replacement form
     $('*[name="'+ focused_elem.attr('name') +'"]', this).focus();
