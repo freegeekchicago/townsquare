@@ -21,17 +21,24 @@ Drupal.behaviors.autosaveSessions = {
 // Focus selector
 $.expr[':'].focus = function(a){ return (a == document.activeElement); }
 
-// World's tiniest jQuery plugin to be invoked with Drupal AJAX command
+// World's tiniest jQuery plugin, to be invoked with Drupal AJAX command
 $.fn.townsquareReplace = function(form) {
   $(this).each(function(i) {
     // Cache focused element
     var focused_elem = $('*:focus', this);
 
-    // Replace markup
-    $(this).replaceWith(form);
+    // Create DOM node out of response
+    var new_form = $(form);
 
-    // Find element with same name in replacement form
-    $('*[name="'+ focused_elem.attr('name') +'"]', this).focus();
+    // Replace with new form
+    $(this).replaceWith(new_form);
+
+    //console.log('.form-item-field-session-duration-und-0-value', new_form);
+
+    // Find element with same name as last focused element in replacement form
+    var focused = $('*[name="'+ focused_elem.attr('name') +'"]', new_form)
+      .focus();
+
   });
 }
 })(jQuery);
