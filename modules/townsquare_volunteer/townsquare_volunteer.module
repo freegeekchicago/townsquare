@@ -325,13 +325,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
   }
   else {
     $session_elements = array();
-
-    if (node_access('create', 'volunteer_session')) {
-      $new_session = _townsquare_volunteer_create_volunteer_session($node);
-      $session_elements[] = drupal_get_form('volunteer_session_node_form', 
-        $new_session);
-    }
-
     $session_nodes = townsquare_volunteer_event_sessions($node->nid);
 
     foreach ($session_nodes as $session) {
@@ -340,6 +333,13 @@ function townsquare_volunteer_edit_event($node = NULL) {
           $session);
       }
     }
+    
+    if (node_access('create', 'volunteer_session')) {
+      $new_session = _townsquare_volunteer_create_volunteer_session($node);
+      $session_elements[] = drupal_get_form('volunteer_session_node_form', 
+        $new_session);
+    }
+
 
     if (!empty($session_elements)) {
       $session_form = array(
@@ -385,7 +385,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
         'sessions' => array(
           '#prefix' => '<div id="volunteer-sessions">',
           '#suffix' => '</div>'
-        ) + array_reverse($session_elements),
+        ) + $session_elements,
       );
     }
   }
@@ -457,20 +457,37 @@ function townsquare_volunteer_node_presave($node) {
  *  
  */
 function townsquare_volunteer_event_sessions($nid) {
-  $query = new EntityFieldQuery;
-  $query
+  $results = array();
+  $duration_query = new EntityFieldQuery;
+  $date_query = new EntityFieldQuery;
+
+  $duration_query
     ->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'volunteer_session')
     ->fieldCondition('field_session_event', 'nid', $nid, '=')
-    ->fieldOrderBy('field_session_hours', 'value', 'DESC')
-    ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
+    ->fieldCondition('field_session_override_duration', 'value', 1, '=')
+    ->fieldOrderBy('field_session_duration', 'value', 'ASC');
 
-  $result = $query->execute();
+  $duration_result = $duration_query->execute();
   
-  if ($result) {
-    return entity_load('node', array_keys($result['node']));
-  } 
-  return array();
+  if ($duration_result) {
+    $results += entity_load('node', array_keys($duration_result['node']));
+  }
+
+  $date_query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'volunteer_session')
+    ->fieldCondition('field_session_event', 'nid', $nid, '=')
+    ->fieldCondition('field_session_override_duration', 'value', 0, '=')
+    ->fieldOrderBy('field_session_hours', 'value', 'ASC');
+  
+  $date_result = $date_query->execute();
+
+  if ($date_result) {
+    $results += entity_load('node', array_keys($date_result['node']));
+  }
+
+  return $results;
 }
 
 /**
