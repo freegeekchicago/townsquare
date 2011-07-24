@@ -268,13 +268,15 @@ function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_st
     $new_form = drupal_get_form('volunteer_session_node_form', 
       $new_session);
     
-    $commands[] = ajax_command_invoke('#volunteer-session-form-new', 'townsquareReplace', array(drupal_render($form)));
+    $id = '#volunteer-session-form-new';
+    $commands[] = ajax_command_invoke($id, 'townsquareReplace', array(drupal_render($form)));
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
   }
   else {
-    $commands[] = ajax_command_invoke('#'. $form['#id'], 'townsquareReplace', array(drupal_render($form)));
+    $id = '#volunteer-session-form-'. $form['nid']['#value'];
+    $commands[] = ajax_command_invoke($id, 'townsquareReplace', 
+      array(drupal_render($form)));
   }
-  
   //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
   return array(
     '#type' => 'ajax',
