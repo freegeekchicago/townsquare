@@ -582,6 +582,11 @@ function _townsquare_volunteer_create_volunteer_session($node) {
         array('nid' => $node->nid),
       )
     );
+    $empty_session->field_session_override_duration = array(
+      'und' => array(
+        array('value' => 0)
+      )
+    );
     return $empty_session; 
   }
 }
