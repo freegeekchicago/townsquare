@@ -225,8 +225,8 @@ input.form-text, select, textarea {
 }
 fieldset {
   legend {
+    color: @color_black;
     font-weight: bold;
-    font-size: 1.25em;
   }
 }
 .form-item {
@@ -234,18 +234,22 @@ fieldset {
   margin-bottom: .75em;
 }
 label {
+  color: #444;
   margin-right: 10px;
 }
 .form-type-textfield label, .form-type-select label {
   .box;
 }
 .form-type-radios > label {
-  margin-bottom: .75em;
-  font-size: 1.25em;
+  color: @color_black;
+  margin-bottom: .25em;
 }
 .form-disabled {
   label, input, select, textarea, .description {
     color: @color_disabled;
+  }
+  input, select, textarea {
+    background-color: #ddd;
   }
 }
 /* }}} */
@@ -873,18 +877,19 @@ body.page-node-edit {
       margin-right: 30px;
     }
     .field-name-field-event-type {
-      width: 220px;
-      margin-right: 0;
+      width: 160px;
     }
     .field-name-field-event-date {
-      width: 325px;
+      width: 210px;
+      legend {
+        display: none;
+      }
       label {
-        .box;
-        width: 90px;
+        display: block;
       }
       input#edit-field-event-date-und-0-value-datepicker-popup-0,
       input#edit-field-event-date-und-0-value2-datepicker-popup-0 {
-        width: 125px;
+        width: 100px;
         margin-right: 10px;
       }
       input#edit-field-event-date-und-0-value-timeEntry-popup-1,
@@ -895,27 +900,26 @@ body.page-node-edit {
         width: 190px;
         display: block;
       }
-      .form-item-field-event-date-und-0-value {
+      .form-item-field-event-da9e-und-0-value {
         margin-bottom: .25em;
-        .description { display: none; }
       }
     }
     .field-name-field-event-location {
-      width: 325px;
+      width: 260px;
       label {
         .box;
-        width: 80px;
+        width: 85px;
       }
-      input {
-        max-width: 200px;
+      input, select {
+        max-width: 150px;
       }
     }
     .field-name-field-event-description {
-      width: 475px;
-      margin-right: 25px;
+      width: 210px;
+      margin-right: 0;
       textarea { 
-        width: 470px;
-        max-height: 14em;
+        width: 210px;
+        max-height: 16em;
       }
       label {
         margin-bottom: .75em;
