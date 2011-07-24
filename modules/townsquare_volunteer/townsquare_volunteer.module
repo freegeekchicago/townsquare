@@ -208,12 +208,17 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
     $form['changed']['#default_value'] = time() + 3600;
     
-    // Refine further
+    // Remove some fields
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event') as $key) {
       $form[$key]['#access'] = FALSE;
     }
 
-    $form['actions']['preview']['#access'] = FALSE;    
+    // Remove buttons
+    foreach (element_children($form['actions']) as $key) {
+      if ($key != 'delete' && $key != 'submit') {
+        $form['actions'][$key]['#access'] = FALSE;
+      }
+    }
 
     // Set default start and end values based on event node
     // Using the standard widgets means this must be done here, not
