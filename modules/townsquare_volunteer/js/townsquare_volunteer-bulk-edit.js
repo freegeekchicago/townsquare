@@ -1,4 +1,11 @@
 (function($) {
+
+// Override time entry because of bugginess in date module
+// @TODO: Ouch, this is ugly; needs a new home and approach.
+$.fn.timeEntry = function() {
+  return this;
+}
+
 Drupal.behaviors.volunteerGrowTextarea = {
   attach: function(context) {
     $('.field-name-field-session-notes textarea', context).elastic();
