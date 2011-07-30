@@ -274,7 +274,7 @@ function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_st
   else {
     $id = '#volunteer-session-form-'. $form['nid']['#value'];
     $commands[] = ajax_command_invoke($id, 'townsquareReplace', 
-      array(drupal_render($form)));
+      array(drupal_render($form), TRUE));
   }
   //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
   return array(
