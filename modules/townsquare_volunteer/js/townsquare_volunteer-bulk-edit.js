@@ -29,9 +29,7 @@ Drupal.behaviors.autosaveSessions = {
 $.expr[':'].focus = function(a){ return (a == document.activeElement); }
 
 // World's tiniest jQuery plugin, to be invoked with Drupal AJAX command
-$.fn.townsquareReplace = function(form, reattach) {
-  var reattach = reattach || false;
-  
+$.fn.townsquareReplace = function(form) {
   // Cache focused element
   var focused_elem = $('*:focus', this);
 
@@ -45,9 +43,7 @@ $.fn.townsquareReplace = function(form, reattach) {
   $('input[value="Save"]', new_form).hide();
 
   // Reattach behaviors on existing forms
-  if (reattach) {
-    Drupal.attachBehaviors($(new_form));
-  }
+  Drupal.attachBehaviors($(new_form));
   
   // Find element with same name as last focused element in replacement form
   var focused = $('*[name="'+ focused_elem.attr('name') +'"]', new_form)
