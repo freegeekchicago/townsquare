@@ -276,6 +276,12 @@ function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_st
     $commands[] = ajax_command_invoke($id, 'townsquareReplace', 
       array(drupal_render($form)));
   }
+
+  // barisw has a beautiful solution to suppressing status messages (e.g.
+  // "<Date> <Volunteer Name> session node has been created") but not errors:
+  // http://api.drupal.org/api/drupal/includes--bootstrap.inc/function/drupal_set_message/7#comment-13734
+  drupal_get_messages('status');
+
   //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
   return array(
     '#type' => 'ajax',
