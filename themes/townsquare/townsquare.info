@@ -18,5 +18,6 @@ regions[page_bottom] = Page bottom
 regions[highlighted] = Highlighted
 
 ; Stylesheets =================================================================
+stylesheets[all][] = "date.css"
 stylesheets[screen][] = css/style.less
 
