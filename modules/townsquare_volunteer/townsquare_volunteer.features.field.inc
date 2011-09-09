@@ -185,7 +185,7 @@ function townsquare_volunteer_field_default_fields() {
       'module' => 'date',
       'settings' => array(
         'enddate' => 1,
-        'enddate_required' => 1,
+        'enddate_required' => 0,
         'field_permissions' => array(
           'create' => 0,
           'edit' => 0,
@@ -203,7 +203,7 @@ function townsquare_volunteer_field_default_fields() {
         ),
         'repeat' => 0,
         'timezone_db' => 'UTC',
-        'todate' => 'required',
+        'todate' => 'optional',
         'tz_handling' => 'site',
       ),
       'translatable' => '1',
@@ -244,7 +244,7 @@ function townsquare_volunteer_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_session_hours',
       'label' => 'Session hours',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'default_value' => 'blank',
         'default_value2' => 'blank',
