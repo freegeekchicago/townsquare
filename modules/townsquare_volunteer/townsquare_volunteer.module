@@ -105,12 +105,11 @@ function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'volunteer_session_node_form' && arg(0) == 'event') {
     $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_volunteer_session_node_submit';
     $form['actions']['delete']['#submit'] = array('townsquare_volunteer_volunteer_session_delete_submit'); 
-  }  
+  } 
 }  
 
 /**
  * Implements hook_form_event_node_form_alter().
- * 
  */
 function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
@@ -141,7 +140,7 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
     foreach (array('premise', 'country') as $key) {
       $form['field_event_location']['und'][0][$key]['#access'] = FALSE;
     }
-    $form['actions']['preview']['#access'] = FALSE;    
+    $form['actions']['preview']['#access'] = FALSE;
   }
 }
 
