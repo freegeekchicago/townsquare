@@ -6,6 +6,9 @@
 function townsquare_css_alter(&$css) { 
   unset($css[drupal_get_path('module','date_api').'/date.css']); 
 }
+
+/**
+ * Implements hook_preprocess_page().
  */
 function townsquare_preprocess_page(&$vars) {
   // Home link
@@ -25,5 +28,3 @@ function townsquare_preprocess_page(&$vars) {
     );
   }
 }
-
-
