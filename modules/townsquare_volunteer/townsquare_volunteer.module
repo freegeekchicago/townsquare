@@ -622,10 +622,7 @@ function townsquare_volunteer_user_sessions($uid) {
   $query
     ->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_user', 'uid', $uid, '=')
-    ->fieldOrderBy('field_session_hours', 'value', 'DESC')
-    ->fieldOrderBy('field_session_hours', 'value2', 'DESC');
-
+    ->fieldCondition('field_session_user', 'uid', $uid, '=');
   $result = $query->execute();
   
   if ($result) {
