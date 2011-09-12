@@ -1,7 +1,11 @@
 <?php
 
 /**
- * Implementation of preprocess_page().
+ * Implements hook_css_alter().
+ */
+function townsquare_css_alter(&$css) { 
+  unset($css[drupal_get_path('module','date_api').'/date.css']); 
+}
  */
 function townsquare_preprocess_page(&$vars) {
   // Home link
