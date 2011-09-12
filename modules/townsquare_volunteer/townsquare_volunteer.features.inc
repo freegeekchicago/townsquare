@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_ctools_plugin_api().
+ * Implements hook_ctools_plugin_api().
  */
 function townsquare_volunteer_ctools_plugin_api() {
   list($module, $api) = func_get_args();
@@ -15,7 +15,7 @@ function townsquare_volunteer_ctools_plugin_api() {
 }
 
 /**
- * Implementation of hook_views_api().
+ * Implements hook_views_api().
  */
 function townsquare_volunteer_views_api() {
   list($module, $api) = func_get_args();
@@ -25,7 +25,7 @@ function townsquare_volunteer_views_api() {
 }
 
 /**
- * Implementation of hook_node_info().
+ * Implements hook_node_info().
  */
 function townsquare_volunteer_node_info() {
   $items = array(
