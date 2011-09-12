@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function townsquare_event_field_default_fields() {
   $fields = array();
@@ -82,14 +82,12 @@ function townsquare_event_field_default_fields() {
         'module' => 'date',
         'settings' => array(
           'increment' => '1',
-          'input_format' => 'Y-m-d H:i:s',
+          'input_format' => 'Y/m/d - g:i:sa',
           'input_format_custom' => '',
           'label_position' => 'above',
           'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
-          'years_back' => '-3',
-          'years_forward' => '+3',
         ),
         'type' => 'date_popup',
         'weight' => '1',
@@ -223,7 +221,12 @@ function townsquare_event_field_default_fields() {
         'default' => array(
           'label' => 'above',
           'module' => 'addressfield',
-          'settings' => array(),
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
           'type' => 'addressfield_default',
           'weight' => 7,
         ),
@@ -246,7 +249,10 @@ function townsquare_event_field_default_fields() {
         'module' => 'addressfield',
         'settings' => array(
           'available_countries' => array(),
-          'name_format' => 'name_line',
+          'format_handlers' => array(
+            0 => 'address',
+            1 => 'name-oneline',
+          ),
         ),
         'type' => 'addressfield_standard',
         'weight' => '3',
