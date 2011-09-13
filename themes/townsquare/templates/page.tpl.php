@@ -1,10 +1,6 @@
 <div id='townsquare-toolbar'><div class='limiter clearfix'>
-  <?php print render($page['toolbar']); ?>
-</div></div>
-
-<div id='site-links'><div class='limiter clearfix'>
   <?php if ($site_name): ?><h1 class='site-name'><?php print $site_name ?></h1><?php endif; ?>
-  <?php print render($page['secondary_toolbar']); ?>
+  <?php print render($page['toolbar']); ?>
 </div></div>
 
 <?php if ($page['help'] || ($show_messages && $messages)): ?>

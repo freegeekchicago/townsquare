@@ -7,12 +7,12 @@
 
 /* --- Less CSS variables --- */
 /* Colors {{{ */
-@color_gradient_default_light: #dddddd; 
-@color_gradient_default_dark: #aaaaaa;
-@color_gradient_default_middle: #cccccc;
+@color_gradient_default_light: #eeeeee; 
+@color_gradient_default_dark: #bbbbbb;
+@color_gradient_default_middle: #dddddd;
 
 @color_button_border: #777777;
-@color_button_text: #444444;
+@color_button_text: #222222;
 @color_button_border_hover: #444444;
 @color_button_text_hover: #000000;
 
@@ -44,8 +44,9 @@
 
 /* }}} */
 /* Measurements {{{ */
-@default_corner_radius: 9px;
-@intense_corner_radius: 15px;
+@small_corner_radius: 5px;
+@default_corner_radius: 6px;
+@intense_corner_radius: 10px;
 /* }}} */
 
 /* --- Less CSS mixins --- */
@@ -66,9 +67,9 @@
 /* }}} */
 /* Simple gradient (.vertical_gradient, .horizontal gradient) {{{ */
 .vertical_gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
-  filter: progid:DXImageTransform.Microsoft.vertical_gradient(startColorstr='@start', endColorstr='@end');
-  background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
-  background: -moz-linear-gradient(top,  @start, @end);
+  background-color: @end;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end));
+  background-image: -moz-linear-gradient(top,  @start, @end);
 }
 .horizontal_gradient (@start: @color_gradient_default_light; @end: @color_gradient_default_dark;) {
   //@TODO correct MS invocation
@@ -77,10 +78,10 @@
 }
 /* }}} */
 /* Glassy gradients (.vertical_gradient_glass) {{{ */
-// @TODO add arguments
 .vertical_gradient_glass (@start: #353535; @middle: @color_black; @end: #151515;) {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.7, @middle), color-stop(1.0, @end)); /* for webkit browsers */
-  background: -moz-linear-gradient(top, @start 0%, @middle 70%, @end 100%); /* for firefox 3.6+ */
+  background-color: @middle;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.6, @middle), color-stop(1.0, @end)); /* for webkit browsers */
+  background-image: -moz-linear-gradient(top, @start 0%, @middle 60%, @end 100%); /* for firefox 3.6+ */
 }
 /* }}} */
 /* Buttons (.button, .button_flat) {{{ */
@@ -91,7 +92,7 @@
   border: 1px solid @color_button_border;
   color: @color_button_text;
   text-align: center;
-  padding: 0 5px;
+  padding: 1px 8px;
   cursor: pointer;
   background-color: #ddd;
   :hover { 
@@ -112,6 +113,9 @@
     color: @color_white;
     background-color: @color_fg_bright_green;
   }
+}
+a.button, a.button_flat {
+  text-decoration: none !important;
 }
 /* }}} */
 /* Blocks and boxes (.box) {{{ */
@@ -340,13 +344,31 @@ table {
 /* }}} */
 /* Header {{{ */
 #townsquare-toolbar {
-  position: fixed;
-  top: 0;
-  padding-bottom: 5px;
   width: 100%;
-  z-index: 10;
-  border-bottom: 1px solid #999;
-  .vertical_gradient_glass(#444; #222; #333;);
+  padding-bottom: 2px;
+  border-bottom: 4px solid #ddd;
+  .vertical_gradient_glass(#555; #333; #000;);
+
+  .site-name {
+    .box;
+    .lato_font;
+    margin: 3px 4px 0 0;
+    a {
+      .box;
+      background: url('../img/logo-icon.png') no-repeat 0 0;
+      padding: 0 0 0 32px;
+      font-size: 20px;
+      text-transform: uppercase;
+      line-height: 26px;
+      height: 28px;
+      color: @color_fg_green;
+      :hover {
+        color: @color_fg_bright_green;
+        background-position: 0 -30px;
+      }
+    }
+  }
+
   .form-item {
     display: inline;
     .form-required {
@@ -357,7 +379,7 @@ table {
     }
     input {
       .no_shadow;
-      .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+      .rounded_corner(@default_corner_radius; @default_corner_radius; @default_corner_radius; @default_corner_radius;);
       background-color: #e5e5e5;
       border: 1px solid #888;
       :hover {
@@ -382,15 +404,14 @@ table {
     margin-left: 6px;
   }
   #block-townsquare-core-login {
-    color: #ccc;
     float: right;
-    margin: 0 5px 0 0;
-    color: #ddd;
+    margin: 1px 5px 0 0;
     line-height: 1;
     font-size: .875em;
+    color: #ccc;
     a { 
+      color: #fff;
       font-weight: bold;
-      color: @color_white;
       :hover {
         text-decoration: underline;
       }
@@ -406,7 +427,7 @@ table {
       margin-right: 10px;
       input {
         .button;
-        .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
+        .rounded_corner(@default_corner_radius; @default_corner_radius; @default_corner_radius; @default_corner_radius;);
         background: none;
         padding: 1px 5px;
         background-color: #e5e5e5;
@@ -431,7 +452,6 @@ table {
     }
 
     .login-wrapper {
-      margin-top: 4px;
       #login-meta {
         .box;
         width: 220px;
@@ -455,8 +475,9 @@ table {
       }
       .user-picture {
         .box;
+        margin-top: 2px;
         margin-left: 7px;
-        margin-right: 2px;
+        margin-right: 4px;
         line-height: 1;
         img {
           height: 27px;
@@ -467,30 +488,38 @@ table {
   }
   #block-menu-menu-townsquare-toolbar {
     .reset_list;
-    margin-left: 7px;
-    margin-top: 7px;
+    margin-left: 10px;
+    margin-top: 2px;
     li {
       .box;
       margin-right: 4px;
     }
     a {
       .box;
-      color: @color_white;
-      text-shadow: 1px 1px 2px #444;
-      .rounded_corner(@intense_corner_radius; @intense_corner_radius; @intense_corner_radius; @intense_corner_radius;);
-      padding: 1px 8px;
-      font-size: 15px;
-      line-height: 22px;
+      color: #111;
+      .rounded_corner(@default_corner_radius; @default_corner_radius; 0; 0;);
+      .vertical_gradient(#ddd; #aaa;);
+      border: 1px solid #888;
+      border-bottom: none;
+      padding: 4px 8px 6px 8px;
+      position: relative;
+      bottom: -4px;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 16px;
       :hover { 
-        background-color: #aaa;
+        background-image: none;
+        background-color: #ddd;
       }
       &.active {
-        background-color: #888;
+        .vertical_gradient(#eee; #ddd;);
       }
     }
   }
 
   #block-search-form {
+    margin-left: 8px;
+    margin-top: 7px;
     .form-item {
       margin: 0;
     }
@@ -498,19 +527,19 @@ table {
       .box;
       font-size: 12px;
       width: 164px;
-      height: 21px;
+      height: 19px;
       .form-text {
         width: 159px;
         padding: 1px 7px;
-        height: 21px;
+        height: 19px;
         border-right: none;
       }
     }
     .form-actions {
-      .rounded_corner(0; @intense_corner_radius; @intense_corner_radius; 0;);
+      .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0;);
       .vertical_gradient;
       .box;
-      height: 23px;
+      height: 21px;
       width: 26px;
       border: 1px solid #888;
       border-left: 1px solid #aaa;
@@ -543,12 +572,7 @@ body.toolbar #townsquare-toolbar {
   margin-top: 40px;
   padding: 5px 0;
   height: 52px;
-  background-color: #ddd;
-  .site-name {
-    .box;
-    .lato_font;
-    margin: 10px 4px 0 12px;
-  }
+  background-color: #ddd; 
   h2 {
     display: none;
   }
@@ -558,20 +582,7 @@ body.toolbar #townsquare-toolbar {
       color: @color_white;
     }
   }
-  .site-name a {
-    .box;
-    background: url('../img/logo-icon.png') no-repeat 0 0;
-    padding: 0 0 0 32px;
-    font-size: 22px;
-    text-transform: uppercase;
-    line-height: 26px;
-    height: 28px;
-    color: @color_fg_green;
-    :hover {
-      color: @color_fg_bright_green;
-      background-position: 0 -30px;
-    }
-  }
+  
   ul {
     margin: 14px 0 0 16px;
     .box;
@@ -606,6 +617,7 @@ body.toolbar #townsquare-toolbar {
 #page-actions {
   background-color: #ddd;
   padding-left: 12px;
+  padding-top: 15px;
   .type {
     margin-right: 10px;
     .box;
@@ -669,8 +681,8 @@ body.toolbar #townsquare-toolbar {
 /* Main content {{{ */
 #main-content {
   line-height: 1.5;
-  margin: 0 0 0 12px;
-  padding: 14px 45px 14px 22px;
+  margin: 0 0 0 18px;
+  padding-top: 8px;
   background-color: @color_white;
   /* Links {{{ */
   a {

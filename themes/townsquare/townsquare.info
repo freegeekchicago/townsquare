@@ -7,7 +7,6 @@ base theme = tao
 
 ; Regions =====================================================================
 regions[toolbar] = Toolbar
-regions[secondary_toolbar] = Secondary toolbar
 regions[page_toolbar] = Page toolbar
 regions[page_actions] = Page actions
 regions[content] = Content
