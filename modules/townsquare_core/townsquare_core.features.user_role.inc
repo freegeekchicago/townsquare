@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_user_default_roles().
+ * Implements hook_user_default_roles().
  */
 function townsquare_core_user_default_roles() {
   $roles = array();
@@ -13,19 +13,13 @@ function townsquare_core_user_default_roles() {
   // Exported role: administrator
   $roles['administrator'] = array(
     'name' => 'administrator',
-    'weight' => '5',
-  );
-
-  // Exported role: keyholder
-  $roles['keyholder'] = array(
-    'name' => 'keyholder',
-    'weight' => '3',
+    'weight' => '4',
   );
 
   // Exported role: staff
   $roles['staff'] = array(
     'name' => 'staff',
-    'weight' => '4',
+    'weight' => '3',
   );
 
   // Exported role: volunteer
