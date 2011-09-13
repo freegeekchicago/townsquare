@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_context_default_contexts().
+ * Implements hook_context_default_contexts().
  */
 function townsquare_wiki_context_default_contexts() {
   $export = array();

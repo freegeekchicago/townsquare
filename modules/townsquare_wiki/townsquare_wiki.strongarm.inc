@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_strongarm().
+ * Implements hook_strongarm().
  */
 function townsquare_wiki_strongarm() {
   $export = array();
