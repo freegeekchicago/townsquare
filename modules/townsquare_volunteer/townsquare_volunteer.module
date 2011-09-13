@@ -507,7 +507,10 @@ function townsquare_volunteer_node_presave($node) {
   if ($node->type == 'volunteer_session') { 
     $user = user_load($node->field_session_user[$lang][0]['uid']);
     $event = node_load($node->field_session_event[$lang][0]['nid']);
-    
+
+    // Set session author to referenced user
+    $node->uid = $user->uid;
+
     // Compute volunteer session duration based on flag
     if (!$node->field_session_override_duration[$lang][0]['value']) {
       if (!empty($node->field_session_hours[$lang][0]['value'])) {
