@@ -307,20 +307,28 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
  * Disable email address validation if field is empty.
  */
 function townsquare_volunteer_form_user_profile_form_alter(&$form, &$form_state) {
-  if ($form['#user_category'] == 'account') {
-    $form['account']['mail']['#required'] = FALSE;
+  $form['account']['mail']['#required'] = FALSE;
 
-    if (empty($form['account']['mail']['#default_value'])) {
-      $form['account']['mail']['#default_value'] = ' ';
-    }
-    
-    $profile_validator = array_search('user_account_form_validate', $form['#validate']);
-    if ($profile_validator !== FALSE) {
-      $form['#validate'][$profile_validator] = 'townsquare_volunteer_user_account_form_validate';
-    }
+  if (empty($form['account']['mail']['#default_value'])) {
+    $form['account']['mail']['#default_value'] = ' ';
+  }
+  
+  $account_validator = array_search('user_account_form_validate', $form['#validate']);
+  if ($account_validator !== FALSE) {
+    $form['#validate'][$account_validator] = 'townsquare_volunteer_user_account_form_validate';
   }
 }
 
+/**
+ * Implements hook_form_user_form_user_register_form_alter().
+ *
+ * Disable email address validation if user is admin.
+ */
+function townsquare_volunteer_form_user_register_form_alter(&$form, &$form_state) {
+  if (user_access('administer users')) {
+    townsquare_volunteer_form_user_profile_form_alter($form, $form_state);  
+  }
+}
 /**
  * Validate callback to replace user_account_form_validate(). Only modification is
  * skipping email validation if field is empty.
