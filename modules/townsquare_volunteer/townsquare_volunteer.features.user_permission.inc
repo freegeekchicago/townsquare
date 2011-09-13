@@ -15,8 +15,7 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'access event views',
     'roles' => array(
       0 => 'administrator',
-      1 => 'keyholder',
-      2 => 'staff',
+      1 => 'staff',
     ),
     'module' => 'townsquare_volunteer',
   );
@@ -34,8 +33,7 @@ function townsquare_volunteer_user_default_permissions() {
   $permissions['create volunteer_session content'] = array(
     'name' => 'create volunteer_session content',
     'roles' => array(
-      0 => 'keyholder',
-      1 => 'staff',
+      0 => 'staff',
     ),
     'module' => 'node',
   );
@@ -65,8 +63,7 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'edit any volunteer_session content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'keyholder',
-      2 => 'staff',
+      1 => 'staff',
     ),
     'module' => 'node',
   );
@@ -86,8 +83,7 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'view all volunteer hours',
     'roles' => array(
       0 => 'administrator',
-      1 => 'keyholder',
-      2 => 'staff',
+      1 => 'staff',
     ),
     'module' => 'townsquare_volunteer',
   );
@@ -97,9 +93,8 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'view own volunteer hours',
     'roles' => array(
       0 => 'administrator',
-      1 => 'keyholder',
-      2 => 'staff',
-      3 => 'volunteer',
+      1 => 'staff',
+      2 => 'volunteer',
     ),
     'module' => 'townsquare_volunteer',
   );
