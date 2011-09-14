@@ -408,7 +408,7 @@ table {
     margin: 1px 5px 0 0;
     line-height: 1;
     font-size: .875em;
-    color: #ccc;
+    color: #fff;
     a { 
       color: #fff;
       font-weight: bold;
@@ -417,7 +417,7 @@ table {
       }
     }
     form {
-      margin-top: 7px;
+      margin-top: 3px;
     }
     .form-item, .form-actions, .links {
       display: inline;
@@ -428,8 +428,7 @@ table {
       input {
         .button;
         .rounded_corner(@default_corner_radius; @default_corner_radius; @default_corner_radius; @default_corner_radius;);
-        background: none;
-        padding: 1px 5px;
+        padding: 2px 5px;
         background-color: #e5e5e5;
         border: 1px solid #888;
         :hover {
@@ -440,7 +439,10 @@ table {
     }
     .form-item {
       label {
+        color: #fff;
         font-weight: normal;
+        font-size: 11px;
+        margin-top: 4px;
         margin-right: 4px;
       }
       input {
@@ -456,14 +458,14 @@ table {
         .box;
         width: 220px;
         font-size: 12px !important;
-        line-height: 1;
+        line-height: 12px;
         .login-username {
           text-align: right;
         }
         .links {
           text-align: right;
           li {
-            margin-top: 4px;
+            margin-top: 2px;
             float: right;
             &.settings {
               margin-left: 6px;
@@ -480,8 +482,8 @@ table {
         margin-right: 4px;
         line-height: 1;
         img {
-          height: 27px;
-          width: 27px;
+          height: 26px;
+          width: 26px;
         }
       }
     }
