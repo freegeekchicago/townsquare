@@ -308,6 +308,7 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
  */
 function townsquare_volunteer_form_user_profile_form_alter(&$form, &$form_state) {
   $form['account']['mail']['#required'] = FALSE;
+  $form['account']['pass']['#required'] = FALSE;
 
   if (empty($form['account']['mail']['#default_value'])) {
     $form['account']['mail']['#default_value'] = ' ';
