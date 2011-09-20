@@ -310,10 +310,6 @@ function townsquare_volunteer_form_user_profile_form_alter(&$form, &$form_state)
   $form['account']['mail']['#required'] = FALSE;
   $form['account']['pass']['#required'] = FALSE;
 
-  if (empty($form['account']['mail']['#default_value'])) {
-    $form['account']['mail']['#default_value'] = ' ';
-  }
-  
   $account_validator = array_search('user_account_form_validate', $form['#validate']);
   if ($account_validator !== FALSE) {
     $form['#validate'][$account_validator] = 'townsquare_volunteer_user_account_form_validate';
@@ -353,10 +349,10 @@ function townsquare_volunteer_user_account_form_validate($form, &$form_state) {
     form_set_value($form['account']['mail'], $mail, $form_state);
 
     // Validate the e-mail address, and check if it is taken by an existing user.
-    if (!empty($form_state['values']['mail']) && $error = user_validate_mail($form_state['values']['mail'])) {
+    if (!empty($mail) && $error = user_validate_mail($form_state['values']['mail'])) {
       form_set_error('mail', $error);
     }
-    elseif ((bool) db_select('users')->fields('users', array('uid'))->condition('uid', $account->uid, '<>')->condition('mail', db_like($form_state['values']['mail']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+    elseif (!empty($mail) && (bool) db_select('users')->fields('users', array('uid'))->condition('uid', $account->uid, '<>')->condition('mail', db_like($form_state['values']['mail']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
       // Format error message dependent on whether the user is logged in or not.
       if ($GLOBALS['user']->uid) {
         form_set_error('mail', t('The e-mail address %email is already taken.', array('%email' => $form_state['values']['mail'])));
