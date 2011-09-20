@@ -309,7 +309,7 @@ function townsquare_volunteer_volunteer_session_delete_submit($form, &$form_stat
 function townsquare_volunteer_form_user_profile_form_alter(&$form, &$form_state) {
   $form['account']['mail']['#required'] = FALSE;
   $form['account']['pass']['#required'] = FALSE;
-
+  
   $account_validator = array_search('user_account_form_validate', $form['#validate']);
   if ($account_validator !== FALSE) {
     $form['#validate'][$account_validator] = 'townsquare_volunteer_user_account_form_validate';

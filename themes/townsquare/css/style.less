@@ -235,7 +235,7 @@ fieldset {
 }
 .form-item {
   .body_block; 
-  margin-bottom: .75em;
+  margin-bottom: 1.5em;
 }
 label {
   color: #444;
@@ -334,7 +334,6 @@ table {
   }
 }
 /* }}} */
-
 
 /* --- Theme elements --- */
 /* Page {{{ */
@@ -820,11 +819,11 @@ body.page-node-edit {
 /* Messages {{{ */
 #console {
   background-color: #ddd;
-  padding: 0 12px;
+  padding: 10px 10px 0 10px;
 }
 .messages {
   padding: 4px 7px;
-  margin: 0 0 1.5em 0;
+  margin: 0;
   background-color: @color_messages_background;
   border: 1px solid @color_messages_border;
   font-size: .75em;
@@ -1122,6 +1121,55 @@ table.views-table {
 }
 .content-highlight {
   background-color: #ffff99;
+}
+/* }}} */
+
+/* -- User creation form -- */
+/* User register form {{{ */
+#user-register-form {
+  .form-item {
+    width: 38em;
+  }
+  .form-type-textfield {
+    label {
+      width: 7.5em;
+    }
+  }
+  .form-item-pass {
+    position: relative;
+    .form-item {
+      margin-bottom: .5em;
+      width: 23em;
+    }
+    label {
+      float: left;
+      width: 10em;
+    }
+    .confirm-parent div.password-confirm, .password-strength, .password-suggestions {
+      right: 0;
+      width: 200px;
+      position: absolute;
+      li {
+        margin-left: 1.5em;
+        list-style-type: disc;
+      }
+    }
+    .password-strength-text,
+    .password-strength-title {
+      font-size: 0.82em;
+    }
+    .confirm-parent div.password-confirm, .password-suggestions {
+      margin-top: 0.25em;
+    }
+    .description {
+      margin-top: .5em;
+    }
+  }
+}
+/* }}} */
+/* Register page {{{ */
+body.page-admin-people-create {
+  .region-help { display: none; }
 }
 /* }}} */
 
