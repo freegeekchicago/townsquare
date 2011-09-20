@@ -30,13 +30,7 @@ function townsquare_core_context_default_contexts() {
           'module' => 'menu',
           'delta' => 'menu-townsquare-toolbar',
           'region' => 'toolbar',
-          'weight' => '-17',
-        ),
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
-          'region' => 'toolbar',
-          'weight' => '-16',
+          'weight' => '-15',
         ),
         'townsquare_core-login' => array(
           'module' => 'townsquare_core',
