@@ -28,7 +28,7 @@ Drupal.behaviors.autosaveSessions = {
 // Focus selector
 $.expr[':'].focus = function(a){ return (a == document.activeElement); }
 
-// World's tiniest jQuery plugin, to be invoked with Drupal AJAX command
+// World's tiniest static jQuery plugin, to be invoked with Drupal AJAX command
 $.fn.townsquareReplace = function(form) {
   // Cache focused element
   var focused_elem = $('*:focus', this);
@@ -45,8 +45,14 @@ $.fn.townsquareReplace = function(form) {
   // Reattach behaviors on existing forms
   Drupal.attachBehaviors($(new_form));
   
-  // Find element with same name as last focused element in replacement form
-  var focused = $('*[name="'+ focused_elem.attr('name') +'"]', new_form)
-    .focus();
+  if (focused_elem.length > 0) {
+    // Find element with same name as last focused element in replacement form
+    var focused = $('*[name="'+ focused_elem.attr('name') +'"]', new_form)
+      .focus();
+  } else {
+    // Otherwise, focus first date field (assumption is user *clicked* in
+    // autocomplete suggestion box and so lost focus.
+    $('.form-item-field-session-hours-und-0-value-time input', new_form).focus();
+  }
 }
 })(jQuery);
