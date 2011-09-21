@@ -671,7 +671,7 @@ function _townsquare_volunteer_create_volunteer_session($node) {
     $empty_session->nid = NULL;
     $empty_session->type = 'volunteer_session';
     $empty_session->name = $user->name;
-    $empty_session->status = 1;
+    $empty_session->status = 0;
     $empty_session->promote = 0;
     $empty_session->sticky = 0;
     $empty_session->language = LANGUAGE_NONE;
