@@ -129,9 +129,9 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       );
     }
 
-    // Bypass node validation by faking 'changed' date
-    // See http://www.elvisblogs.org/drupal/solved-how-bypass-nodevalidate-hookformalter
-    $form['changed']['#default_value'] = time() + 3600;
+    $event_day = date_format(date_create(), 'Y-m-d');
+    $form['field_event_date']['und'][0]['#default_value']['value'] = $event_day .' 11:00:00';
+    $form['field_event_date']['und'][0]['#default_value']['value2'] = $event_day .' 17:00:00';
 
     // Strip out form elements; @TODO refine further
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
