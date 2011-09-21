@@ -192,6 +192,9 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
   );
   
   if (arg(0) == 'event' || arg(0) == 'system') {
+    // Bypass node validate
+    $form['changed']['#default_value'] = time() + 3600;
+    
     $node = $form['#node'];
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
     $event_node = node_load($node->field_session_event['und'][0]['nid']);
@@ -220,9 +223,6 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       'wrapper' => 'volunteer-session-form-'. $nid,
     );
 
-    // Bypass node validate, see townsquare_volunteer_form_event_node_form_alter()
-    $form['changed']['#default_value'] = time() + 3600;
-    
     // Remove some fields
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event') as $key) {
       $form[$key]['#access'] = FALSE;
