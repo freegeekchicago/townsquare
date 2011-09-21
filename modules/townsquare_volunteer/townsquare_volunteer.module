@@ -259,8 +259,8 @@ function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_st
   if ($form_state['values']['new'] && node_access('create', 'volunteer_session')) {
     // To create the new node form, we need to unset $_POST so that
     // drupal_build_form won't use it to populate $form_state['input']
-    unset($_POST);
-    
+    $_POST = array();
+
     $event_node = node_load($form['#node']->field_session_event['und'][0]['nid']);
     $new_session = _townsquare_volunteer_create_volunteer_session($event_node);
     $new_form = drupal_get_form('volunteer_session_node_form', 
