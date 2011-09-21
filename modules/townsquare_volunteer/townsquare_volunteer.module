@@ -113,6 +113,11 @@ function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
  */
 function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
   if (arg(0) == 'event') {
+    // Bypass node validate
+    $form['changed']['#default_value'] = time() + 3600;
+
+    $event = $form['#node'];
+
     $form['#prefix'] = '<div id="event-form">';
     $form['#suffix'] = '</div>';
 
@@ -129,9 +134,11 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       );
     }
 
-    $event_day = date_format(date_create(), 'Y-m-d');
-    $form['field_event_date']['und'][0]['#default_value']['value'] = $event_day .' 11:00:00';
-    $form['field_event_date']['und'][0]['#default_value']['value2'] = $event_day .' 17:00:00';
+    if (empty($event->field_event_date['und'][0]['value']) && empty($event->field_event_date['und'][0]['value2'])) {
+      $event_day = date_format(date_create(), 'Y-m-d');
+      $form['field_event_date']['und'][0]['#default_value']['value'] = $event_day .' 11:00:00';
+      $form['field_event_date']['und'][0]['#default_value']['value2'] = $event_day .' 17:00:00';
+    }
 
     // Strip out form elements; @TODO refine further
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
