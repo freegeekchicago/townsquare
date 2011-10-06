@@ -591,37 +591,42 @@ function townsquare_volunteer_node_presave($node) {
  *  
  */
 function townsquare_volunteer_event_sessions($nid) {
-  $results = array();
-  $duration_query = new EntityFieldQuery;
-  $date_query = new EntityFieldQuery;
+  static $sessions;
 
-  $duration_query
-    ->entityCondition('entity_type', 'node')
-    ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_event', 'nid', $nid, '=')
-    ->fieldCondition('field_session_override_duration', 'value', 1, '=')
-    ->fieldOrderBy('field_session_duration', 'value', 'ASC');
+  if (empty($sessions[$nid])) {
+    $results = array();
+    $duration_query = new EntityFieldQuery;
+    $date_query = new EntityFieldQuery;
 
-  $duration_result = $duration_query->execute();
-  
-  if ($duration_result) {
-    $results += entity_load('node', array_keys($duration_result['node']));
+    $duration_query
+      ->entityCondition('entity_type', 'node')
+      ->propertyCondition('type', 'volunteer_session')
+      ->fieldCondition('field_session_event', 'nid', $nid, '=')
+      ->fieldCondition('field_session_override_duration', 'value', 1, '=')
+      ->fieldOrderBy('field_session_duration', 'value', 'ASC');
+
+    $duration_result = $duration_query->execute();
+    
+    if ($duration_result) {
+      $results += entity_load('node', array_keys($duration_result['node']));
+    }
+
+    $date_query
+      ->entityCondition('entity_type', 'node')
+      ->propertyCondition('type', 'volunteer_session')
+      ->fieldCondition('field_session_event', 'nid', $nid, '=')
+      ->fieldCondition('field_session_override_duration', 'value', 0, '=')
+      ->fieldOrderBy('field_session_hours', 'value', 'ASC');
+    
+    $date_result = $date_query->execute();
+
+    if ($date_result) {
+      $results += entity_load('node', array_keys($date_result['node']));
+    }
+    $sessions[$nid] = $results;
   }
 
-  $date_query
-    ->entityCondition('entity_type', 'node')
-    ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_event', 'nid', $nid, '=')
-    ->fieldCondition('field_session_override_duration', 'value', 0, '=')
-    ->fieldOrderBy('field_session_hours', 'value', 'ASC');
-  
-  $date_result = $date_query->execute();
-
-  if ($date_result) {
-    $results += entity_load('node', array_keys($date_result['node']));
-  }
-
-  return $results;
+  return $sessions[$nid];
 }
 
 /**
