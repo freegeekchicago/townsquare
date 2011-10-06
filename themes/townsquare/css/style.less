@@ -279,8 +279,8 @@ pre {
 /* Table {{{ */
 table {
   width: auto;
+  font-size: 14px;
   th, td {
-    color: #555;
     text-align: left;
     padding: .25em .5em;
     a {
@@ -295,11 +295,9 @@ table {
   }
   tbody {
     tr {
-      td {
-        padding: .25em .5em;
-        color: #555;
-        border-bottom: 1px solid #ccc;
-        border-top: 1px solid #ccc;
+      td, th {
+        background-color: #ddd;
+        border: 1px solid #fff !important;
         a {
           font-weight: bold;
         }
@@ -308,10 +306,13 @@ table {
         }
       }
       :hover { 
-        td, th {
-          background-color: #e6e6e6;
+        td, th, td.active {
+          background-color: #ccc;
           color: #000;
         }
+      }
+      th {
+        background-color: #eee;
       }
     }
   }
@@ -889,6 +890,12 @@ body.page-node-edit {
       .box;
       margin-right: 30px;
     }
+    .form-item {
+      margin: 0 0 5px 0;
+    }
+    legend {
+      margin-bottom: .25em;
+    }
     .field-name-field-event-type {
       width: 160px;
     }
@@ -913,18 +920,18 @@ body.page-node-edit {
         width: 190px;
         display: block;
       }
-      .form-item-field-event-da9e-und-0-value {
-        margin-bottom: .25em;
+      .form-item-field-event-date-und-0-value {
+        margin-bottom: 21px;
       }
     }
     .field-name-field-event-location {
       width: 260px;
       label {
         .box;
-        width: 85px;
+        width: 80px;
       }
       input, select {
-        max-width: 140px;
+        max-width: 130px;
       }
     }
     .field-name-field-event-description {
@@ -932,7 +939,7 @@ body.page-node-edit {
       margin-right: 0;
       textarea { 
         width: 210px;
-        max-height: 16em;
+        height: 160px;
       }
       label {
         margin-bottom: .75em;
@@ -958,8 +965,11 @@ body.page-node-edit {
     }
   }
   #session-header {
+    .clearfix;
     width: 930px;
     float: left;
+    font-size: 14px;
+    font-weight: bold;
     li {
       .box;
       margin-right: 15px;
@@ -967,6 +977,10 @@ body.page-node-edit {
   }
   .volunteer-session-form {
     .clearfix;
+    width: 930px;
+    float: left;
+    background-color: #eee;
+    margin: 0 0 2px 0;
     .form-type-textfield label,
     .form-type-textarea label,
     .form-type-date-popup label,
@@ -980,25 +994,27 @@ body.page-node-edit {
     }
     .form-item, .container-inline-date {
       .box;
-      min-height: 25px;
+      margin: 0;
       padding: 7px;
-      margin: 0 1px 1px 0;
-      background-color: #ddd;
       clear: none;
       input, textarea, select {
         width: 100%;
-        font-size: 15px;
+        font-size: 12px;
         background-color: @color_white;
+        padding: 1px;
+      }
+      textarea {
+        height: 25px;
       }
       .form-item {
         padding: 0;
         margin: 0;
       }
     }
-  }
-  #session-header {
-    font-size: 1em;
-    font-weight: bold;
+    .form-actions {
+      padding-top: 8px;
+      font-size: 13px;
+    }
   }
   .field-name-field-session-user .form-item, 
   #session-header .session-name {
@@ -1058,10 +1074,8 @@ body.page-node-edit {
 /* Views Tables {{{ */
 table.views-table {
   th {
-    padding: 0;
     a, span {
       display: block;
-      padding: .25em .5em; 
     }
     :hover {
       a {
@@ -1072,7 +1086,7 @@ table.views-table {
   tr {
     :hover {
       td.active {
-        background-color: #ddd;  
+        background-color: #ccc;  
       }
     }
   }
