@@ -431,7 +431,9 @@ function townsquare_volunteer_edit_event($node = NULL) {
     $session_elements = array();
     $session_nodes = townsquare_volunteer_event_sessions($node->nid);
 
+    $duration = 0;
     foreach ($session_nodes as $session) {
+      $duration += (float) $session->field_session_duration['und'][0]['value'];
       if (node_access('update', $session)) {
         $session_elements[] = drupal_get_form('volunteer_session_node_form',
           $session);
@@ -443,6 +445,30 @@ function townsquare_volunteer_edit_event($node = NULL) {
       $session_elements[] = drupal_get_form('volunteer_session_node_form', 
         $new_session);
     }
+
+    $summary = array(
+      '#theme' => 'table',
+      '#rows' => array(
+        array(
+          array(
+            'data' => t('Total attendance'),
+            'header' => TRUE,
+          ),
+          array(
+            'data' => count($session_nodes),
+          ),
+        ),
+        array(
+          array(
+            'data' => t('Total hours'),
+            'header' => TRUE,
+          ),
+          array(
+            'data' => $duration,
+          ),
+        ),
+      ),
+    );
 
 
     if (!empty($session_elements)) {
@@ -497,6 +523,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
   $form = drupal_get_form('event_node_form', $node);
   $output = array(
     'event' => $form,
+    'summary' => $summary,
     'sessions' => $session_form,
     '#attached' => array(
       'js' => array(
