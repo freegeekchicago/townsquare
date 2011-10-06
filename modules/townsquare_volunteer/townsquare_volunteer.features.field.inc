@@ -111,7 +111,6 @@ function townsquare_volunteer_field_default_fields() {
           'view own' => 0,
         ),
         'referenceable_types' => array(
-          'conversation' => 0,
           'event' => 'event',
           'volunteer_session' => 0,
           'wiki' => 0,
