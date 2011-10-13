@@ -224,7 +224,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     );
 
     // Remove some fields
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event', 'field_session_role') as $key) {
       $form[$key]['#access'] = FALSE;
     }
 
