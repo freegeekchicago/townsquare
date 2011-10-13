@@ -12,6 +12,11 @@ Drupal.behaviors.volunteerGrowTextarea = {
     $('.field-name-field-event-description textarea', context).elastic();
   }
 };
+Drupal.behaviors.volunteerExtendPage = {
+  attach: function(context) {
+    $('#volunteer-sessions').css('padding-bottom', $('#main-content').height());
+  }
+};
 Drupal.behaviors.autosaveSessions = {
   attach: function(context) {
     $('.volunteer-session-form input[value="Save"]').hide();
