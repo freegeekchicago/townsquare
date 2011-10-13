@@ -18,7 +18,7 @@ TownsquareVolunteer = {}
 TownsquareVolunteer.toggleDuration = function(field) {
   var form = $(field).parents('form');
   var duration = $('.field-name-field-session-duration', form);
-  var hours = $('.form-item-field-session-hours-und-0-value-time, .form-item-field-session-hours-und-0-value-date, .form-item-field-session-hours-und-0-value2-time, .form-item-field-session-hours-und-0-value2-date', form);
+  var hours = $('.form-item-field-session-hours-und-0-value, .form-item-field-session-hours-und-0-value2', form);
   var disabled = $('input', field).attr('checked');
 
   if (!disabled) {

@@ -212,11 +212,26 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['#prefix'] = '<div class="volunteer-session-form" id="volunteer-session-form-'. $nid .'">';
     $form['#suffix'] = '</div>';
 
-    $form['actions']['submit']['#ajax'] = array(
-      'callback' => 'townsquare_volunteer_volunteer_session_node_ajax_submit',
-      'effect' => 'fade',
-      'wrapper' => 'volunteer-session-form-'. $nid,
+    $tree = array(
+      'field_session_user' => array('uid'),
+      'field_session_hours' => array('value', 'value2'),
+      'field_session_override_duration' => array('value'),
+      'field_session_duration' => array('value'),
+      'field_session_notes' => array('value'),
     );
+    foreach ($tree as $field => $keys) {
+      foreach ($keys as $key) {
+        $form[$field]['und'][0][$key]['#prefix'] = '<div class="townsquare-'. str_replace('_', '-', $field) .'-'. $key .'-element-wrapper">';
+        $form[$field]['#suffix'] = '</div>';
+
+        unset($form[$field]['und'][0][$key]['#title'], $form[$field]['und'][0][$key]['#description']);
+        $form[$field]['und'][0][$key]['#ajax'] = array(
+          'event' => 'change',
+          'wrapper' => 'volunteer-session-form-'. $nid,
+          'callback' => 'townsquare_volunteer_session_ajax_callback',
+        );
+      }
+    }
     $form['actions']['delete']['#ajax'] = array(
       'callback' => 'townsquare_volunteer_volunteer_session_delete_submit',
       'effect' => 'fade',
@@ -224,7 +239,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     );
 
     // Remove some fields
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons', 'field_session_event', 'field_session_role') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_settings', 'buttons', 'field_session_event', 'field_session_role') as $key) {
       $form[$key]['#access'] = FALSE;
     }
 
@@ -242,13 +257,13 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     if (empty($node->field_session_hours['und'][0]['value'])) {
       $event_start = date_create($event_node->field_event_date['und']['0']['value']);
       $event_start_day = date_format($event_start, 'Y-m-d');
-      $form['field_session_hours']['und'][0]['#default_value']['value'] = $event_start_day .' 11:00:00';
+      $form['field_session_hours']['und'][0]['value']['#default_value'] = $event_start_day .' 11:00:00';
     }  
     
     if (empty($node->field_session_hours['und'][0]['value2'])) {
       $event_end = date_create($event_node->field_event_date['und']['0']['value2']);
       $event_end_day = date_format($event_end, 'Y-m-d');
-      $form['field_session_hours']['und'][0]['#default_value']['value2'] = $event_end_day .' 17:00:00';
+      $form['field_session_hours']['und'][0]['value2']['#default_value'] = $event_end_day .' 17:00:00';
     }
   }
 }
@@ -258,46 +273,35 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
  */
 function townsquare_volunteer_volunteer_session_node_submit($form, &$form_state) {
   // Alter redirect
+  //dpm($form);
+  //dpm($form_state);
+  //dpm(debug_backtrace());
   $form_state['redirect'] = 'event/'. $form_state['node']->field_session_event['und'][0]['nid'] .'/edit';
 }
 
 /**
  * AJAX submit callback for embedded volunteer session edting form
  */
-function townsquare_volunteer_volunteer_session_node_ajax_submit($form, $form_state) {
-  global $user;
+function townsquare_volunteer_session_ajax_callback($form, $form_state) {
+  $element = $form_state['triggering_element'];
+  $node = $form_state['node'];
 
-  $form_state['rebuild'] = TRUE;
-  $form = drupal_rebuild_form($form['#form_id'], $form_state, $form);
+  entity_form_submit_build_entity('node', $node, $form, $form_state);
+  entity_save('node', $node);
 
-  $commands = array();
+  //$commands[] = ajax_command_replace('#volunteer-session-form-'. $node->nid .' #'. $element['#id'], drupal_render($element));
+  
 
-  if ($form_state['values']['new'] && node_access('create', 'volunteer_session')) {
-    // To create the new node form, we need to unset $_POST so that
-    // drupal_build_form won't use it to populate $form_state['input']
-    $_POST = array();
+  //if ($trigger_element['#field_name'] != 'field_session_duration') { 
+  //$duration_element = $form['field_session_duration'];
+    // @TODO if I rebuild the form, IDs change :(
+  //  $duration_element['und'][0]['value']['#default_value'] = $node->field_session_duration['und'][0]['value'];
+  //  $duration_element['und'][0]['value']['#value'] = $duration_element['und'][0]['value']['#default_value'];
 
-    $event_node = node_load($form['#node']->field_session_event['und'][0]['nid']);
-    $new_session = _townsquare_volunteer_create_volunteer_session($event_node);
-    $new_form = drupal_get_form('volunteer_session_node_form', 
-      $new_session);
-    
-    $id = '#volunteer-session-form-new';
-    $commands[] = ajax_command_invoke($id, 'townsquareReplace', array(drupal_render($form)));
-    $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
-  }
-  else {
-    $id = '#volunteer-session-form-'. $form['nid']['#value'];
-    $commands[] = ajax_command_invoke($id, 'townsquareReplace', 
-      array(drupal_render($form)));
-  }
+  //  $commands[] = ajax_command_replace('#volunteer-session-form-'. $node->nid .' #'. $duration_element['und'][0]['value']['#id'], drupal_render($duration_element));
+  //}
 
-  // barisw has a beautiful solution to suppressing status messages (e.g.
-  // "<Date> <Volunteer Name> session node has been created") but not errors:
-  // http://api.drupal.org/api/drupal/includes--bootstrap.inc/function/drupal_set_message/7#comment-13734
-  drupal_get_messages('status');
-
-  //$commands[] = ajax_command_append('#volunteer-sessions', theme('status_messages'));
+  $commands[] = ajax_command_prepend('#volunteer-sessions', theme('status_messages'));
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -499,10 +503,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
               'class' => array('session-duration'),
             ),
             array(
-              'data' => t('Role'),
-              'class' => array('session-role'),
-            ),
-            array(
               'data' => t('Notes'),
               'class' => array('session-notes'),
             ),
@@ -551,7 +551,6 @@ function townsquare_volunteer_node_presave($node) {
     // Set session author to referenced user
     $node->uid = $user->uid;
 
-    // Compute volunteer session duration based on flag
     if (!$node->field_session_override_duration[$lang][0]['value']) {
       if (!empty($node->field_session_hours[$lang][0]['value'])) {
         $start = date_create($node->field_session_hours[$lang][0]['value'],
@@ -561,7 +560,7 @@ function townsquare_volunteer_node_presave($node) {
         $end = date_create($node->field_session_hours[$lang][0]['value2'],
           timezone_open($node->field_session_hours[$lang][0]['timezone']));
       } 
-      if ($start && $end) {
+      if (isset($start) && isset($end)) {
         $start_timestamp = date_format($start, 'U'); 
         $end_timestamp = date_format($end, 'U'); 
         $elapsed = ($end_timestamp - $start_timestamp) / 3600;
@@ -719,4 +718,63 @@ function _townsquare_volunteer_create_volunteer_session($node) {
     );
     return $empty_session; 
   }
+}
+
+// Widget!
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function townsquare_volunteer_field_widget_info() {
+  return array(
+    'chosen_date' => array(
+      'label' => t('Chosen Select Date'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'behaviors' => array(
+        'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ */
+function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  $field_name = $field['field_name'];
+  $field_type = $field['type'];
+
+  switch ($instance['widget']['type']) {
+    case 'chosen_date':
+      foreach ($field['columns'] as $col => $values) {
+        $element[$col] = array(
+          '#type' => 'select',
+          '#title' => $element['#title'],
+          '#description' => $element['#description'],
+          '#options' => _townsquare_volunteer_date_options($form),
+          '#default_value' => isset($items[$delta][$col]) ? $items[$delta][$col] : '',
+          // ... more stuff, callback?! -- not needed with smart options though...
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+// @TODO Pretty evil
+function _townsquare_volunteer_date_options($form) {
+  $event = node_load($form['#node']->field_session_event[$lang][0]['nid']);
+  $event_date = date_create($event_node->field_event_date['und'][0]['value'], timezone_open('UTC'));
+  $start_date = $event_date->format('Y-m-d 00:00:00');
+  $start = date_create($start_date, timezone_open('UTC'));
+  $start->modify('-1 day');
+
+  $options = array();
+  $i = 0;
+  while ($i < 96) {
+    $options[$start->format('Y-m-d H:i:s')] = $start->format('h:ia');
+    $start->modify('+15 minutes');
+    $i++;
+  } 
+  return $options;
 }
