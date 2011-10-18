@@ -75,7 +75,7 @@ function townsquare_volunteer_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
@@ -111,6 +111,7 @@ function townsquare_volunteer_field_default_fields() {
           'view own' => 0,
         ),
         'referenceable_types' => array(
+          'conversation' => 0,
           'event' => 'event',
           'volunteer_session' => 0,
           'wiki' => 0,
@@ -210,6 +211,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -253,19 +255,17 @@ function townsquare_volunteer_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'date',
+        'module' => 'townsquare_volunteer',
         'settings' => array(
           'increment' => '1',
-          'input_format' => 'm/d/Y - g:i:sa',
-          'input_format_custom' => '',
-          'label_position' => 'above',
+          'input_format' => 'custom',
+          'input_format_custom' => 'Y-m-d H:i:s',
+          'label_position' => 'none',
           'repeat_collapsed' => 0,
           'text_parts' => array(),
           'year_range' => '-3:+3',
-          'years_back' => '-3',
-          'years_forward' => '+3',
         ),
-        'type' => 'date_popup',
+        'type' => 'chosen_date',
         'weight' => '3',
       ),
     ),
@@ -346,7 +346,7 @@ function townsquare_volunteer_field_default_fields() {
           'rows' => '1',
         ),
         'type' => 'text_textarea',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
@@ -421,7 +421,7 @@ function townsquare_volunteer_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '4',
+        'weight' => '6',
       ),
     ),
   );
@@ -496,9 +496,11 @@ function townsquare_volunteer_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'apply_chosen' => 0,
+        ),
         'type' => 'options_select',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
