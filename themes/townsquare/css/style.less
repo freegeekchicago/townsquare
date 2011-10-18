@@ -45,7 +45,7 @@
 /* }}} */
 /* Measurements {{{ */
 @small_corner_radius: 5px;
-@default_corner_radius: 6px;
+@default_corner_radius: 5px;
 @intense_corner_radius: 10px;
 /* }}} */
 
@@ -92,7 +92,7 @@
   border: 1px solid @color_button_border;
   color: @color_button_text;
   text-align: center;
-  padding: 1px 8px;
+  padding: 4px 8px;
   cursor: pointer;
   background-color: #ddd;
   :hover { 
@@ -199,12 +199,13 @@ body {
 /* }}} */
 /* Form items {{{ */
 input, button, textarea {
-  border: 1px solid #888;
+  border: 1px solid #aaa;
   -ms-box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   padding: 2px;
+  .rounded_corner;
   // See http://blog.gesteves.com/post/475773360/css-glow-effects-with-box-shadow
   outline:none;
   transition: all 0.1s ease-in-out;
@@ -225,7 +226,7 @@ input.form-submit, button {
   font-size: .925em;
 }
 input.form-text, select, textarea {
-  border: 1px solid #888;
+  border: 1px solid #aaa;
 }
 fieldset {
   legend {
@@ -930,13 +931,16 @@ body.page-node-edit {
       input, select {
         max-width: 130px;
       }
+      .name-block, .form-item-field-event-location-und-0-premise {
+        display: none;
+      }
     }
     .field-name-field-event-description {
       width: 210px;
       margin-right: 0;
       textarea { 
         width: 210px;
-        height: 160px;
+        height: 110px;
       }
       label {
         margin-bottom: .75em;
@@ -996,12 +1000,9 @@ body.page-node-edit {
       clear: none;
       input, textarea, select {
         width: 100%;
-        font-size: 12px;
+        font-size: 13px;
         background-color: @color_white;
-        padding: 1px;
-      }
-      textarea {
-        height: 25px;
+        padding: 5px;
       }
       .form-item {
         padding: 0;
@@ -1015,9 +1016,9 @@ body.page-node-edit {
   }
   .field-name-field-session-user .form-item, 
   #session-header .session-name {
-    width: 155px;
+    width: 185px;
     input {
-      width: 140px;
+      width: 170px;
     }
   }
   .field-name-field-session-hours fieldset {
@@ -1052,7 +1053,10 @@ body.page-node-edit {
     width: 140px;
     margin-right: 10px;
     textarea {
-      font-size: 13px;
+      padding: 1px 4px;
+      line-height: 13px;
+      font-size: 11px;
+      min-height: 28px;
     }
   }
   .field-name-field-session-role .form-item,
