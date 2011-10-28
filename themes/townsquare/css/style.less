@@ -257,6 +257,12 @@ label {
     background-color: #ddd;
   }
 }
+input, select, textarea, button {
+  &.form-disabled {
+    color: @color_disabled;
+    background-color: #ddd;
+  }
+}
 /* }}} */
 /* Links {{{ */
 a {
@@ -980,7 +986,7 @@ body.page-node-edit {
     .clearfix;
     width: 930px;
     float: left;
-    background-color: #eee;
+    background-color: #ddd;
     margin: 0 0 2px 0;
     .form-type-textfield label,
     .form-type-textarea label,
@@ -1031,6 +1037,16 @@ body.page-node-edit {
   .field-name-field-session-hours .form-item-field-session-hours-und-0-value2 {
     width: 110px;
     margin-right: 10px;
+    input {
+      //.rounded_corner(@default_corner_radius; 0; 0; @default_corner_radius;);
+      width: 100px;
+    }
+    button {
+      .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0;);
+      width: 1.25em;
+      height: 26px;
+      border-color: #aaa;
+    }
   }
   #session-header .session-start, #session-header .session-end {
     width: 121px;
@@ -1062,6 +1078,20 @@ body.page-node-edit {
   .field-name-field-session-role .form-item,
   #session-header .session-role {
     width: 123px;
+  }
+
+
+  .ui-autocomplete {
+    font-size: 13px;  
+    .rounded_corner(0; 0; 0; 0;);
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    .ui-state-hover {
+      background: transparent;
+      background-color: #ffffbb;
+      border-color: #ffffff;
+    }
   }
 
 }
@@ -1194,3 +1224,4 @@ body.page-admin-people-create {
 ul.pager-list li,ul.pager-links li {
  margin-right: 5px !important;
 }
+

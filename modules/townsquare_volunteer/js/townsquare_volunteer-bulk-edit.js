@@ -21,11 +21,31 @@ Drupal.behaviors.prepareVolunteerUI = {
     $('#volunteer-sessions input[value="Save"]').hide();
   }
 };
+Drupal.behaviors.toggleFields = {
+  attach: function(context) {
+    console.log('--');
+    $('.field-name-field-session-user input', context).each(function() {
+      var form = $(this).parents('form');
+      if (!this.value) {
+        $('input[name!="field_session_user[und][0][uid]"], textarea', form)
+          .attr('readonly', true)
+          .addClass('form-disabled');
+        $('button', form)
+          .attr('disabled', true)
+          .addClass('form-disabled');
+      }
+      $(this).change(function() {
+        $('input[name!="field_session_user[und][0][uid]"], button, textarea', form)
+        $('input[name!="field_session_user[und][0][uid]"], textarea', form)
+          .removeAttr('readonly')
+          .removeClass('form-disabled');
+        $('button', form)
+          .removeAttr('disabled')
+          .removeClass('form-disabled');
+      });
+    });
+  }
+};
 
-// World's tiniest static jQuery plugin, to be invoked with Drupal AJAX command
-$.fn.townsquareReplace = function() {
-  $('.form-item-field-session-hours-und-0-value select', this).focus();
-  $('.form-item-field-session-hours-und-0-value .chzn-container a', this).click();
-}
 
 })(jQuery);
