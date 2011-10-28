@@ -1,79 +1,68 @@
 # Townsquare project
 
-Townsquare is a Drupal-based collaboration platform for community organizations
-who wish to track events, volunteer participation, provide documentation, and
-facilitate conversations. 
+Townsquare is a Drupal-based collaboration platform with an emphasis on
+volunteer management, collaborative documentation, and organization & 
+community communication.
 
-Technically, it is a lightweight Drupal 7 distribution built on the Development Seed 
-stack (features, context).  Townsquare is built for FreeGeek Chicago, but may have
-other applications.
+Licensed under the GNU GPL v3.0.
 
-Copyright (c) 2010-2011, David Eads <davideads@gmail.com> 
+# Links + resources
 
-Licensed under the GNU GPL.
+* [Demonstration site](http://townsquare-demo.freegeekchicago.org). 
+[Sign up](http://townsquare-demo.freegeekchicago.org/user/register) for an
+account.
+* [Github repository](https://github.com/freegeekchicago/townsquare) and 
+[issue tracker](https://github.com/freegeekchicago/issues).
 
-# Project history
+# Components
 
-We've been meaning to do this for ages.
+## Volunteer manager
 
-# Architecture
+Create events categorized by type and record volunteer participation
+via a spreadsheet-like interface. 
 
-## Components
+Provides simple interfaces for creating and administering volunteer accounts.
 
-Townsquare is built around content-type oriented components, which provide 
-context and functionality.  These components are:
+## Wiki
 
- * **townsquare_core**: Core dependencies, blocks (user login), taxonomy 
-   (tags), permissions, roles, and settings
- * **townsquare_wiki**: Wiki page content type, plus machinery for handling 
-   Markdown/WYSIWYG issues
- * **townsquare_event**: Event content type, taxonomy (event type) calendar views
- * **townsquare_conversation**: Conversation content type and views
- * **townsquare_volunteer**: Volunteer session content type, advanced volunteer
-   reporting
+Under development. 
 
-## Requirements
+## Conversation
 
-Townsquare must satisfy several requirements for FreeGeek Chicago
+Under development.
 
- * **Secure**: Townsquare is built around volunteer profiles, and needs to manage
-   sensitive information with an extremely high level of privacy and security.
-   At the same time, Townsquare is fundamentally open and participatory: 99%
-   of the time, it needs standard website security (like spam blocking); 1% of
-   the time it needs absolute security.
- * **Easy to use**: We need a snappy, simple UI that encourages volunteers to 
-   participate and use the site for valuable information.
- * **Process integration**: The most important aspect of Townsquare is its
-   relationship with real world practice. Volunteers should create an account
-   during orientation; staff should use the site to direct volunteers to their
-   next task and check up on eligibility.
- * **Device integration**: Email, text message, or web, we need to provide LOTS
-   of ways for volunteers to hook into Townsquare.
+# Project history and goals
 
-## Considerations
-
-### Language
-
-"Conversational" content types will use a single language.
-
-"Content" content types will allow translation into multiple languages.
-
-"Event" and "data" content types where complex form manipulation is required
-will be language neutral -- all note fields are assumed to be in the correct
-language of whoever will be reading.
+FreeGeek Chicago has hoped to create software like this for ages. It took about
+5 years to begin work on Townsquare. During those years, most organizational
+information could be tracked via paper records entered into shared spreadsheets,
+conversations could be supported by email lists, and documentation relied on
+a mix of Google Docs and a standard issue overly-complex wiki for documentation.
+ 
+Townsquare is meant to address these needs, and our development schedule is 
+ruled by how much each area hurts. Townsquare has replaced FreeGeek's 
+"Spreadsheet of Doom" for volunteer tracking, while the email list and wiki
+remain.
 
 # Roadmap
 
- * **Initial development (Q1-Q2, 2011)**: Content structure, architecture, and  
-   theme/UI. Our primary need is getting volunteer management to the point
-   where it can be integrated into day-to-day FreeGeek process. The social 
-   aspects of the site can come later. We'll create a rudimentary wiki, solid
-   volunteer management, and stub conversations and calendars.
- * **Feature expansion (Q2-Q3, 2011)**: FreeGeek's spring and summer project could
-   be to build out several Townsquare areas. The effort at this point should
-   be towards establishing Townsquare as a public project with a thoughtful
-   social contract.
- * **Device integration (Q3+, 2011)**: If we're really rolling, in the latter half
-   of 2011 we should turn to notifications -- using Townsquare to keep
-   participants in the loop.
+* 1.0-alpha-6 (Jan, 2011): Functional wiki prototype.
+* 1.0-alpha-5 (Dec, 2011): Rules for assigning perks based on volunteer
+performance.
+* 1.0-alpha-4 (Nov, 2011): Volunteer sign-up and creation tools, volunteer perk 
+tracking architecture.
+* 1.0-alpha-3 (Oct/Nov, 2011): Volunteer manager bug fixes, better displays for
+administrators.
 
+## Version history
+
+* 1.0-alpha-2 (Oct, 2011): Volunteer manager interface and performance enhancements.
+* 1.0-alpha-1 (Sept, 2011): Functional volunteer manager system.
+* First prototype (Mar, 2011).
+
+# Authors
+
+Contributors: Jimmie Glover, James Slater, Shinda Williams, Alex Hanson, Scott
+Lewis, Eric Tendian.
+
+Developers: David Eads <davideads@gmail.com> 
