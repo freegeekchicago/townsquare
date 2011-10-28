@@ -796,12 +796,17 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
 
 /**
  * Create date options
+ *
+ * Makes timezone adjustment based on event timezone.
+ *
+ * @param event_date
+ *   Parent event DateObject.
  */
 function _townsquare_volunteer_date_options($event_date) {
   $start_date = $event_date->format('Y-m-d 00:00:00');
-  // @TODO Bad bad hardcoded timezone...
-  $start = new DateObject($start_date, timezone_open('America/Chicago'));
-  $start_utc = new DateObject($start_date, timezone_open('America/Chicago'));
+  $tz = timezone_open($event_date->timezone);
+  $start = new DateObject($start_date, $tz);
+  $start_utc = new DateObject($start_date, $tz);
   $start_utc->setTimezone(timezone_open('UTC'));  
   $options = array();
   $i = 0;
