@@ -23,11 +23,10 @@ Drupal.behaviors.prepareVolunteerUI = {
 };
 Drupal.behaviors.toggleFields = {
   attach: function(context) {
-    console.log('--');
     $('.field-name-field-session-user input', context).each(function() {
       var form = $(this).parents('form');
       if (!this.value) {
-        $('input[name!="field_session_user[und][0][uid]"], textarea', form)
+        $('input[name!="field_session_user[und][0][target_id]"], textarea', form)
           .attr('readonly', true)
           .addClass('form-disabled');
         $('button', form)
@@ -35,8 +34,7 @@ Drupal.behaviors.toggleFields = {
           .addClass('form-disabled');
       }
       $(this).change(function() {
-        $('input[name!="field_session_user[und][0][uid]"], button, textarea', form)
-        $('input[name!="field_session_user[und][0][uid]"], textarea', form)
+        $('input[name!="field_session_user[und][0][target_id]"], textarea', form)
           .removeAttr('readonly')
           .removeClass('form-disabled');
         $('button', form)

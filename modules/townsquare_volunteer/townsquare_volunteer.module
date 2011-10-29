@@ -186,7 +186,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $form['#suffix'] = '</div>';
     
     $tree = array(
-      'field_session_user' => array('uid'),
+      'field_session_user' => array('target_id'),
       'field_session_hours' => array('value', 'value2'),
       'field_session_override_duration' => array('value'),
       'field_session_duration' => array('value'),
@@ -221,8 +221,8 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     );
 
     // Unset default value if UID is 0 (dummy node)
-    if ($form['field_session_user']['und'][0]['uid']['#default_value'] == 0) {
-      unset($form['field_session_user']['und'][0]['uid']['#default_value']);
+    if ($form['field_session_user']['und'][0]['target_id']['#default_value'] == 'Anonymous (0)') {
+      unset($form['field_session_user']['und'][0]['target_id']['#default_value']);
     }
 
 
@@ -271,7 +271,7 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
     // To create the new node form, we need to unset $_POST so that
     // drupal_build_form won't use it to populate $form_state['input']
     $_POST = array();
-    $event_node = node_load($form['#node']->field_session_event['und'][0]['nid']);
+    $event_node = node_load($form['#node']->field_session_event['und'][0]['target_id']);
     $new_session = _townsquare_volunteer_create_volunteer_session($event_node);
     node_submit($new_session);
     node_save($new_session);
@@ -430,7 +430,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
     }
 
     $last = array_pop($session_nodes);
-    if (!count($session_nodes) || $last->field_session_user['und'][0]['uid'] != 0) {
+    if (!count($session_nodes) || $last->field_session_user['und'][0]['target_id'] != 0) {
       $new_session = _townsquare_volunteer_create_volunteer_session($node);
       node_submit($new_session);
       node_save($new_session);
@@ -534,10 +534,10 @@ function townsquare_volunteer_node_presave($node) {
   $lang = LANGUAGE_NONE;
 
   if ($node->type == 'volunteer_session') { 
-    $event = node_load($node->field_session_event[$lang][0]['nid']);
+    $event = node_load($node->field_session_event[$lang][0]['target_id']);
 
     // Set session author to referenced user
-    if (isset($node->field_session_user[$lang][0]['uid']) && $user = user_load($node->field_session_user[$lang][0]['uid'])) {
+    if (isset($node->field_session_user[$lang][0]['target_id']) && $user = user_load($node->field_session_user[$lang][0]['target_id'])) {
       $node->uid = $user->uid;
     }
 
@@ -586,7 +586,6 @@ function townsquare_volunteer_node_presave($node) {
  */
 function townsquare_volunteer_event_sessions($nid) {
   static $sessions;
-
   if (empty($sessions[$nid])) {
     $results = array();
     $duration_query = new EntityFieldQuery;
@@ -596,7 +595,7 @@ function townsquare_volunteer_event_sessions($nid) {
     $duration_query
       ->entityCondition('entity_type', 'node')
       ->propertyCondition('type', 'volunteer_session')
-      ->fieldCondition('field_session_event', 'nid', $nid, '=')
+      ->fieldCondition('field_session_event', 'target_id', $nid, '=')
       ->fieldCondition('field_session_override_duration', 'value', 1, '=')
       ->fieldOrderBy('field_session_duration', 'value', 'ASC');
 
@@ -609,9 +608,9 @@ function townsquare_volunteer_event_sessions($nid) {
     $date_query
       ->entityCondition('entity_type', 'node')
       ->propertyCondition('type', 'volunteer_session')
-      ->fieldCondition('field_session_event', 'nid', $nid, '=')
+      ->fieldCondition('field_session_event', 'target_id', $nid, '=')
       ->fieldCondition('field_session_override_duration', 'value', 0, '=')
-      ->fieldOrderBy('field_session_hours', 'value', 'ASC');
+      ->fieldOrderBy('field_session_duration', 'value', 'ASC');
     
     $date_result = $date_query->execute();
 
@@ -622,8 +621,8 @@ function townsquare_volunteer_event_sessions($nid) {
     $dummy_query
       ->entityCondition('entity_type', 'node')
       ->propertyCondition('type', 'volunteer_session')
-      ->fieldCondition('field_session_event', 'nid', $nid, '=')
-      ->fieldCondition('field_session_user', 'uid', 0, '=');
+      ->fieldCondition('field_session_event', 'target_id', $nid, '=')
+      ->fieldCondition('field_session_user', 'target_id', 0, '=');
 
     $dummy_result = $dummy_query->execute();
     
@@ -656,7 +655,7 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
   $query
     ->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_user', 'uid', $users, 'in');
+    ->fieldCondition('field_session_user', 'target_id', $users, 'in');
 
   if ($start) {
     $query->fieldCondition('field_session_hours', 'value', $start, '>');
@@ -686,7 +685,7 @@ function townsquare_volunteer_user_sessions($uid) {
   $query
     ->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'volunteer_session')
-    ->fieldCondition('field_session_user', 'uid', $uid, '=');
+    ->fieldCondition('field_session_user', 'target_id', $uid, '=');
   $result = $query->execute();
   
   if ($result) {
@@ -719,12 +718,12 @@ function _townsquare_volunteer_create_volunteer_session($node) {
     $empty_session->language = LANGUAGE_NONE;
     $empty_session->field_session_user = array(
       'und' => array(
-        array('uid' => 0),
+        array('target_id' => 0),
       )
     );
     $empty_session->field_session_event = array(
       'und' => array(
-        array('nid' => $node->nid),
+        array('target_id' => $node->nid),
       )
     );
     $empty_session->field_session_override_duration = array(
@@ -762,9 +761,8 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
 
   switch ($instance['widget']['type']) {
     case 'chosen_date':
-      $event = node_load(array($form['#node']->field_session_event[$langcode][0]['nid']));
+      $event = node_load(array($form['#node']->field_session_event[$langcode][0]['target_id']));
       $event_date = new DateObject($event->field_event_date['und'][0]['value']);
-
       foreach ($field['columns'] as $col => $values) {
         if (!isset($items[$delta][$col])) {
           if ($col == 'value') {
@@ -777,10 +775,8 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
         else {
           $default = $items[$delta][$col];
         }
-
         // Create select element with options populated by special function 
         $element[$col] = array(
-          //'#type' => 'combobox',
           '#type' => 'select',
           '#title' => $element['#title'],
           '#description' => $element['#description'],
