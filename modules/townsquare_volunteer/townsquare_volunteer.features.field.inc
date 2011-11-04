@@ -75,7 +75,7 @@ function townsquare_volunteer_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -88,42 +88,26 @@ function townsquare_volunteer_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_session_event',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 0,
-          'edit own' => 0,
-          'view' => 0,
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'target_bundles' => array(
+            'event' => 'event',
+          ),
         ),
-        'referenceable_types' => array(
-          'conversation' => 0,
-          'event' => 'event',
-          'volunteer_session' => 0,
-          'wiki' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
       'translatable' => '1',
-      'type' => 'node_reference',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
@@ -133,16 +117,12 @@ function townsquare_volunteer_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => '2',
-        ),
-        'example_node_list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 11,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -159,15 +139,14 @@ function townsquare_volunteer_field_default_fields() {
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'node_reference',
+        'module' => 'entityreference',
         'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
-          'size' => '60',
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => 60,
         ),
-        'type' => 'node_reference_autocomplete',
-        'weight' => '2',
+        'type' => 'entityreference_autocomplete',
+        'weight' => '1',
       ),
     ),
   );
@@ -293,16 +272,8 @@ function townsquare_volunteer_field_default_fields() {
         ),
       ),
       'module' => 'text',
-      'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 0,
-          'edit own' => 0,
-          'view' => 0,
-          'view own' => 0,
-        ),
-      ),
-      'translatable' => '1',
+      'settings' => array(),
+      'translatable' => '0',
       'type' => 'text_long',
     ),
     'field_instance' => array(
@@ -316,13 +287,7 @@ function townsquare_volunteer_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
-        ),
-        'example_node_list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'weight' => 13,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -346,7 +311,7 @@ function townsquare_volunteer_field_default_fields() {
           'rows' => '1',
         ),
         'type' => 'text_textarea',
-        'weight' => '9',
+        'weight' => '7',
       ),
     ),
   );
@@ -421,7 +386,7 @@ function townsquare_volunteer_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -500,7 +465,7 @@ function townsquare_volunteer_field_default_fields() {
           'apply_chosen' => 0,
         ),
         'type' => 'options_select',
-        'weight' => '8',
+        'weight' => '5',
       ),
     ),
   );
@@ -513,47 +478,24 @@ function townsquare_volunteer_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_session_user',
-      'foreign keys' => array(
-        'uid' => array(
-          'columns' => array(
-            'uid' => 'uid',
-          ),
-          'table' => 'users',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
-        'uid' => array(
-          0 => 'uid',
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
         ),
       ),
-      'module' => 'user_reference',
+      'module' => 'entityreference',
       'settings' => array(
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 0,
-          'edit own' => 0,
-          'view' => 0,
-          'view own' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'target_bundles' => array(),
         ),
-        'referenceable_roles' => array(
-          2 => '2',
-          3 => '3',
-          4 => '4',
-          5 => '5',
-          6 => '6',
-        ),
-        'referenceable_status' => array(
-          0 => 0,
-          1 => '1',
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'user',
       ),
       'translatable' => '1',
-      'type' => 'user_reference',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
@@ -563,16 +505,12 @@ function townsquare_volunteer_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'user_reference',
-          'settings' => array(),
-          'type' => 'user_reference_default',
-          'weight' => '1',
-        ),
-        'example_node_list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 12,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -584,20 +522,19 @@ function townsquare_volunteer_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_session_user',
       'label' => 'Volunteer',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
-        'module' => 'user_reference',
+        'module' => 'entityreference',
         'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'user_reference/autocomplete',
-          'size' => '60',
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => 60,
         ),
-        'type' => 'user_reference_autocomplete',
-        'weight' => '1',
+        'type' => 'entityreference_autocomplete',
+        'weight' => '2',
       ),
     ),
   );
