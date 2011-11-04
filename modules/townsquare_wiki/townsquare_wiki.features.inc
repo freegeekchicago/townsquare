@@ -36,7 +36,7 @@ function townsquare_wiki_node_info() {
     'wiki' => array(
       'name' => t('Wiki page'),
       'base' => 'node_content',
-      'description' => t('An automatically versioned, community-edited page. Wiki pages do not support comments.'),
+      'description' => t('An automatically versioned, collaboratively-edited page. Wiki pages support comments.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
