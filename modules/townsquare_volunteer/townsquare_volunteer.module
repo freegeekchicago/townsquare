@@ -800,7 +800,8 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
  */
 function _townsquare_volunteer_date_options($event_date) {
   $start_date = $event_date->format('Y-m-d 00:00:00');
-  $tz = timezone_open($event_date->timezone);
+  $tz_string = $event_date->timezone;
+  $tz = timezone_open($tz_string);
   $start = new DateObject($start_date, $tz);
   $start_utc = new DateObject($start_date, $tz);
   $start_utc->setTimezone(timezone_open('UTC'));  
