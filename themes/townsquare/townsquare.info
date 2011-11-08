@@ -1,5 +1,5 @@
-name = Omega HTML5 Starterkit
-description = Default starterkit for <a href="http://drupal.org/project/omega">Omega</a>. You should not directly edit this starterkit, but make your own copy. Information on this can be found in the <a href="http://himer.us/omega-docs">Omega Documentation</a>
+name = Townsquare 
+description = Townsquare default theme (based on Omega).
 core = 7.x
 engine = phptemplate
 screenshot = screenshot.png
@@ -13,13 +13,13 @@ regions[content] = Content
 
 ; ADDITIONAL REGIONS
 
-regions[user_first] = User Bar First
-regions[user_second] = User Bar Second
+regions[branding] = Branding (Name + logo)
+regions[user_bar] = User
 
 regions[sidebar] = Sidebar
 
-regions[header_first] = Header First
-regions[header_second] = Header Second
+regions[navigation_primary] = Primary navigation
+regions[navigation_secondary] = Secondary navigation
 
 regions[preface_first] = Preface First
 regions[preface_second] = Preface Second
@@ -30,8 +30,7 @@ regions[postscript_second] = Postscript Second
 regions[postscript_third] = Postscript Third
 regions[postscript_fourth] = Postscript Fourth
 
-regions[footer_first] = Footer First
-regions[footer_second] = Footer Second
+regions[footer_bar] = Footer
 
 ; ZONES
 
@@ -44,9 +43,10 @@ zones[footer] = Footer
 
 ; OPTIONAL STYLESHEETS
 
-css[global.css][name] = Your custom global styles
-css[global.css][description] = This file holds all the globally active custom CSS of your theme.
-css[global.css][options][weight] = 10
+css[global.css.less][name] = Townsquare theme
+css[global.css.less][description] = LESS CSS stylesheet for Townsquare theme
+css[global.css.less][options][weight] = 10
+settings[alpha_css][global.css.less] = 'global.css.less'
 
 ; THEME SETTINGS (DEFAULTS)
 
@@ -85,9 +85,9 @@ settings[alpha_css][omega-forms.css] = 'omega-forms.css'
 settings[alpha_css][omega-visuals.css] = 'omega-visuals.css'
 settings[alpha_css][global.css] = 'global.css'
 settings[alpha_debug_block_toggle] = '1'
-settings[alpha_debug_block_active] = '1'
+settings[alpha_debug_block_active] = '0'
 settings[alpha_debug_grid_toggle] = '1'
-settings[alpha_debug_grid_active] = '1'
+settings[alpha_debug_grid_active] = '0'
 settings[alpha_debug_grid_roles][1] = '1'
 settings[alpha_debug_grid_roles][2] = '2'
 settings[alpha_debug_grid_roles][3] = '3'
@@ -181,42 +181,42 @@ settings[alpha_region_dashboard_main_columns] = '1'
 settings[alpha_region_dashboard_main_suffix] = ''
 settings[alpha_region_dashboard_main_weight] = '-50'
 settings[alpha_region_dashboard_main_css] = ''
-settings[alpha_region_user_first_equal_height_container] = ''
-settings[alpha_region_user_first_equal_height_element] = ''
-settings[alpha_region_user_first_force] = ''
-settings[alpha_region_user_first_zone] = 'user'
-settings[alpha_region_user_first_prefix] = ''
-settings[alpha_region_user_first_columns] = '6'
-settings[alpha_region_user_first_suffix] = ''
-settings[alpha_region_user_first_weight] = '1'
-settings[alpha_region_user_first_css] = ''
-settings[alpha_region_user_second_equal_height_container] = ''
-settings[alpha_region_user_second_equal_height_element] = ''
-settings[alpha_region_user_second_force] = ''
-settings[alpha_region_user_second_zone] = 'user'
-settings[alpha_region_user_second_prefix] = ''
-settings[alpha_region_user_second_columns] = '6'
-settings[alpha_region_user_second_suffix] = ''
-settings[alpha_region_user_second_weight] = '2'
-settings[alpha_region_user_second_css] = ''
-settings[alpha_region_header_first_equal_height_container] = ''
-settings[alpha_region_header_first_equal_height_element] = ''
-settings[alpha_region_header_first_force] = ''
-settings[alpha_region_header_first_zone] = 'header'
-settings[alpha_region_header_first_prefix] = ''
-settings[alpha_region_header_first_columns] = '8'
-settings[alpha_region_header_first_suffix] = ''
-settings[alpha_region_header_first_weight] = '1'
-settings[alpha_region_header_first_css] = ''
-settings[alpha_region_header_second_equal_height_container] = ''
-settings[alpha_region_header_second_equal_height_element] = ''
-settings[alpha_region_header_second_force] = ''
-settings[alpha_region_header_second_zone] = 'header'
-settings[alpha_region_header_second_prefix] = ''
-settings[alpha_region_header_second_columns] = '4'
-settings[alpha_region_header_second_suffix] = ''
-settings[alpha_region_header_second_weight] = '2'
-settings[alpha_region_header_second_css] = ''
+settings[alpha_region_branding_equal_height_container] = ''
+settings[alpha_region_branding_equal_height_element] = ''
+settings[alpha_region_branding_force] = ''
+settings[alpha_region_branding_zone] = 'user'
+settings[alpha_region_branding_prefix] = ''
+settings[alpha_region_branding_columns] = '6'
+settings[alpha_region_branding_suffix] = ''
+settings[alpha_region_branding_weight] = '1'
+settings[alpha_region_branding_css] = ''
+settings[alpha_region_user_bar_equal_height_container] = ''
+settings[alpha_region_user_bar_equal_height_element] = ''
+settings[alpha_region_user_bar_force] = ''
+settings[alpha_region_user_bar_zone] = 'user'
+settings[alpha_region_user_bar_prefix] = ''
+settings[alpha_region_user_bar_columns] = '6'
+settings[alpha_region_user_bar_suffix] = ''
+settings[alpha_region_user_bar_weight] = '2'
+settings[alpha_region_user_bar_css] = ''
+settings[alpha_region_navigation_primary_equal_height_container] = ''
+settings[alpha_region_navigation_primary_equal_height_element] = ''
+settings[alpha_region_navigation_primary_force] = ''
+settings[alpha_region_navigation_primary_zone] = 'header'
+settings[alpha_region_navigation_primary_prefix] = ''
+settings[alpha_region_navigation_primary_columns] = '8'
+settings[alpha_region_navigation_primary_suffix] = ''
+settings[alpha_region_navigation_primary_weight] = '1'
+settings[alpha_region_navigation_primary_css] = ''
+settings[alpha_region_navigation_secondary_equal_height_container] = ''
+settings[alpha_region_navigation_secondary_equal_height_element] = ''
+settings[alpha_region_navigation_secondary_force] = ''
+settings[alpha_region_navigation_secondary_zone] = 'header'
+settings[alpha_region_navigation_secondary_prefix] = ''
+settings[alpha_region_navigation_secondary_columns] = '4'
+settings[alpha_region_navigation_secondary_suffix] = ''
+settings[alpha_region_navigation_secondary_weight] = '2'
+settings[alpha_region_navigation_secondary_css] = ''
 settings[alpha_region_preface_first_equal_height_container] = ''
 settings[alpha_region_preface_first_equal_height_element] = ''
 settings[alpha_region_preface_first_force] = ''
@@ -298,24 +298,15 @@ settings[alpha_region_postscript_fourth_columns] = '3'
 settings[alpha_region_postscript_fourth_suffix] = ''
 settings[alpha_region_postscript_fourth_weight] = '4'
 settings[alpha_region_postscript_fourth_css] = ''
-settings[alpha_region_footer_first_equal_height_container] = ''
-settings[alpha_region_footer_first_equal_height_element] = ''
-settings[alpha_region_footer_first_force] = ''
-settings[alpha_region_footer_first_zone] = 'footer'
-settings[alpha_region_footer_first_prefix] = ''
-settings[alpha_region_footer_first_columns] = '12'
-settings[alpha_region_footer_first_suffix] = ''
-settings[alpha_region_footer_first_weight] = '1'
-settings[alpha_region_footer_first_css] = ''
-settings[alpha_region_footer_second_equal_height_container] = ''
-settings[alpha_region_footer_second_equal_height_element] = ''
-settings[alpha_region_footer_second_force] = ''
-settings[alpha_region_footer_second_zone] = 'footer'
-settings[alpha_region_footer_second_prefix] = ''
-settings[alpha_region_footer_second_columns] = '12'
-settings[alpha_region_footer_second_suffix] = ''
-settings[alpha_region_footer_second_weight] = '2'
-settings[alpha_region_footer_second_css] = ''
+settings[alpha_region_footer_bar_equal_height_container] = ''
+settings[alpha_region_footer_bar_equal_height_element] = ''
+settings[alpha_region_footer_bar_force] = ''
+settings[alpha_region_footer_bar_zone] = 'footer'
+settings[alpha_region_footer_bar_prefix] = ''
+settings[alpha_region_footer_bar_columns] = '12'
+settings[alpha_region_footer_bar_suffix] = ''
+settings[alpha_region_footer_bar_weight] = '1'
+settings[alpha_region_footer_bar_css] = ''
 ; Information added by drupal.org packaging script on 2011-08-23
 version = "7.x-3.0"
 core = "7.x"

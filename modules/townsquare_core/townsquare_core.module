@@ -71,38 +71,3 @@ function template_preprocess_townsquare_login(&$vars) {
   global $user;
   $vars['user'] = $user;
 }
-
-
-/**
- * Implements hook_field_formatter_info().
- */
-function townsquare_core_field_formatter_info() {
-  return array(
-    // Duration calculated from to-from dates
-    'duration' => array(
-      'label' => t('Duration'),
-      'field types' => array('date', 'datetime', 'datestamp'),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_formatter_view().
- */
-function townsquare_core_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = array();
-
-  switch ($display['type']) {
-    case 'duration':
-      foreach ($items as $delta => $item) {
-        $start = new DateObject($item['value'], $item['timezone']);
-        $end = new DateObject($item['value2'], $item['timezone']);
-        $element[$delta]['#markup'] = '<span class="date-display-duration">'. 
-          t('@time hrs', array('@time' => $start->difference($end) / 3600)) .
-          '</span>';
-      }
-      break;
-
-  }
-  return $element;
-}

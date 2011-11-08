@@ -10,3 +10,16 @@
  * for your subtheme grows. Please read the README.txt in the /preprocess and /process subfolders
  * for more information on this topic.
  */
+
+function townsquare_menu_link(array $variables) {
+  $element = $variables['element'];
+  $element['#attributes']['id'] = $element['#original_link']['menu_name'] .'-'. drupal_clean_css_identifier($element['#original_link']['link_path']);
+  
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
