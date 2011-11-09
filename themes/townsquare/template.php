@@ -11,6 +11,9 @@
  * for more information on this topic.
  */
 
+/**
+ * Implements theme_menu_link().
+ */
 function townsquare_menu_link(array $variables) {
   $element = $variables['element'];
   $element['#attributes']['id'] = $element['#original_link']['menu_name'] .'-'. drupal_clean_css_identifier($element['#original_link']['link_path']);
