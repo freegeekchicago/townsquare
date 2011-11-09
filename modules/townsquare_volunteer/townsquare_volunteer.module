@@ -762,26 +762,31 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
   switch ($instance['widget']['type']) {
     case 'chosen_date':
       $event = node_load(array($form['#node']->field_session_event[$langcode][0]['target_id']));
-      $event_date = new DateObject($event->field_event_date['und'][0]['value']);
+      
+      $tz_db = timezone_open($event->field_event_date['und'][0]['timezone_db']);
+      $tz = timezone_open($event->field_event_date['und'][0]['timezone']);
+      
+      $start = new DateObject($event->field_event_date['und'][0]['value'], $tz_db);
+      $start->setTimezone($tz);
+      
+      $end = new DateObject($event->field_event_date['und'][0]['value2'], $tz_db);
+      $end->setTimezone($tz);
+      
+      $options = _townsquare_volunteer_date_options($start, $end);
       foreach ($field['columns'] as $col => $values) {
         if (!isset($items[$delta][$col])) {
-          if ($col == 'value') {
-            $default = $event_date->format('Y-m-d 16:00:00');
-          }
-          else {
-            $default = $event_date->format('Y-m-d 22:00:00');
-          }
+          $default = new DateObject($event->field_event_date['und'][0][$col], $tz_db);
         }
         else {
-          $default = $items[$delta][$col];
+          $default = new DateObject($items[$delta][$col], $tz_db);
         }
         // Create select element with options populated by special function 
         $element[$col] = array(
           '#type' => 'select',
           '#title' => $element['#title'],
           '#description' => $element['#description'],
-          '#options' => _townsquare_volunteer_date_options($event_date),
-          '#default_value' => $default,
+          '#options' => $options,
+          '#default_value' => $default->format('Y-m-d H:i:s'),
           '#attributes' => array('class' => array('combobox')),
         );
       }
@@ -798,20 +803,17 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
  * @param event_date
  *   Parent event DateObject.
  */
-function _townsquare_volunteer_date_options($event_date) {
-  $start_date = $event_date->format('Y-m-d 00:00:00');
-  $tz_string = $event_date->timezone;
-  $tz = timezone_open($tz_string);
-  $start = new DateObject($start_date, $tz);
-  $start_utc = new DateObject($start_date, $tz);
-  $start_utc->setTimezone(timezone_open('UTC'));  
+function _townsquare_volunteer_date_options($start, $end) {
+  $start->modify('-2 hours');
+  $end->modify('+2 hours');
+  $utc = clone $start;
+  $utc->setTimezone(timezone_open('UTC'));  
   $options = array();
-  $i = 0;
-  while ($i < 96) {
-    $options[$start_utc->format('Y-m-d H:i:s')] = $start->format('g:ia');
+  while ($start <= $end) {
+    $options[$utc->format('Y-m-d H:i:s')] = $start->format('g:ia');
     $start->modify('+15 minutes');
-    $start_utc->modify('+15 minutes');
-    $i++;
-  } 
+    $utc->modify('+15 minutes');
+  }
+  //dpm($options);
   return $options;
 }

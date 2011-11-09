@@ -26,3 +26,52 @@ function townsquare_menu_link(array $variables) {
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+/**
+ * Implements hook_process_region().
+ */
+function townsquare_process_region(&$vars) {
+  if (in_array($vars['elements']['#region'], array('content', 'page_title', 'breadcrumbs', 'branding'))) {
+    $theme = alpha_get_theme();
+    
+    switch ($vars['elements']['#region']) {
+      case 'page_title':
+        $vars['title_prefix'] = $theme->page['title_prefix'];
+        $vars['title'] = $theme->page['title'];
+        $vars['title_suffix'] = $theme->page['title_suffix'];
+        $vars['title_hidden'] = $theme->page['title_hidden'];
+        break;
+
+      case 'breadcrumbs':
+        $vars['breadcrumb'] = $theme->page['breadcrumb'];
+        break;
+
+      case 'content':
+        $vars['tabs'] = $theme->page['tabs'];
+        $vars['action_links'] = $theme->page['action_links'];      
+        $vars['feed_icons'] = $theme->page['feed_icons'];
+        break; 
+      
+      case 'branding':
+        $vars['site_name'] = $theme->page['site_name'];
+        $vars['site_slogan'] = $theme->page['site_slogan'];
+        $vars['site_url'] = url('<front>');
+        $vars['site_name_hidden'] = $theme->page['site_name_hidden'];
+        $vars['site_slogan_hidden'] = $theme->page['site_slogan_hidden'];
+        $vars['logo'] = $theme->page['logo'];
+        $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="' . $vars['site_name'] . '" id="logo" />' : '';
+        break;      
+    }
+  }
+}
+
+/**
+ * Implements hook_process_zone().
+ */
+function townsquare_process_zone(&$vars) {
+  $theme = alpha_get_theme();
+  
+  if ($vars['elements']['#zone'] == 'content') {
+    $vars['messages'] = $theme->page['messages'];
+  }
+}
