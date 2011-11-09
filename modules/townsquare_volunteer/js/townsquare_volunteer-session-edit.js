@@ -23,17 +23,17 @@ TownsquareVolunteer.toggleDuration = function(field) {
 
   if (!disabled) {
     duration.addClass('form-disabled');
-    $('input', duration).attr('readonly', true);
+    $('input', duration).attr('disabled', true);
     
     hours.removeClass('form-disabled');
-    $('input', hours).removeAttr('readonly');
+    $('input', hours).removeAttr('disabled');
     $('button', hours).removeAttr('disabled');
   } else {
     duration.removeClass('form-disabled');
-    $('input', duration).removeAttr('readonly');
+    $('input', duration).removeAttr('disabled');
     
     hours.addClass('form-disabled');
-    $('input', hours).attr('readonly', true);
+    $('input', hours).attr('disabled', true);
     $('button', hours).attr('disabled', true);
   }
 }
