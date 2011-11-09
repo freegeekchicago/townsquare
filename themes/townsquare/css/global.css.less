@@ -1,0 +1,479 @@
+/**
+ * @file global.css.less
+ *
+ * Released under the GNU GPL by FreeGeek Chicago.
+ *
+ * Organized using vim foldmarkers. Requires LESS CSS preprocessor.
+ */
+
+// Less CSS variables {{{
+@color_yellow: #fdffa9;
+@color_green: #267e26;
+@color_bright_green: #08ad0a;
+@color_black: #000000;
+@color_white: #ffffff;
+@color_dark_gray: #444444;
+@color_medium_gray: #999999;
+@color_medium_light_gray: #cccccc;
+@color_light_gray: #dddddd;
+@color_pale_gray: #f3f3f3;
+@corner_radius: 4px;
+// }}}
+// Less CSS mixins {{{
+.box {
+  float: left;
+  display: block;
+}
+.plain {
+  text-decoration: none !important;
+}
+.font_arimo {
+  font-family: Arimo, Arial, sans-serif;
+}
+.gradient(@start: @color_pale_gray; @middle: @color_light_gray; @end: @color_medium_light_gray;) {
+  background: @middle;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.6, @middle), color-stop(1.0, @end)); /* for webkit browsers */
+  background-image: -moz-linear-gradient(top, @start 0%, @middle 60%, @end 100%); /* for firefox 3.6+ */
+}
+.box_shadow(@arguments) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+.round_corner(@radius: @corner_radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+  -moz-background-clip: padding; 
+  -webkit-background-clip: padding-box; 
+  background-clip: padding-box; 
+}
+.button {
+  .plain;
+  .round_corner;
+  .gradient;
+  padding-left: 6px;
+  padding-right: 6px;
+  border: 1px solid @color_medium_gray;
+  color: @color_dark_gray !important;
+  text-shadow: 1px 1px 1px @color_pale_gray;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  :hover { 
+    cursor: default; 
+    color: @color_black !important;
+    border-color: @color_dark_gray;
+  }
+}
+// }}}
+// Body {{{
+body {
+  font-size: 14px;
+  background-color: @color_pale_gray;
+}
+// }}}
+// Common elements {{{
+a:link, a:visited {
+  color: @color_green;
+  text-decoration: underline;
+  :hover {
+    color: @color_black;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  .font_arimo;
+}
+// }}}
+// Forms {{{
+input, select, textarea {
+  .round_corner;
+  border: 1px solid @color_medium_gray;
+  :hover {
+    border-color: @color_dark_gray;
+  }
+}
+input.form-submit {
+  .button;
+  font-weight: normal;
+  font-size: 13px;
+  :hover {
+    .gradient;
+  }
+}
+// }}}
+
+/* -- Zones -- */
+// User {{{
+#zone-user-wrapper {
+  .font_arimo;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+// }}}
+// Header {{{
+#zone-header-wrapper {
+  .font_arimo;
+  margin-bottom: 12px;
+}
+// }}}
+// Title {{{
+#zone-title-wrapper {
+}
+// }}}
+// Preface (stub) {{{
+#zone-preface-wrapper {}
+// }}}
+// Content {{{
+#zone-content-wrapper {
+  #zone-content {
+    background-color: @color_white;
+    .box_shadow(0 0 12px @color_medium_gray);
+  }
+}
+// }}}
+// Postscript (stub) {{{
+#zone-postscript-wrapper {}
+// }}}
+// Footer (stub) {{{
+#zone-footer-wrapper {}
+// }}}
+
+/* -- Regions -- */
+// Branding {{{
+#region-branding {
+  .logo-img, hgroup, .site-name {
+    display: inline;
+  }
+  a {
+    .plain; 
+    display: inline-block;
+    padding-right: 7px;
+    :hover {
+      color: @color_bright_green;
+    }
+  }
+  .site-name {
+    margin: 0;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+// }}}
+// User region {{{
+#region-user-bar {
+  a { .plain; }
+  #block-townsquare-core-login {
+    float: right;
+    font-size: 12px;
+    ul, li, div { display: inline; line-height: 1; }
+    li {
+      list-style-type: none;
+      padding-left: 6px;
+      border-left: 1px solid #999;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+// }}}
+// Primary navigation {{{
+#region-navigation-primary {
+  ul, li {
+    .box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  li {
+    margin-right: 10px;
+    font-size: 13px;
+    a {
+      .box;
+      .plain;
+      padding: 0 4px;
+      border: 1px solid @color_green;
+      background-color: @color_white;
+      :hover {
+        background-color: @color_bright_green;
+        border-color: @color_bright_green;
+        color: @color_white;
+      }
+      &.active, &.active:hover {
+        background-color: @color_green;
+        color: @color_white;
+        border-color: @color_green;
+        cursor: default;
+      }
+    }
+  }
+  li#menu-townsquare-toolbar-volunteers,
+  li#menu-townsquare-toolbar-events {
+    margin: 0;
+    a {
+      border-right: none;
+    }
+  }
+  #menu-townsquare-toolbar-admin-people-create,
+  #menu-townsquare-toolbar-event-create {
+    a {
+      padding: 0 6px;
+      font-weight: bold;
+    }
+  }
+  
+}
+// }}}
+// Secondary navigation {{{ 
+#region-navigation-secondary {
+  #block-search-form {
+    float: right;
+  }
+}
+// }}}
+// Page title {{{
+#region-page-title {
+  #page-title {
+    font-size: 24px;
+    margin: 0;
+  }
+}
+// }}}
+// Page title {{{
+#region-breadcrumbs {
+  #breadcrumb {
+    margin-top: 6px;
+    float: right;
+  }
+}
+// }}}
+// Content {{{
+#region-content {
+  margin-top: 14px;
+  a {
+    :hover {
+      background-color: @color_yellow;
+    }
+  }
+}
+// }}}
+
+/* -- Special pages -- */
+// Event editing UI {{{
+.page-event-edit, .page-event-create {
+  #event-form {
+    .clearfix;
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid #aaa;
+  }
+  //.ajax-progress {
+  //  display: none;
+  //}
+  /*#event-node-form {
+    .form-wrapper {
+      .box;
+      margin-right: 30px;
+    }
+    .form-item {
+      margin: 0 0 5px 0;
+    }
+    legend {
+      margin-bottom: .25em;
+    }
+    .field-name-field-event-type {
+      width: 160px;
+    }
+    .field-name-field-event-date {
+      width: 210px;
+      .form-required, .description {
+        display: none;
+      }
+      label {
+        display: block;
+      }
+      input#edit-field-event-date-und-0-value-datepicker-popup-0,
+      input#edit-field-event-date-und-0-value2-datepicker-popup-0 {
+        width: 100px;
+        margin-right: 10px;
+      }
+      input#edit-field-event-date-und-0-value-timeEntry-popup-1,
+      input#edit-field-event-date-und-0-value2-timeEntry-popup-1 {
+        width: 65px;
+      }
+      select {
+        width: 190px;
+        display: block;
+      }
+      .form-item-field-event-date-und-0-value {
+        margin-bottom: 21px;
+      }
+    }
+    .field-name-field-event-location {
+      width: 260px;
+      label {
+        .box;
+        width: 80px;
+      }
+      input, select {
+        max-width: 130px;
+      }
+      .name-block, .form-item-field-event-location-und-0-premise {
+        display: none;
+      }
+    }
+    .field-name-field-event-description {
+      width: 210px;
+      margin-right: 0;
+      textarea { 
+        width: 210px;
+        height: 110px;
+      }
+      label {
+        margin-bottom: .75em;
+      }
+    }
+    .field-name-field-tags {
+      width: 400px;
+      input { 
+        width: 400px;
+      }
+      label {
+        float: none;
+        margin-bottom: .75em;
+      }
+    }
+    .form-actions {
+      .box;
+      margin-top: .75em;
+      width: 930px;
+      .form-submit {
+        margin-right: 6px;
+      }
+    }
+  }*/
+  #session-header {
+    .clearfix;
+    width: 930px;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    li {
+      .box;
+      margin-right: 15px;
+    }
+  }
+  .volunteer-session-form {
+    .clearfix;
+    width: 930px;
+    float: left;
+    background-color: #ddd;
+    margin: 0 0 2px 0;
+    .form-type-textfield label,
+    .form-type-textarea label,
+    .form-type-date-popup label,
+    .container-inline-date label,
+    .form-type-radios > label,
+    .form-type-checkboxes > label,
+    .form-type-select > label,
+    .form-type-checkbox > label.option,
+    legend, .description { 
+      display: none;
+    }
+    .form-item, .container-inline-date {
+      .box;
+      margin: 0;
+      padding: 7px;
+      clear: none;
+      input, textarea, select {
+        width: 100%;
+        font-size: 13px;
+        background-color: @color_white;
+        padding: 5px;
+      }
+      .form-item {
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .form-actions {
+      padding-top: 8px;
+      font-size: 13px;
+    }
+  }
+  .field-name-field-session-user .form-item, 
+  #session-header .session-name {
+    width: 185px;
+    input {
+      width: 170px;
+    }
+  }
+  .field-name-field-session-hours fieldset {
+    .box;
+  }
+  .date-float {
+    display: none;
+  }
+  .field-name-field-session-hours .form-item-field-session-hours-und-0-value,
+  .field-name-field-session-hours .form-item-field-session-hours-und-0-value2 {
+    width: 110px;
+    margin-right: 10px;
+    input {
+      //.rounded_corner(@default_corner_radius; 0; 0; @default_corner_radius;);
+      width: 100px;
+    }
+    button {
+      .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0;);
+      width: 1.25em;
+      height: 26px;
+      border-color: #aaa;
+    }
+  }
+  #session-header .session-start, #session-header .session-end {
+    width: 121px;
+  }
+  .field-name-field-session-override-duration .form-item, 
+  #session-header .session-override-duration {
+    width: 70px;
+    text-align: center;
+  }
+  .field-name-field-session-duration .form-item, 
+  #session-header .session-duration {
+    width: 65px;
+    input {
+      text-align: right;
+      width: 55px;
+    }
+  }
+  .field-name-field-session-notes .form-item,
+  #session-header .session-notes {
+    width: 140px;
+    margin-right: 10px;
+    textarea {
+      padding: 1px 4px;
+      line-height: 13px;
+      font-size: 11px;
+      min-height: 28px;
+    }
+  }
+  .field-name-field-session-role .form-item,
+  #session-header .session-role {
+    width: 123px;
+  }
+  .ui-autocomplete {
+    font-size: 13px;  
+    .rounded_corner(0; 0; 0; 0;);
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    .ui-state-hover {
+      background: transparent;
+      background-color: #ffffbb;
+      border-color: #ffffff;
+    }
+  }
+}
+// }}}
