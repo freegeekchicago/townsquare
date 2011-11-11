@@ -19,21 +19,20 @@ TownsquareVolunteer.toggleDuration = function(field) {
   var form = $(field).parents('form');
   var duration = $('.field-name-field-session-duration', form);
   var hours = $('.form-item-field-session-hours-und-0-value, .form-item-field-session-hours-und-0-value2', form);
-  var disabled = $('input', field).attr('checked');
-
-  if (!disabled) {
+  var checkbox = $('input:checked', field).not(':disabled'); //.attr('checked');
+  if (!checkbox.length) {
     duration.addClass('form-disabled');
-    $('input', duration).attr('disabled', true);
+    $('input', duration).attr('readonly', true);
     
     hours.removeClass('form-disabled');
-    $('input', hours).removeAttr('disabled');
+    $('input', hours).removeAttr('readonly');
     $('button', hours).removeAttr('disabled');
   } else {
     duration.removeClass('form-disabled');
-    $('input', duration).removeAttr('disabled');
+    $('input', duration).removeAttr('readonly');
     
     hours.addClass('form-disabled');
-    $('input', hours).attr('disabled', true);
+    $('input', hours).attr('readonly', true);
     $('button', hours).attr('disabled', true);
   }
 }

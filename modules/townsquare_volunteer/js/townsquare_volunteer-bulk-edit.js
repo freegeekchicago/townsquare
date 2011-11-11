@@ -26,20 +26,20 @@ Drupal.behaviors.toggleFields = {
     $('.field-name-field-session-user input', context).each(function() {
       var form = $(this).parents('form');
       if (!this.value) {
-        $('input[name!="field_session_user[und][0][target_id]"], textarea', form)
-          .attr('readonly', true)
-          .addClass('form-disabled');
-        $('button', form)
-          .attr('disabled', true)
-          .addClass('form-disabled');
+        $('input[name!="field_session_user[und][0][target_id]"], select, textarea', form)
+          .not(':checkbox')
+          .attr('readonly', true);
+        
+        $('input:checkbox, button', form)
+          .attr('disabled', true);
       }
       $(this).change(function() {
-        $('input[name!="field_session_user[und][0][target_id]"], textarea', form)
-          .removeAttr('readonly')
-          .removeClass('form-disabled');
-        $('button', form)
-          .removeAttr('disabled')
-          .removeClass('form-disabled');
+        $('input, select, textarea', form)
+        .not('name="field_session_user[und][0][target_id]"')
+        .not(':checkbox')
+        .removeAttr('readonly');
+        $('input:checkbox, button', form)
+          .removeAttr('disabled');
       });
     });
   }
