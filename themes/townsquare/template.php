@@ -11,6 +11,15 @@
  * for more information on this topic.
  */
 
+function townsquare_css_alter(&$css) {
+  foreach ($css as $file => $settings) {
+    // Remove jQuery UI's theming, which messes up forms
+    if (strpos($file, 'misc/ui/jquery.ui') === 0) {
+      unset($css[$file]);
+    }
+  }
+}
+
 /**
  * Implements theme_menu_link().
  */

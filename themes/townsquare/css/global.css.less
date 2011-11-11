@@ -6,6 +6,7 @@
  * Organized using vim foldmarkers. Requires LESS CSS preprocessor.
  */
 
+/* -- LESS declarations -- */
 // Less CSS variables {{{
 @color_yellow: #fdffa9;
 @color_green: #267e26;
@@ -14,10 +15,13 @@
 @color_white: #ffffff;
 @color_dark_gray: #444444;
 @color_medium_gray: #999999;
+@color_medium_dark_gray: #b5b5b5;
 @color_medium_light_gray: #cccccc;
 @color_light_gray: #dddddd;
 @color_pale_gray: #f3f3f3;
+
 @corner_radius: 4px;
+@default_arrow_size: 4px;
 // }}}
 // Less CSS mixins {{{
 .box {
@@ -59,21 +63,50 @@
   text-shadow: 1px 1px 1px @color_pale_gray;
   text-align: center;
   cursor: pointer;
-  font-size: 13px;
   :hover { 
     cursor: default; 
     color: @color_black !important;
     border-color: @color_dark_gray;
   }
 }
+.arrow_down(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
+  border-color: @color transparent transparent transparent;
+  border-style: @border_style;
+  border-width: @size;
+  width: 0;
+  height: 0;
+}
+.arrow_up(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
+  border-color: transparent @color transparent transparent;
+  border-style: @border_style;
+  border-width: @size;
+  width: 0;
+  height: 0;
+}
+.arrow_up(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
+  border-color: transparent transparent @color transparent;
+  border-style: @border_style;
+  border-width: @size;
+  width: 0;
+  height: 0;
+}
+.arrow_left(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
+  border-color: transparent transparent transparent @color;
+  border-style: @border_style;
+  border-width: @size;
+  width: 0;
+  height: 0;
+}
 // }}}
+
+/* -- Common elements -- */
 // Body {{{
 body {
   font-size: 14px;
   background-color: @color_pale_gray;
 }
 // }}}
-// Common elements {{{
+// Links {{{
 a:link, a:visited {
   color: @color_green;
   text-decoration: underline;
@@ -81,29 +114,106 @@ a:link, a:visited {
     color: @color_black;
   }
 }
+// }}}
+// h tags {{{
 h1, h2, h3, h4, h5, h6 {
   .font_arimo;
 }
 // }}}
-// Forms {{{
-input, select, textarea {
-  .round_corner;
-  border: 1px solid @color_medium_gray;
-  :hover {
-    border-color: @color_dark_gray;
+// Tables {{{
+table {
+  width: auto;
+  a {
+    .plain;
   }
-  :disabled {
-    background-color: @color_light_gray;
-    color: @color_medium_gray;
+  thead th, th {
+    font-size: 12px;
+    background: @color_medium_light_gray;
   }
 
+  td, th {
+    padding: 4px 8px;
+    border: 1px solid @color_medium_dark_gray;
+  }
+
+  tbody {
+    td {
+      &.active {
+        background: @color_pale_gray;
+      }
+    }
+    tr, tr.even, tr.odd {
+      background: none;
+      :hover {
+        th {
+          background: @color_medium_light_gray;
+        }
+        td {
+          background: @color_pale_gray;
+          &.active {
+            background: @color_light_gray;
+          }
+        }
+      }
+    }
+  }
 }
-input.form-submit {
+// }}}
+// Forms {{{
+input.form-submit, button {
   .button;
   font-weight: normal;
-  font-size: 13px;
   :hover {
     .gradient;
+  }
+}
+
+input, select, textarea, button {
+  border: 1px solid @color_medium_gray !important;
+  color: @color_black;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  padding: 2px 3px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active {
+  .box_shadow(0 0 4px @color_bright_green);
+  border-color: @color_dark_gray !important;
+}
+
+input[type="file"]:focus,
+input[type="file"]:active,
+input[type="radio"]:focus,
+input[type="radio"]:active,
+input[type="checkbox"]:focus,
+input[type="checkbox"]:active {
+  .box_shadow(none);
+}
+
+input[readonly], 
+textarea[readonly],
+input[disabled],
+textarea[disabled],
+select[disabled],
+button[disabled] {
+  color: @color_medium_gray;
+  border-color: @color_medium_light_gray;
+  background: @color_pale_gray;
+}
+
+// }}}
+// User picture {{{
+.user-picture {
+  img {
+    width: 25px;
+    height: 25px;
   }
 }
 // }}}
@@ -263,222 +373,167 @@ input.form-submit {
       background-color: @color_yellow;
     }
   }
+  table {
+    a {
+      :hover {
+        background: none;
+      }
+    }
+  }
 }
 // }}}
 
-/* -- Special pages -- */
-// Event editing UI {{{
+/* -- Pages -- */
+// Volunteer manager {{{
 .page-event-edit, .page-event-create {
-  #event-form {
-    .clearfix;
-    padding-bottom: 1.5em;
-    margin-bottom: 1.5em;
-    border-bottom: 1px solid #aaa;
+  .node-event-form {
+    .fieldset-description { display: none; }
   }
-  //.ajax-progress {
-  //  display: none;
-  //}
-  /*#event-node-form {
-    .form-wrapper {
-      .box;
-      margin-right: 30px;
-    }
-    .form-item {
-      margin: 0 0 5px 0;
-    }
-    legend {
-      margin-bottom: .25em;
-    }
-    .field-name-field-event-type {
-      width: 160px;
-    }
-    .field-name-field-event-date {
-      width: 210px;
-      .form-required, .description {
-        display: none;
-      }
-      label {
-        display: block;
-      }
-      input#edit-field-event-date-und-0-value-datepicker-popup-0,
-      input#edit-field-event-date-und-0-value2-datepicker-popup-0 {
-        width: 100px;
-        margin-right: 10px;
-      }
-      input#edit-field-event-date-und-0-value-timeEntry-popup-1,
-      input#edit-field-event-date-und-0-value2-timeEntry-popup-1 {
-        width: 65px;
-      }
-      select {
-        width: 190px;
-        display: block;
-      }
-      .form-item-field-event-date-und-0-value {
-        margin-bottom: 21px;
+  #volunteer-sessions {
+    margin-bottom: 250px;
+    display: table;
+    border-collapse: collapse;
+    border-bottom: 1px solid @color_medium_light_gray;
+    #session-headers {
+      display: table-row;
+      background-color: @color_light_gray;
+      font-size: 12px;
+      border-left: 1px solid @color_medium_dark_gray;
+      border-top: 1px solid @color_medium_dark_gray;
+      li {
+        display: table-cell;
+        padding: 2px 9px;
+        border-right: 1px solid @color_medium_dark_gray;
       }
     }
-    .field-name-field-event-location {
-      width: 260px;
-      label {
-        .box;
-        width: 80px;
+    .volunteer-session-form {
+      display: table-row;
+      :hover {
+        background-color: @color_pale_gray;
       }
+      form > div > div {
+        vertical-align: middle;
+        display: table-cell;
+        padding: 0 9px;
+        border-collapse: collapse;
+        border-top: 1px solid @color_medium_light_gray;
+        border-left: 1px solid @color_medium_light_gray;
+        border-right: 1px solid @color_medium_light_gray;
+      }
+      form {
+        div.ajax-progress,
+        div.description,
+        div.grippie,
+        div.field-widget-options-onoff label {
+          display: none;
+        }
+        .form-actions {
+          background-color: @color_pale_gray;
+        }
+      }
+    }
+
+    // Per field settings. Thought I could avoid this.
+    .field-name-field-session-user {
+      width: 200px;
+      input {
+        width: 200px;
+        padding-right: 16px;
+        background-position: 100% 50px;
+        &.throbbing {
+          background-position: 100% -16px;
+        }
+      }
+    }
+    .field-name-field-session-hours {
+      width: 190px;
       input, select {
-        max-width: 130px;
+        width: 80px;
+        border-right: none;
       }
-      .name-block, .form-item-field-event-location-und-0-premise {
-        display: none;
+      button {
+        .round_corner(0);
       }
-    }
-    .field-name-field-event-description {
-      width: 210px;
-      margin-right: 0;
-      textarea { 
-        width: 210px;
-        height: 110px;
+      .form-item { 
+        display: inline-block;
+        width: 90px;
       }
-      label {
-        margin-bottom: .75em;
+      .form-item-field-session-hours-und-0-value {
+        margin-right: 5px;
       }
     }
-    .field-name-field-tags {
-      width: 400px;
-      input { 
-        width: 400px;
-      }
-      label {
-        float: none;
-        margin-bottom: .75em;
-      }
-    }
-    .form-actions {
-      .box;
-      margin-top: .75em;
-      width: 930px;
-      .form-submit {
-        margin-right: 6px;
-      }
-    }
-  }*/
-  #session-header {
-    .clearfix;
-    width: 930px;
-    float: left;
-    font-size: 14px;
-    font-weight: bold;
-    li {
-      .box;
-      margin-right: 15px;
-    }
-  }
-  .volunteer-session-form {
-    .clearfix;
-    width: 930px;
-    float: left;
-    background-color: #ddd;
-    margin: 0 0 2px 0;
-    .form-type-textfield label,
-    .form-type-textarea label,
-    .form-type-date-popup label,
-    .container-inline-date label,
-    .form-type-radios > label,
-    .form-type-checkboxes > label,
-    .form-type-select > label,
-    .form-type-checkbox > label.option,
-    legend, .description { 
-      display: none;
-    }
-    .form-item, .container-inline-date {
-      .box;
-      margin: 0;
-      padding: 7px;
-      clear: none;
-      input, textarea, select {
-        width: 100%;
-        font-size: 13px;
-        background-color: @color_white;
-        padding: 5px;
-      }
+    .field-name-field-session-override-duration {
+      width: 60px;
+      text-align: center;
       .form-item {
-        padding: 0;
-        margin: 0;
+        text-align: center;
       }
     }
-    .form-actions {
-      padding-top: 8px;
-      font-size: 13px;
+    .field-name-field-session-duration {
+      width: 60px;
+      text-align: center;
+      input { 
+        width: 60px;
+        text-align: right;
+      }
+    }
+    .field-name-field-session-notes {
+      width: 175px;
+      textarea {
+        width: 175px;
+        min-height: 24px;
+      }
     }
   }
-  .field-name-field-session-user .form-item, 
-  #session-header .session-name {
-    width: 185px;
-    input {
-      width: 170px;
+}
+// }}}
+
+/* -- jQuery UI and misc widgets -- */
+// Icons and arrows {{{
+.ui-icon {
+  position: relative;
+  top: 10px;
+}
+.ui-icon-triangle-1-s {
+  .arrow_down;
+}
+.ui-icon-triangle-1-n {
+  .arrow_up;
+}
+.ui-icon-triangle-1-e {
+  .arrow_right;
+}
+.ui-icon-triangle-1-w {
+  .arrow_left;
+}
+// }}}
+// Autocomplete {{{
+.ui-autocomplete {
+  width: 120px;
+  .box_shadow(2px 2px 4px @color_medium_gray);
+  background-color: @color_white;
+  border: 1px solid @color_medium_gray;
+  li {
+    list-style-type: none;
+    :hover,
+    :focus,
+    :active {
+      color: @color_dark_green;
+      background-color: @color_yellow;
     }
   }
-  .field-name-field-session-hours fieldset {
-    .box;
-  }
-  .date-float {
-    display: none;
-  }
-  .field-name-field-session-hours .form-item-field-session-hours-und-0-value,
-  .field-name-field-session-hours .form-item-field-session-hours-und-0-value2 {
-    width: 110px;
-    margin-right: 10px;
-    input {
-      //.rounded_corner(@default_corner_radius; 0; 0; @default_corner_radius;);
-      width: 100px;
-    }
-    button {
-      .rounded_corner(0; @default_corner_radius; @default_corner_radius; 0;);
-      width: 1.25em;
-      height: 26px;
-      border-color: #aaa;
-    }
-  }
-  #session-header .session-start, #session-header .session-end {
-    width: 121px;
-  }
-  .field-name-field-session-override-duration .form-item, 
-  #session-header .session-override-duration {
-    width: 70px;
-    text-align: center;
-  }
-  .field-name-field-session-duration .form-item, 
-  #session-header .session-duration {
-    width: 65px;
-    input {
-      text-align: right;
-      width: 55px;
-    }
-  }
-  .field-name-field-session-notes .form-item,
-  #session-header .session-notes {
-    width: 140px;
-    margin-right: 10px;
-    textarea {
-      padding: 1px 4px;
-      line-height: 13px;
-      font-size: 11px;
-      min-height: 28px;
-    }
-  }
-  .field-name-field-session-role .form-item,
-  #session-header .session-role {
-    width: 123px;
-  }
-  .ui-autocomplete {
-    font-size: 13px;  
-    .rounded_corner(0; 0; 0; 0;);
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    .ui-state-hover {
-      background: transparent;
-      background-color: #ffffbb;
-      border-color: #ffffff;
-    }
+}
+// }}}
+// Buttons {{{
+.ui-button {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+// }}}
+// Combobox {{{
+.combobox-js-wrapper {
+  .ui-button {
+    margin-left: -22px;
   }
 }
 // }}}
