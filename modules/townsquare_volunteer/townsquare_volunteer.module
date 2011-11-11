@@ -139,6 +139,18 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       $form['field_event_location']['und'][0][$key]['#access'] = FALSE;
     }
     $form['actions']['preview']['#access'] = FALSE;
+
+
+    // Ugly markup manipulation for omega/960gs columns
+    // @TODO Refactor
+    $form['field_event_date']['#prefix'] = '<div class="grid-4">';
+    $form['field_event_type']['#suffix'] = '</div>';
+
+    $form['field_event_location']['#prefix'] = '<div class="grid-4">';
+    $form['field_event_location']['#suffix'] = '</div>';
+    
+    $form['field_event_description']['#prefix'] = '<div class="grid-3">';
+    $form['field_event_description']['#suffix'] = '</div><div class="clearfix"></div>';
   }
 }
 
@@ -440,6 +452,8 @@ function townsquare_volunteer_edit_event($node = NULL) {
     }
 
     $summary = array(
+      '#prefix' => '<div class="clearfix">',
+      '#suffix' => '</div>',
       '#theme' => 'table',
       '#rows' => array(
         array(
