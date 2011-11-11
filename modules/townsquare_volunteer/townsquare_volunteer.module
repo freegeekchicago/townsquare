@@ -467,43 +467,36 @@ function townsquare_volunteer_edit_event($node = NULL) {
     if (!empty($session_elements)) {
       $session_form = array(
         '#name' => t('Volunteer sessions'),
-        'headers' => array(
-          '#theme' => 'item_list',
-          '#attributes' => array('id' => 'session-header'),
-          '#items' => array(
-            array(
-              'data' => t('Volunteer name'), 
-              'class' => array('session-name'),
-            ),
-            array(
-              'data' => t('Start time'), 
-              'class' => array('session-start',)
-            ),
-            array(
-              'data' => t('End time'),
-              'class' => array('session-end'),
-            ),
-            array(
-              'data' => t('Override?'),
-              'class' => array('session-override-duration'),
-            ),
-            array(
-              'data' => t('Duration'),
-              'class' => array('session-duration'),
-            ),
-            array(
-              'data' => t('Notes'),
-              'class' => array('session-notes'),
-            ),
-            array(
-              'data' => '', 
-              'class' => array('empty'),
-            ),
-          ),
-        ),
+        
         'sessions' => array(
           '#prefix' => '<div id="volunteer-sessions">',
-          '#suffix' => '</div>'
+          '#suffix' => '</div>',
+          'headers' => array(
+            '#theme' => 'item_list',
+            '#attributes' => array('id' => 'session-headers'),
+            '#items' => array(
+              array(
+                'data' => t('Volunteer name'), 
+                'class' => array('field-name-field-session-user'),
+              ),
+              array(
+                'data' => t('Hours'), 
+                'class' => array('field-name-field-session-hours',)
+              ),
+              array(
+                'data' => t('Override?'),
+                'class' => array('field-name-field-session-override-duration',)
+              ),
+              array(
+                'data' => t('Duration'),
+                'class' => array('field-name-field-session-duration',)
+              ),
+              array(
+                'data' => t('Notes'),
+                'class' => array('field-name-field-session-notes',)
+              ),
+            ),
+          ),
         ) + $session_elements,
       );
     }
@@ -742,8 +735,8 @@ function _townsquare_volunteer_create_volunteer_session($node) {
  */
 function townsquare_volunteer_field_widget_info() {
   return array(
-    'chosen_date' => array(
-      'label' => t('Chosen Select Date'),
+    'townsquare_session_date' => array(
+      'label' => t('Townsquare session date'),
       'field types' => array('date', 'datestamp', 'datetime'),
       'behaviors' => array(
         'multiple values' => FIELD_BEHAVIOR_DEFAULT,
@@ -760,7 +753,7 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
   $field_type = $field['type'];
 
   switch ($instance['widget']['type']) {
-    case 'chosen_date':
+    case 'townsquare_session_date':
       $event = node_load(array($form['#node']->field_session_event[$langcode][0]['target_id']));
       
       $tz_db = timezone_open($event->field_event_date['und'][0]['timezone_db']);
