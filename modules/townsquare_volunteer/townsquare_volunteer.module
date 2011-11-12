@@ -498,7 +498,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
                 'class' => array('field-name-field-session-hours',)
               ),
               array(
-                'data' => t('Override?'),
+                'data' => t('Set duration'),
                 'class' => array('field-name-field-session-override-duration',)
               ),
               array(
