@@ -330,7 +330,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '10';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
-
   $export['townsquare_events'] = $view;
 
   $view = new view;
@@ -947,7 +946,6 @@ function townsquare_volunteer_views_default_views() {
     'entity_view_1' => 'entity_view_1',
     'entity_view_2' => 'entity_view_2',
   );
-
   $export['townsquare_volunteer_sessions'] = $view;
 
   $view = new view;
@@ -1599,8 +1597,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-secondary-tools';
   $handler->display->display_options['tab_options']['weight'] = '0';
-
-
   $export['townsquare_volunteers'] = $view;
 
   return $export;

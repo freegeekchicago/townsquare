@@ -244,7 +244,7 @@ function townsquare_volunteer_field_default_fields() {
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
-        'type' => 'chosen_date',
+        'type' => 'townsquare_session_date',
         'weight' => '3',
       ),
     ),
@@ -527,11 +527,12 @@ function townsquare_volunteer_field_default_fields() {
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 1,
         'module' => 'entityreference',
         'settings' => array(
           'match_operator' => 'CONTAINS',
           'path' => '',
-          'size' => 60,
+          'size' => '28',
         ),
         'type' => 'entityreference_autocomplete',
         'weight' => '2',
