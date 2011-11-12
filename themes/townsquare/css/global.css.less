@@ -9,11 +9,12 @@
 /* -- LESS declarations -- */
 // Less CSS variables {{{
 @color_yellow: #fdffa9;
+@color_dark_yellow: #ebbb3e;
 @color_green: #267e26;
 @color_bright_green: #08ad0a;
 @color_black: #000000;
 @color_white: #ffffff;
-@color_dark_gray: #444444;
+@color_dark_gray: #252525;
 @color_medium_gray: #999999;
 @color_medium_dark_gray: #b5b5b5;
 @color_medium_light_gray: #cccccc;
@@ -56,17 +57,16 @@
   .plain;
   .round_corner;
   .gradient;
-  padding-left: 6px;
-  padding-right: 6px;
-  border: 1px solid @color_medium_gray;
+  padding: 2px 6px;
   color: @color_dark_gray !important;
+  border: 1px solid @color_medium_gray;
   text-shadow: 1px 1px 1px @color_pale_gray;
   text-align: center;
   cursor: pointer;
-  :hover { 
+  :hover, :focus { 
     cursor: default; 
     color: @color_black !important;
-    border-color: @color_dark_gray;
+    border-color: @color_black !important;
   }
 }
 .arrow_down(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
@@ -118,17 +118,27 @@ a:link, a:visited {
 // h tags {{{
 h1, h2, h3, h4, h5, h6 {
   .font_arimo;
+  letter-spacing: 0;
 }
 // }}}
 // Tables {{{
 table {
   width: auto;
+  font-size: 14px;
   a {
     .plain;
   }
-  thead th, th {
+  th {
     font-size: 12px;
-    background: @color_medium_light_gray;
+    font-weight: bold;
+    background-color: @color_pale_gray;
+    border: 1px solid @color_white;
+    :hover {
+      background: @color_light_gray;
+    }
+    &.active {
+      background: @color_medium_light_gray;
+    }
   }
 
   td, th {
@@ -146,7 +156,7 @@ table {
       background: none;
       :hover {
         th {
-          background: @color_medium_light_gray;
+          background: @color_light_gray;
         }
         td {
           background: @color_pale_gray;
@@ -174,9 +184,12 @@ input, select, textarea, button {
 
   // These rules are from Formalize, but aren't applied to all element types
   // (like the ones created by jQuery UI)
-  font-size: 13px;
+  font-size: 13px !important;
   font-family: Arial, sans-serif;
   padding: 2px 3px;
+}
+button {
+  font-size: 15px !important;
 }
 
 button:focus,
@@ -187,7 +200,7 @@ select:focus,
 select:active,
 textarea:focus,
 textarea:active {
-  .box_shadow(0 0 4px @color_bright_green);
+  .box_shadow(0 0 6px @color_dark_yellow);
   border-color: @color_dark_gray !important;
 }
 
@@ -302,15 +315,203 @@ button[disabled] {
   }
 }
 // }}}
-// Primary navigation {{{
-#region-navigation-primary {
-  ul, li {
-    .box;
-    padding: 0;
+// Secondary navigation {{{ 
+#region-navigation-secondary {
+  #block-search-form {
+    float: right;
+  }
+}
+// }}}
+// Page title {{{
+#region-page-title {
+  #page-title {
+    font-size: 24px;
     margin: 0;
-    list-style-type: none;
+  }
+}
+// }}}
+// Page title {{{
+#region-breadcrumbs {
+  #breadcrumb {
+    margin-top: 6px;
+    float: right;
+  }
+}
+// }}}
+// Content {{{
+#region-content {
+  margin-top: 14px;
+  .content {
+    a {
+      :hover {
+        background-color: @color_yellow;
+      }
+    }
+    table {
+      a {
+        :hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
+// }}}
+
+/* -- Pages -- */
+// Volunteer manager {{{
+.page-event-edit, .page-event-create {
+  // Node event form {{{
+  .node-event-form {
+    background: @color_pale_gray;
+    padding: 7px 0 0 0;
+
+    .fieldset-description, 
+    .description,
+    .form-item-field-event-date-und-0-all-day, 
+    .form-item-field-event-date-und-0-value .form-required { 
+      display: none;
+    }
+    .fieldset-legend {
+      font-size: 16px;
+    }
+    .field-name-field-event-location {
+      label { 
+        display: inline-block;
+        width: 110px;
+      }
+      input, select {
+        display: inline-block;
+        max-width: 205px;
+      }
+    }
+    .form-item {
+      margin: .5em 0;
+    }
+    textarea {
+      height: 134px;
+    }
+    .grippie {
+      display: none;
+    }
+  }
+  // }}}
+  // Volunteer session UI {{{
+  #volunteer-sessions {
+    margin-bottom: 250px;
+    display: table;
+    border-collapse: collapse;
+    border-bottom: 1px solid @color_medium_light_gray;
+    #session-headers {
+      display: table-row;
+      background-color: @color_light_gray;
+      font-size: 12px;
+      border-left: 1px solid @color_medium_dark_gray;
+      border-top: 1px solid @color_medium_dark_gray;
+      li {
+        display: table-cell;
+        padding: 2px 9px;
+        border-right: 1px solid @color_medium_dark_gray;
+      }
+    }
+    .volunteer-session-form {
+      display: table-row;
+      form > div > div {
+        vertical-align: top;
+        display: table-cell;
+        padding: 8px 9px;
+        border-collapse: collapse;
+        border-top: 1px solid @color_medium_light_gray;
+        border-left: 1px solid @color_medium_light_gray;
+        border-right: 1px solid @color_medium_light_gray;
+      }
+      form {
+        div.ajax-progress,
+        div.description,
+        div.grippie,
+        div.field-widget-options-onoff label {
+          display: none;
+        }
+        .form-actions {
+          background-color: @color_pale_gray;
+        }
+        .form-item, .form-actions {
+          margin: 0;
+        }
+      }
+    }
+    // }}}
+    // Volunteer session fields {{{
+    .field-name-field-session-user {
+      width: 200px;
+      input {
+        width: 200px;
+        padding-right: 16px;
+        background-position: 100% 50px;
+        &.throbbing {
+          background-position: 100% -16px;
+        }
+      }
+    }
+    .field-name-field-session-hours {
+      width: 190px;
+      input, select {
+        width: 80px;
+        border-right: none;
+      }
+      button {
+        .round_corner(0);
+      }
+      .form-item { 
+        display: inline-block;
+        width: 90px;
+      }
+      .form-item-field-session-hours-und-0-value {
+        margin-right: 5px;
+      }
+    }
+    .field-name-field-session-override-duration {
+      width: 80px;
+      text-align: center;
+      .form-item {
+        text-align: center;
+      }
+    }
+    .field-name-field-session-duration {
+      width: 60px;
+      text-align: center;
+      input { 
+        width: 60px;
+        text-align: right;
+      }
+    }
+    .field-name-field-session-notes {
+      width: 175px;
+      textarea {
+        font-size: 12px;
+        line-height: 14px;
+        width: 175px;
+        min-height: 24px;
+        height: 24px;
+        max-height: 63px;
+      }
+    }
+    // }}}
+  }
+}
+// }}}
+
+/* -- Drupal elements -- */
+// Menus and tabs {{{
+ul.menu, div.tabs {
+  margin: 0;
+  ul {
+    margin: 0;
   }
   li {
+    .box;
+    padding: 0;
+    list-style-type: none;
     margin-right: 10px;
     font-size: 13px;
     a {
@@ -346,180 +547,21 @@ button[disabled] {
       font-weight: bold;
     }
   }
-  
+}
+// Tabs/tasks {{{
+div.tabs {
+  padding: 8px 10px 8px 10px;
+  border-bottom: 1px solid @color_light_gray;
+  margin-bottom: 21px;
+  margin-top: -14px;
+  margin-left: -10px;
+  margin-right: -10px;
+  .gradient(@color_white; @color_pale_gray; @color_pale_gray);
 }
 // }}}
-// Secondary navigation {{{ 
-#region-navigation-secondary {
-  #block-search-form {
-    float: right;
-  }
-}
-// }}}
-// Page title {{{
-#region-page-title {
-  #page-title {
-    font-size: 24px;
-    margin: 0;
-  }
-}
-// }}}
-// Page title {{{
-#region-breadcrumbs {
-  #breadcrumb {
-    margin-top: 6px;
-    float: right;
-  }
-}
-// }}}
-// Content {{{
-#region-content {
-  margin-top: 14px;
-  a {
-    :hover {
-      background-color: @color_yellow;
-    }
-  }
-  table {
-    a {
-      :hover {
-        background: none;
-      }
-    }
-  }
-}
 // }}}
 
-/* -- Pages -- */
-// Volunteer manager {{{
-.page-event-edit, .page-event-create {
-  .node-event-form {
-    background: @color_pale_gray;
-    padding: 7px 0 0 0;
-
-    .fieldset-description, 
-    .description,
-    .form-item-field-event-date-und-0-all-day, 
-    .form-item-field-event-date-und-0-value .form-required { 
-      display: none;
-    }
-    .fieldset-legend {
-      font-size: 16px;
-    }
-    .field-name-field-event-location {
-      label { 
-        display: inline-block;
-        width: 110px;
-      }
-      input, select {
-        display: inline-block;
-        max-width: 205px;
-      }
-    }
-    .form-item {
-      margin: .5em 0;
-    }
-  }
-  #volunteer-sessions {
-    margin-bottom: 250px;
-    display: table;
-    border-collapse: collapse;
-    border-bottom: 1px solid @color_medium_light_gray;
-    #session-headers {
-      display: table-row;
-      background-color: @color_light_gray;
-      font-size: 12px;
-      border-left: 1px solid @color_medium_dark_gray;
-      border-top: 1px solid @color_medium_dark_gray;
-      li {
-        display: table-cell;
-        padding: 2px 9px;
-        border-right: 1px solid @color_medium_dark_gray;
-      }
-    }
-    .volunteer-session-form {
-      display: table-row;
-      :hover {
-        background-color: @color_pale_gray;
-      }
-      form > div > div {
-        vertical-align: middle;
-        display: table-cell;
-        padding: 0 9px;
-        border-collapse: collapse;
-        border-top: 1px solid @color_medium_light_gray;
-        border-left: 1px solid @color_medium_light_gray;
-        border-right: 1px solid @color_medium_light_gray;
-      }
-      form {
-        div.ajax-progress,
-        div.description,
-        div.grippie,
-        div.field-widget-options-onoff label {
-          display: none;
-        }
-        .form-actions {
-          background-color: @color_pale_gray;
-        }
-      }
-    }
-
-    // Per field settings. Thought I could avoid this.
-    .field-name-field-session-user {
-      width: 200px;
-      input {
-        width: 200px;
-        padding-right: 16px;
-        background-position: 100% 50px;
-        &.throbbing {
-          background-position: 100% -16px;
-        }
-      }
-    }
-    .field-name-field-session-hours {
-      width: 190px;
-      input, select {
-        width: 80px;
-        border-right: none;
-      }
-      button {
-        .round_corner(0);
-      }
-      .form-item { 
-        display: inline-block;
-        width: 90px;
-      }
-      .form-item-field-session-hours-und-0-value {
-        margin-right: 5px;
-      }
-    }
-    .field-name-field-session-override-duration {
-      width: 60px;
-      text-align: center;
-      .form-item {
-        text-align: center;
-      }
-    }
-    .field-name-field-session-duration {
-      width: 60px;
-      text-align: center;
-      input { 
-        width: 60px;
-        text-align: right;
-      }
-    }
-    .field-name-field-session-notes {
-      width: 175px;
-      textarea {
-        width: 175px;
-        min-height: 24px;
-      }
-    }
-  }
-}
-// }}}
-
-/* -- jQuery UI and misc widgets -- */
+/* -- Widgets (jQuery UI, Date module) -- */
 // Icons and arrows {{{
 .ui-icon {
   position: relative;
