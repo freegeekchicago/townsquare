@@ -171,6 +171,9 @@ input.form-submit, button {
 input, select, textarea, button {
   border: 1px solid @color_medium_gray !important;
   color: @color_black;
+
+  // These rules are from Formalize, but aren't applied to all element types
+  // (like the ones created by jQuery UI)
   font-size: 13px;
   font-family: Arial, sans-serif;
   padding: 2px 3px;
@@ -206,6 +209,10 @@ button[disabled] {
   color: @color_medium_gray;
   border-color: @color_medium_light_gray;
   background: @color_pale_gray;
+}
+
+.fieldset-legend {
+  font-weight: bold;
 }
 
 // }}}
@@ -387,7 +394,31 @@ button[disabled] {
 // Volunteer manager {{{
 .page-event-edit, .page-event-create {
   .node-event-form {
-    .fieldset-description { display: none; }
+    background: @color_pale_gray;
+    padding: 7px 0 0 0;
+
+    .fieldset-description, 
+    .description,
+    .form-item-field-event-date-und-0-all-day, 
+    .form-item-field-event-date-und-0-value .form-required { 
+      display: none;
+    }
+    .fieldset-legend {
+      font-size: 16px;
+    }
+    .field-name-field-event-location {
+      label { 
+        display: inline-block;
+        width: 110px;
+      }
+      input, select {
+        display: inline-block;
+        max-width: 205px;
+      }
+    }
+    .form-item {
+      margin: .5em 0;
+    }
   }
   #volunteer-sessions {
     margin-bottom: 250px;
@@ -534,6 +565,27 @@ button[disabled] {
 .combobox-js-wrapper {
   .ui-button {
     margin-left: -22px;
+  }
+}
+// }}}
+// Date widgets {{{
+.container-inline-date {
+  .form-item {
+    display: inline-block;
+    .form-item {
+      margin: 0;
+    }
+  }
+}
+// }}}
+// Node form {{{
+.node-form {
+  .form-actions {
+    background: @color_light_gray;
+    padding: 5px;
+    button, input {
+      margin-right: 10px;
+    }
   }
 }
 // }}}
