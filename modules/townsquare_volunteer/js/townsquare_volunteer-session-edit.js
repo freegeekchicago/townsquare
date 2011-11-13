@@ -3,7 +3,7 @@
 // Disable duration field if override button isn't checked
 Drupal.behaviors.disableDuration = {
   attach: function(context) {
-    $('.field-name-field-session-override-duration')
+    $('.field-name-field-session-override-duration', context)
       .each(function(i) {
         var field = this;
         TownsquareVolunteer.toggleDuration(field);
