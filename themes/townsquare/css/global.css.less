@@ -15,10 +15,12 @@
 @color_black: #000000;
 @color_white: #ffffff;
 @color_dark_gray: #252525;
+@color_blue: #5294c1;
 @color_medium_gray: #999999;
 @color_medium_dark_gray: #b5b5b5;
 @color_medium_light_gray: #cccccc;
 @color_light_gray: #dddddd;
+@color_medium_pale_gray: #e6e6e6;
 @color_pale_gray: #f3f3f3;
 
 @corner_radius: 4px;
@@ -45,10 +47,10 @@
   -moz-box-shadow: @arguments;
   box-shadow: @arguments;
 }
-.round_corner(@radius: @corner_radius) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  border-radius: @radius;
+.round_corner(@left_top: @default_corner_radius; @right_top: @default_corner_radius; @right_bottom: @default_corner_radius; @left_bottom: @default_corner_radius;) {
+  border-radius: @left_top @right_top @right_bottom @left_bottom;
+  -webkit-border-radius: @left_top @right_top @right_bottom @left_bottom;
+  -moz-border-radius: @left_top @right_top @right_bottom @left_bottom;
   -moz-background-clip: padding; 
   -webkit-background-clip: padding-box; 
   background-clip: padding-box; 
@@ -102,8 +104,9 @@
 /* -- Common elements -- */
 // Body {{{
 body {
-  font-size: 14px;
-  background-color: @color_pale_gray;
+  font-size: 16px;
+  background-color: @color_white;
+  padding-bottom: 35px;
 }
 // }}}
 // Links {{{
@@ -124,12 +127,10 @@ h1, h2, h3, h4, h5, h6 {
 // Tables {{{
 table {
   width: auto;
-  font-size: 14px;
   a {
     .plain;
   }
   th {
-    font-size: 12px;
     font-weight: bold;
     background-color: @color_pale_gray;
     border: 1px solid @color_white;
@@ -231,10 +232,79 @@ button[disabled] {
 // }}}
 // User picture {{{
 .user-picture {
+  display: inline-block;
   img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
+}
+// }}}
+// Text formats {{{
+.big {
+  .font_arimo;
+  font-size: 27px;
+  line-height: 40px;
+}
+// }}}
+// hr {{{
+hr {
+  background-color: @color_medium_light_gray;
+}
+// }}}
+
+/* -- Drupal elements -- */
+// Menus {{{
+ul.menu {
+  margin: 0;
+  ul {
+    margin: 0;
+  }
+  li {
+    .box;
+    padding: 0;
+    list-style-type: none;
+    margin-right: 10px;
+    a {
+      .box;
+      .plain;
+      padding: 0 6px;
+      border: 1px solid @color_green;
+      background-color: @color_white;
+      :hover {
+        background-color: @color_bright_green;
+        border-color: @color_bright_green;
+        color: @color_white;
+      }
+      &.active, &.active:hover {
+        background-color: @color_green;
+        color: @color_white;
+        border-color: @color_green;
+        cursor: default;
+      }
+    }
+  }
+  li#menu-townsquare-toolbar-volunteers,
+  li#menu-townsquare-toolbar-events {
+    margin: 0;
+    a {
+      border-right: none;
+    }
+  }
+  #menu-townsquare-toolbar-admin-people-create,
+  #menu-townsquare-toolbar-event-create {
+    a {
+      padding: 0 6px;
+      font-weight: bold;
+    }
+  }
+}
+// }}}
+
+/* -- Sections -- */
+// Header {{{
+header#section-header {
+  padding-top: 5px;
+  .gradient(@color_pale_gray; @color_pale_gray; @color_medium_pale_gray;)
 }
 // }}}
 
@@ -259,14 +329,6 @@ button[disabled] {
 // Preface (stub) {{{
 #zone-preface-wrapper {}
 // }}}
-// Content {{{
-#zone-content-wrapper {
-  #zone-content {
-    background-color: @color_white;
-    .box_shadow(0 0 12px @color_medium_gray);
-  }
-}
-// }}}
 // Postscript (stub) {{{
 #zone-postscript-wrapper {}
 // }}}
@@ -282,16 +344,15 @@ button[disabled] {
   }
   a {
     .plain; 
-    display: inline-block;
-    padding-right: 7px;
+    display: inliue-block;
     :hover {
       color: @color_bright_green;
     }
   }
   .site-name {
     margin: 0;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 24px;
+    line-height: 24px;
   }
 }
 
@@ -301,7 +362,7 @@ button[disabled] {
   a { .plain; }
   #block-townsquare-core-login {
     float: right;
-    font-size: 12px;
+    font-size: 15px;
     ul, li, div { display: inline; line-height: 1; }
     li {
       list-style-type: none;
@@ -325,16 +386,8 @@ button[disabled] {
 // Page title {{{
 #region-page-title {
   #page-title {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0;
-  }
-}
-// }}}
-// Page title {{{
-#region-breadcrumbs {
-  #breadcrumb {
-    margin-top: 6px;
-    float: right;
   }
 }
 // }}}
@@ -351,6 +404,61 @@ button[disabled] {
       a {
         :hover {
           background: none;
+        }
+      }
+    }
+    ul {
+      li {
+        margin-left: 5px;
+        padding-left: 5px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  h1 {
+    border-bottom: 1px solid @color_medium_gray;  
+  }
+  h2, h3, h4, h5, h6 {
+    border-bottom: 1px solid @color_medium_light_gray;  
+  }
+  footer {
+    padding-top: 15px;
+    margin-bottom: 25px;
+    border-top: 1px solid @color_light_gray;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+// }}}
+// Primary tasks {{{
+#region-primary-tasks {
+  ul {
+    margin: 0;
+    li {
+      display: inline-block;
+      margin-right: 6px;
+      a {
+        display: inline-block;
+        .plain;
+        padding: 0 8px;
+        border-top: 1px solid @color_medium_gray;
+        border-left: 1px solid @color_medium_gray;
+        border-right: 1px solid @color_medium_gray;
+        .round_corner(4px; 4px; 0; 0);
+        background-color: @color_pale_gray;
+        :hover {
+          color: @color_green;
+          background-color: @color_white;
+        } 
+      }
+      &.active {
+        a {
+          color: black;
+          background-color: @color_white;
+          :hover {
+            color: @color_black;
+            cursor: default;
+          }
         }
       }
     }
@@ -382,7 +490,7 @@ button[disabled] {
       }
       input, select {
         display: inline-block;
-        max-width: 205px;
+        max-width: 160px;
       }
     }
     .form-item {
@@ -460,7 +568,7 @@ button[disabled] {
         border-right: none;
       }
       button {
-        .round_corner(0);
+        .round_corner(0; 0; 0; 0);
       }
       .form-item { 
         display: inline-block;
@@ -498,66 +606,6 @@ button[disabled] {
     // }}}
   }
 }
-// }}}
-
-/* -- Drupal elements -- */
-// Menus and tabs {{{
-ul.menu, div.tabs {
-  margin: 0;
-  ul {
-    margin: 0;
-  }
-  li {
-    .box;
-    padding: 0;
-    list-style-type: none;
-    margin-right: 10px;
-    font-size: 13px;
-    a {
-      .box;
-      .plain;
-      padding: 0 4px;
-      border: 1px solid @color_green;
-      background-color: @color_white;
-      :hover {
-        background-color: @color_bright_green;
-        border-color: @color_bright_green;
-        color: @color_white;
-      }
-      &.active, &.active:hover {
-        background-color: @color_green;
-        color: @color_white;
-        border-color: @color_green;
-        cursor: default;
-      }
-    }
-  }
-  li#menu-townsquare-toolbar-volunteers,
-  li#menu-townsquare-toolbar-events {
-    margin: 0;
-    a {
-      border-right: none;
-    }
-  }
-  #menu-townsquare-toolbar-admin-people-create,
-  #menu-townsquare-toolbar-event-create {
-    a {
-      padding: 0 6px;
-      font-weight: bold;
-    }
-  }
-}
-// Tabs/tasks {{{
-div.tabs {
-  padding: 8px 10px 8px 10px;
-  border-bottom: 1px solid @color_light_gray;
-  margin-bottom: 21px;
-  margin-top: -14px;
-  margin-left: -10px;
-  margin-right: -10px;
-  .gradient(@color_white; @color_pale_gray; @color_pale_gray);
-}
-// }}}
 // }}}
 
 /* -- Widgets (jQuery UI, Date module) -- */
@@ -615,6 +663,9 @@ div.tabs {
     display: inline-block;
     .form-item {
       margin: 0;
+    }
+    input {
+      max-width: 130px;
     }
   }
 }
