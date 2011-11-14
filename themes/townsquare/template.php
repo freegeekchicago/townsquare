@@ -42,23 +42,25 @@ function townsquare_menu_link(array $variables) {
  * Implements hook_process_region().
  */
 function townsquare_process_region(&$vars) {
-  if (in_array($vars['elements']['#region'], array('content', 'page_title', 'breadcrumbs', 'branding'))) {
+  if (in_array($vars['elements']['#region'], array('content', 'page_title', 'primary_tasks', 'branding'))) {
     $theme = alpha_get_theme();
-    
     switch ($vars['elements']['#region']) {
-      case 'page_title':
+      case 'primary_tasks':
+        $vars['primary_tasks'] = array(
+          '#theme' => 'menu_local_tasks',
+          '#primary' => menu_primary_local_tasks()
+        );
+        break;
+
+      case 'content':
         $vars['title_prefix'] = $theme->page['title_prefix'];
         $vars['title'] = $theme->page['title'];
         $vars['title_suffix'] = $theme->page['title_suffix'];
         $vars['title_hidden'] = $theme->page['title_hidden'];
-        break;
-
-      case 'breadcrumbs':
-        $vars['breadcrumb'] = $theme->page['breadcrumb'];
-        break;
-
-      case 'content':
-        $vars['tabs'] = $theme->page['tabs'];
+        $vars['secondary_tasks'] = array(
+          '#theme' => 'menu_local_tasks',
+          '#secondary' => menu_secondary_local_tasks()
+        );
         $vars['action_links'] = $theme->page['action_links'];      
         $vars['feed_icons'] = $theme->page['feed_icons'];
         break; 
