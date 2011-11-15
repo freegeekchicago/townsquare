@@ -5,69 +5,61 @@
  */
 
 /**
- * Implementation of hook_filter_default_formats().
+ * Implements hook_filter_default_formats().
  */
 function townsquare_editor_filter_default_formats() {
   $formats = array();
 
-  // Exported format: WYSIWYG Markdown
-  $formats['wysiwyg_markdown'] = array(
-    'format' => 'wysiwyg_markdown',
-    'name' => 'WYSIWYG Markdown',
+  // Exported format: Markdown restricted
+  $formats['markdown'] = array(
+    'format' => 'markdown',
+    'name' => 'Markdown restricted',
+    'cache' => '1',
+    'status' => '1',
+    'weight' => '-10',
+    'filters' => array(
+      'htmLawed' => array(
+        'weight' => '0',
+        'status' => '1',
+        'settings' => array(
+          'htmLawed' => array(
+            'config' => '\'safe\'=>1, \'elements\'=>\'p, blockquote, pre, a, em, strong, cite, code, ol, ul, li, dl, dt, dd\', \'deny_attribute\'=>\'id, style\'',
+            'spec' => '',
+            'help' => 'When WYSIWYG editor is disabled, use Markdown syntax.',
+          ),
+        ),
+      ),
+      'filter_markdown' => array(
+        'weight' => '0',
+        'status' => '1',
+        'settings' => array(),
+      ),
+    ),
+  );
+
+  // Exported format: Markdown advanced
+  $formats['markdown_advanced'] = array(
+    'format' => 'markdown_advanced',
+    'name' => 'Markdown advanced',
     'cache' => '1',
     'status' => '1',
     'weight' => '0',
     'filters' => array(
       'filter_markdown' => array(
+        'weight' => '-48',
+        'status' => '1',
+        'settings' => array(),
+      ),
+      'htmLawed' => array(
         'weight' => '-47',
         'status' => '1',
-        'settings' => array(),
-      ),
-      'htmlpurifier_basic' => array(
-        'weight' => '-45',
-        'status' => '1',
         'settings' => array(
-          'htmlpurifier_help' => 1,
-          'htmlpurifier_basic_config' => array(
-            'Attr.EnableID' => '0',
-            'AutoFormat.AutoParagraph' => '0',
-            'AutoFormat.Linkify' => '0',
-            'AutoFormat.RemoveEmpty' => '1',
-            'HTML.Allowed' => '*[class],
-  a[href],
-  div,p,pre,table,thead,tbody,tr,th,td,h2,h3,h4,h5,h6,
-  img[src|title|alt|width|height],
-  br,span,em,strong,cite,code,blockquote,ul,ol,li,dl,dt,dd',
-            'HTML.ForbiddenAttributes' => '',
-            'HTML.ForbiddenElements' => '',
-            'HTML.SafeObject' => '0',
-            'Output.FlashCompat' => '0',
-            'URI.DisableExternalResources' => '0',
-            'URI.DisableResources' => '0',
-            'Null_URI.Munge' => '1',
+          'htmLawed' => array(
+            'config' => '\'safe\'=>1, \'elements\'=>\'div, p, pre, blockquote, span, table, thead, tbody, tr, th, td, h1, h2, h3, h4, h5, h6, hr, a, em, strong, cite, code, ol, ul, li, dl, dt, dd\', \'deny_attribute\'=>\'id, style\'',
+            'spec' => '',
+            'help' => 'Use Markdown when editor disabled.',
           ),
         ),
-      ),
-      'oembed' => array(
-        'weight' => '-42',
-        'status' => '1',
-        'settings' => array(
-          'oembed_maxwidth' => '',
-          'oembed_maxheight' => '',
-        ),
-      ),
-      'pathologic' => array(
-        'weight' => '-41',
-        'status' => '1',
-        'settings' => array(
-          'local_paths' => '',
-          'absolute' => 1,
-        ),
-      ),
-      'syntaxhighlighter' => array(
-        'weight' => '-40',
-        'status' => '1',
-        'settings' => array(),
       ),
     ),
   );
