@@ -348,7 +348,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
-    5 => '5',
+    6 => '6',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -361,16 +361,20 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
     'nid' => 'nid',
-    'field_event_type' => 'field_event_type',
-    'field_event_date' => 'field_event_date',
-    'field_session_duration' => 'field_session_duration',
     'field_session_hours' => 'field_session_hours',
-    'field_session_notes' => 'field_session_notes',
-    'nid_2' => 'nid_2',
+    'field_session_duration' => 'field_session_duration',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_event_date';
+  $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'nid' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
@@ -378,14 +382,7 @@ function townsquare_volunteer_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_event_type' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_event_date' => array(
+    'field_session_hours' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
@@ -399,27 +396,6 @@ function townsquare_volunteer_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_session_hours' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_session_notes' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nid_2' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
   );
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 1;
@@ -429,6 +405,29 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['relationships']['field_session_event_target_id']['table'] = 'field_data_field_session_event';
   $handler->display->display_options['relationships']['field_session_event_target_id']['field'] = 'field_session_event_target_id';
   $handler->display->display_options['relationships']['field_session_event_target_id']['required'] = 1;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -522,6 +521,12 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['sorts']['field_session_hours_value2']['table'] = 'field_data_field_session_hours';
   $handler->display->display_options['sorts']['field_session_hours_value2']['field'] = 'field_session_hours_value2';
   $handler->display->display_options['sorts']['field_session_hours_value2']['order'] = 'DESC';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['sorts']['title']['order'] = 'DESC';
   /* Contextual filter: Content: Volunteer (field_session_user:target_id) */
   $handler->display->display_options['arguments']['field_session_user_target_id']['id'] = 'field_session_user_target_id';
   $handler->display->display_options['arguments']['field_session_user_target_id']['table'] = 'field_data_field_session_user';
@@ -543,8 +548,8 @@ function townsquare_volunteer_views_default_views() {
   );
   $handler->display->display_options['filters']['type']['group'] = 0;
 
-  /* Display: Admin EVA */
-  $handler = $view->new_display('entity_view', 'Admin EVA', 'entity_view_1');
+  /* Display: User EVA */
+  $handler = $view->new_display('entity_view', 'User EVA', 'entity_view_1');
   $handler->display->display_options['entity_type'] = 'user';
   $handler->display->display_options['bundles'] = array(
     0 => 'user',
@@ -739,9 +744,171 @@ function townsquare_volunteer_views_default_views() {
     'entity_view_2' => 'entity_view_2',
   );
 
-  /* Display: User EVA */
-  $handler = $view->new_display('entity_view', 'User EVA', 'entity_view_2');
+  /* Display: 1 year hours attachment */
+  $handler = $view->new_display('attachment', '1 year hours attachment', 'attachment_4');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Duration */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_session_duration']['label'] = 'Last year';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['path'] = 'event/[field-event-date]';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'volunteer_session' => 'volunteer_session',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Content: Event date -  start date (field_event_date) */
+  $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = '-1 year';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'entity_view_1' => 'entity_view_1',
+    'entity_view_2' => 'entity_view_2',
+  );
+  $export['townsquare_volunteer_sessions'] = $view;
+
+  $view = new view;
+  $view->name = 'townsquare_volunteer_sessions_ad';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Townsquare volunteer sessions (admin)';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Volunteer sessions (admin)';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    5 => '5',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'nid' => 'nid',
+    'field_session_hours' => 'field_session_hours',
+    'field_session_duration' => 'field_session_duration',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_session_hours' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_session_duration' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 1;
+  $handler->display->display_options['style_options']['empty_table'] = 0;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_session_event_target_id']['id'] = 'field_session_event_target_id';
+  $handler->display->display_options['relationships']['field_session_event_target_id']['table'] = 'field_data_field_session_event';
+  $handler->display->display_options['relationships']['field_session_event_target_id']['field'] = 'field_session_event_target_id';
+  $handler->display->display_options['relationships']['field_session_event_target_id']['required'] = 1;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -825,6 +992,257 @@ function townsquare_volunteer_views_default_views() {
     'prefix_suffix' => 1,
   );
   $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  /* Sort criterion: Content: Session hours -  start date (field_session_hours) */
+  $handler->display->display_options['sorts']['field_session_hours_value']['id'] = 'field_session_hours_value';
+  $handler->display->display_options['sorts']['field_session_hours_value']['table'] = 'field_data_field_session_hours';
+  $handler->display->display_options['sorts']['field_session_hours_value']['field'] = 'field_session_hours_value';
+  $handler->display->display_options['sorts']['field_session_hours_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Session hours - end date (field_session_hours:value2) */
+  $handler->display->display_options['sorts']['field_session_hours_value2']['id'] = 'field_session_hours_value2';
+  $handler->display->display_options['sorts']['field_session_hours_value2']['table'] = 'field_data_field_session_hours';
+  $handler->display->display_options['sorts']['field_session_hours_value2']['field'] = 'field_session_hours_value2';
+  $handler->display->display_options['sorts']['field_session_hours_value2']['order'] = 'DESC';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['sorts']['title']['order'] = 'DESC';
+  /* Contextual filter: Content: Volunteer (field_session_user:target_id) */
+  $handler->display->display_options['arguments']['field_session_user_target_id']['id'] = 'field_session_user_target_id';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['table'] = 'field_data_field_session_user';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['field'] = 'field_session_user_target_id';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['field_session_user_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_session_user_target_id']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_session_user_target_id']['not'] = 0;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'volunteer_session' => 'volunteer_session',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+
+  /* Display: Total hours attachment */
+  $handler = $view->new_display('attachment', 'Total hours attachment', 'attachment_1');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Duration */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_session_duration']['label'] = 'Total hours';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['path'] = 'event/[field-event-date]';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'entity_view_1' => 'entity_view_1',
+    'entity_view_2' => 'entity_view_2',
+  );
+
+  /* Display: 1 month hours attachment */
+  $handler = $view->new_display('attachment', '1 month hours attachment', 'attachment_2');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Duration */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_session_duration']['label'] = 'Last quarter';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['path'] = 'event/[field-event-date]';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'volunteer_session' => 'volunteer_session',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Content: Event date -  start date (field_event_date) */
+  $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = '-1 month';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'entity_view_1' => 'entity_view_1',
+    'entity_view_2' => 'entity_view_2',
+  );
+
+  /* Display: 3 month hours attachment */
+  $handler = $view->new_display('attachment', '3 month hours attachment', 'attachment_3');
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Duration */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_session_duration']['label'] = 'Last month';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['path'] = 'event/[field-event-date]';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'volunteer_session' => 'volunteer_session',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 0;
+  /* Filter criterion: Content: Event date -  start date (field_event_date) */
+  $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = '-3 months';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'entity_view_1' => 'entity_view_1',
+    'entity_view_2' => 'entity_view_2',
+  );
+
+  /* Display: Admin EVA */
+  $handler = $view->new_display('entity_view', 'Admin EVA', 'entity_view_2');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
@@ -873,6 +1291,66 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 0;
+  /* Field: Content: Session hours */
+  $handler->display->display_options['fields']['field_session_hours']['id'] = 'field_session_hours';
+  $handler->display->display_options['fields']['field_session_hours']['table'] = 'field_data_field_session_hours';
+  $handler->display->display_options['fields']['field_session_hours']['field'] = 'field_session_hours';
+  $handler->display->display_options['fields']['field_session_hours']['label'] = 'Hours';
+  $handler->display->display_options['fields']['field_session_hours']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_hours']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_session_hours']['empty'] = 'Not specified';
+  $handler->display->display_options['fields']['field_session_hours']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_hours']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  $handler->display->display_options['fields']['field_session_hours']['field_api_classes'] = 0;
+  /* Field: Content: Duration */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
   $handler->display->display_options['entity_type'] = 'user';
   $handler->display->display_options['bundles'] = array(
     0 => 'user',
@@ -946,7 +1424,7 @@ function townsquare_volunteer_views_default_views() {
     'entity_view_1' => 'entity_view_1',
     'entity_view_2' => 'entity_view_2',
   );
-  $export['townsquare_volunteer_sessions'] = $view;
+  $export['townsquare_volunteer_sessions_ad'] = $view;
 
   $view = new view;
   $view->name = 'townsquare_volunteers';
