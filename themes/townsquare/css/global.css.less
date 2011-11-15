@@ -118,10 +118,18 @@ a:link, a:visited {
   }
 }
 // }}}
+// Line height for text grid {{{
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  line-height: 26px;
+}
+// }}}
 // h tags {{{
 h1, h2, h3, h4, h5, h6 {
   .font_arimo;
   letter-spacing: 0;
+}
+h1, h2, h3, h4 {
+  line-height: 52px;
 }
 // }}}
 // Tables {{{
@@ -242,8 +250,8 @@ button[disabled] {
 // Text formats {{{
 .big {
   .font_arimo;
-  font-size: 27px;
-  line-height: 40px;
+  font-size: 30px;
+  line-height: 52px;
 }
 // }}}
 // hr {{{
@@ -252,10 +260,13 @@ hr {
 }
 // }}}
 
+
 /* -- Drupal elements -- */
 // Menus {{{
 ul.menu {
   margin: 0;
+  font-size: 14px;
+  line-height: 22px;
   ul {
     margin: 0;
   }
@@ -267,7 +278,7 @@ ul.menu {
     a {
       .box;
       .plain;
-      padding: 0 6px;
+      padding: 0 8px;
       border: 1px solid @color_green;
       background-color: @color_white;
       :hover {
@@ -418,9 +429,6 @@ header#section-header {
   h1 {
     border-bottom: 1px solid @color_medium_gray;  
   }
-  h2, h3, h4, h5, h6 {
-    border-bottom: 1px solid @color_medium_light_gray;  
-  }
   footer {
     padding-top: 15px;
     margin-bottom: 25px;
@@ -433,6 +441,8 @@ header#section-header {
 // Primary tasks {{{
 #region-primary-tasks {
   ul {
+    font-size: 14px;
+    line-height: 22px;
     margin: 0;
     li {
       display: inline-block;
@@ -445,7 +455,7 @@ header#section-header {
         border-left: 1px solid @color_medium_gray;
         border-right: 1px solid @color_medium_gray;
         .round_corner(4px; 4px; 0; 0);
-        background-color: @color_pale_gray;
+        background-color: @color_light_gray;
         :hover {
           color: @color_green;
           background-color: @color_white;
