@@ -330,7 +330,6 @@ header#section-header {
 // Header {{{
 #zone-header-wrapper {
   .font_arimo;
-  margin-bottom: 12px;
 }
 // }}}
 // Title {{{
@@ -362,8 +361,8 @@ header#section-header {
   }
   .site-name {
     margin: 0;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 30px;
   }
 }
 
@@ -374,6 +373,7 @@ header#section-header {
   #block-townsquare-core-login {
     float: right;
     font-size: 15px;
+    position: relative;
     ul, li, div { display: inline; line-height: 1; }
     li {
       list-style-type: none;
@@ -384,21 +384,52 @@ header#section-header {
       width: 20px;
       height: 20px;
     }
+    .logged-out-block {
+      width: 210px;
+      padding: 10px;
+      border: 1px solid @color_medium_gray;
+      position: absolute;
+      right: 0;
+      z-index: 10;
+      background-color: @color_white;
+      .box_shadow(2px 2px 6px @color_medium_light_gray);
+      h2 {
+        font-size: 15px;
+        line-height: 15px;
+        margin-bottom: 5px;
+      }
+      .form-item {
+        .box;
+        width: 210px;
+        margin: 0 0 5px 0;
+        label {
+          .box;
+          font-size: 13px;
+          padding-top: 3px;
+          width: 70px;
+          margin-right: 10px;
+        }
+        input {
+          font-size: 12px;
+          width: 130px;
+        }
+      }
+      input.form-submit {
+        margin-right: 10px;
+      }
+    }
   }
+}
+// }}}
+// Primary navigation {{{
+#region-navigation-primary {
+  margin-bottom: 10px;
 }
 // }}}
 // Secondary navigation {{{ 
 #region-navigation-secondary {
   #block-search-form {
     float: right;
-  }
-}
-// }}}
-// Page title {{{
-#region-page-title {
-  #page-title {
-    font-size: 28px;
-    margin: 0;
   }
 }
 // }}}

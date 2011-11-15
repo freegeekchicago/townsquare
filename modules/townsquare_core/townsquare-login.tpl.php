@@ -1,4 +1,6 @@
 <?php if (!$user->uid): ?>
+  <div class="logged-out-block">
+  <h2><?php print t('Login'); ?></h2>
   <?php 
     $form = drupal_get_form('user_login_block');
     $form['links'] = array(
@@ -9,6 +11,7 @@
     );
     print render($form);
   ?>
+  </div>
 <?php else: ?>
   <div class="login-wrapper">
     <div class="login-username">
