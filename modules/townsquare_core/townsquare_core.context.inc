@@ -26,29 +26,23 @@ function townsquare_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'menu-menu-townsquare-toolbar' => array(
-          'module' => 'menu',
-          'delta' => 'menu-townsquare-toolbar',
-          'region' => 'toolbar',
-          'weight' => '-15',
-        ),
         'townsquare_core-login' => array(
           'module' => 'townsquare_core',
           'delta' => 'login',
-          'region' => 'toolbar',
-          'weight' => '-15',
+          'region' => 'user_bar',
+          'weight' => '-10',
         ),
-        'townsquare_core-primary_tasks' => array(
-          'module' => 'townsquare_core',
-          'delta' => 'primary_tasks',
-          'region' => 'page_actions',
-          'weight' => '-9',
+        'menu-menu-townsquare-toolbar' => array(
+          'module' => 'menu',
+          'delta' => 'menu-townsquare-toolbar',
+          'region' => 'navigation_primary',
+          'weight' => '-10',
         ),
-        'townsquare_core-secondary_tasks' => array(
-          'module' => 'townsquare_core',
-          'delta' => 'secondary_tasks',
-          'region' => 'page_actions',
-          'weight' => '-8',
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'navigation_secondary',
+          'weight' => '-10',
         ),
       ),
     ),
