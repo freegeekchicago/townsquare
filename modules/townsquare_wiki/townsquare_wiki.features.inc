@@ -9,10 +9,6 @@
  */
 function townsquare_wiki_ctools_plugin_api() {
   list($module, $api) = func_get_args();
-  if ($module == "context" && $api == "context") {
-    return array("version" => "3");
-  }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -36,7 +32,7 @@ function townsquare_wiki_node_info() {
     'wiki' => array(
       'name' => t('Wiki page'),
       'base' => 'node_content',
-      'description' => t('An automatically versioned, collaboratively-edited page. Wiki pages support comments.'),
+      'description' => t('An automatically versioned, collaboratively-edited page. Wiki pages do not currently support comments.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
