@@ -57,15 +57,6 @@ function townsquare_volunteer_theme() {
  */
 function townsquare_volunteer_permission() {
   return array(
-    'access event views' => array(
-      'title' => t('Access event Views'),
-      'description' => t('Access Drupal Views related to events.'),
-    ), 
-    'access public volunteer views' => array(
-      'title' => t('Access public volunteer views'),
-      'description' => t('Access public Drupal Views related to volunteers, 
-        such as a list of all public profiles.'),
-    ), 
     'view own volunteer hours' => array(
       'title' => t('View own volunteer hours'),
       'description' => t('View one\'s own volunteer hours.'),
