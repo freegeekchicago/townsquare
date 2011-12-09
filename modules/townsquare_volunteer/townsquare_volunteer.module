@@ -61,9 +61,9 @@ function townsquare_volunteer_permission() {
       'title' => t('View own volunteer hours'),
       'description' => t('View one\'s own volunteer hours.'),
     ),
-    'view all volunteer hours' => array(
-      'title' => t('View all volunteer hours'),
-      'description' => t('View everyone\'s volunteer hours.'),
+    'administer volunteer hours' => array(
+      'title' => t('Administer volunteer hours'),
+      'description' => t('View and administer everyone\'s volunteer hours.'),
     ),
   );
 }
