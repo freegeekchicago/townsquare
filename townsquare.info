@@ -1,0 +1,60 @@
+
+
+;dependencies[] = field_sql_storage
+;dependencies[] = filter
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = dblog
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = file
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = search
+dependencies[] = syslog
+dependencies[] = taxonomy
+
+dependencies[] = addressfield
+dependencies[] = admin
+dependencies[] = context
+dependencies[] = context_ui
+dependencies[] = ctools
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = date_views
+dependencies[] = diff
+dependencies[] = entity
+dependencies[] = entityreference
+dependencies[] = eva
+dependencies[] = features
+dependencies[] = gplib
+dependencies[] = gravatar
+dependencies[] = htmLawed
+dependencies[] = less
+dependencies[] = libraries
+dependencies[] = markdown
+dependencies[] = markdownify
+dependencies[] = og
+dependencies[] = og_access
+dependencies[] = og_context
+dependencies[] = og_ui
+dependencies[] = rb_misc
+dependencies[] = rb_views
+dependencies[] = rules
+dependencies[] = rules_admin
+dependencies[] = rules_scheduler
+dependencies[] = strongarm
+dependencies[] = views
+dependencies[] = views_ui
+;dependencies[] = combobox
+
+dependencies[] = townsquare_core
+dependencies[] = townsquare_event
+dependencies[] = townsquare_volunteer
+dependencies[] = townsquare_editor
+dependencies[] = townsquare_wiki
+
