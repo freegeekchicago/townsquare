@@ -3,20 +3,83 @@ core = 7.x
 projects[drupal][type] = core
 projects[drupal][version] = "7.10"
 
-projects[views_bulk_operations][version] = "3.0-beta3"
 projects[addressfield][version] = "1.0-beta2"
-projects[admin][version] = "2.0-beta3"
-projects[boxes][version] = "1.0-beta6"
-projects[ctools][version] = "1.0-rc1"
-projects[coder][version] = "1.0"
+projects[addressfield][subdir] = "contrib"
+
+projects[admin][iversion] = "2.0-beta3"
+projects[admin][subdir] = "contrib"
+
 projects[context][version] = "3.0-beta2"
+projects[context][subdir] = "contrib"
+
+projects[ctools][version] = "1.0-rc1"
+projects[ctools][subdir] = "contrib"
+
 projects[date][version] = "2.x-dev"
-projects[delta][version] = "3.0-beta9"
+projects[date][subdir] = "contrib"
+
 projects[devel][version] = "1.2"
+projects[devel][subdir] = "contrib"
+
 projects[diff][version] = "2.0"
+projects[diff][subdir] = "contrib"
+
 projects[entity][version] = "1.0-rc1"
+projects[entity][subdir] = "contrib"
+
 projects[entityreference][version] = "1.0-beta2"
+projects[entityreference][subdir] = "contrib"
+
 projects[eva][version] = "1.1"
-projects[rb][version] = "1.x-dev"
+projects[eva][subdir] = "contrib"
+
 projects[features][version] = "1.x-dev"
+projects[features][subdir] = "contrib"
+
+projects[grammar_parser_lib][version] = "1.x-dev"
+projects[grammar_parser_lib][subdir] = "contrib"
+
+projects[gravatar][version] = "1.1"
+projects[gravatar][subdir] = "contrib"
+
+projects[htmLawed][version] = "3.0"
+projects[htmLawed][subdir] = "contrib"
+
+projects[less][version] = "2.4"
+projects[less][subdir] = "contrib"
+
+projects[libraries][version] = "1.0"
+projects[libraries][subdir] = "contrib"
+
+projects[markdown][version] = "1.0"
+projects[markdown][subdir] = "contrib"
+
+projects[og][version] = "1.3"
+projects[og][subdir] = "contrib"
+
+projects[omega_tools][version] = "3.0-rc3"
+projects[omega_tools][subdir] = "contrib"
+
+projects[rb][version] = "1.x-dev"
+projects[rb][subdir] = "contrib"
+
+projects[rules][version] = "2.0"
+projects[rules][subdir] = "contrib"
+
+projects[strongarm][version] = "2.0-beta4"
+projects[strongarm][subdir] = "contrib"
+
+projects[views][version] = "3.x-dev"
+projects[views][subdir] = "contrib"
+
+projects[views_php][version] = "1.x-dev"
+projects[views_php][subdir] = "contrib"
+
+projects[wysiwyg][version] = "2.x-dev"
+projects[wysiwyg][subdir] = "contrib"
+
+; Themes
+projects[omega][subdir] = "sites"
+projects[omega][version] = "3.0"
+
 
