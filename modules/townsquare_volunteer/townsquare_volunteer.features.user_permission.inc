@@ -10,25 +10,6 @@
 function townsquare_volunteer_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access event views
-  $permissions['access event views'] = array(
-    'name' => 'access event views',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'staff',
-    ),
-    'module' => 'townsquare_volunteer',
-  );
-
-  // Exported permission: access public volunteer views
-  $permissions['access public volunteer views'] = array(
-    'name' => 'access public volunteer views',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'townsquare_volunteer',
-  );
-
   // Exported permission: create volunteer_session content
   $permissions['create volunteer_session content'] = array(
     'name' => 'create volunteer_session content',
@@ -79,8 +60,8 @@ function townsquare_volunteer_user_default_permissions() {
   );
 
   // Exported permission: view all volunteer hours
-  $permissions['view all volunteer hours'] = array(
-    'name' => 'view all volunteer hours',
+  $permissions['administer volunteer hours'] = array(
+    'name' => 'administer volunteer hours',
     'roles' => array(
       0 => 'administrator',
       1 => 'staff',
