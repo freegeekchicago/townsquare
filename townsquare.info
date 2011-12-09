@@ -1,4 +1,8 @@
+name = Townsquare
+description = Townsquare distribution
 
+version = 7.x-1.0-alpha5
+core = 7.x
 
 ;dependencies[] = field_sql_storage
 ;dependencies[] = filter
@@ -19,6 +23,7 @@ dependencies[] = taxonomy
 
 dependencies[] = addressfield
 dependencies[] = admin
+dependencies[] = combobox
 dependencies[] = context
 dependencies[] = context_ui
 dependencies[] = ctools
@@ -50,7 +55,6 @@ dependencies[] = rules_scheduler
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = views_ui
-;dependencies[] = combobox
 
 dependencies[] = townsquare_core
 dependencies[] = townsquare_event
@@ -58,3 +62,4 @@ dependencies[] = townsquare_volunteer
 dependencies[] = townsquare_editor
 dependencies[] = townsquare_wiki
 
+files[] = townsquare.profile

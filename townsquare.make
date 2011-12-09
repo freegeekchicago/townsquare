@@ -9,6 +9,12 @@ projects[addressfield][subdir] = "contrib"
 projects[admin][iversion] = "2.0-beta3"
 projects[admin][subdir] = "contrib"
 
+projects[combobox][type] = "module"
+projects[combobox][subdir] = "contrib"
+projects[combobox][download][type] = "git"
+projects[combobox][download][url] = "git://github.com/ecenter/combobox"
+projects[combobox][download][branch] = "7.x-1.0-dev"
+
 projects[context][version] = "3.0-beta2"
 projects[context][subdir] = "contrib"
 
@@ -53,6 +59,12 @@ projects[libraries][subdir] = "contrib"
 
 projects[markdown][version] = "1.0"
 projects[markdown][subdir] = "contrib"
+
+projects[markdownify][type] = "module"
+projects[markdownify][subdir] = "contrib"
+projects[markdownify][download][type] = "git"
+projects[markdownify][download][url] = "git://github.com/ecenter/markdownify"
+projects[markdownify][download][branch] = "7.x-1.0-dev"
 
 projects[og][version] = "1.3"
 projects[og][subdir] = "contrib"
