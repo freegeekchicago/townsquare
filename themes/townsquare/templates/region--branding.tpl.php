@@ -2,7 +2,7 @@
   <div<?php print $content_attributes; ?>>
     <?php if ($logo_img || $site_name || $site_slogan): ?>
     <div class="branding-data clearfix">
-      <a href="<?php print $url; ?>">
+      <a href="<?php print $site_url; ?>">
       <?php if ($logo_img): ?>
       <div class="logo-img">
         <?php print $logo_img; ?>
