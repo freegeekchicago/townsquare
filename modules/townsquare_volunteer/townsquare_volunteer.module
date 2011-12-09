@@ -248,9 +248,6 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
  */
 function townsquare_volunteer_volunteer_session_node_submit($form, &$form_state) {
   // Alter redirect
-  //dpm($form);
-  //dpm($form_state);
-  //dpm(debug_backtrace());
   $form_state['redirect'] = 'event/'. $form_state['node']->field_session_event['und'][0]['nid'] .'/edit';
 }
 
