@@ -41,18 +41,6 @@ function townsquare_volunteer_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_theme().
- */
-function townsquare_volunteer_theme() {
-  return array(
-    // Override theme_field_multiple_value_form to change field order
-    'townsquare_volunteer_field_multiple_value_form' => array(
-      'render element' => 'element',  
-    ),
-  );
-}
-
-/**
  * Implements hook_permission().
  */
 function townsquare_volunteer_permission() {
@@ -179,7 +167,6 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
 
     $node = $form['#node'];
     $nid = (!empty($node->nid)) ? $node->nid : 'new';
-    $event_node = node_load($node->field_session_event['und'][0]['nid']);
 
     // Disable title (handled in node_presave);
     $form['title']['#access'] = FALSE;
