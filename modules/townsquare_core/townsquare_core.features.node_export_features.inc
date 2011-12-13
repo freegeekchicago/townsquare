@@ -30,7 +30,6 @@ function townsquare_core_node_export_features_default() {
     \'uuid\' => \'14843add-7d36-4684-7d93-55b76ba7f890\',
     \'revision_timestamp\' => \'1323752116\',
     \'revision_uid\' => \'1\',
-    \'group_audience\' => array(),
     \'body\' => array(
       \'und\' => array(
         \'0\' => array(
