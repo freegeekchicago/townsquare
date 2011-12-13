@@ -66,9 +66,6 @@ projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "git://github.com/ecenter/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
-projects[og][version] = "1.3"
-projects[og][subdir] = "contrib"
-
 projects[omega_tools][version] = "3.0-rc3"
 projects[omega_tools][subdir] = "contrib"
 
@@ -81,7 +78,7 @@ projects[rules][subdir] = "contrib"
 projects[strongarm][version] = "2.0-beta4"
 projects[strongarm][subdir] = "contrib"
 
-projects[views][version] = "3.x-dev"
+projects[views][version] = "3.0-rc3"
 projects[views][subdir] = "contrib"
 
 projects[views_php][version] = "1.x-dev"
