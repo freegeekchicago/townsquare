@@ -13,19 +13,7 @@ function townsquare_core_user_default_roles() {
   // Exported role: administrator
   $roles['administrator'] = array(
     'name' => 'administrator',
-    'weight' => '4',
-  );
-
-  // Exported role: staff
-  $roles['staff'] = array(
-    'name' => 'staff',
-    'weight' => '3',
-  );
-
-  // Exported role: volunteer
-  $roles['volunteer'] = array(
-    'name' => 'volunteer',
-    'weight' => '2',
+    'weight' => '5',
   );
 
   return $roles;
