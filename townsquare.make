@@ -24,6 +24,9 @@ projects[ctools][subdir] = "contrib"
 projects[date][version] = "2.x-dev"
 projects[date][subdir] = "contrib"
 
+projects[delta][version] = "3.0-beta9"
+projects[delta][subdir] = "contrib"
+
 projects[devel][version] = "1.2"
 projects[devel][subdir] = "contrib"
 
@@ -91,7 +94,6 @@ projects[wysiwyg][version] = "2.x-dev"
 projects[wysiwyg][subdir] = "contrib"
 
 ; Themes
-projects[omega][subdir] = "sites"
 projects[omega][version] = "3.0"
 
 ; Libraries

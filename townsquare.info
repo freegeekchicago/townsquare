@@ -27,6 +27,7 @@ dependencies[] = date
 dependencies[] = date_api
 dependencies[] = date_popup
 dependencies[] = date_views
+dependencies[] = delta
 dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entityreference
