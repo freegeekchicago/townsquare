@@ -42,39 +42,37 @@ function townsquare_menu_link(array $variables) {
  * Implements hook_process_region().
  */
 function townsquare_process_region(&$vars) {
-  if (in_array($vars['elements']['#region'], array('content', 'page_title', 'primary_tasks', 'branding'))) {
-    $theme = alpha_get_theme();
-    switch ($vars['elements']['#region']) {
-      case 'primary_tasks':
-        $vars['primary_tasks'] = array(
-          '#theme' => 'menu_local_tasks',
-          '#primary' => menu_primary_local_tasks()
-        );
-        break;
+  $theme = alpha_get_theme();
+  switch ($vars['elements']['#region']) {
+    case 'primary_tasks':
+      $vars['primary_tasks'] = array(
+        '#theme' => 'menu_local_tasks',
+        '#primary' => menu_primary_local_tasks()
+      );
+      break;
 
-      case 'content':
-        $vars['title_prefix'] = $theme->page['title_prefix'];
-        $vars['title'] = $theme->page['title'];
-        $vars['title_suffix'] = $theme->page['title_suffix'];
-        $vars['title_hidden'] = $theme->page['title_hidden'];
-        $vars['secondary_tasks'] = array(
-          '#theme' => 'menu_local_tasks',
-          '#secondary' => menu_secondary_local_tasks()
-        );
-        $vars['action_links'] = $theme->page['action_links'];      
-        $vars['feed_icons'] = $theme->page['feed_icons'];
-        break; 
-      
-      case 'branding':
-        $vars['site_name'] = $theme->page['site_name'];
-        $vars['site_slogan'] = $theme->page['site_slogan'];
-        $vars['site_url'] = url('<front>');
-        $vars['site_name_hidden'] = $theme->page['site_name_hidden'];
-        $vars['site_slogan_hidden'] = $theme->page['site_slogan_hidden'];
-        $vars['logo'] = $theme->page['logo'];
-        $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="' . $vars['site_name'] . '" id="logo" />' : '';
-        break;      
-    }
+    case 'content':
+      $vars['title_prefix'] = $theme->page['title_prefix'];
+      $vars['title'] = $theme->page['title'];
+      $vars['title_suffix'] = $theme->page['title_suffix'];
+      $vars['title_hidden'] = $theme->page['title_hidden'];
+      $vars['secondary_tasks'] = array(
+        '#theme' => 'menu_local_tasks',
+        '#secondary' => menu_secondary_local_tasks()
+      );
+      $vars['action_links'] = $theme->page['action_links'];      
+      $vars['feed_icons'] = $theme->page['feed_icons'];
+      break; 
+    
+    case 'branding':
+      $vars['site_name'] = $theme->page['site_name'];
+      $vars['site_slogan'] = $theme->page['site_slogan'];
+      $vars['site_url'] = url('<front>');
+      $vars['site_name_hidden'] = $theme->page['site_name_hidden'];
+      $vars['site_slogan_hidden'] = $theme->page['site_slogan_hidden'];
+      $vars['logo'] = $theme->page['logo'];
+      $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="' . $vars['site_name'] . '" id="logo" />' : '';
+      break;
   }
 }
 
