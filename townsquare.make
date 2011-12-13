@@ -69,6 +69,9 @@ projects[markdownify][download][branch] = "7.x-1.0-dev"
 projects[omega_tools][version] = "3.0-rc3"
 projects[omega_tools][subdir] = "contrib"
 
+projects[node_export][version] = "3.x-dev"
+projects[node_export][subdir] = "contrib"
+
 projects[rb][version] = "1.x-dev"
 projects[rb][subdir] = "contrib"
 
