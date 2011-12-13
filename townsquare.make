@@ -84,6 +84,9 @@ projects[rules][subdir] = "contrib"
 projects[strongarm][version] = "2.0-beta4"
 projects[strongarm][subdir] = "contrib"
 
+projects[uuid][version] = "1.0-alpha2"
+projects[uuid][subdir] = "contrib"
+
 projects[views][version] = "3.0-rc3"
 projects[views][subdir] = "contrib"
 
