@@ -5,4 +5,4 @@ projects[drupal][version] = "7.10"
 
 projects[townsquare][type] = "profile"
 projects[townsquare][download][type] = "git"
-projects[townsquare][download][url] = "git://github.com/eads/townsquare"
+projects[townsquare][download][url] = "git://github.com/freegeek/townsquare"
