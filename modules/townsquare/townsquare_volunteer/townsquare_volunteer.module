@@ -425,7 +425,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
       node_save($new_session);
       $session_elements[] = drupal_get_form('volunteer_session_node_form', 
         $new_session);
-      $session_elements[] = $form;
     }
 
     $summary = array(
