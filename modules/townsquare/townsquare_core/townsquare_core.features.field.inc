@@ -93,7 +93,6 @@ function townsquare_core_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Groups audience');
 
   return $fields;
 }
