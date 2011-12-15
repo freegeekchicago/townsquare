@@ -285,8 +285,8 @@ function townsquare_event_field_default_fields() {
       'settings' => array(
         'allowed_values' => array(
           0 => array(
-            'parent' => '0',
             'vocabulary' => 'event_type',
+            'parent' => '0',
           ),
         ),
         'field_permissions' => array(
@@ -329,7 +329,7 @@ function townsquare_event_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_event_type',
       'label' => 'Event type',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),

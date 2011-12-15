@@ -15,6 +15,7 @@ function townsquare_event_user_default_permissions() {
     'name' => 'create event content',
     'roles' => array(
       0 => 'staff',
+      1 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -25,6 +26,7 @@ function townsquare_event_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -35,6 +37,7 @@ function townsquare_event_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -45,6 +48,7 @@ function townsquare_event_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -55,6 +59,7 @@ function townsquare_event_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );

@@ -16,17 +16,13 @@ function townsquare_event_menu_default_menu_links() {
     'link_path' => 'events',
     'router_path' => 'events',
     'link_title' => 'Events',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'View, filter, and edit events',
-      ),
-    ),
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-47',
+    'weight' => '10',
   );
   // Translatables
   // Included for use with string extractors like potx.
