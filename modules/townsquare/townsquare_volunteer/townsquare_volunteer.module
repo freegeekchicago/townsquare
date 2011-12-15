@@ -580,6 +580,7 @@ function townsquare_volunteer_event_sessions($nid) {
       ->propertyCondition('type', 'volunteer_session')
       ->fieldCondition('field_session_event', 'target_id', $nid, '=')
       ->fieldCondition('field_session_override_duration', 'value', 1, '=')
+      ->fieldCondition('field_session_user', 'target_id', 0, '!=')
       ->fieldOrderBy('field_session_duration', 'value', 'ASC');
 
     $duration_result = $duration_query->execute();
@@ -593,7 +594,9 @@ function townsquare_volunteer_event_sessions($nid) {
       ->propertyCondition('type', 'volunteer_session')
       ->fieldCondition('field_session_event', 'target_id', $nid, '=')
       ->fieldCondition('field_session_override_duration', 'value', 0, '=')
-      ->fieldOrderBy('field_session_duration', 'value', 'ASC');
+      ->fieldCondition('field_session_user', 'target_id', 0, '!=')
+      ->fieldOrderBy('field_session_hours', 'value', 'ASC')
+      ->fieldOrderBy('field_session_hours', 'value2', 'ASC');
     
     $date_result = $date_query->execute();
 
@@ -749,7 +752,7 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
 
   switch ($instance['widget']['type']) {
     case 'townsquare_session_date':
-      $event = node_load(array($form['#node']->field_session_event[$langcode][0]['target_id']));
+      $event = node_load($form['#node']->field_session_event[$langcode][0]['target_id']);
       
       $tz_db = timezone_open($event->field_event_date['und'][0]['timezone_db']);
       $tz = timezone_open($event->field_event_date['und'][0]['timezone']);
