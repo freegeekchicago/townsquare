@@ -1440,10 +1440,8 @@ function townsquare_volunteer_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Volunteers';
   $handler->display->display_options['group_by'] = TRUE;
-  $handler->display->display_options['access']['type'] = 'role';
-  $handler->display->display_options['access']['role'] = array(
-    5 => '5',
-  );
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'administer volunteer hours';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
@@ -1533,7 +1531,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_session_user_node']['id'] = 'reverse_field_session_user_node';
   $handler->display->display_options['relationships']['reverse_field_session_user_node']['table'] = 'users';
   $handler->display->display_options['relationships']['reverse_field_session_user_node']['field'] = 'reverse_field_session_user_node';
-  $handler->display->display_options['relationships']['reverse_field_session_user_node']['required'] = 1;
+  $handler->display->display_options['relationships']['reverse_field_session_user_node']['required'] = 0;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_session_event_target_id']['id'] = 'field_session_event_target_id';
   $handler->display->display_options['relationships']['field_session_event_target_id']['table'] = 'field_data_field_session_event';
@@ -1620,31 +1618,6 @@ function townsquare_volunteer_views_default_views() {
   );
   $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
   /* Field: MAX(Content: Nid) */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['relationship'] = 'field_session_event_target_id';
-  $handler->display->display_options['fields']['nid']['group_type'] = 'max';
-  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
-  /* Field: MAX(Content: Nid) */
   $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['fields']['nid_1']['table'] = 'node';
   $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
@@ -1669,40 +1642,11 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['nid_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nid_1']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['nid_1']['link_to_node'] = 0;
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Last event';
-  $handler->display->display_options['fields']['php']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['php']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['php']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['php']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['php']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['php']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['php']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['php']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['php']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php
-  $event = node_load(array($row->nid));
-  print l($event->title, \'event/\'. $row->nid .\'/edit\', array(\'fragment\' => \'volunteer-session-form-\'. $row->nid_1));
-  ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: User: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'users';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Settings';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
@@ -1720,7 +1664,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['text'] = 'Settings';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
   /* Sort criterion: User: Name */
   $handler->display->display_options['sorts']['name']['id'] = 'name';
   $handler->display->display_options['sorts']['name']['table'] = 'users';
@@ -1740,19 +1684,6 @@ function townsquare_volunteer_views_default_views() {
     0 => 0,
   );
   $handler->display->display_options['filters']['uid']['group'] = 0;
-  /* Filter criterion: User: Name (raw) */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'users';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['operator'] = 'contains';
-  $handler->display->display_options['filters']['name']['group'] = 0;
-  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['label'] = 'Search volunteer names';
-  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
-  $handler->display->display_options['filters']['name']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['name']['expose']['multiple'] = FALSE;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

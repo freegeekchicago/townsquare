@@ -13,10 +13,7 @@ function townsquare_volunteer_user_default_permissions() {
   // Exported permission: create volunteer_session content
   $permissions['create volunteer_session content'] = array(
     'name' => 'create volunteer_session content',
-    'roles' => array(
-      0 => 'staff',
-    ),
-    'module' => 'node',
+    'roles' => array(),
   );
 
   // Exported permission: delete any volunteer_session content
@@ -24,7 +21,6 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'delete any volunteer_session content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'staff',
     ),
     'module' => 'node',
   );
@@ -34,7 +30,6 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'delete own volunteer_session content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'staff',
     ),
     'module' => 'node',
   );
@@ -44,7 +39,6 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'edit any volunteer_session content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'staff',
     ),
     'module' => 'node',
   );
@@ -54,30 +48,8 @@ function townsquare_volunteer_user_default_permissions() {
     'name' => 'edit own volunteer_session content',
     'roles' => array(
       0 => 'administrator',
-      1 => 'staff',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: view all volunteer hours
-  $permissions['administer volunteer hours'] = array(
-    'name' => 'administer volunteer hours',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'staff',
-    ),
-    'module' => 'townsquare_volunteer',
-  );
-
-  // Exported permission: view own volunteer hours
-  $permissions['view own volunteer hours'] = array(
-    'name' => 'view own volunteer hours',
-    'roles' => array(
-      0 => 'administrator',
-      1 => 'staff',
-      2 => 'volunteer',
-    ),
-    'module' => 'townsquare_volunteer',
   );
 
   return $permissions;
