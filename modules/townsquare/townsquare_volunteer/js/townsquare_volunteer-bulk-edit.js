@@ -28,17 +28,20 @@ Drupal.behaviors.toggleFields = {
       if (!this.value) {
         $('input[name!="field_session_user[und][0][target_id]"], select, textarea', form)
           .not(':checkbox')
+          .not(':submit')
           .attr('readonly', true);
         
-        $('input:checkbox, button', form)
+        $('input:checkbox, input:submit, button', form)
           .attr('disabled', true);
       }
       $(this).change(function() {
         $('input, select, textarea', form)
         .not('name="field_session_user[und][0][target_id]"')
         .not(':checkbox')
+        .not(':submit')
         .removeAttr('readonly');
-        $('input:checkbox, button', form)
+
+        $('input:checkbox, input:submit, button', form)
           .removeAttr('disabled');
       });
     });
