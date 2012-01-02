@@ -36,7 +36,7 @@ projects[diff][subdir] = "contrib"
 projects[entity][version] = "1.0-rc1"
 projects[entity][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0-beta2"
+projects[entityreference][version] = "1.0-beta3"
 projects[entityreference][subdir] = "contrib"
 
 projects[eva][version] = "1.1"
@@ -81,13 +81,13 @@ projects[rb][subdir] = "contrib"
 projects[rules][version] = "2.0"
 projects[rules][subdir] = "contrib"
 
-projects[strongarm][version] = "2.0-beta4"
+projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
 
 projects[uuid][version] = "1.0-alpha2"
 projects[uuid][subdir] = "contrib"
 
-projects[views][version] = "3.0-rc3"
+projects[views][version] = "3.0"
 projects[views][subdir] = "contrib"
 
 projects[views_php][version] = "1.x-dev"
