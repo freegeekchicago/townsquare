@@ -60,6 +60,9 @@
   .round_corner;
   .gradient;
   padding: 2px 6px;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 18px;
   color: @color_dark_gray !important;
   border: 1px solid @color_medium_gray;
   text-shadow: 1px 1px 1px @color_pale_gray;
@@ -260,7 +263,6 @@ hr {
 }
 // }}}
 
-
 /* -- Drupal elements -- */
 // Menus {{{
 ul.menu {
@@ -325,11 +327,20 @@ header#section-header {
   .font_arimo;
   margin-top: 4px;
   margin-bottom: 8px;
+  .block h2 {
+    display: none;
+  }
+  .links a {
+    .button;
+  }
 }
 // }}}
 // Header {{{
 #zone-header-wrapper {
   .font_arimo;
+  .block h2 {
+    display: none;
+  }
 }
 // }}}
 // Title {{{
@@ -385,46 +396,42 @@ header#section-header {
       height: 20px;
     }
     .logged-out-block {
-      width: 210px;
+      width: 230px;
       padding: 10px;
       border: 1px solid @color_medium_gray;
-      position: absolute;
-      right: 0;
-      z-index: 10;
+      float: right;
       background-color: @color_white;
       .box_shadow(2px 2px 6px @color_medium_light_gray);
-      h2 {
-        font-size: 15px;
-        line-height: 15px;
-        margin-bottom: 5px;
-      }
       .form-item {
         .box;
-        width: 210px;
+        width: 230px;
         margin: 0 0 5px 0;
         label {
           .box;
-          font-size: 13px;
-          padding-top: 3px;
-          width: 70px;
+          font-size: 14px;
+          padding-top: 5px;
+          width: 80px;
           margin-right: 10px;
         }
         input {
-          font-size: 12px;
-          width: 130px;
+          width: 140px;
         }
       }
-      input.form-submit {
-        margin-right: 10px;
+      .form-item-pass {
+        margin-bottom: 8px;
+      }
+      input.form-submit, .links a {
+        margin-right: 5px;
+      }
+      #edit-submit {
+        font-weight: bold;
       }
     }
   }
 }
 // }}}
 // Primary navigation {{{
-#region-navigation-primary {
-  margin-bottom: 10px;
-}
+#region-navigation-primary {}
 // }}}
 // Secondary navigation {{{ 
 #region-navigation-secondary {
