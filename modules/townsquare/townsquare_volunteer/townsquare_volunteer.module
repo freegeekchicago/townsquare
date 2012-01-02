@@ -106,8 +106,14 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
 
     if (empty($event->field_event_date['und'][0]['value']) && empty($event->field_event_date['und'][0]['value2'])) {
       $event_day = date_format(date_create(), 'Y-m-d');
-      $form['field_event_date']['und'][0]['#default_value']['value'] = $event_day .' 11:00:00';
-      $form['field_event_date']['und'][0]['#default_value']['value2'] = $event_day .' 17:00:00';
+      $tz = timezone_open($form['field_event_date']['und'][0]['#date_timezone']);
+      // @TODO where to store defaults?
+      $start = date_create($event_day .' '. variable_get('townsquare_volunteer_event_start', '11:00:00'), $tz);
+      $end = date_create($event_day .' '. variable_get('townsquare_volunteer_event_end', '17:00:00'), $tz);
+      date_timezone_set($start, timezone_open('UTC'));
+      date_timezone_set($end, timezone_open('UTC'));
+      $form['field_event_date']['und'][0]['#default_value']['value'] = date_format($start, 'Y-m-d H:i:s');
+      $form['field_event_date']['und'][0]['#default_value']['value2'] = date_format($end, 'Y-m-d H:i:s');
     }
 
     // Strip out form elements; @TODO refine further
