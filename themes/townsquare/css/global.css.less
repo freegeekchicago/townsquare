@@ -330,9 +330,6 @@ header#section-header {
   .block h2 {
     display: none;
   }
-  .links a {
-    .button;
-  }
 }
 // }}}
 // Header {{{
@@ -382,9 +379,12 @@ header#section-header {
 #region-user-bar {
   a { .plain; }
   #block-townsquare-core-login {
+    .round_corner(5px; 5px; 5px; 5px;);
     float: right;
-    font-size: 15px;
-    position: relative;
+    font-size: 13px;
+    background-color: @color_white;
+    border: 1px solid @color_medium_gray;
+    padding: 3px 6px;
     ul, li, div { display: inline; line-height: 1; }
     li {
       list-style-type: none;
@@ -398,10 +398,7 @@ header#section-header {
     .logged-out-block {
       width: 230px;
       padding: 10px;
-      border: 1px solid @color_medium_gray;
       float: right;
-      background-color: @color_white;
-      .box_shadow(2px 2px 6px @color_medium_light_gray);
       .form-item {
         .box;
         width: 230px;
@@ -423,6 +420,9 @@ header#section-header {
       input.form-submit, .links a {
         margin-right: 5px;
       }
+      .links a {
+        .button;
+      }
       #edit-submit {
         font-weight: bold;
       }
@@ -431,7 +431,9 @@ header#section-header {
 }
 // }}}
 // Primary navigation {{{
-#region-navigation-primary {}
+#region-navigation-primary {
+  padding-bottom: 7px;
+}
 // }}}
 // Secondary navigation {{{ 
 #region-navigation-secondary {
