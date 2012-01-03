@@ -622,9 +622,9 @@ header#section-header {
       }
     }
     .field-name-field-session-hours {
-      width: 190px;
+      width: 222px;
       input, select {
-        width: 80px;
+        width: 100px;
         border-right: none;
       }
       button {
@@ -632,7 +632,7 @@ header#section-header {
       }
       .form-item { 
         display: inline-block;
-        width: 90px;
+        width: 108px;
       }
       .form-item-field-session-hours-und-0-value {
         margin-right: 5px;
@@ -694,12 +694,18 @@ header#section-header {
 // }}}
 // Autocomplete {{{
 .ui-autocomplete {
-  width: 120px;
+  width: 100px;
   .box_shadow(2px 2px 4px @color_medium_gray);
   background-color: @color_white;
   border: 1px solid @color_medium_gray;
+  max-height: 161px;
+  overflow-y: scroll;
   li {
     list-style-type: none;
+    margin: 0;
+    padding: 5px 4px;
+    font-size: 12px;
+    line-height: 13px;
     :hover,
     :focus,
     :active {
