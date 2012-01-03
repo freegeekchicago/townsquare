@@ -10,18 +10,6 @@
 function freegeek_townsquare_roles_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access administration pages
-  $permissions['access administration pages'] = array(
-    'name' => 'access administration pages',
-    'roles' => array(),
-  );
-
-  // Exported permission: access all views
-  $permissions['access all views'] = array(
-    'name' => 'access all views',
-    'roles' => array(),
-  );
-
   // Exported permission: access content
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -52,18 +40,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'roles' => array(),
   );
 
-  // Exported permission: access site in maintenance mode
-  $permissions['access site in maintenance mode'] = array(
-    'name' => 'access site in maintenance mode',
-    'roles' => array(),
-  );
-
-  // Exported permission: access site reports
-  $permissions['access site reports'] = array(
-    'name' => 'access site reports',
-    'roles' => array(),
-  );
-
   // Exported permission: access user profiles
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
@@ -74,51 +50,15 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: administer actions
-  $permissions['administer actions'] = array(
-    'name' => 'administer actions',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer blocks
-  $permissions['administer blocks'] = array(
-    'name' => 'administer blocks',
-    'roles' => array(),
-  );
-
   // Exported permission: administer content types
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
     'roles' => array(),
   );
 
-  // Exported permission: administer features
-  $permissions['administer features'] = array(
-    'name' => 'administer features',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer filters
-  $permissions['administer filters'] = array(
-    'name' => 'administer filters',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer gravatar
-  $permissions['administer gravatar'] = array(
-    'name' => 'administer gravatar',
-    'roles' => array(),
-  );
-
   // Exported permission: administer menu
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer modules
-  $permissions['administer modules'] = array(
-    'name' => 'administer modules',
     'roles' => array(),
   );
 
@@ -134,24 +74,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'roles' => array(),
   );
 
-  // Exported permission: administer search
-  $permissions['administer search'] = array(
-    'name' => 'administer search',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer site configuration
-  $permissions['administer site configuration'] = array(
-    'name' => 'administer site configuration',
-    'roles' => array(),
-  );
-
-  // Exported permission: administer software updates
-  $permissions['administer software updates'] = array(
-    'name' => 'administer software updates',
-    'roles' => array(),
-  );
-
   // Exported permission: administer taxonomy
   $permissions['administer taxonomy'] = array(
     'name' => 'administer taxonomy',
@@ -159,12 +81,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
       0 => 'staff',
     ),
     'module' => 'taxonomy',
-  );
-
-  // Exported permission: administer themes
-  $permissions['administer themes'] = array(
-    'name' => 'administer themes',
-    'roles' => array(),
   );
 
   // Exported permission: administer url aliases
@@ -198,12 +114,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
       2 => 'volunteer manager',
     ),
     'module' => 'townsquare_volunteer',
-  );
-
-  // Exported permission: block IP addresses
-  $permissions['block IP addresses'] = array(
-    'name' => 'block IP addresses',
-    'roles' => array(),
   );
 
   // Exported permission: bypass node access
@@ -246,7 +156,12 @@ function freegeek_townsquare_roles_user_default_permissions() {
   // Exported permission: create volunteer_session content
   $permissions['create volunteer_session content'] = array(
     'name' => 'create volunteer_session content',
-    'roles' => array(),
+    'roles' => array(
+      0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: delete any event content
@@ -265,6 +180,8 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'name' => 'delete any volunteer_session content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -285,6 +202,8 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'name' => 'delete own volunteer_session content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -352,6 +271,8 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'name' => 'edit any volunteer_session content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -372,6 +293,8 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'name' => 'edit own volunteer_session content',
     'roles' => array(
       0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
     ),
     'module' => 'node',
   );
@@ -407,12 +330,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: manage features
-  $permissions['manage features'] = array(
-    'name' => 'manage features',
-    'roles' => array(),
-  );
-
   // Exported permission: markdownify any text
   $permissions['markdownify any text'] = array(
     'name' => 'markdownify any text',
@@ -441,12 +358,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
   // Exported permission: select account cancellation method
   $permissions['select account cancellation method'] = array(
     'name' => 'select account cancellation method',
-    'roles' => array(),
-  );
-
-  // Exported permission: use admin toolbar
-  $permissions['use admin toolbar'] = array(
-    'name' => 'use admin toolbar',
     'roles' => array(),
   );
 
@@ -506,12 +417,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
       1 => 'authenticated user',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: view the administration theme
-  $permissions['view the administration theme'] = array(
-    'name' => 'view the administration theme',
-    'roles' => array(),
   );
 
   return $permissions;
