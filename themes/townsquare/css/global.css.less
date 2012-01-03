@@ -34,8 +34,11 @@
 .plain {
   text-decoration: none !important;
 }
-.font_arimo {
+.font_sans {
   font-family: Arimo, Arial, sans-serif;
+}
+.font_mono {
+  font-family: "Courier New", Courier, monospace;
 }
 .gradient(@start: @color_pale_gray; @middle: @color_light_gray; @end: @color_medium_light_gray;) {
   background: @middle;
@@ -122,13 +125,14 @@ a:link, a:visited {
 }
 // }}}
 // Line height for text grid {{{
-p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, table, address, fieldset, blockquote {
   line-height: 26px;
+  margin-bottom: 26px;
 }
 // }}}
 // h tags {{{
 h1, h2, h3, h4, h5, h6 {
-  .font_arimo;
+  .font_sans;
   letter-spacing: 0;
 }
 h1, h2, h3, h4 {
@@ -252,7 +256,7 @@ button[disabled] {
 // }}}
 // Text formats {{{
 .big {
-  .font_arimo;
+  .font_sans;
   font-size: 30px;
   line-height: 52px;
 }
@@ -262,7 +266,14 @@ hr {
   background-color: @color_medium_light_gray;
 }
 // }}}
-
+/* pre {{{ */
+pre {
+  .font_mono;
+  font-size: 14px;
+  padding: 13px 15px;
+  background-color: @color_medium_pale_gray;
+}
+/* }}} */
 /* -- Drupal elements -- */
 // Menus {{{
 ul.menu {
@@ -317,14 +328,17 @@ ul.menu {
 // Header {{{
 header#section-header {
   padding-top: 5px;
-  .gradient(@color_pale_gray; @color_pale_gray; @color_medium_pale_gray;)
+  .gradient(@color_pale_gray; @color_pale_gray; @color_medium_pale_gray;);
+  li {
+    margin-bottom: 0;
+  }
 }
 // }}}
 
 /* -- Zones -- */
 // User {{{
 #zone-user-wrapper {
-  .font_arimo;
+  .font_sans;
   margin-top: 4px;
   margin-bottom: 8px;
   .block h2 {
@@ -334,7 +348,7 @@ header#section-header {
 // }}}
 // Header {{{
 #zone-header-wrapper {
-  .font_arimo;
+  .font_sans;
   .block h2 {
     display: none;
   }
@@ -429,7 +443,7 @@ header#section-header {
 // }}}
 // Primary navigation {{{
 #region-navigation-primary {
-  padding-bottom: 7px;
+  padding-bottom: 12px;
 }
 // }}}
 // Secondary navigation {{{ 
@@ -459,7 +473,6 @@ header#section-header {
       li {
         margin-left: 5px;
         padding-left: 5px;
-        margin-bottom: 20px;
       }
     }
   }
