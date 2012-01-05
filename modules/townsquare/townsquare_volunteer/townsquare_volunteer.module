@@ -558,9 +558,13 @@ function townsquare_volunteer_node_presave($node) {
   }
 
   if ($node->type == 'event') { 
+    $title_suffix = '';
     $start = new DateObject($node->field_event_date[$lang][0]['value']);
-    $term = taxonomy_term_load($node->field_event_type[$lang][0]['tid']);
-    $node->title = $start->format('Y-m-d') .' - '. $term->name;
+    if (!empty($node->field_event_type[$lang][0]['tid'])) {
+      $term = taxonomy_term_load($node->field_event_type[$lang][0]['tid']);
+      $title_suffix = ' - '. $term->name;
+    }
+    $node->title = $start->format('Y-m-d') . $title_suffix;
   }
 }
 
