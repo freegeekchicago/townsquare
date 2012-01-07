@@ -38,6 +38,26 @@ function townsquare_menu_link(array $variables) {
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function townsquare_preprocess_region(&$vars) {
+  // Add proper start and end classes 
+  // @TODO This should not be hardcoded
+  switch ($vars['elements']['#region']) {
+    case 'branding':
+    case 'primary_tasks':
+    case 'navigation_primary':
+      $vars['attributes_array']['class'][] = 'alpha';
+      break;
+    case 'navigation_secondary':
+    case 'user_bar':
+      $vars['attributes_array']['class'][] = 'omega';
+      break;
+  }
+}
+
 /**
  * Implements hook_process_region().
  */
