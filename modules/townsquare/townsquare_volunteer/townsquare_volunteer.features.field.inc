@@ -75,7 +75,7 @@ function townsquare_volunteer_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '6',
+        'weight' => '5',
       ),
     ),
   );
@@ -250,44 +250,47 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_notes'
-  $fields['node-volunteer_session-field_session_notes'] = array(
+  // Exported field: 'node-volunteer_session-field_session_no_signout'
+  $fields['node-volunteer_session-field_session_no_signout'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_session_notes',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
+      'field_name' => 'field_session_no_signout',
+      'foreign keys' => array(),
       'indexes' => array(
-        'format' => array(
-          0 => 'format',
+        'value' => array(
+          0 => 'value',
         ),
       ),
-      'module' => 'text',
-      'settings' => array(),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => '',
+        ),
+        'allowed_values_function' => '',
+      ),
       'translatable' => '0',
-      'type' => 'text_long',
+      'type' => 'list_boolean',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 13,
+          'type' => 'list_default',
+          'weight' => 15,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -297,21 +300,20 @@ function townsquare_volunteer_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_session_notes',
-      'label' => 'Notes',
+      'field_name' => 'field_session_no_signout',
+      'label' => 'No signout',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'text',
+        'module' => 'options',
         'settings' => array(
-          'rows' => '1',
+          'display_label' => 0,
         ),
-        'type' => 'text_textarea',
-        'weight' => '7',
+        'type' => 'options_onoff',
+        'weight' => '6',
       ),
     ),
   );
@@ -391,58 +393,50 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_role'
-  $fields['node-volunteer_session-field_session_role'] = array(
+  // Exported field: 'node-volunteer_session-field_session_processed_date'
+  $fields['node-volunteer_session-field_session_processed_date'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_session_role',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
+      'field_name' => 'field_session_processed_date',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'date',
       'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'parent' => '0',
-            'vocabulary' => 'volunteer_role',
-          ),
+        'granularity' => array(
+          'day' => 'day',
+          'hour' => 'hour',
+          'minute' => 'minute',
+          'month' => 'month',
+          'second' => 0,
+          'year' => 'year',
         ),
-        'field_permissions' => array(
-          'create' => 0,
-          'edit' => 0,
-          'edit own' => 0,
-          'view' => 0,
-          'view own' => 0,
-        ),
+        'timezone_db' => 'UTC',
+        'todate' => '',
+        'tz_handling' => 'site',
       ),
-      'translatable' => '1',
-      'type' => 'taxonomy_term_reference',
+      'translatable' => '0',
+      'type' => 'datetime',
     ),
     'field_instance' => array(
       'bundle' => 'volunteer_session',
-      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '7',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => 16,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -452,8 +446,85 @@ function townsquare_volunteer_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_session_role',
-      'label' => 'Role',
+      'field_name' => 'field_session_processed_date',
+      'label' => 'Processed',
+      'required' => 0,
+      'settings' => array(
+        'default_value' => 'blank',
+        'default_value2' => 'same',
+        'default_value_code' => '',
+        'default_value_code2' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'date',
+        'settings' => array(
+          'increment' => 15,
+          'input_format' => 'm/d/Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'above',
+          'text_parts' => array(),
+          'year_range' => '-3:+3',
+        ),
+        'type' => 'date_text',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-volunteer_session-field_session_rules_processed'
+  $fields['node-volunteer_session-field_session_rules_processed'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_session_rules_processed',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => '',
+          1 => 'Processed',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer_session',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 14,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_session_rules_processed',
+      'label' => 'Processed',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -462,10 +533,10 @@ function townsquare_volunteer_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(
-          'apply_chosen' => 0,
+          'display_label' => 0,
         ),
-        'type' => 'options_select',
-        'weight' => '5',
+        'type' => 'options_onoff',
+        'weight' => '7',
       ),
     ),
   );
@@ -544,9 +615,9 @@ function townsquare_volunteer_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Duration');
   t('Event');
-  t('Notes');
+  t('No signout');
   t('Override duration');
-  t('Role');
+  t('Processed');
   t('Session hours');
   t('The number of hours logged by a volunteer.');
   t('Volunteer');
