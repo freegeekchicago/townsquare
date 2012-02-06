@@ -27,7 +27,7 @@ function townsquare_css_alter(&$css) {
  */
 function townsquare_menu_link(array $variables) {
   $element = $variables['element'];
-  $element['#attributes']['id'] = $element['#original_link']['menu_name'] .'-'. drupal_clean_css_identifier($element['#original_link']['link_path']);
+  $element['#attributes']['id'] = 'menu-link-'. drupal_clean_css_identifier($element['#original_link']['href']);
   
   $sub_menu = '';
 
