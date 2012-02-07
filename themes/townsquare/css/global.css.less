@@ -115,6 +115,7 @@ body {
   padding-bottom: 35px;
 }
 // }}}
+#page {
 // Links {{{
 a:link, a:visited {
   color: @color_green;
@@ -141,7 +142,6 @@ h1, h2, h3, h4 {
 h1 {
   margin-top: 25px;
   font-size: 42px;
-  border-bottom: 1px solid @color_medium_light_gray;
 }
 // }}}
 // Tables {{{
@@ -304,9 +304,11 @@ code {
   background-color: @color_medium_pale_gray;
 }
 /* }}} */
+}
+
 /* -- Drupal elements -- */
 // Menus {{{
-ul.menu {
+#page ul.menu {
   margin: 0;
   font-size: 14px;
   line-height: 22px;
@@ -486,7 +488,7 @@ header#section-header {
 // Content {{{
 #zone-content-wrapper {
   margin-top: 21px;
-  .content {
+  .content { // Inner content {{{
     a {
       :hover {
         background-color: @color_yellow;
@@ -505,14 +507,17 @@ header#section-header {
         padding-left: 5px;
       }
     }
-  }
-  footer {
+  } // }}}
+  footer { // Footer {{{
     padding-top: 15px;
     margin-bottom: 25px;
     border-top: 1px solid @color_light_gray;
     font-size: 14px;
     text-align: center;
-  }
+  } // }}}
+  h1 { // h1 {{{
+    border-bottom: 1px solid @color_medium_light_gray;
+  } // }}}
 }
 // }}}
 // Primary tasks {{{
@@ -801,3 +806,6 @@ header#section-header {
   }
 }
 // }}}
+???
+???
+???
