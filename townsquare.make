@@ -1,7 +1,7 @@
 api = 2
 core = 7.x
 projects[drupal][type] = core
-projects[drupal][version] = "7.10"
+projects[drupal][version] = "7.12"
 
 projects[addressfield][version] = "1.0-beta2"
 projects[addressfield][subdir] = "contrib"
@@ -84,10 +84,10 @@ projects[rules][subdir] = "contrib"
 projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
 
-projects[uuid][version] = "1.0-alpha2"
+projects[uuid][version] = "1.0-alpha3"
 projects[uuid][subdir] = "contrib"
 
-projects[views][version] = "3.0"
+projects[views][version] = "3.1"
 projects[views][subdir] = "contrib"
 
 projects[views_php][version] = "1.x-dev"
