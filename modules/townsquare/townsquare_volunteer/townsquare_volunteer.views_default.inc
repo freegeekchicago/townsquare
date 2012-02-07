@@ -1347,7 +1347,7 @@ function townsquare_volunteer_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Volunteer directory';
+  $handler->display->display_options['title'] = 'Volunteer search';
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'administer volunteer hours';
@@ -1530,7 +1530,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['sorts']['name']['field'] = 'name';
 
   /* Display: Volunteer report */
-  $handler = $view->new_display('page', 'Volunteer report', 'page');
+  $handler = $view->new_display('page', 'Volunteer report', 'report');
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
@@ -1594,13 +1594,13 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['title'] = 'Reports';
   $handler->display->display_options['menu']['weight'] = '10';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
-  $handler->display->display_options['tab_options']['type'] = 'normal';
+  $handler->display->display_options['tab_options']['type'] = 'tab';
   $handler->display->display_options['tab_options']['title'] = 'Volunteers';
   $handler->display->display_options['tab_options']['weight'] = '0';
   $handler->display->display_options['tab_options']['name'] = 'menu-townsquare-secondary-tools';
 
   /* Display: Search */
-  $handler = $view->new_display('page', 'Search', 'page_2');
+  $handler = $view->new_display('page', 'Search', 'search');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['group_rendered'] = 0;
@@ -1633,6 +1633,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Volunteer search';
   $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
   $handler->display->display_options['tab_options']['type'] = 'tab';
   $handler->display->display_options['tab_options']['title'] = 'Search';
   $handler->display->display_options['tab_options']['weight'] = '0';
