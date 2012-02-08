@@ -263,7 +263,7 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
 
   // If new, rebuild whole form when user changes 
   if ($new) {
-    // To create the new node form, we need to unset $_POST so that
+    // To create the new node form, we need to reset $_POST so that
     // drupal_build_form won't use it to populate $form_state['input']
     $_POST = array();
     $event_node = node_load($form['#node']->field_session_event['und'][0]['target_id']);
