@@ -15,7 +15,7 @@ function townsquare_core_menu_default_menu_links() {
     'menu_name' => 'menu-townsquare-toolbar',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Home',
+    'link_title' => 'Townsquare home',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -30,7 +30,7 @@ function townsquare_core_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Home');
+  t('Townsquare home');
 
 
   return $menu_links;
