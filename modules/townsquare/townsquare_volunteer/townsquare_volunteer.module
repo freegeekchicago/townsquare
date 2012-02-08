@@ -28,64 +28,10 @@ function townsquare_volunteer_menu() {
     'page arguments' => array(1),
     'access callback' => 'node_access',
     'access arguments' => array('update', 1),
-  );
-  $items['volunteers'] = array(
-    'title' => 'Volunteer search',
-    'description' => 'Volunteer search',
-    'page callback' => 'townsquare_volunteer_volunteer_search', 
-    'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
   return $items;
 }
-
-function townsquare_volunteer_volunteer_search($search = '') {
-  $results = array('#markup' => '');
-  
-  if (!empty($search) || !empty($_REQUEST['search'])) {
-    if (!empty($_REQUEST['search']) && empty($_POST['form_id'])) {
-      $search = $_REQUEST['search'];
-    }
-    $results = search_data($search, 'user');
-  }
-  $build['search_form'] = drupal_get_form('townsquare_volunteer_user_search_form', $search);
-  $build['search_results'] = $results;
-
-  return $build;
-}
-
-
-function townsquare_volunteer_user_search_form($form, &$form_state, $search) {
-  $module = 'user';
-  $info = search_get_info();
-  $module_info = $info['user'];
-
-  $form['#attributes']['class'][] = 'search-form';
-  $form['module'] = array(
-    '#type' => 'value',
-    '#value' => $module,
-  );
-  $form['search'] = array(
-    '#type' => 'textfield', 
-    '#default_value' => $search, 
-    '#size' =>  40, 
-    '#maxlength' => 255,
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Search volunteers'),
-  );
-
-  return $form;
-}
-
-function townsquare_volunteer_user_search_form_submit($form, &$form_state) {
-  $form_state['redirect'] = array('volunteers', array(
-    'query' => array('search' => $form_state['values']['search'])
-  ));
-  return;
-}
-
 
 /**
  * Implements hook_menu_alter().
