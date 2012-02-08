@@ -19,6 +19,7 @@ function townsquare_volunteer_menu() {
     'page callback' => 'townsquare_volunteer_edit_event',
     'access callback' => 'node_access',
     'access arguments' => array('create', 'event'),
+    'type' => MENU_CALLBACK,
   );
   $items['event/%node'] = array(
     'title' => 'Edit event',
