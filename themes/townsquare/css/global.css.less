@@ -42,8 +42,8 @@
 }
 .gradient(@start: @color_pale_gray; @middle: @color_light_gray; @end: @color_medium_light_gray;) {
   background: @middle;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.6, @middle), color-stop(1.0, @end)); /* for webkit browsers */
-  background-image: -moz-linear-gradient(top, @start 0%, @middle 60%, @end 100%); /* for firefox 3.6+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.7, @middle), color-stop(1.0, @end)); /* for webkit browsers */
+  background-image: -moz-linear-gradient(top, @start 0%, @middle 70%, @end 100%); /* for firefox 3.6+ */
 }
 .box_shadow(@arguments) {
   -webkit-box-shadow: @arguments;
@@ -115,7 +115,6 @@ body {
   padding-bottom: 35px;
 }
 // }}}
-#page {
 // Links {{{
 a:link, a:visited {
   color: @color_green;
@@ -126,9 +125,11 @@ a:link, a:visited {
 }
 // }}}
 // Line height for text grid {{{
-p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, table, address, fieldset, blockquote {
-  line-height: 26px;
-  margin-bottom: 26px;
+#page {
+  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
+    line-height: 26px;
+    margin-bottom: 26px;
+  }
 }
 // }}}
 // h tags {{{
@@ -147,31 +148,30 @@ h1 {
 // Tables {{{
 table {
   width: auto;
+  font-size: 15px;
   a {
     .plain;
   }
-  th {
-    font-weight: bold;
-    background-color: @color_pale_gray;
-    border: 1px solid @color_white;
-    :hover {
-      background: @color_light_gray;
+  thead {
+    th {
+      border-bottom: 1px solid @color_medium_dark_gray;
+      padding: 3px 20px 3px 0;
+      font-size: 13px;
+      font-weight: bold;
     }
-    &.active {
-      background: @color_medium_light_gray;
-    }
-  }
-
-  td, th {
-    padding: 4px 8px;
-    border: 1px solid @color_medium_dark_gray;
   }
 
   tbody {
-    td {
+    td, th {
+      padding: 3px 10px;
+      border: 1px solid @color_medium_dark_gray;
       &.active {
-        background: @color_pale_gray;
+        background: none;
+        color: @color_black;
       }
+    }
+    th {
+      font-weight: bold;
     }
     tr, tr.even, tr.odd {
       background: none;
@@ -181,9 +181,6 @@ table {
         }
         td {
           background: @color_pale_gray;
-          &.active {
-            background: @color_light_gray;
-          }
         }
       }
     }
@@ -251,13 +248,13 @@ button[disabled] {
 
 // }}}
 // User picture {{{
-.user-picture {
-  display: inline-block;
-  img {
-    width: 20px;
-    height: 20px;
-  }
-}
+//.user-picture {
+//  display: inline-block;
+//  img {
+//    width: 20px;
+//    height: 20px;
+//  }
+//}
 // }}}
 // Text formats {{{
 .big {
@@ -304,7 +301,6 @@ code {
   background-color: @color_medium_pale_gray;
 }
 /* }}} */
-}
 
 /* -- Drupal elements -- */
 // Menus {{{
@@ -346,13 +342,6 @@ code {
       border-right: none;
     }
   }
-  #menu-townsquare-toolbar-admin-people-create,
-  #menu-townsquare-toolbar-event-create {
-    a {
-      padding: 0 6px;
-      font-weight: bold;
-    }
-  }
 }
 // }}}
 
@@ -360,7 +349,7 @@ code {
 // Header {{{
 header#section-header {
   padding-top: 5px;
-  .gradient(@color_pale_gray; @color_pale_gray; @color_medium_pale_gray;);
+  .gradient(@color_white; @color_pale_gray; @color_light_gray;);
   li {
     margin-bottom: 0;
   }
@@ -368,16 +357,6 @@ header#section-header {
 // }}}
 
 /* -- Zones -- */
-// User {{{
-#zone-user-wrapper {
-  .font_sans;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  .block h2 {
-    display: none;
-  }
-}
-// }}}
 // Header {{{
 #zone-header-wrapper {
   .font_sans;
@@ -390,47 +369,34 @@ header#section-header {
 #zone-title-wrapper {
 }
 // }}}
-// Preface (stub) {{{
-#zone-preface-wrapper {}
-// }}}
-// Postscript (stub) {{{
-#zone-postscript-wrapper {}
-// }}}
-// Footer (stub) {{{
-#zone-footer-wrapper {}
-// }}}
 
 /* -- Regions -- */
-// Branding {{{
-#region-branding {
-  .logo-img, hgroup, .site-name {
-    display: inline;
-  }
-  a {
-    .plain; 
-    display: inliue-block;
-    :hover {
-      color: @color_bright_green;
+// User region {{{
+#region-navigation-primary {
+  margin: 10px 0;
+  a { .plain; }
+  .logo-img {
+    float: left;
+    margin-right: 5px;
+    margin-left: -35px;
+    img {
+      width: 30px;
+      height: 30px;
     }
   }
-  .site-name {
-    margin: 0;
-    font-size: 20px;
-    line-height: 30px;
+  #block-menu-menu-townsquare-toolbar {
+    float: left; 
+    #menu-townsquare-toolbar-admin-people-create,
+    #menu-townsquare-toolbar-event-create {
+      a {
+        padding: 0 6px;
+        font-weight: bold;
+      }
+    }
   }
-}
-
-// }}}
-// User region {{{
-#region-user-bar {
-  a { .plain; }
   #block-townsquare-core-login {
-    .round_corner(5px; 5px; 5px; 5px;);
     float: right;
     font-size: 13px;
-    background-color: @color_white;
-    border: 1px solid @color_medium_gray;
-    padding: 3px 6px;
     ul, li, div { display: inline; line-height: 1; }
     li {
       list-style-type: none;
@@ -471,11 +437,6 @@ header#section-header {
       }
     }
   }
-}
-// }}}
-// Primary navigation {{{
-#region-navigation-primary {
-  padding-bottom: 12px;
 }
 // }}}
 // Secondary navigation {{{ 
@@ -522,6 +483,8 @@ header#section-header {
 // }}}
 // Primary tasks {{{
 #region-primary-tasks {
+  margin-left: 0;
+  margin-right: 20px;
   ul {
     font-size: 14px;
     line-height: 22px;
@@ -659,9 +622,6 @@ header#section-header {
         width: 100px;
         border-right: none;
       }
-      button {
-        .round_corner(0; 0; 0; 0);
-      }
       .form-item { 
         display: inline-block;
         width: 108px;
@@ -670,7 +630,8 @@ header#section-header {
         margin-right: 5px;
       }
     }
-    .field-name-field-session-override-duration {
+    .field-name-field-session-override-duration,
+    .field-name-field-session-no-signout {
       width: 80px;
       text-align: center;
       .form-item {
@@ -683,16 +644,6 @@ header#section-header {
       input { 
         width: 60px;
         text-align: right;
-      }
-    }
-    .field-name-field-session-notes {
-      width: 175px;
-      textarea {
-        font-size: 12px;
-        line-height: 14px;
-        width: 175px;
-        min-height: 24px;
-        height: 24px;
       }
     }
     // }}}
@@ -755,8 +706,12 @@ header#section-header {
 // }}}
 // Combobox {{{
 .combobox-js-wrapper {
-  .ui-button {
-    margin-left: -22px;
+  button.ui-button {
+    border: none !important;
+    margin-left: -20px;
+    background: transparent;
+    .round_corner(0; 0; 0; 0);
+    .box_shadow(0 0 0);
   }
 }
 // }}}
@@ -806,6 +761,9 @@ header#section-header {
   }
 }
 // }}}
-???
-???
-???
+.user-img-small {
+  img { 
+    height: 24px;
+    width: 24px; 
+  }
+}

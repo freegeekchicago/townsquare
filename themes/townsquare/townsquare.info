@@ -13,9 +13,6 @@ regions[content] = Content
 
 ; ADDITIONAL REGIONS
 
-regions[branding] = Branding (Name + logo)
-regions[user_bar] = User
-
 regions[sidebar] = Sidebar
 
 regions[navigation_primary] = Primary navigation
@@ -36,7 +33,6 @@ regions[footer_bar] = Footer
 
 ; ZONES
 
-zones[user] = User
 zones[header] = Header
 zones[preface] = Preface
 zones[tasks] = Tasks
@@ -100,15 +96,6 @@ settings[alpha_toggle_feed_icons] = '1'
 settings[alpha_hidden_title] = ''
 settings[alpha_hidden_site_name] = ''
 settings[alpha_hidden_site_slogan] = ''
-settings[alpha_zone_user_equal_height_container] = ''
-settings[alpha_zone_user_wrapper] = '1'
-settings[alpha_zone_user_force] = ''
-settings[alpha_zone_user_section] = 'header'
-settings[alpha_zone_user_weight] = '1'
-settings[alpha_zone_user_columns] = '12'
-settings[alpha_zone_user_primary] = ''
-settings[alpha_zone_user_css] = ''
-settings[alpha_zone_user_wrapper_css] = ''
 settings[alpha_zone_header_equal_height_container] = ''
 settings[alpha_zone_header_wrapper] = '1'
 settings[alpha_zone_header_force] = ''
@@ -190,30 +177,12 @@ settings[alpha_region_dashboard_main_columns] = '1'
 settings[alpha_region_dashboard_main_suffix] = ''
 settings[alpha_region_dashboard_main_weight] = '-50'
 settings[alpha_region_dashboard_main_css] = ''
-settings[alpha_region_branding_equal_height_container] = ''
-settings[alpha_region_branding_equal_height_element] = ''
-settings[alpha_region_branding_force] = '1'
-settings[alpha_region_branding_zone] = 'user'
-settings[alpha_region_branding_prefix] = ''
-settings[alpha_region_branding_columns] = '6'
-settings[alpha_region_branding_suffix] = ''
-settings[alpha_region_branding_weight] = '1'
-settings[alpha_region_branding_css] = ''
-settings[alpha_region_user_bar_equal_height_container] = ''
-settings[alpha_region_user_bar_equal_height_element] = ''
-settings[alpha_region_user_bar_force] = ''
-settings[alpha_region_user_bar_zone] = 'user'
-settings[alpha_region_user_bar_prefix] = ''
-settings[alpha_region_user_bar_columns] = '6'
-settings[alpha_region_user_bar_suffix] = ''
-settings[alpha_region_user_bar_weight] = '2'
-settings[alpha_region_user_bar_css] = ''
 settings[alpha_region_navigation_primary_equal_height_container] = ''
 settings[alpha_region_navigation_primary_equal_height_element] = ''
 settings[alpha_region_navigation_primary_force] = ''
 settings[alpha_region_navigation_primary_zone] = 'header'
 settings[alpha_region_navigation_primary_prefix] = ''
-settings[alpha_region_navigation_primary_columns] = '9'
+settings[alpha_region_navigation_primary_columns] = '12'
 settings[alpha_region_navigation_primary_suffix] = ''
 settings[alpha_region_navigation_primary_weight] = '1'
 settings[alpha_region_navigation_primary_css] = ''
