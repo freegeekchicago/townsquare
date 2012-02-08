@@ -163,6 +163,8 @@ function townsquare_volunteer_field_default_fields() {
       'indexes' => array(),
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'enddate' => 1,
         'enddate_required' => 0,
         'field_permissions' => array(

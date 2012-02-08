@@ -26,29 +26,26 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-47',
+    'weight' => '-48',
   );
-  // Exported menu link: menu-townsquare-toolbar:event/create
-  $menu_links['menu-townsquare-toolbar:event/create'] = array(
+  // Exported menu link: menu-townsquare-toolbar:volunteer
+  $menu_links['menu-townsquare-toolbar:volunteer'] = array(
     'menu_name' => 'menu-townsquare-toolbar',
-    'link_path' => 'event/create',
-    'router_path' => 'event/create',
-    'link_title' => '+',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Create a new event and track participation.',
-      ),
-    ),
-    'module' => 'menu',
+    'link_path' => 'volunteer',
+    'router_path' => 'volunteer',
+    'link_title' => 'Volunteers',
+    'options' => array(),
+    'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-45',
+    'weight' => '-49',
   );
   // Translatables
   // Included for use with string extractors like potx.
   t('+');
+  t('Volunteers');
 
 
   return $menu_links;
