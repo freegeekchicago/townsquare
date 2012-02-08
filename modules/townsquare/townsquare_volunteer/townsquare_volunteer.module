@@ -532,21 +532,17 @@ function townsquare_volunteer_node_presave($node) {
       $node->uid = $user->uid;
     }
 
-    if (!$node->field_session_override_duration[$lang][0]['value']) {
-      if (!empty($node->field_session_hours[$lang][0]['value'])) {
-        $start = date_create($node->field_session_hours[$lang][0]['value'],
-          timezone_open($node->field_session_hours[$lang][0]['timezone']));
-      } 
-      if (!empty($node->field_session_hours[$lang][0]['value2'])) {
-        $end = date_create($node->field_session_hours[$lang][0]['value2'],
-          timezone_open($node->field_session_hours[$lang][0]['timezone']));
-      } 
-      if (isset($start) && isset($end)) {
-        $start_timestamp = date_format($start, 'U'); 
-        $end_timestamp = date_format($end, 'U'); 
-        $elapsed = ($end_timestamp - $start_timestamp) / 3600;
-        $node->field_session_duration[$lang][0]['value'] = $elapsed;  
-      }
+    if (!empty($node->field_session_hours[$lang][0]['value'])) {
+      $start = new DateObject($node->field_session_hours[$lang][0]['value']);
+    } 
+    if (!empty($node->field_session_hours[$lang][0]['value2'])) {
+      $end = new DateObject($node->field_session_hours[$lang][0]['value2']);
+    } 
+    if (isset($start) && isset($end)) {
+      $start_timestamp = date_format($start, 'U'); 
+      $end_timestamp = date_format($end, 'U'); 
+      $elapsed = ($end_timestamp - $start_timestamp) / 3600;
+      $node->field_session_duration[$lang][0]['value'] = $elapsed;  
     }
 
     $date = '';
@@ -762,38 +758,35 @@ function townsquare_volunteer_field_widget_form(&$form, &$form_state, $field, $i
   $field_name = $field['field_name'];
   $field_type = $field['type'];
 
-  switch ($instance['widget']['type']) {
-    case 'townsquare_session_date':
-      $event = node_load($form['#node']->field_session_event[$langcode][0]['target_id']);
-      
-      $tz_db = timezone_open($event->field_event_date['und'][0]['timezone_db']);
-      $tz = timezone_open($event->field_event_date['und'][0]['timezone']);
-      
-      $start = new DateObject($event->field_event_date['und'][0]['value'], $tz_db);
-      $start->setTimezone($tz);
-      
-      $end = new DateObject($event->field_event_date['und'][0]['value2'], $tz_db);
-      $end->setTimezone($tz);
-      
-      $options = _townsquare_volunteer_date_options($start, $end);
-      foreach ($field['columns'] as $col => $values) {
-        if (!isset($items[$delta][$col])) {
-          $default = new DateObject($event->field_event_date['und'][0][$col], $tz_db);
-        }
-        else {
-          $default = new DateObject($items[$delta][$col], $tz_db);
-        }
-        // Create select element with options populated by special function 
-        $element[$col] = array(
-          '#type' => 'select',
-          '#title' => $element['#title'],
-          '#description' => $element['#description'],
-          '#options' => $options,
-          '#default_value' => $default->format('Y-m-d H:i:s'),
-          '#attributes' => array('class' => array('combobox')),
-        );
+  if ($instance['widget']['type'] == 'townsquare_session_date' && isset($form['#node']->field_session_event[$langcode][0]['target_id']) && $event = node_load($form['#node']->field_session_event[$langcode][0]['target_id'])) {
+
+    $tz_db = timezone_open($event->field_event_date['und'][0]['timezone_db']);
+    $tz = timezone_open($event->field_event_date['und'][0]['timezone']);
+    
+    $start = new DateObject($event->field_event_date['und'][0]['value'], $tz_db);
+    $start->setTimezone($tz);
+
+    $end = new DateObject($event->field_event_date['und'][0]['value2'], $tz_db);
+    $end->setTimezone($tz);
+    
+    $options = _townsquare_volunteer_date_options($start, $end);
+    foreach ($field['columns'] as $col => $values) {
+      if (!isset($items[$delta][$col])) {
+        $default = new DateObject($event->field_event_date['und'][0][$col], $tz_db);
       }
-      break;
+      else {
+        $default = new DateObject($items[$delta][$col], $tz_db);
+      }
+      // Create select element with options populated by special function 
+      $element[$col] = array(
+        '#type' => 'select',
+        '#title' => $element['#title'],
+        '#description' => $element['#description'],
+        '#options' => $options,
+        '#default_value' => $default->format('Y-m-d H:i:s'),
+        '#attributes' => array('class' => array('combobox')),
+      );
+    }
   }
   return $element;
 }
