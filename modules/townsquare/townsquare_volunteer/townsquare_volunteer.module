@@ -188,7 +188,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
       'field_session_hours' => array('value', 'value2'),
       'field_session_override_duration' => array('value'),
       'field_session_duration' => array('value'),
-      'field_session_notes' => array('value'),
+      'field_session_no_signout' => array('value'),
     );
     foreach ($tree as $field => $keys) {
       foreach ($keys as $key) {
@@ -225,7 +225,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
 
 
     // Remove some fields
-    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_settings', 'buttons', 'field_session_event', 'field_session_role') as $key) {
+    foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'additional_settings', 'buttons', 'field_session_event', 'field_session_rules_processed', 'field_session_processed_date') as $key) {
       $form[$key]['#access'] = FALSE;
     }
 
@@ -490,8 +490,8 @@ function townsquare_volunteer_edit_event($node = NULL) {
                 'class' => array('field-name-field-session-duration',)
               ),
               array(
-                'data' => t('Notes'),
-                'class' => array('field-name-field-session-notes',)
+                'data' => t('No signout'),
+                'class' => array('field-name-field-session-no-signout',)
               ),
             ),
           ),
