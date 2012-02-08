@@ -26,7 +26,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-48',
+    'weight' => '-47',
   );
   // Exported menu link: menu-townsquare-toolbar:event/create
   $menu_links['menu-townsquare-toolbar:event/create'] = array(
@@ -44,7 +44,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-46',
+    'weight' => '-45',
   );
   // Translatables
   // Included for use with string extractors like potx.

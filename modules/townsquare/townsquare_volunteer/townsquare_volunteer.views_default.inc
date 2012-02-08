@@ -30,10 +30,9 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '25, 50, 100';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 1;
   $handler->display->display_options['style_plugin'] = 'table';
@@ -101,15 +100,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 1;
   $handler->display->display_options['style_options']['empty_table'] = 0;
-  /* Header: Global: PHP */
-  $handler->display->display_options['header']['php']['id'] = 'php';
-  $handler->display->display_options['header']['php']['table'] = 'views';
-  $handler->display->display_options['header']['php']['field'] = 'php';
-  $handler->display->display_options['header']['php']['empty'] = FALSE;
-  $handler->display->display_options['header']['php']['php_output'] = '<div class="create-link">
-  <?php print l(t(\'Create new event\'), \'event/create\', array(\'attributes\' => array(\'class\' => \'button\'))); ?>
-  </div>
-  ';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -1370,22 +1360,14 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '25, 50, 100, 250, 500';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 1;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['group_rendered'] = 1;
   $handler->display->display_options['style_options']['columns'] = array(
-    'picture' => 'picture',
     'name' => 'name',
     'field_session_duration' => 'field_session_duration',
+    'picture' => 'picture',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_session_duration';
+  $handler->display->display_options['style_options']['default'] = 'name';
   $handler->display->display_options['style_options']['info'] = array(
-    'picture' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
     'name' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
@@ -1396,6 +1378,13 @@ function townsquare_volunteer_views_default_views() {
     'field_session_duration' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'picture' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -1546,6 +1535,110 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '25, 100, 250, 500';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 1;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  $handler->display->display_options['fields']['name']['format_username'] = 1;
+  /* Field: SUM(Content: Duration) */
+  $handler->display->display_options['fields']['field_session_duration']['id'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['table'] = 'field_data_field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['field'] = 'field_session_duration';
+  $handler->display->display_options['fields']['field_session_duration']['relationship'] = 'reverse_field_session_user_node';
+  $handler->display->display_options['fields']['field_session_duration']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['field_session_duration']['label'] = 'Total hours';
+  $handler->display->display_options['fields']['field_session_duration']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_session_duration']['field_api_classes'] = 0;
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['label'] = '';
+  $handler->display->display_options['fields']['picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['picture']['element_type'] = 'span';
+  $handler->display->display_options['fields']['picture']['element_class'] = 'user-img-small';
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['picture']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = 1;
+  /* Field: User: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'users';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: SUM(Content: Duration (field_session_duration)) */
   $handler->display->display_options['sorts']['field_session_duration_value']['id'] = 'field_session_duration_value';
@@ -1593,7 +1686,8 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Reports';
   $handler->display->display_options['menu']['weight'] = '10';
-  $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
+  $handler->display->display_options['menu']['name'] = 'menu-townsquare-secondary-tools';
+  $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'tab';
   $handler->display->display_options['tab_options']['title'] = 'Volunteers';
   $handler->display->display_options['tab_options']['weight'] = '0';
@@ -1603,7 +1697,6 @@ function townsquare_volunteer_views_default_views() {
   $handler = $view->new_display('page', 'Search', 'search');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['group_rendered'] = 0;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -1631,12 +1724,13 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['uid']['value'] = '';
   $handler->display->display_options['path'] = 'volunteer/search';
   $handler->display->display_options['menu']['type'] = 'default tab';
-  $handler->display->display_options['menu']['title'] = 'Volunteer search';
+  $handler->display->display_options['menu']['title'] = 'Search volunteers';
   $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
-  $handler->display->display_options['tab_options']['type'] = 'tab';
-  $handler->display->display_options['tab_options']['title'] = 'Search';
-  $handler->display->display_options['tab_options']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-townsquare-secondary-tools';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['tab_options']['type'] = 'normal';
+  $handler->display->display_options['tab_options']['title'] = 'Volunteers';
+  $handler->display->display_options['tab_options']['weight'] = '-5';
   $handler->display->display_options['tab_options']['name'] = 'menu-townsquare-toolbar';
   $export['townsquare_volunteers'] = $view;
 
