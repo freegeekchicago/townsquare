@@ -1,13 +1,13 @@
 /**
  * @file global.css.less
- *
- * Released under the GNU GPL by FreeGeek Chicago.
- *
- * Organized using vim foldmarkers. Requires LESS CSS preprocessor.
+ * 
+ * Global styles for Townsquare theme.
+ * 
+ * vim:fdm=marker
  */
 
-/* -- LESS declarations -- */
-// Less CSS variables {{{
+// -- LESS variables -- //
+// Colors {{{
 @color_yellow: #fdffa9;
 @color_dark_yellow: #ebbb3e;
 @color_green: #267e26;
@@ -16,67 +16,49 @@
 @color_white: #ffffff;
 @color_dark_gray: #252525;
 @color_blue: #5294c1;
+@color_red: #ff0000;
 @color_medium_gray: #999999;
 @color_medium_dark_gray: #b5b5b5;
 @color_medium_light_gray: #cccccc;
 @color_light_gray: #dddddd;
 @color_medium_pale_gray: #e6e6e6;
 @color_pale_gray: #f3f3f3;
-
-@corner_radius: 4px;
-@default_arrow_size: 4px;
 // }}}
-// Less CSS mixins {{{
-.box {
-  float: left;
-  display: block;
-}
-.plain {
-  text-decoration: none !important;
-}
+
+// -- Less Mixins -- //
+// Fonts {{{
 .font_sans {
   font-family: Arimo, Arial, sans-serif;
+}
+.font-serif {
+  font-family: "Crimson Text", Georgia, serif;
 }
 .font_mono {
   font-family: "Courier New", Courier, monospace;
 }
+// }}}
+// Box {{{
+.box {
+  float: left;
+  display: block;
+}
+// }}}
+// Gradient {{{
 .gradient(@start: @color_pale_gray; @middle: @color_light_gray; @end: @color_medium_light_gray;) {
   background: @middle;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(0.7, @middle), color-stop(1.0, @end)); /* for webkit browsers */
-  background-image: -moz-linear-gradient(top, @start 0%, @middle 70%, @end 100%); /* for firefox 3.6+ */
+  background-image: -moz-linear-gradient(top, @start 0%, @middle 70%, @end 100%);
 }
+// }}}
+// Box shadow {{{
 .box_shadow(@arguments) {
   -webkit-box-shadow: @arguments;
   -moz-box-shadow: @arguments;
   box-shadow: @arguments;
 }
-.round_corner(@left_top: @default_corner_radius; @right_top: @default_corner_radius; @right_bottom: @default_corner_radius; @left_bottom: @default_corner_radius;) {
-  border-radius: @left_top @right_top @right_bottom @left_bottom;
-  -webkit-border-radius: @left_top @right_top @right_bottom @left_bottom;
-  -moz-border-radius: @left_top @right_top @right_bottom @left_bottom;
-  -moz-background-clip: padding; 
-  -webkit-background-clip: padding-box; 
-  background-clip: padding-box; 
-}
-.button {
-  .plain;
-  .round_corner;
-  .gradient;
-  padding: 2px 6px;
-  display: inline-block;
-  font-size: 13px;
-  line-height: 18px;
-  color: @color_dark_gray !important;
-  border: 1px solid @color_medium_gray;
-  text-shadow: 1px 1px 1px @color_pale_gray;
-  text-align: center;
-  cursor: pointer;
-  :hover, :focus { 
-    cursor: default; 
-    color: @color_black !important;
-    border-color: @color_black !important;
-  }
-}
+// }}}
+// Arrows {{{
+@default_arrow_size: 4px;
 .arrow_down(@size: @default_arrow_size; @color: @color_dark_gray; @border_style: solid) {
   border-color: @color transparent transparent transparent;
   border-style: @border_style;
@@ -106,61 +88,82 @@
   height: 0;
 }
 // }}}
-
-/* -- Common elements -- */
-// Body {{{
-body {
-  font-size: 16px;
-  background-color: @color_white;
-  padding-bottom: 35px;
+// Round corner {{{
+@default_corner_radius: 4px;
+.round_corner(@left_top: @default_corner_radius; @right_top: @default_corner_radius; @right_bottom: @default_corner_radius; @left_bottom: @default_corner_radius;) {
+  border-radius: @left_top @right_top @right_bottom @left_bottom;
+  -webkit-border-radius: @left_top @right_top @right_bottom @left_bottom;
+  -moz-border-radius: @left_top @right_top @right_bottom @left_bottom;
+  -moz-background-clip: padding; 
+  -webkit-background-clip: padding-box; 
+  background-clip: padding-box; 
 }
 // }}}
-// Links {{{
-a:link, a:visited {
+
+// -- Common elements -- //
+// body {{{
+body {
+  .font_sans;
+  line-height: 25px;
+  font-size: 16px;
+}
+// }}}
+// a {{{
+a, a:link, a:visited {
   color: @color_green;
+  text-decoration: none;
   :hover {
     color: @color_black;
     text-decoration: none;
   }
 }
 // }}}
-// Line height for text grid {{{
-#zone-content {
-}
-// }}}
-// h tags {{{
+// h1, h2, h3, h4, h5, h6 {{{
 h1, h2, h3, h4, h5, h6 {
-  .font_sans;
-  letter-spacing: 0;
-}
-h1, h2, h3, h4 {
-  line-height: 52px;
+  .font-serif;
+  font-weight: normal;
 }
 h1 {
-  margin-top: 25px;
-  font-size: 42px;
+  font-size: 44px;
+  line-height: 50px;
+}
+h2 {
+  font-size: 36px;
+  line-height: 50px;
+}
+h3 {
+  font-size: 32px;
+  line-height: 50px;
+}
+h4 {
+  font-size: 28px;
+  line-height: 50px;
+}
+h5, h6 {
+  font-size: 22px;
+  line-height: 25px;
 }
 // }}}
-// Tables {{{
+// table {{{
 table {
   width: auto;
-  font-size: 15px;
-  a {
-    .plain;
-  }
   thead {
     th {
-      border-bottom: 1px solid @color_medium_dark_gray;
-      padding: 3px 20px 3px 0;
-      font-size: 13px;
+      border-bottom: 1px solid @color_medium_light_gray;
+      padding: 0 10px;
+      text-align: left;
       font-weight: bold;
     }
   }
 
   tbody {
     td, th {
-      padding: 3px 10px;
-      border: 1px solid @color_medium_dark_gray;
+      padding: 0 10px;
+      border-right: 1px dotted @color_medium_dark_gray;
+      border-left: 1px dotted @color_medium_dark_gray;
+      border-top: 1px solid @color_medium_light_gray;
+      border-bottom: 1px solid @color_medium_light_gray;
+      text-align: left;
       &.active {
         background: none;
         color: @color_black;
@@ -172,108 +175,12 @@ table {
     tr, tr.even, tr.odd {
       background: none;
       :hover {
-        th {
-          background: @color_light_gray;
-        }
-        td {
+        td, th {
           background: @color_pale_gray;
         }
       }
     }
   }
-}
-// }}}
-// Forms {{{
-input.form-submit, button {
-  .button;
-  font-weight: normal;
-  :hover {
-    .gradient;
-  }
-}
-
-input, select, textarea, button {
-  border: 1px solid @color_medium_gray !important;
-  color: @color_black;
-
-  // These rules are from Formalize, but aren't applied to all element types
-  // (like the ones created by jQuery UI)
-  font-size: 13px !important;
-  font-family: Arial, sans-serif;
-  padding: 2px 3px;
-}
-button {
-  font-size: 15px !important;
-}
-
-button:focus,
-button:active,
-input:focus,
-input:active,
-select:focus,
-select:active,
-textarea:focus,
-textarea:active {
-  .box_shadow(0 0 6px @color_dark_yellow);
-  border-color: @color_dark_gray !important;
-}
-
-input[type="file"]:focus,
-input[type="file"]:active,
-input[type="radio"]:focus,
-input[type="radio"]:active,
-input[type="checkbox"]:focus,
-input[type="checkbox"]:active {
-  .box_shadow(none);
-}
-
-input[readonly], 
-textarea[readonly],
-input[disabled],
-textarea[disabled],
-select[disabled],
-button[disabled] {
-  color: @color_medium_gray;
-  border-color: @color_medium_light_gray;
-  background: @color_pale_gray;
-}
-
-.fieldset-legend {
-  font-weight: bold;
-}
-
-// }}}
-// User picture {{{
-//.user-picture {
-//  display: inline-block;
-//  img {
-//    width: 20px;
-//    height: 20px;
-//  }
-//}
-// }}}
-// Text formats {{{
-.big {
-  font-size: 30px;
-  line-height: 52px;
-}
-.small {
-  font-size: 13px;
-}
-.center {
-  text-align: center;
-}
-.highlight {
-  background-color: @color_yellow;
-}
-.message {
-  padding: 4px 7px;
-  margin: 8px 0;
-  border: 1px solid @color_dark_yellow;
-  background-color: @color_yellow;
-}
-.section-break {
-  margin-top: 26px;
 }
 // }}}
 // hr {{{
@@ -297,78 +204,116 @@ code {
   background-color: @color_medium_pale_gray;
 }
 /* }}} */
+// forms {{{
+button:focus,
+button:active,
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active {
+  .box_shadow(0 0 3px @color_dark_yellow);
+}
 
-/* -- Drupal elements -- */
-// Menus {{{
-#page ul.menu {
-  li {
-    .box;
-    padding: 0;
-    list-style-type: none;
-    margin-right: 10px;
-    a {
-      .box;
-      .plain;
-      padding: 0 8px;
-      border: 1px solid @color_green;
-      background-color: @color_white;
-      :hover {
-        background-color: @color_bright_green;
-        border-color: @color_bright_green;
-        color: @color_white;
-      }
-      &.active, &.active:hover {
-        background-color: @color_green;
-        color: @color_white;
-        border-color: @color_green;
-        cursor: default;
-      }
-    }
+input[type="file"]:focus,
+input[type="file"]:active,
+input[type="radio"]:focus,
+input[type="radio"]:active,
+input[type="checkbox"]:focus,
+input[type="checkbox"]:active {
+  .box_shadow(none);
+}
+
+input[readonly], 
+textarea[readonly],
+input[disabled],
+textarea[disabled],
+select[disabled],
+button[disabled] {
+  color: @color_medium_gray;
+  border-color: @color_medium_light_gray;
+  background: @color_pale_gray;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+legend {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+.form-required {
+  color: @color_red;
+}
+.form-item {
+  .description {
+    font-size: 12px;
   }
-  #menu-link-volunteer,
-  #menu-link-events {
-    margin: 0;
-    a {
-      border-right: none;
-    }
+}
+.form-submit {
+  margin-right: 10px;
+}
+// Images {{{
+.user-img-small {
+  img { 
+    height: 24px;
+    width: 24px; 
   }
 }
 // }}}
 
-/* -- Sections -- */
+// }}}
+
+// -- Header section -- //
 // Header {{{
 header#section-header {
-  padding-top: 5px;
   .gradient(@color_white; @color_pale_gray; @color_light_gray;);
-  li {
-    margin-bottom: 0;
-  }
 }
 // }}}
-
-/* -- Zones -- */
-// Header {{{
-#zone-header-wrapper {
-  .font_sans;
-  .block h2 {
-    display: none;
-  }
-}
-// }}}
-// Title {{{
-#zone-title-wrapper {
-}
-// }}}
-
-#zone-content-wrapper
-  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
-    margin-bottom: 0;
-
-/* -- Regions -- */
 // Navigation region {{{
 #region-navigation-primary {
-  margin: 10px 0;
-  a { .plain; }
+  margin: 15px 0 15px 0;
+  .block h2 { display: none; }
+  // Townsquare toolbar menu {{{
+  #block-menu-menu-townsquare-toolbar {
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    ul.menu {
+      li {
+        .box;
+        margin-right: 10px;
+        a {
+          .box;
+          padding: 0 8px;
+          border: 1px solid @color_green;
+          background-color: @color_white;
+          :hover {
+            background-color: @color_bright_green;
+            border-color: @color_bright_green;
+            color: @color_white;
+          }
+          &.active, &.active:hover {
+            background-color: @color_green;
+            color: @color_white;
+            border-color: @color_green;
+            cursor: default;
+          }
+        }
+      }
+      #menu-link-volunteer,
+      #menu-link-event {
+        margin: 0;
+        a {
+          border-right: none;
+        }
+      }
+    }
+  }
+  // }}}
+  // Logo {{{
   .logo-img {
     float: left;
     margin-right: 5px;
@@ -378,117 +323,43 @@ header#section-header {
       height: 30px;
     }
   }
-  #block-menu-menu-townsquare-toolbar {
-    float: left; 
-    #menu-townsquare-toolbar-admin-people-create,
-    #menu-townsquare-toolbar-event-create {
-      a {
-        padding: 0 6px;
-        font-weight: bold;
-      }
-    }
-  }
+  // }}}
+  // Login block {{{
   #block-townsquare-core-login {
     float: right;
-    font-size: 13px;
-    ul, li, div { display: inline; line-height: 1; }
+    font-size: 14px;
+    ul, li, .login-username, .form-item, .form-actions, .links, .user-picture { display: inline; line-height: 1; }
     li {
-      list-style-type: none;
       padding-left: 6px;
       border-left: 1px solid #999;
     }
+    label {
+      margin-left: 14px;
+      margin-right: 0;
+    }
     img {
-      width: 20px;
-      height: 20px;
-    }
-    .logged-out-block {
-      width: 230px;
-      padding: 10px;
-      float: right;
-      .form-item {
-        .box;
-        width: 230px;
-        margin: 0 0 5px 0;
-        label {
-          .box;
-          font-size: 14px;
-          padding-top: 5px;
-          width: 80px;
-          margin-right: 10px;
-        }
-        input {
-          width: 140px;
-        }
-      }
-      .form-item-pass {
-        margin-bottom: 12px;
-      }
-      input.form-submit, .links a {
-        margin-right: 5px;
-      }
-      #edit-submit {
-        font-weight: bold;
-      }
+      width: 25px;
+      height: 25px;
     }
   }
+  // }}}
 }
 // }}}
-// Secondary navigation {{{ 
-#region-navigation-secondary {
-  #block-search-form {
-    float: right;
-  }
-}
-// }}}
-// Content {{{
-#zone-content-wrapper {
-  margin-top: 21px;
-  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
-    margin-bottom: 0;
-    line-height: 26px;
-  }
-  .content {
-    a {
-      :hover {
-        background-color: @color_yellow;
-      }
-    }
-    ul:not(.vertical-tabs-list) {
-      li {
-        margin-left: 5px;
-        padding-left: 5px;
-      }
-    }
-  }
-  footer {
-    padding-top: 15px;
-    margin-bottom: 25px;
-    border-top: 1px solid @color_light_gray;
-    font-size: 14px;
-    text-align: center;
-  }
-}
-// }}}
-// Primary tasks {{{
+// Tasks region {{{
 #region-primary-tasks {
-  margin-left: 0;
-  margin-right: 20px;
+  margin: 0;
   ul {
-    font-size: 14px;
     line-height: 22px;
-    margin: 0;
     li {
       display: inline-block;
       margin-right: 6px;
       a {
         display: inline-block;
-        .plain;
         padding: 0 8px;
         border-top: 1px solid @color_medium_gray;
         border-left: 1px solid @color_medium_gray;
         border-right: 1px solid @color_medium_gray;
-        .round_corner(4px; 4px; 0; 0);
-        background-color: @color_light_gray;
+        background-color: @color_medium_pale_gray;
         :hover {
           color: @color_green;
           background-color: @color_white;
@@ -509,22 +380,49 @@ header#section-header {
 }
 // }}}
 
-/* -- Pages -- */
+// -- Content section -- //
+// Content {{{
+#zone-content {
+  margin-top: 25px;
+  p, dl, hr, h1, h2, h3, h4, h5, h6, .form-item, pre, address, fieldset, blockquote {
+    margin-bottom: 25px;
+  }
+  .node ul, .item-list ul,
+  .node ol, .item-list ol {
+    li {
+      margin-left: 50px;
+      margin-bottom: 0;
+      li {
+        margin-left: 30px;
+      }
+    }
+  }
+  .node ul, .item-list ul {
+    li { list-style-type: disc; }
+  }
+  .node ol, .item-list ol {
+    li { list-style-type: decimal; }
+  }
+}
+// }}}
+
+// -- Pages -- //
 // Volunteer manager {{{
 .page-event-edit, .page-event-create {
   // Node event form {{{
-  .node-event-form {
+  #zone-content .node-event-form {
     background: @color_pale_gray;
-    padding: 7px 0 0 0;
-
-    .fieldset-description, 
-    .description,
-    .form-item-field-event-date-und-0-all-day, 
-    .form-item-field-event-date-und-0-value .form-required { 
+    margin-bottom: 25px;
+    padding: 5px 0;
+    .form-item {
+      margin-bottom: 10px;
+    }
+    .container-inline-date > .form-item > label {
       display: none;
     }
-    .fieldset-legend {
-      font-size: 16px;
+    legend, #edit-field-event-description label {
+      display: block;
+      margin-bottom: 10px;
     }
     .field-name-field-event-location {
       label { 
@@ -536,33 +434,23 @@ header#section-header {
         max-width: 160px;
       }
     }
-    .form-item {
-      margin: .5em 0;
-    }
     textarea {
       height: 134px;
-    }
-    .grippie {
-      display: none;
     }
   }
   // }}}
   // Volunteer session UI {{{
   #volunteer-sessions {
+    margin-top: 25px;
     margin-bottom: 250px;
     display: table;
     border-collapse: collapse;
     border-bottom: 1px solid @color_medium_light_gray;
     #session-headers {
       display: table-row;
-      background-color: @color_light_gray;
-      font-size: 12px;
-      border-left: 1px solid @color_medium_dark_gray;
-      border-top: 1px solid @color_medium_dark_gray;
       li {
         display: table-cell;
         padding: 2px 9px;
-        border-right: 1px solid @color_medium_dark_gray;
       }
     }
     .volunteer-session-form {
@@ -573,8 +461,8 @@ header#section-header {
         padding: 8px 9px;
         border-collapse: collapse;
         border-top: 1px solid @color_medium_light_gray;
-        border-left: 1px solid @color_medium_light_gray;
-        border-right: 1px solid @color_medium_light_gray;
+        border-left: 1px dotted @color_medium_dark_gray;
+        border-right: 1px dotted @color_medium_dark_gray;
       }
       form {
         div.ajax-progress,
@@ -608,7 +496,6 @@ header#section-header {
       width: 222px;
       input, select {
         width: 100px;
-        border-right: none;
       }
       .form-item { 
         display: inline-block;
@@ -620,17 +507,17 @@ header#section-header {
     }
     .field-name-field-session-override-duration,
     .field-name-field-session-no-signout {
-      width: 80px;
+      width: 120px;
       text-align: center;
       .form-item {
         text-align: center;
       }
     }
     .field-name-field-session-duration {
-      width: 60px;
+      width: 100px;
       text-align: center;
       input { 
-        width: 60px;
+        width: 100px;
         text-align: right;
       }
     }
@@ -639,28 +526,19 @@ header#section-header {
 }
 // }}}
 
-/* -- Widgets (jQuery UI, Date module) -- */
-// Admin toolbar {{{
-#admin-toolbar ul.menu li {
-  float: none;
+
+// -- UI elements -- //
+// Vertical tabs {{{
+.vertical-tabs {
+  .fieldset-wrapper {
+    margin-top: 8px;
+  }
 }
 // }}}
-// Icons and arrows {{{
-.ui-icon {
-  position: relative;
-  top: 10px;
-}
-.ui-icon-triangle-1-s {
-  .arrow_down;
-}
-.ui-icon-triangle-1-n {
-  .arrow_up;
-}
-.ui-icon-triangle-1-e {
-  .arrow_right;
-}
-.ui-icon-triangle-1-w {
-  .arrow_left;
+// Drupal toolbar {{{
+#toolbar {
+  border-bottom: 1px solid @color_medium_dark_gray;
+  .box_shadow(0 3px 6px @color_medium_gray);
 }
 // }}}
 // Autocomplete {{{
@@ -687,75 +565,31 @@ header#section-header {
   }
 }
 // }}}
-// Buttons {{{
-.ui-button {
-  padding-left: 6px;
-  padding-right: 6px;
+// Icons and arrows {{{
+.ui-icon {
+  position: relative;
+  top: 10px;
+}
+.ui-icon-triangle-1-s {
+  .arrow_down;
+}
+.ui-icon-triangle-1-n {
+  .arrow_up;
+}
+.ui-icon-triangle-1-e {
+  .arrow_right;
+}
+.ui-icon-triangle-1-w {
+  .arrow_left;
 }
 // }}}
 // Combobox {{{
 .combobox-js-wrapper {
   button.ui-button {
     border: none !important;
-    margin-left: -20px;
+    margin-left: -25px;
     background: transparent;
     .round_corner(0; 0; 0; 0);
-    .box_shadow(0 0 0);
   }
 }
 // }}}
-// Date widgets {{{
-.container-inline-date {
-  .form-item {
-    display: inline-block;
-    .form-item {
-      margin: 0;
-    }
-    input {
-      max-width: 130px;
-    }
-  }
-}
-// }}}
-// Node form {{{
-.node-form {
-  .form-actions {
-    background: @color_light_gray;
-    padding: 5px;
-    button, input {
-      margin-right: 10px;
-    }
-  }
-  .filter-guidelines {
-    display: none;
-  }
-  .wysiwyg-toggle-wrapper {
-    margin-top: 6px;
-    margin-bottom: 20px;
-    a { .button; }
-  }
-  .filter-wrapper {
-    padding: 0;
-    font-size: 13px;
-    .form-item {
-      padding: 0;
-      margin: 0;
-      select {
-        min-width: 200px;
-      }
-      label {
-        margin-right: 10px;
-      }
-    }
-  }
-}
-// }}}
-// Images {{{
-.user-img-small {
-  img { 
-    height: 24px;
-    width: 24px; 
-  }
-}
-// }}}
-
