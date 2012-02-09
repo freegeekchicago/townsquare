@@ -227,7 +227,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['path'] = 'events';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Events';
-  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['weight'] = '30';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
   $export['townsquare_events'] = $view;
 
@@ -1685,12 +1685,12 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['path'] = 'volunteer/report';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Reports';
-  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['weight'] = '20';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-secondary-tools';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'tab';
   $handler->display->display_options['tab_options']['title'] = 'Volunteers';
-  $handler->display->display_options['tab_options']['weight'] = '0';
+  $handler->display->display_options['tab_options']['weight'] = '10';
   $handler->display->display_options['tab_options']['name'] = 'menu-townsquare-secondary-tools';
 
   /* Display: Search */
