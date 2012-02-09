@@ -81,9 +81,6 @@ projects[rb][subdir] = "contrib"
 projects[rules][version] = "2.0"
 projects[rules][subdir] = "contrib"
 
-projects[simplemenu][version] = "1.x-dev"
-projects[simplemenu][subdir] = "contrib"
-
 projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
 
