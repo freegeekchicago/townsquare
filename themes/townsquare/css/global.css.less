@@ -118,18 +118,14 @@ body {
 // Links {{{
 a:link, a:visited {
   color: @color_green;
-  text-decoration: underline;
   :hover {
     color: @color_black;
+    text-decoration: none;
   }
 }
 // }}}
 // Line height for text grid {{{
-#page {
-  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
-    line-height: 26px;
-    margin-bottom: 26px;
-  }
+#zone-content {
 }
 // }}}
 // h tags {{{
@@ -305,12 +301,6 @@ code {
 /* -- Drupal elements -- */
 // Menus {{{
 #page ul.menu {
-  margin: 0;
-  font-size: 14px;
-  line-height: 22px;
-  ul {
-    margin: 0;
-  }
   li {
     .box;
     padding: 0;
@@ -370,8 +360,12 @@ header#section-header {
 }
 // }}}
 
+#zone-content-wrapper
+  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
+    margin-bottom: 0;
+
 /* -- Regions -- */
-// User region {{{
+// Navigation region {{{
 #region-navigation-primary {
   margin: 10px 0;
   a { .plain; }
@@ -449,17 +443,14 @@ header#section-header {
 // Content {{{
 #zone-content-wrapper {
   margin-top: 21px;
-  .content { // Inner content {{{
+  p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, li, pre, address, fieldset, blockquote {
+    margin-bottom: 0;
+    line-height: 26px;
+  }
+  .content {
     a {
       :hover {
         background-color: @color_yellow;
-      }
-    }
-    table {
-      a {
-        :hover {
-          background: none;
-        }
       }
     }
     ul:not(.vertical-tabs-list) {
@@ -468,17 +459,14 @@ header#section-header {
         padding-left: 5px;
       }
     }
-  } // }}}
-  footer { // Footer {{{
+  }
+  footer {
     padding-top: 15px;
     margin-bottom: 25px;
     border-top: 1px solid @color_light_gray;
     font-size: 14px;
     text-align: center;
-  } // }}}
-  h1 { // h1 {{{
-    border-bottom: 1px solid @color_medium_light_gray;
-  } // }}}
+  }
 }
 // }}}
 // Primary tasks {{{
@@ -677,18 +665,19 @@ header#section-header {
 // }}}
 // Autocomplete {{{
 #autocomplete, .ui-autocomplete {
-  width: 100px;
+  width: auto;
   .box_shadow(2px 2px 4px @color_medium_gray);
   background-color: @color_white;
   border: 1px solid @color_medium_gray;
   max-height: 161px;
   overflow-y: scroll;
+}
+// For volunteer manager (@TODO clean up)
+.ui-autocomplete {
+  width: 100px;
   li {
     list-style-type: none;
-    margin: 0;
-    padding: 5px 4px;
-    font-size: 12px;
-    line-height: 13px;
+    padding: 0 2px;
     :hover,
     :focus,
     :active {
@@ -769,3 +758,4 @@ header#section-header {
   }
 }
 // }}}
+
