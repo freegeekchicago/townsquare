@@ -21,7 +21,7 @@ projects[context][subdir] = "contrib"
 projects[ctools][version] = "1.0-rc1"
 projects[ctools][subdir] = "contrib"
 
-projects[date][version] = "2.x-dev"
+projects[date][version] = "2.0-rc2"
 projects[date][subdir] = "contrib"
 
 projects[delta][version] = "3.0-beta9"
