@@ -59,22 +59,6 @@ function townsquare_volunteer_permission() {
 }
 
 /**
- * Implements hook_library().
- */
-function townsquare_volunteer_library() {
-  $libraries = array();
-  $libraries['jquery.elastic'] = array(
-    'title' => 'jQuery elastic textarea plugin',
-    'version' => '1.0-alpha1', // @TODO update with real info
-    'js' => array(
-      drupal_get_path('module', 'townsquare_volunteer')
-        .'/lib/jquery.elastic.source.js' => array(),
-    ),
-  );
-  return $libraries;
-}
-
-/**
  * Implements hook_form_alter().
  */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
@@ -397,8 +381,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
   }
 
   module_load_include('inc', 'node', 'node.pages');
-
-  drupal_add_library('townsquare_volunteer', 'jquery.elastic');
 
   $session_form = array();
 
