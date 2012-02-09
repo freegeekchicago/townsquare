@@ -14,7 +14,6 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = path
 dependencies[] = search
-dependencies[] = syslog
 dependencies[] = taxonomy
 
 dependencies[] = addressfield
