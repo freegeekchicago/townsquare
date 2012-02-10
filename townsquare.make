@@ -6,9 +6,6 @@ projects[drupal][version] = "7.12"
 projects[addressfield][version] = "1.0-beta2"
 projects[addressfield][subdir] = "contrib"
 
-projects[admin][iversion] = "2.0-beta3"
-projects[admin][subdir] = "contrib"
-
 projects[combobox][type] = "module"
 projects[combobox][subdir] = "contrib"
 projects[combobox][download][type] = "git"
@@ -57,7 +54,7 @@ projects[htmLawed][subdir] = "contrib"
 projects[less][version] = "2.4"
 projects[less][subdir] = "contrib"
 
-projects[libraries][version] = "1.0"
+projects[libraries][version] = "2.0-alpha2"
 projects[libraries][subdir] = "contrib"
 
 projects[markdown][version] = "1.0"
@@ -71,18 +68,6 @@ projects[markdownify][download][branch] = "7.x-1.0-dev"
 
 projects[omega_tools][version] = "3.0-rc3"
 projects[omega_tools][subdir] = "contrib"
-
-projects[node_export][version] = "3.x-dev"
-projects[node_export][subdir] = "contrib"
-
-projects[rb][version] = "1.x-dev"
-projects[rb][subdir] = "contrib"
-
-projects[rules][version] = "2.0"
-projects[rules][subdir] = "contrib"
-
-projects[simplemenu][version] = "1.x-dev"
-projects[simplemenu][subdir] = "contrib"
 
 projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
