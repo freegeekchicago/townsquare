@@ -1452,6 +1452,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_type'] = 'h2';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['name']['hide_empty'] = 0;
@@ -1479,6 +1480,10 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_session_duration']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_session_duration']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_class'] = 'value';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_session_duration']['element_label_class'] = 'label';
   $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
@@ -1508,6 +1513,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['edit_node']['element_class'] = 'button';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
