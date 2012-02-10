@@ -53,7 +53,7 @@ function townsquare_editor_wysiwyg_default_profiles() {
       'paste_auto_cleanup_on_paste' => 1,
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'css_setting' => 'self',
-      'css_path' => '%bprofiles/townsquare/themes/townsquare/css/editor.css',
+      'css_path' => '%bprofiles/townsquare/themes/freegeek/css/editor.css',
       'css_classes' => '',
     ),
   );
@@ -104,13 +104,13 @@ function townsquare_editor_wysiwyg_default_profiles() {
       'paste_auto_cleanup_on_paste' => 1,
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'css_setting' => 'self',
-      'css_path' => '%bprofiles/townsquare/themes/townsquare/css/editor.css',
+      'css_path' => '%bprofiles/townsquare/themes/freegeek/css/editor.css',
       'css_classes' => 'Big=big
   Small=small
   Serif=font_serif
   Highlight=highlight
   Align center=align-center
-  Align right=align-right',
+    Align right=align-right',
     ),
   );
 
