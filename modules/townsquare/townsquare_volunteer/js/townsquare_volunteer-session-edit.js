@@ -8,7 +8,7 @@ Drupal.behaviors.prepareVolunteerUI = {
 };
 
 // jQuery plugin to invoke from AJAX callback
-fn.scrollSessions = function() {
+$.fn.scrollSessions = function() {
   $.scrollTo( this, 400, {offset: -50} );
   return this;
 }
