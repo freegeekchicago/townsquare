@@ -264,12 +264,12 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
 
   entity_form_submit_build_entity('node', $node, $form, $form_state);
   entity_save('node', $node);
-  
+
   $form_state['rebuild'] = TRUE;
   $form = drupal_rebuild_form($form['#form_id'], $form_state, $form);
 
   // If new, rebuild whole form when user changes 
-  if ($new) {
+  if ($new && !empty($form_state['values']['field_session_user']['und'][0]['target_id'])) {
     // To create the new node form, we need to reset $_POST so that
     // drupal_build_form won't use it to populate $form_state['input']
     $_POST = array();
