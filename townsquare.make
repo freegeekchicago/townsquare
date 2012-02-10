@@ -48,8 +48,8 @@ projects[grammar_parser_lib][subdir] = "contrib"
 projects[gravatar][version] = "1.1"
 projects[gravatar][subdir] = "contrib"
 
-projects[htmLawed][version] = "3.0"
-projects[htmLawed][subdir] = "contrib"
+projects[htmlpurifier][version] = "2.x-dev"
+projects[htmlpurifier][subdir] = "contrib"
 
 projects[less][version] = "2.4"
 projects[less][subdir] = "contrib"
