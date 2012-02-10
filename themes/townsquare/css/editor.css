@@ -53,12 +53,11 @@
 body {
   /* Use zoom and scale to make editor area fit in existing column */
   width: 960px;
-  zoom: 0.925;
-  -moz-transform: scale(0.925);
-  -moz-transform-origin: 0 0;
+  zoom: 0.95;
+  margin: 0 auto;
   padding: 0 10px;
-  margin-left: auto;
-  margin-right: auto;
+  -moz-transform: scale(0.95);
+  -moz-transform-origin: 0 0;
 }
 
 /*
@@ -348,7 +347,7 @@ body {
 
 /* Taken from build of global.css */ 
 .font_sans { font-family:Arimo, Arial, sans-serif; }
-.font-serif { font-family:"Crimson Text", Georgia, serif; }
+.font_serif { font-family:"Crimson Text", Georgia, serif; }
 .font_mono { font-family:"Courier New", Courier, monospace; }
 
 body {
@@ -358,10 +357,6 @@ body {
 }
 a, a:link, a:visited {
   color:#267e26;
-  text-decoration:none;
-}
-a:hover, a:link:hover, a:visited:hover {
-  color:#000000;
   text-decoration:none;
 }
 h1 {
@@ -450,13 +445,47 @@ blockquote {
   color:#454545;
 }
 p, dl, hr, h1, h2, h3, h4, h5, h6, .form-item, pre, address, fieldset, blockquote { margin-bottom:25px; }
+ul, ol {
+  margin: 0;
+}
 ul li {
-  margin-left:25px;
-  margin-bottom:25px;
+  margin-left:0;
+  margin-bottom: 25px;
   list-style-type:disc;
 }
 ol li {
-  margin-left:25px;
-  margin-bottom:25px;
+  margin-left:0;
+  margin-bottom: 25px;
   list-style-type:decimal;
+}
+
+.big {
+ font-family:"Crimson Text", Georgia, serif;
+  font-size: 36px;
+  line-height: 50px;
+}
+.small {
+  font-size: 13px;
+}
+.highlight {
+  color: #000;
+  background-color: #fdffa9; 
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.quiet {
+  color: #454545;
+}
+.border {
+  border: 1px solid #b5b5b5;
+}
+.caption {
+  color: #454545;
+  font-size: 13px;
+  margin: 7px 0 18px 0;
+  display: block;
 }

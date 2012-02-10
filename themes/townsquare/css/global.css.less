@@ -26,12 +26,12 @@
 @color_pale_gray: #f3f3f3;
 // }}}
 
-// -- Less Mixins -- //
+// -- LESS Mixins -- //
 // Fonts {{{
 .font_sans {
   font-family: Arimo, Arial, sans-serif;
 }
-.font-serif {
+.font_serif {
   font-family: "Crimson Text", Georgia, serif;
 }
 .font_mono {
@@ -112,6 +112,38 @@
   background-clip: padding-box; 
 }
 // }}}
+// Content styles {{{
+.big {
+  .font_serif;
+  font-size: 36px;
+  line-height: 50px;
+}
+.small {
+  font-size: 13px;
+}
+.highlight {
+  background-color: @color_yellow;
+  color: @color_black;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.quiet {
+  color: @color_dark_medium_gray;
+}
+.border {
+  border: 1px solid @color_medium_dark_gray;
+}
+.caption {
+  .small;
+  .quiet;
+  display: block;
+  margin: 7px 0 18px 0;
+}
+// }}}
 
 // -- Common elements -- //
 // body {{{
@@ -133,7 +165,7 @@ a, a:link, a:visited {
 // }}}
 // h1, h2, h3, h4, h5, h6 {{{
 h1, h2, h3, h4, h5, h6 {
-  .font-serif;
+  .font_serif;
   font-weight: normal;
 }
 h1 {
@@ -395,17 +427,18 @@ header#section-header {
 // Content {{{
 #zone-content {
   margin-top: 25px;
-  p, dl, hr, h1, h2, h3, h4, h5, h6, .form-item, pre, address, fieldset, blockquote {
+  p, table, dl, hr, h1, h2, h3, h4, h5, h6, .form-item, pre, address, fieldset, blockquote {
     margin-bottom: 25px;
+  }
+  table.mceLayout, table table {
+    margin-bottom: 0;
   }
   .node ul, .item-list ul,
   .node ol, .item-list ol {
+    margin-bottom: 25px;
     li {
-      margin-left: 50px;
-      margin-bottom: 0;
-      li {
-        margin-left: 30px;
-      }
+      margin-left: 20px;
+      margin-bottom: 25px;
     }
   }
   .node ul, .item-list ul {
@@ -542,6 +575,27 @@ header#section-header {
       }
     }
     // }}}
+  }
+}
+// }}}
+// Volunteer search page {{{
+.page-volunteer-search #zone-content {
+  .user-picture {
+    float: left;
+    margin-right: 10px;
+  }
+  h2 {
+    margin-bottom: 8px;
+    font-size: 32px;
+    line-height: 32px;
+  }
+  .views-field-field-session-duration,
+  .views-field-edit-node {
+    font-size: 20px;
+    line-height: 35px;
+  }
+  .value {
+    font-weight: bold;
   }
 }
 // }}}

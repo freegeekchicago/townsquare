@@ -42,6 +42,9 @@ projects[eva][subdir] = "contrib"
 projects[features][version] = "1.x-dev"
 projects[features][subdir] = "contrib"
 
+projects[fontyourface][version] = "2.0"
+projects[fontyourface][subdir] = "contrib"
+
 projects[grammar_parser_lib][version] = "1.x-dev"
 projects[grammar_parser_lib][subdir] = "contrib"
 
