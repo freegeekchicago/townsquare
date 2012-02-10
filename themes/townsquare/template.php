@@ -18,6 +18,7 @@ function townsquare_css_alter(&$css) {
         strripos($file, 'system/system.theme.css') !== FALSE ||
         strripos($file, 'date/date_api/date.css') !== FALSE || 
         strripos($file, 'filter/filter.css') !== FALSE || 
+        strripos($file, 'datepicker.1.7.css') !== FALSE || 
         strpos($file, 'misc/ui/jquery.ui') === 0) {
       unset($css[$file]);
     }

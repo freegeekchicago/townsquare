@@ -1,5 +1,46 @@
 (function($) {
 
+// Hide save buttons
+Drupal.behaviors.prepareVolunteerUI = {
+  attach: function(context) {
+    $('#volunteer-sessions input[value="Save"]').hide();
+  }
+};
+
+// jQuery plugin to invoke from AJAX callback
+fn.scrollSessions = function() {
+  $.scrollTo( this, 400, {offset: -50} );
+  return this;
+}
+
+// Toggle fields
+Drupal.behaviors.toggleFields = {
+  attach: function(context) {
+    $('.field-name-field-session-user input', context).each(function() {
+      var form = $(this).parents('form');
+      if (!this.value) {
+        $('input[name!="field_session_user[und][0][target_id]"], select, textarea', form)
+          .not(':checkbox')
+          .not(':submit')
+          .attr('readonly', true);
+        
+        $('input:checkbox, input:submit, button', form)
+          .attr('disabled', true);
+      }
+      $(this).change(function() {
+        $('input, select, textarea', form)
+        .not('name="field_session_user[und][0][target_id]"')
+        .not(':checkbox')
+        .not(':submit')
+        .removeAttr('readonly');
+
+        $('input:checkbox, input:submit, button', form)
+          .removeAttr('disabled');
+      });
+    });
+  }
+};
+
 // Disable duration field if override button isn't checked
 Drupal.behaviors.disableDuration = {
   attach: function(context) {

@@ -5,6 +5,16 @@ engine = phptemplate
 screenshot = screenshot.png
 base theme = omega
 
+; FONTS
+fonts[google_fonts_api][] = "Arimo&subset=latin#bold"
+fonts[google_fonts_api][] = "Arimo&subset=latin#bolditalic"
+fonts[google_fonts_api][] = "Arimo&subset=latin#italic"
+fonts[google_fonts_api][] = "Arimo&subset=latin#regular"
+fonts[google_fonts_api][] = "Crimson Text&subset=latin#400italic"
+fonts[google_fonts_api][] = "Crimson Text&subset=latin#600"
+fonts[google_fonts_api][] = "Crimson Text&subset=latin#600italic"
+fonts[google_fonts_api][] = "Crimson Text&subset=latin#regular"
+
 ; REQUIRED CORE REGIONS
 
 regions[page_top] = Page Top

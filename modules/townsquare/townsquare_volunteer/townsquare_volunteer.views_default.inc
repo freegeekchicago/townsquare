@@ -22,7 +22,7 @@ function townsquare_volunteer_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Townsquare events';
+  $handler->display->display_options['title'] = 'Events';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'administer volunteer hours';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -224,11 +224,12 @@ function townsquare_volunteer_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'events';
+  $handler->display->display_options['path'] = 'event';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '30';
   $handler->display->display_options['menu']['name'] = 'menu-townsquare-toolbar';
+  $handler->display->display_options['menu']['context'] = 0;
   $export['townsquare_events'] = $view;
 
   $view = new view;
