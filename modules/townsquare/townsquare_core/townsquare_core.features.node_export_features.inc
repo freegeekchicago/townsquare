@@ -78,9 +78,9 @@ Vivamus pretium placerat lorem, in tempor massa convallis sit amet. Aliquam sed 
         ),
       ),
     ),
-    \'name\' => \'David Eads\',
+    \'name\' => \'Anonymous\',
     \'picture\' => \'0\',
-    \'data\' => \'a:1:{s:8:"gravatar";i:1;}\',
+    \'data\' => \'a:0:{}\',
     \'path\' => FALSE,
     \'menu\' => array(
       \'link_title\' => \'\',
@@ -348,9 +348,9 @@ drush make build-townsquare.make townsquare-build</pre>
         ),
       ),
     ),
-    \'name\' => \'David Eads\',
+    \'name\' => \'Anonymous\',
     \'picture\' => \'0\',
-    \'data\' => \'a:1:{s:8:"gravatar";i:1;}\',
+    \'data\' => \'a:0:{}\',
     \'path\' => FALSE,
     \'menu\' => array(
       \'link_title\' => \'\',
