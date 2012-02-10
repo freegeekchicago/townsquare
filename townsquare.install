@@ -1,0 +1,62 @@
+<?php
+/**
+ * @file townsquare.install
+ */
+
+/**
+ * Implements hook_install_tasks().
+ */
+function townsquare_install_tasks() {
+  $tasks = array();
+  $tasks['townsquare_load_content'] = array(
+    'display_name' => st('Townsquare load content'), 
+    'display' => FALSE,
+    'type' => 'batch',
+  );
+  return $tasks;
+}
+
+function townsquare_load_content() {
+  $path = drupal_get_path('profile', 'townsquare') .'/docs/';
+  $files = array(
+    'home' => array(
+      'title' => t('Home'),
+      'type' => 'wiki',
+      'path' => $path .'home.md',
+      'format' => 'markdown_advanced',
+    ),
+    'project' => array(
+      'title' => t('Project'),
+      'type' => 'wiki',
+      'path' => $path .'project.md',
+      'format' => 'markdown_advanced',
+    ),
+    'test_markdown_restricted' => array(
+      'title' => t('Test Markdown Restricted input format'),
+      'type' => 'wiki',
+      'path' => $path .'test_markdown_restricted.md',
+      'format' => 'markdown',
+    ),
+  );
+  foreach ($files as $file) {
+    $node = new stdClass();
+    $node->type = $file['type'];
+    $node->title = $file['title'];
+    $node->uid = 1;
+    $node->status = 1;
+    $node->promote = 0;
+    $node->sticky = 0;
+    $node->language = LANGUAGE_NONE;
+
+    $node->body = array(
+      'und' => array(
+        array(
+          'value' => file_get_contents($file['path']),
+          'summary' => '',
+          'format' => $file['format'],
+        ),
+      )
+    );
+    node_save($node);
+  }
+}
