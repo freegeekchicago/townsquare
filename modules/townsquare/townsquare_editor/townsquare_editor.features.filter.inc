@@ -70,7 +70,7 @@ function townsquare_editor_filter_default_formats() {
             'AutoFormat.AutoParagraph' => '0',
             'AutoFormat.Linkify' => '0',
             'AutoFormat.RemoveEmpty' => '1',
-            'HTML.Allowed' => 'div,p,pre,blockquote,span,table,thead,tbody,tr,th,td,h1,h2,h3,h4, h5,h6,hr,a,em,strong,cite,code,ol,ul,li,dl,dt,dd',
+            'HTML.Allowed' => '*[class],div,p,pre,blockquote,span,table,thead,tbody,tr,th,td,h1,h2,h3,h4, h5,h6,hr,a[href],img[src|width|height|alt],em,strong,cite,code,ol,ul,li,dl,dt,dd',
             'HTML.ForbiddenAttributes' => 'style',
             'HTML.ForbiddenElements' => '',
             'HTML.SafeObject' => '0',
