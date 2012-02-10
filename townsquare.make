@@ -95,3 +95,7 @@ libraries[tinymce][directory_name] = "tinymce"
 libraries[scrollto][download][type] = "get"
 libraries[scrollto][download][url] = "http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.zip"
 libraries[scrollto][directory_name] = "scrollto"
+
+libraries[htmlpurifier][download][type] = "get"
+libraries[htmlpurifier][download][url] = "http://htmlpurifier.org/releases/htmlpurifier-4.4.0.tar.gz"
+libraries[htmlpurifier][directory_name] = "htmlpurifier"
