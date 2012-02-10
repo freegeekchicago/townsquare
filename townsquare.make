@@ -106,3 +106,7 @@ projects[omega][version] = "3.0"
 libraries[tinymce][download][type] = "get"
 libraries[tinymce][download][url] = "http://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
 libraries[tinymce][directory_name] = "tinymce"
+
+libraries[scrollto][download][type] = "get"
+libraries[scrollto][download][url] = "http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.zip"
+libraries[scrollto][directory_name] = "scrollto"

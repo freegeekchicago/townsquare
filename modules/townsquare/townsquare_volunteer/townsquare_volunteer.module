@@ -59,6 +59,22 @@ function townsquare_volunteer_permission() {
 }
 
 /**
+ * Implements hook_libraries_info().
+ */
+function townsquare_volunteer_libraries_info() {
+  $libraries = array();
+  $libraries['scrollto'] = array(
+    'title' => 'jQuery Scroll To plugin',
+    'files' => array(
+      'js' => array(
+        'jquery.scrollTo.js',
+      ),
+    ),
+  );
+  return $libraries;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
@@ -381,6 +397,7 @@ function townsquare_volunteer_edit_event($node = NULL) {
   }
 
   module_load_include('inc', 'node', 'node.pages');
+  libraries_load('scrollto');
 
   $session_form = array();
 
