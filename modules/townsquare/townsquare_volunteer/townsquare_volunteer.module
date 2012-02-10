@@ -494,8 +494,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'townsquare_volunteer')
-          .'/js/townsquare_volunteer-bulk-edit.js',
-        drupal_get_path('module', 'townsquare_volunteer')
           .'/js/autocomplete.js'
       ),
     ),
