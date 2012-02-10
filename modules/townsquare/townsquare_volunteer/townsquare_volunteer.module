@@ -547,16 +547,13 @@ function townsquare_volunteer_node_presave($node) {
       $end_timestamp = date_format($end, 'U'); 
       $elapsed = ($end_timestamp - $start_timestamp) / 3600;
       $node->field_session_duration[$lang][0]['value'] = $elapsed;  
-    }
-
-    $date = '';
-    if (!empty($node->field_session_hours[$lang][0]['value'])) {
-      $start = new DateObject($node->field_session_hours[$lang][0]['value']);
-      $end = new DateObject($node->field_session_hours[$lang][0]['value2']);
       $date = ' - '. $start->format('g:ia') .' to '. $end->format('g:ia');
+      $node->title = $event->title .' '. $date .' ('.
+        sprintf("%.2f", $node->field_session_duration[$lang][0]['value']) .' hours)';
     }
-    $node->title = $event->title .' '. $date .' ('.
-      sprintf("%.2f", $node->field_session_duration[$lang][0]['value']) .' hours)';
+    else {
+      $node->title = '';
+    }
   }
 
   if ($node->type == 'event') { 
@@ -731,7 +728,7 @@ function _townsquare_volunteer_create_volunteer_session($node) {
     );
     $empty_session->field_session_duration = array(
       'und' => array(
-        array('value' => 0)
+        array('value' => 6)
       )
     );
     return $empty_session; 
