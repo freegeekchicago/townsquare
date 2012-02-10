@@ -10,6 +10,7 @@ Drupal.behaviors.prepareVolunteerUI = {
 // jQuery plugin to invoke from AJAX callback
 $.fn.scrollSessions = function() {
   $.scrollTo( this, 400, {offset: -50} );
+  $('.form-item-field-session-hours-und-0-value input.ui-widget', this).focus();
   return this;
 }
 

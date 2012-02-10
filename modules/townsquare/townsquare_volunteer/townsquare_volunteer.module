@@ -277,7 +277,6 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
     $new_session = _townsquare_volunteer_create_volunteer_session($event_node);
     node_submit($new_session);
     node_save($new_session);
-    $node = $new_session;
     $new_form = drupal_get_form('volunteer_session_node_form', $new_session);
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
   }
