@@ -90,7 +90,7 @@ function townsquare_event_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_popup',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
@@ -338,7 +338,7 @@ function townsquare_event_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
