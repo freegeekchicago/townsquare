@@ -14,8 +14,10 @@
 function townsquare_css_alter(&$css) {
   foreach ($css as $file => $settings) {
     // Remove jQuery UI's theming, which messes up forms
-    if ($file == 'modules/system/system.menus.css' || 
-        $file == 'sites/all/modules/date/date_api/date.css' || 
+    if (strripos($file, 'system/system.menus.css') !== FALSE || 
+        strripos($file, 'system/system.theme.css') !== FALSE ||
+        strripos($file, 'date/date_api/date.css') !== FALSE || 
+        strripos($file, 'filter/filter.css') !== FALSE || 
         strpos($file, 'misc/ui/jquery.ui') === 0) {
       unset($css[$file]);
     }

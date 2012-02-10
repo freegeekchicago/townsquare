@@ -195,8 +195,12 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
         $form[$field]['#prefix'] = '<div class="townsquare-'. str_replace('_', '-', $field) .'-'. $key .'-element-wrapper">';
         $form[$field]['#suffix'] = '</div>';
 
-        // @TODO doesn't work for checkbox...
-        unset($form[$field]['und'][0][$key]['#title'], $form[$field]['und'][0][$key]['#description']);
+        unset(
+          $form[$field]['und']['#title'], 
+          $form[$field]['und']['#description'],
+          $form[$field]['und'][0][$key]['#title'], 
+          $form[$field]['und'][0][$key]['#description']
+        );
         
         if ($field != 'field_session_user' && $nid == 'new') {
           $form[$field]['#disabled'] = true;
