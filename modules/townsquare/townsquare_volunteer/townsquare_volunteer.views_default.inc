@@ -1659,6 +1659,15 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'users';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: User: Name */
+  $handler->display->display_options['filters']['uid']['id'] = 'uid';
+  $handler->display->display_options['filters']['uid']['table'] = 'users';
+  $handler->display->display_options['filters']['uid']['field'] = 'uid';
+  $handler->display->display_options['filters']['uid']['operator'] = 'not in';
+  $handler->display->display_options['filters']['uid']['value'] = array(
+    0 => 0,
+  );
+  $handler->display->display_options['filters']['uid']['group'] = 1;
   /* Filter criterion: SUM(Content: Duration (field_session_duration)) */
   $handler->display->display_options['filters']['field_session_duration_value']['id'] = 'field_session_duration_value';
   $handler->display->display_options['filters']['field_session_duration_value']['table'] = 'field_data_field_session_duration';
@@ -1667,7 +1676,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['field_session_duration_value']['group_type'] = 'sum';
   $handler->display->display_options['filters']['field_session_duration_value']['operator'] = '>';
   $handler->display->display_options['filters']['field_session_duration_value']['value']['value'] = '0';
-  $handler->display->display_options['filters']['field_session_duration_value']['group'] = 0;
+  $handler->display->display_options['filters']['field_session_duration_value']['group'] = 1;
   $handler->display->display_options['filters']['field_session_duration_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['operator_id'] = 'field_session_duration_value_op';
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['label'] = 'Duration';
@@ -1681,6 +1690,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
   $handler->display->display_options['filters']['field_event_date_value2']['relationship'] = 'field_session_event_target_id';
   $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>';
+  $handler->display->display_options['filters']['field_event_date_value2']['group'] = 1;
   $handler->display->display_options['filters']['field_event_date_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator_id'] = 'field_event_date_value2_op';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['label'] = 'Last session';
@@ -1709,13 +1719,22 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: User: Name */
+  $handler->display->display_options['filters']['uid_2']['id'] = 'uid_2';
+  $handler->display->display_options['filters']['uid_2']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_2']['field'] = 'uid';
+  $handler->display->display_options['filters']['uid_2']['operator'] = 'not in';
+  $handler->display->display_options['filters']['uid_2']['value'] = array(
+    0 => 0,
+  );
+  $handler->display->display_options['filters']['uid_2']['group'] = 1;
   /* Filter criterion: Content: Author uid */
   $handler->display->display_options['filters']['uid_1']['id'] = 'uid_1';
   $handler->display->display_options['filters']['uid_1']['table'] = 'node';
   $handler->display->display_options['filters']['uid_1']['field'] = 'uid';
   $handler->display->display_options['filters']['uid_1']['relationship'] = 'reverse_field_session_user_node';
   $handler->display->display_options['filters']['uid_1']['value'] = '';
-  $handler->display->display_options['filters']['uid_1']['group'] = 0;
+  $handler->display->display_options['filters']['uid_1']['group'] = 1;
   $handler->display->display_options['filters']['uid_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['uid_1']['expose']['operator_id'] = 'uid_1_op';
   $handler->display->display_options['filters']['uid_1']['expose']['label'] = 'Volunteer';
@@ -1729,6 +1748,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['uid']['field'] = 'uid';
   $handler->display->display_options['filters']['uid']['relationship'] = 'reverse_field_session_user_node';
   $handler->display->display_options['filters']['uid']['value'] = '';
+  $handler->display->display_options['filters']['uid']['group'] = 1;
   $handler->display->display_options['path'] = 'volunteer/search';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Search volunteers';
