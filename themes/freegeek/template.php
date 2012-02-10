@@ -11,7 +11,7 @@
  * for more information on this topic.
  */
 
-function townsquare_css_alter(&$css) {
+function freegeek_css_alter(&$css) {
   foreach ($css as $file => $settings) {
     // Remove jQuery UI's theming, which messes up forms
     if (strripos($file, 'system/system.menus.css') !== FALSE || 
@@ -28,7 +28,7 @@ function townsquare_css_alter(&$css) {
 /**
  * Implements theme_menu_link().
  */
-function townsquare_menu_link(array $variables) {
+function freegeek_menu_link(array $variables) {
   $element = $variables['element'];
   $element['#attributes']['id'] = 'menu-link-'. drupal_clean_css_identifier($element['#original_link']['href']);
   
@@ -45,7 +45,7 @@ function townsquare_menu_link(array $variables) {
 /**
  * Implements hook_preprocess_region().
  */
-function townsquare_preprocess_region(&$vars) {
+function freegeek_preprocess_region(&$vars) {
   // Add proper start and end classes 
   // @TODO This should not be hardcoded
   switch ($vars['elements']['#region']) {
@@ -64,7 +64,7 @@ function townsquare_preprocess_region(&$vars) {
 /**
  * Implements hook_process_region().
  */
-function townsquare_process_region(&$vars) {
+function freegeek_process_region(&$vars) {
   $theme = alpha_get_theme();
   switch ($vars['elements']['#region']) {
   case 'primary_tasks':
@@ -99,7 +99,7 @@ function townsquare_process_region(&$vars) {
 /**
  * Implements hook_process_zone().
  */
-function townsquare_process_zone(&$vars) {
+function freegeek_process_zone(&$vars) {
   $theme = alpha_get_theme();
   
   if ($vars['elements']['#zone'] == 'content') {

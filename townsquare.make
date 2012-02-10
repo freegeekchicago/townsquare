@@ -69,9 +69,6 @@ projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "http://github.com/ecenter/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
-projects[node_export][version] = "3.0-rc1"
-projects[node_export][subdir] = "contrib"
-
 projects[omega_tools][version] = "3.0-rc3"
 projects[omega_tools][subdir] = "contrib"
 

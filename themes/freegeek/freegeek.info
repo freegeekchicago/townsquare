@@ -1,4 +1,4 @@
-name = Townsquare 
+name = FreeGeek Townsquare Theme
 description = Townsquare default theme (based on Omega).
 core = 7.x
 engine = phptemplate
