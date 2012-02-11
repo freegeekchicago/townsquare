@@ -640,20 +640,29 @@ header#section-header {
   border: 1px solid @color_medium_gray;
   max-height: 100px;
   overflow-y: scroll;
+  li {
+    .small;
+    padding: 2px 4px;
+  }
+  li, a {
+    color: @color_black;
+  }
+  li {
+    :hover,
+    :focus,
+    :active,
+    &.selected {
+      background: @color_green;
+      color: @color_white;
+      a, a:hover {
+        color: @color_white;
+      }
+    }
+  }
 }
 // For volunteer manager (@TODO clean up)
 .ui-autocomplete {
-  width: 125px;
-  li {
-    list-style-type: none;
-    padding: 0 2px;
-    :hover,
-    :focus,
-    :active {
-      color: @color_dark_green;
-      background-color: @color_yellow;
-    }
-  }
+  width: 125px; 
 }
 // }}}
 // Icons and arrows {{{
@@ -774,6 +783,28 @@ header#section-header {
   }
   .filter-help {
     display: none;
+  }
+}
+// }}}
+// Password strength {{{
+.password-parent, .confirm-parent {
+  width: 650px;
+}
+.form-type-password {
+  label {
+    display: inline-block;
+    width: 160px;
+  }
+  input.password-confirm, input.password-field {
+    margin: 0;
+    display: inline-block;
+    width: 250px;
+  }
+  .password-strength, div.password-confirm {
+    font-size: 14px;
+    display: inline-block;
+    width: 210px;
+    margin-top: 0;
   }
 }
 // }}}
