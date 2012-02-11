@@ -157,7 +157,7 @@ function townsquare_event_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_event_description',
-      'label' => 'Description',
+      'label' => 'Notes',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -345,7 +345,7 @@ function townsquare_event_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Description');
+  t('Notes');
   t('Event date');
   t('Event location');
   t('Event type');
