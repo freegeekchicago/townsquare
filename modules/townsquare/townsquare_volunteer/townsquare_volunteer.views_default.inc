@@ -1527,6 +1527,8 @@ function townsquare_volunteer_views_default_views() {
 
   /* Display: Volunteer report */
   $handler = $view->new_display('page', 'Volunteer report', 'report');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Volunteer reports';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
@@ -1668,6 +1670,21 @@ function townsquare_volunteer_views_default_views() {
     0 => 0,
   );
   $handler->display->display_options['filters']['uid']['group'] = 1;
+  /* Filter criterion: Content: Event date - end date (field_event_date:value2) */
+  $handler->display->display_options['filters']['field_event_date_value2']['id'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['relationship'] = 'field_session_event_target_id';
+  $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>';
+  $handler->display->display_options['filters']['field_event_date_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_event_date_value2']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator_id'] = 'field_event_date_value2_op';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['label'] = 'Last session';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['use_operator'] = 1;
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator'] = 'field_event_date_value2_op';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['identifier'] = 'date';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['multiple'] = FALSE;
+  $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
   /* Filter criterion: SUM(Content: Duration (field_session_duration)) */
   $handler->display->display_options['filters']['field_session_duration_value']['id'] = 'field_session_duration_value';
   $handler->display->display_options['filters']['field_session_duration_value']['table'] = 'field_data_field_session_duration';
@@ -1684,21 +1701,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['operator'] = 'field_session_duration_value_op';
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['identifier'] = 'field_session_duration_value';
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Content: Event date - end date (field_event_date:value2) */
-  $handler->display->display_options['filters']['field_event_date_value2']['id'] = 'field_event_date_value2';
-  $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'field_data_field_event_date';
-  $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
-  $handler->display->display_options['filters']['field_event_date_value2']['relationship'] = 'field_session_event_target_id';
-  $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>';
-  $handler->display->display_options['filters']['field_event_date_value2']['group'] = 1;
-  $handler->display->display_options['filters']['field_event_date_value2']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator_id'] = 'field_event_date_value2_op';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['label'] = 'Last session';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['use_operator'] = 1;
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator'] = 'field_event_date_value2_op';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['identifier'] = 'date';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['multiple'] = FALSE;
-  $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
   $handler->display->display_options['path'] = 'volunteer/report';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Reports';
