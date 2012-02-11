@@ -43,3 +43,7 @@
     </ul>
   </div>
 </div>
+
+* * *
+
+[Learn more about the Townsquare project](node/2)
