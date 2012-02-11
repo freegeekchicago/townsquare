@@ -72,11 +72,11 @@ projects[markdownify][download][branch] = "7.x-1.0-dev"
 projects[omega_tools][version] = "3.0-rc3"
 projects[omega_tools][subdir] = "contrib"
 
+projects[pathologic][version] = "1.4"
+projects[pathologic][subdir] = "contrib"
+
 projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
-
-projects[uuid][version] = "1.0-alpha3"
-projects[uuid][subdir] = "contrib"
 
 projects[views][version] = "3.1"
 projects[views][subdir] = "contrib"

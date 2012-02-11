@@ -43,6 +43,7 @@ dependencies[] = less
 dependencies[] = libraries
 dependencies[] = markdown
 dependencies[] = markdownify
+dependencies[] = pathologic
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = views_php

@@ -18,6 +18,14 @@ function townsquare_editor_filter_default_formats() {
     'status' => '1',
     'weight' => '-10',
     'filters' => array(
+      'pathologic' => array(
+        'weight' => '-50',
+        'status' => '1',
+        'settings' => array(
+          'local_paths' => '',
+          'absolute' => 1,
+        ),
+      ),
       'htmlpurifier_basic' => array(
         'weight' => '0',
         'status' => '1',
@@ -55,6 +63,14 @@ function townsquare_editor_filter_default_formats() {
     'status' => '1',
     'weight' => '0',
     'filters' => array(
+      'pathologic' => array(
+        'weight' => '-50',
+        'status' => '1',
+        'settings' => array(
+          'local_paths' => '',
+          'absolute' => 1,
+        ),
+      ),
       'filter_markdown' => array(
         'weight' => '-48',
         'status' => '1',
