@@ -189,6 +189,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
     $tree = array(
       'field_session_user' => array('target_id'),
       'field_session_hours' => array('value', 'value2'),
+      'field_session_role' => array('tid'),
       'field_session_override_duration' => array('value'),
       'field_session_duration' => array('value'),
       'field_session_no_signout' => array('value'),
@@ -209,11 +210,13 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
           $form[$field]['#disabled'] = true;
         }
         else {
-          $form[$field]['und'][0][$key]['#ajax'] = array(
+          $ajax = array(
             'event' => 'change',
             'wrapper' => 'volunteer-session-form-'. $nid,
             'callback' => 'townsquare_volunteer_session_ajax_callback',
           );
+          $form[$field]['und']['#ajax'] = $ajax;
+          $form[$field]['und'][0][$key]['#ajax'] = $ajax;
         }
       }
     }
@@ -491,6 +494,10 @@ function townsquare_volunteer_edit_event($node = NULL) {
               array(
                 'data' => t('Hours'), 
                 'class' => array('field-name-field-session-hours',)
+              ),
+              array(
+                'data' => t('Role'),
+                'class' => array('field-name-field-session-role',)
               ),
               array(
                 'data' => t('Set duration'),
