@@ -179,7 +179,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_event_type']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_event_type']['field_api_classes'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Notes */
   $handler->display->display_options['fields']['field_event_description']['id'] = 'field_event_description';
   $handler->display->display_options['fields']['field_event_description']['table'] = 'field_data_field_event_description';
   $handler->display->display_options['fields']['field_event_description']['field'] = 'field_event_description';
@@ -1342,7 +1342,9 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'administer volunteer hours';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_lifespan'] = '300';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
@@ -1427,10 +1429,8 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['picture']['element_type'] = 'span';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['element_wrapper_type'] = 'span';
-  $handler->display->display_options['fields']['picture']['element_default_classes'] = 0;
+  $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
   $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
   $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 0;
@@ -1486,8 +1486,9 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_session_duration']['element_label_class'] = 'label';
   $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['empty'] = '0';
   $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
     'thousand_separator' => ' ',
@@ -1590,8 +1591,9 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['fields']['field_session_duration']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_session_duration']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_session_duration']['empty'] = '0';
   $handler->display->display_options['fields']['field_session_duration']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_session_duration']['empty_zero'] = 1;
   $handler->display->display_options['fields']['field_session_duration']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_session_duration']['settings'] = array(
     'thousand_separator' => ' ',
@@ -1692,7 +1694,6 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['filters']['field_session_duration_value']['relationship'] = 'reverse_field_session_user_node';
   $handler->display->display_options['filters']['field_session_duration_value']['group_type'] = 'sum';
   $handler->display->display_options['filters']['field_session_duration_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_session_duration_value']['value']['value'] = '0';
   $handler->display->display_options['filters']['field_session_duration_value']['group'] = 1;
   $handler->display->display_options['filters']['field_session_duration_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_session_duration_value']['expose']['operator_id'] = 'field_session_duration_value_op';
@@ -1730,27 +1731,19 @@ function townsquare_volunteer_views_default_views() {
     0 => 0,
   );
   $handler->display->display_options['filters']['uid_2']['group'] = 1;
-  /* Filter criterion: Content: Author uid */
-  $handler->display->display_options['filters']['uid_1']['id'] = 'uid_1';
-  $handler->display->display_options['filters']['uid_1']['table'] = 'node';
-  $handler->display->display_options['filters']['uid_1']['field'] = 'uid';
-  $handler->display->display_options['filters']['uid_1']['relationship'] = 'reverse_field_session_user_node';
-  $handler->display->display_options['filters']['uid_1']['value'] = '';
-  $handler->display->display_options['filters']['uid_1']['group'] = 1;
-  $handler->display->display_options['filters']['uid_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['uid_1']['expose']['operator_id'] = 'uid_1_op';
-  $handler->display->display_options['filters']['uid_1']['expose']['label'] = 'Volunteer';
-  $handler->display->display_options['filters']['uid_1']['expose']['operator'] = 'uid_1_op';
-  $handler->display->display_options['filters']['uid_1']['expose']['identifier'] = 's';
-  $handler->display->display_options['filters']['uid_1']['expose']['multiple'] = FALSE;
-  $handler->display->display_options['filters']['uid_1']['expose']['reduce'] = 0;
-  /* Filter criterion: Content: Author uid */
-  $handler->display->display_options['filters']['uid']['id'] = 'uid';
-  $handler->display->display_options['filters']['uid']['table'] = 'node';
-  $handler->display->display_options['filters']['uid']['field'] = 'uid';
-  $handler->display->display_options['filters']['uid']['relationship'] = 'reverse_field_session_user_node';
-  $handler->display->display_options['filters']['uid']['value'] = '';
-  $handler->display->display_options['filters']['uid']['group'] = 1;
+  /* Filter criterion: User: Name (raw) */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'users';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'allwords';
+  $handler->display->display_options['filters']['name']['group'] = 1;
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 's';
+  $handler->display->display_options['filters']['name']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['name']['expose']['multiple'] = FALSE;
   $handler->display->display_options['path'] = 'volunteer/search';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Search volunteers';
