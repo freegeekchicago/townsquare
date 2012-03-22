@@ -428,7 +428,9 @@ function townsquare_volunteer_edit_event($node = NULL) {
 
     $duration = 0;
     foreach ($session_nodes as $session) {
-      $duration += (float) $session->field_session_duration['und'][0]['value'];
+      if ($session->field_session_user['und'][0]['target_id'] != 0) {
+        $duration += (float) $session->field_session_duration['und'][0]['value'];
+      }
       if (node_access('update', $session)) {
         $session_elements[] = drupal_get_form('volunteer_session_node_form',
           $session);
