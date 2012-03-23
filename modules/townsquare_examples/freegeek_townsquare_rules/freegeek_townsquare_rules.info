@@ -1,0 +1,7 @@
+name = "Townsquare Examples: FreeGeek Chicago Rules"
+description = "Assign credit and send notifications."
+core = "7.x"
+package = "Townsquare"
+php = "5.2.4"
+version = "7.x-1.0-dev"
+project = "freegeek_townsquare_rules"
