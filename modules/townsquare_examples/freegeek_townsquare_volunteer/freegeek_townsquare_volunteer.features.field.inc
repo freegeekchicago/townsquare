@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * freegeek_townsquare_rules.features.field.inc
+ * freegeek_townsquare_volunteer.features.field.inc
  */
 
 /**
  * Implements hook_field_default_fields().
  */
-function freegeek_townsquare_rules_field_default_fields() {
+function freegeek_townsquare_volunteer_field_default_fields() {
   $fields = array();
 
   // Exported field: 'user-user-field_credit'
