@@ -3,4 +3,6 @@
  * @file
  */
 
-// Drupal needs this blank file.
+function freegeek_townsquare_rules_init() {
+  dpm('hi');
+}

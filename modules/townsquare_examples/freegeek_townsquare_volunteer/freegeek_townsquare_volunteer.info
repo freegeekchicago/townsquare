@@ -1,4 +1,4 @@
-ame = "Townsquare Examples: FreeGeek Chicago volunteers"
+name = "Townsquare Examples: FreeGeek Chicago volunteers"
 description = "Program-related fields for volunteers"
 core = "7.x"
 package = "Townsquare"
