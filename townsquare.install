@@ -26,7 +26,7 @@ function townsquare_load_content() {
       'format' => 'markdown_advanced',
     ),
     'project' => array(
-      'title' => t('Project'),
+      'title' => t('About Townsquare'),
       'type' => 'wiki',
       'path' => $path .'project.md',
       'format' => 'markdown_advanced',
@@ -37,6 +37,19 @@ function townsquare_load_content() {
       'path' => $path .'test_markdown_restricted.md',
       'format' => 'markdown',
     ),
+    'install' => array(
+      'title' => t('Install Townsquare'),
+      'type' => 'wiki',
+      'path' => $path .'install.md',
+      'format' => 'markdown_advanced',
+    ),
+    'install' => array(
+      'title' => t('Townsquare tutorial'),
+      'type' => 'wiki',
+      'path' => $path .'tutorial.md',
+      'format' => 'markdown_advanced',
+    ),
+
   );
   foreach ($files as $file) {
     $node = new stdClass();
