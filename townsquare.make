@@ -15,10 +15,10 @@ projects[combobox][download][branch] = "7.x-1.0-dev"
 projects[context][version] = "3.0-beta2"
 projects[context][subdir] = "contrib"
 
-projects[ctools][version] = "1.0-rc1"
+projects[ctools][version] = "1.0-rc2"
 projects[ctools][subdir] = "contrib"
 
-projects[date][version] = "2.0-rc2"
+projects[date][version] = "2.2"
 projects[date][subdir] = "contrib"
 
 projects[delta][version] = "3.0-beta9"
@@ -33,7 +33,7 @@ projects[diff][subdir] = "contrib"
 projects[entity][version] = "1.0-rc1"
 projects[entity][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0-beta3"
+projects[entityreference][version] = "1.0-rc1"
 projects[entityreference][subdir] = "contrib"
 
 projects[eva][version] = "1.1"
@@ -42,7 +42,7 @@ projects[eva][subdir] = "contrib"
 projects[features][version] = "1.x-dev"
 projects[features][subdir] = "contrib"
 
-projects[fontyourface][version] = "2.0"
+projects[fontyourface][version] = "2.2"
 projects[fontyourface][subdir] = "contrib"
 
 projects[grammar_parser_lib][version] = "1.x-dev"
@@ -78,7 +78,7 @@ projects[pathologic][subdir] = "contrib"
 projects[strongarm][version] = "2.0-beta5"
 projects[strongarm][subdir] = "contrib"
 
-projects[views][version] = "3.1"
+projects[views][version] = "3.3"
 projects[views][subdir] = "contrib"
 
 projects[views_php][version] = "1.x-dev"
