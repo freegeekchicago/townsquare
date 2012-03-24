@@ -3,6 +3,4 @@
  * @file
  */
 
-function freegeek_townsquare_rules_init() {
-  dpm('hi');
-}
+function freegeek_townsquare_rules_init() {}
