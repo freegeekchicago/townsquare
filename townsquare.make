@@ -66,7 +66,7 @@ projects[markdown][subdir] = "contrib"
 projects[markdownify][type] = "module"
 projects[markdownify][subdir] = "contrib"
 projects[markdownify][download][type] = "git"
-projects[markdownify][download][url] = "http://github.com/ecenter/markdownify"
+projects[markdownify][download][url] = "https://github.com/ecenter/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
 projects[omega_tools][version] = "3.0-rc3"
@@ -92,7 +92,7 @@ projects[omega][version] = "3.0"
 
 ; Libraries
 libraries[tinymce][download][type] = "get"
-libraries[tinymce][download][url] = "http://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
+libraries[tinymce][download][url] = "https://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
 libraries[tinymce][directory_name] = "tinymce"
 
 libraries[scrollto][download][type] = "get"
