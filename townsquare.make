@@ -9,7 +9,7 @@ projects[addressfield][subdir] = "contrib"
 projects[combobox][type] = "module"
 projects[combobox][subdir] = "contrib"
 projects[combobox][download][type] = "git"
-projects[combobox][download][url] = "http://github.com/ecenter/combobox"
+projects[combobox][download][url] = "https://github.com/ecenter/combobox"
 projects[combobox][download][branch] = "7.x-1.0-dev"
 
 projects[context][version] = "3.0-beta2"
