@@ -43,7 +43,7 @@ function townsquare_load_content() {
       'path' => $path .'install.md',
       'format' => 'markdown_advanced',
     ),
-    'install' => array(
+    'tutorial' => array(
       'title' => t('Townsquare tutorial'),
       'type' => 'wiki',
       'path' => $path .'tutorial.md',

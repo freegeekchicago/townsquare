@@ -1,4 +1,4 @@
-<p class="big">
+<p class="biggest">
   You successfully installed Townsquare. Nice work! What's next?
 </p>
 
@@ -46,4 +46,7 @@
 
 * * *
 
-[Learn more about the Townsquare project](node/2)
+<ul class="big">
+  <li><a href="node/5">Read the Townsquare tutorial</a></li>
+  <li><a href="node/2">Learn more about the Townsquare project</a></li>
+</ul>

@@ -458,10 +458,14 @@ ol li {
   margin-bottom: 25px;
   list-style-type:decimal;
 }
-
+.biggest {
+  font-family:"Crimson Text", Georgia, serif;
+  font-size: 45px;
+  line-height: 50px;
+}
 .big {
- font-family:"Crimson Text", Georgia, serif;
-  font-size: 36px;
+  font-family:"Crimson Text", Georgia, serif;
+  font-size: 32px;
   line-height: 50px;
 }
 .small {

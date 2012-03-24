@@ -1,104 +1,94 @@
-<p class="big">
-  Townsquare is a Drupal distribution that helps community-based organizations manage volunteers, track program participation, and share institutional knowledge.
+
+<p class="biggest">
+  <strong>The Drupal distribution for community organizers.</strong>
 </p>
 
-* * *
+<hr/>
 
 <div class="clearfix">
-  <div class="grid-7 alpha">
-    <h3>
-      Download and install
-    </h3>
+  <div class="grid-5 alpha">
+    <h2>
+      Try Townsquare
+    </h2>
     
     <p>
-      <strong><a href="https://github.com/freegeekchicago/townsquare/zipball/7.x-1.0-alpha6">Download Townsquare 7.x-1.0-alpha-6</a>&nbsp;</strong>(Feb 10, 2012)
+      Log in to the demo site at <br/><strong><a href="http://townsquare-demo.freegeekchicago.org">http://townsquare-demo.freegeekchicago.org</a></strong>
     </p>
     
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            User
+          </th>
+          
+          <td>
+            <code>volunteer_manager</code>
+          </td>
+        </tr>
+        
+        <tr>
+          <th>
+            Password
+          </th>
+          
+          <td>
+            <code>volunteer_manager</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>I'm logged in! Now what?</h3>
+
     <p>
-      Townsquare is packaged as a Drupal distribution. You can install Townsquare using git and Drush make:
+      Learn about events and tracking participation in the <strong><a href="node/5">Townsquare tutorial</a></strong>.
     </p>
     
-    <pre>git clone https://github.com/freegeekchicago/townsquare
-drush make build-townsquare.make townsquare-build</pre>
+    <hr/>
     
-    <p>
-      After copying the <code>townsquare-build</code> directory to your webroot, install Drupal and select the Townsquare profile.
-    </p>
-  </div>
-  
-  <div class="grid-4 push-1 omega">
-    <h3>
-      Contributing
-    </h3>
-    
-    <p>
-      Townsquare is under active development and ready for organizational testing. We need your help!
-    </p>
+    <h2>
+      Contributing to Townsquare
+    </h2>
     
     <ul>
       <li>
-        <b><a style="font-weight: normal;" href="/user/register">Set up an account on the demo site and test Townsquare's functionality</a>&nbsp;</b>
+        <a href="https://github.com/freegeekchicago/townsquare/issues">Report issues on the Github issue tracker</a>
       </li>
       <li>
-        <a href="https://github.com/freegeekchicago/townsquare/issues">Create issues on Github</a>
+        <a href="https://freegeekchicago.mybalsamiq.com/projects/townsquare/story ">Comment on Townsquare mockups</a>
       </li>
       <li>
         <a href="http://goo.gl/s8e0o">Watch a short presentation on contributing to Townsquare</a>
       </li>
     </ul>
   </div>
-</div>
-
-* * *
-
-<div class="clearfix">
-  <div class="grid-4 alpha">
-    <a href="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png"> <img height="192" width="300" src="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png" alt="volunteer-search" class="border" /> <span class="caption">Manage volunteer hours: Quickly create or transcribe attendance records.</span> </a>
-  </div>
   
-  <div class="grid-4">
-    <a href="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png"> <img height="192" width="300" src="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png" alt="Volunteer search" class="border" /> <span class="caption">Search for volunteers quickly from PCs, smartphones, and tablets.</span> </a>
-  </div>
-  
-  <div class="grid-4 omega">
-    <a href="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png"> <img height="192" width="300" src="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png" alt="WYSIWYG editor" class="border" /> <span class="caption">An awesome WYSIWYG editor with Markdown source code.</span> </a>
-  </div>
-</div>
+  <div class="grid-6 push-1 omega">
+    <p class="big">
+      Townsquare helps community-based institutions manage events, track participation, and share institutional knowledge.
+    </p>
 
-* * *
-
-<div class="clearfix">
-  <div class="grid-7 alpha">
-    <h2>
-      About Townsquare
-    </h2>
+    <hr/>
+    
+    <h3>
+      Download and install
+    </h3>
     
     <p>
-      Townsquare is designed to address the needs of volunteer-driven, community-based organizations. Townsquare provides:
+      <strong><a href="https://github.com/downloads/freegeekchicago/townsquare/townsquare-7.x-1.0-alpha-7.tar.gz">Download Townsquare 7.x-1.0-alpha-7</a>&nbsp;</strong>(Mar 24, 2012)
     </p>
     
-    <ul>
-      <li>
-        <strong>Volunteer tracking:</strong> Collect and track event participation (<em>in production</em>)
-      </li>
-      <li>
-        <strong>Volunteer signup</strong> (<em>in active developmen</em>t)
-      </li>
-      <li>
-        <strong>Feedback and notifications</strong> based on program progress (<em>in active development</em>)
-      </li>
-      <li>
-        <strong>Collaborative documentation</strong> on our wiki (<em>in planning</em>)
-      </li>
-      <li>
-        <strong>Conversations</strong>&nbsp;(<em>envisioned</em>)
-      </li>
-    </ul>
+    <p>
+      <a href="https://github.com/freegeekchicago/townsquare"><strong>View project on GitHub</strong></a>
+    </p>
     
-    <p>&nbsp;</p>
-  </div>
-  
-  <div class="grid-4 push-1 omega">
+    <p>
+      <a href="node/4">Learn more about installing Townsquare</a>
+    </p>
+    
+    <hr/>
+    
     <h2>
       License
     </h2>
@@ -112,3 +102,20 @@ drush make build-townsquare.make townsquare-build</pre>
     </p>
   </div>
 </div>
+
+* * *
+
+<div class="clearfix">
+  <div class="grid-4 alpha">
+    <a href="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png"> <img class="border" alt="volunteer-search" src="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png" width="300" height="192" /> <span class="caption">Manage volunteer hours: Quickly create or transcribe attendance records.</span> </a>
+  </div>
+  
+  <div class="grid-4">
+    <a href="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png"> <img class="border" alt="Volunteer search" src="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png" width="300" height="192" /> <span class="caption">Search for volunteers quickly from PCs, smartphones, and tablets.</span> </a>
+  </div>
+  
+  <div class="grid-4 omega">
+    <a href="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png"> <img class="border" alt="WYSIWYG editor" src="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png" width="300" height="192" /> <span class="caption">An awesome WYSIWYG editor with Markdown source code.</span> </a>
+  </div>
+</div>
+
