@@ -3,7 +3,13 @@
   <?php if (!$page && $title): ?>
   <header>
     <?php print render($title_prefix); ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
+    <h1<?php print $title_attributes; ?>><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h1>
+    <?php print render($title_suffix); ?>
+  </header>
+  <?php elseif ($title): ?>
+  <header>
+    <?php print render($title_prefix); ?>
+    <h1<?php print $title_attributes; ?>><?php print $title ?></h1>
     <?php print render($title_suffix); ?>
   </header>
   <?php endif; ?>
