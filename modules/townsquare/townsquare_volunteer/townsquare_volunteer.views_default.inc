@@ -427,7 +427,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'field_session_event_target_id';
   $handler->display->display_options['sorts']['title']['order'] = 'DESC';
-  /* Contextual filter: Content: Volunteer (field_session_user:target_id) */
+  /* Contextual filter: Content: Volunteer (field_session_user) */
   $handler->display->display_options['arguments']['field_session_user_target_id']['id'] = 'field_session_user_target_id';
   $handler->display->display_options['arguments']['field_session_user_target_id']['table'] = 'field_data_field_session_user';
   $handler->display->display_options['arguments']['field_session_user_target_id']['field'] = 'field_session_user_target_id';
@@ -908,7 +908,7 @@ function townsquare_volunteer_views_default_views() {
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'field_session_event_target_id';
   $handler->display->display_options['sorts']['title']['order'] = 'DESC';
-  /* Contextual filter: Content: Volunteer (field_session_user:target_id) */
+  /* Contextual filter: Content: Volunteer (field_session_user) */
   $handler->display->display_options['arguments']['field_session_user_target_id']['id'] = 'field_session_user_target_id';
   $handler->display->display_options['arguments']['field_session_user_target_id']['table'] = 'field_data_field_session_user';
   $handler->display->display_options['arguments']['field_session_user_target_id']['field'] = 'field_session_user_target_id';

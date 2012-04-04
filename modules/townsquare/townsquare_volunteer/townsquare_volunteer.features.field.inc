@@ -90,9 +90,8 @@ function townsquare_volunteer_field_default_fields() {
       'field_name' => 'field_session_event',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',
@@ -558,9 +557,8 @@ function townsquare_volunteer_field_default_fields() {
       'field_name' => 'field_session_user',
       'foreign keys' => array(),
       'indexes' => array(
-        'target_entity' => array(
-          0 => 'target_type',
-          1 => 'target_id',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
       'module' => 'entityreference',

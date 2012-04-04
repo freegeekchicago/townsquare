@@ -10,9 +10,9 @@
 function townsquare_volunteer_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: menu-townsquare-toolbar:admin/people/create
-  $menu_links['menu-townsquare-toolbar:admin/people/create'] = array(
-    'menu_name' => 'menu-townsquare-toolbar',
+  // Exported menu link: main-menu:admin/people/create
+  $menu_links['main-menu:admin/people/create'] = array(
+    'menu_name' => 'main-menu',
     'link_path' => 'admin/people/create',
     'router_path' => 'admin/people/create',
     'link_title' => '+',
@@ -28,13 +28,17 @@ function townsquare_volunteer_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '20',
   );
-  // Exported menu link: menu-townsquare-toolbar:event
-  $menu_links['menu-townsquare-toolbar:event'] = array(
-    'menu_name' => 'menu-townsquare-toolbar',
+  // Exported menu link: main-menu:event
+  $menu_links['main-menu:event'] = array(
+    'menu_name' => 'main-menu',
     'link_path' => 'event',
     'router_path' => 'event',
     'link_title' => 'Events',
-    'options' => array(),
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
@@ -42,9 +46,9 @@ function townsquare_volunteer_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '30',
   );
-  // Exported menu link: menu-townsquare-toolbar:event/create
-  $menu_links['menu-townsquare-toolbar:event/create'] = array(
-    'menu_name' => 'menu-townsquare-toolbar',
+  // Exported menu link: main-menu:event/create
+  $menu_links['main-menu:event/create'] = array(
+    'menu_name' => 'main-menu',
     'link_path' => 'event/create',
     'router_path' => 'event/create',
     'link_title' => '+',
@@ -60,13 +64,17 @@ function townsquare_volunteer_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '40',
   );
-  // Exported menu link: menu-townsquare-toolbar:volunteer
-  $menu_links['menu-townsquare-toolbar:volunteer'] = array(
-    'menu_name' => 'menu-townsquare-toolbar',
+  // Exported menu link: main-menu:volunteer
+  $menu_links['main-menu:volunteer'] = array(
+    'menu_name' => 'main-menu',
     'link_path' => 'volunteer',
     'router_path' => 'volunteer',
     'link_title' => 'Volunteers',
-    'options' => array(),
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
