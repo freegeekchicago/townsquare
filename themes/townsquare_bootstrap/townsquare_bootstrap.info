@@ -1,0 +1,24 @@
+name = Twitter Bootstrap
+description = Twitter Bootstrap (Tao subtheme)
+core = 7.x
+engine = phptemplate
+screenshot = screenshot.png
+
+; REQUIRED CORE REGIONS
+
+regions[page_top] = Page Top
+regions[page_bottom] = Page Bottom
+regions[content] = Content
+
+; ADDITIONAL REGIONS
+
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+regions[content] = Content
+regions[header] = Header
+regions[help] = Help
+regions[footer] = Footer
+regions[highlighted] = Highlighted
+
+stylesheets[all][] = system.menus.css
+stylesheets[screen][] = css/bootstrap-drupal.css

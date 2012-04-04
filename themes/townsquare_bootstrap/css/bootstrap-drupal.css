@@ -1,0 +1,9 @@
+body { padding-top: 68px; }
+#element-invisible { display: none; }
+#navigation h1 { float: left; font-size: 20px; padding }
+#navigation .secondary-menu {
+  float: right;
+}
+.dropdown.open .expanded .dropdown-menu { display: none; }
+.form-actions { padding: 0; margin-top: 18px; background: transparent; }
+.form-actions input { margin-right: 5px; }
