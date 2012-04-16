@@ -51,7 +51,7 @@
     <div class="menu">
       <ul class="nav pull-right" id="login-block">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown"><?php print t('Login or signup'); ?><i class="caret"></i></a>
+        <?php print t('<a class="dropdown-toggle" data-toggle="dropdown"><i class="icon-flag"></i> Want to participate? Login or sign up <i class="caret"></i></a>'); ?>
         <div class="dropdown-menu" id="login-block-form">
           <?php print render($login); ?>
         </div>
