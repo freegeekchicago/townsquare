@@ -1,0 +1,109 @@
+#menu-link-event, #menu-link-volunteer, #menu-link-node-12, #menu-link-node-13 {
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#menu-link-event-create, #admin-menu {
+  border-right: 1px solid #222;
+  padding-right: 14px;
+  margin-right: 0;
+}
+#admin-menu {
+  padding-right: 3px;
+}
+#menu-link-volunteer, #secondary-menu {
+  border-left: 1px solid #333;
+  padding-left: 14px;
+  margin-left: 0;
+}
+.table td.checkbox {
+  text-align: center;
+}
+.table td.checkbox input {
+  margin: 0;
+  float: none;
+}
+.page-event-edit #main-content .node-event-form, .page-event-create #main-content .node-event-form {
+  margin-bottom:25px;
+  font-size:14px;
+}
+.page-event-edit #main-content .node-event-form .description, .page-event-create #main-content .node-event-form .description { display:none; }
+.page-event-edit #main-content .node-event-form .form-item, .page-event-create #main-content .node-event-form .form-item { margin-bottom:5px; }
+.page-event-edit #main-content .node-event-form .container-inline-date > .form-item > label, .page-event-create #main-content .node-event-form .container-inline-date > .form-item > label { display:none; }
+.page-event-edit #main-content .node-event-form #edit-field-event-description label, .page-event-edit #main-content .node-event-form #edit-field-event-type > .form-item > label, .page-event-create #main-content .node-event-form #edit-field-event-description label, .page-event-create #main-content .node-event-form #edit-field-event-type > .form-item > label {
+  display:block;
+  margin-bottom:10px;
+}
+.page-event-edit #main-content .node-event-form .fieldset-wrapper, .page-event-create #main-content .node-event-form .fieldset-wrapper { padding-top:10px; }
+.page-event-edit #main-content .node-event-form .field-name-field-event-location label, .page-event-create #main-content .node-event-form .field-name-field-event-location label {
+  display:inline-block;
+  width:90px;
+}
+.page-event-edit #main-content .node-event-form .field-name-field-event-location input, .page-event-edit #main-content .node-event-form .field-name-field-event-location select, .page-event-create #main-content .node-event-form .field-name-field-event-location input, .page-event-create #main-content .node-event-form .field-name-field-event-location select {
+  display:inline-block;
+  width:160px;
+}
+.page-event-edit #main-content .node-event-form .field-name-field-event-date label, .page-event-create #main-content .node-event-form .field-name-field-event-date label {
+  display:inline-block;
+  width:50px;
+}
+.page-event-edit #main-content .node-event-form .field-name-field-event-date input, .page-event-edit #main-content .node-event-form .field-name-field-event-date select, .page-event-create #main-content .node-event-form .field-name-field-event-date input, .page-event-create #main-content .node-event-form .field-name-field-event-date select {
+  display:inline-block;
+  width:130px;
+}
+.page-event-edit #main-content .node-event-form textarea, .page-event-create #main-content .node-event-form textarea { height:170px; }
+.page-event-edit #volunteer-sessions, .page-event-create #volunteer-sessions {
+  margin-top:25px;
+  margin-bottom:125px;
+  display:table;
+  border-collapse:collapse;
+  border-bottom:1px solid #cccccc;
+}
+.page-event-edit #volunteer-sessions #session-headers, .page-event-create #volunteer-sessions #session-headers { display:table-row; }
+.page-event-edit #volunteer-sessions #session-headers li, .page-event-create #volunteer-sessions #session-headers li {
+  display:table-cell;
+  padding:2px 9px;
+}
+.page-event-edit #volunteer-sessions .volunteer-session-form, .page-event-create #volunteer-sessions .volunteer-session-form { display:table-row; }
+.page-event-edit #volunteer-sessions .volunteer-session-form:hover, .page-event-create #volunteer-sessions .volunteer-session-form:hover { background-color:#f3f3f3; }
+.page-event-edit #volunteer-sessions .volunteer-session-form form > div > div, .page-event-create #volunteer-sessions .volunteer-session-form form > div > div {
+  vertical-align:top;
+  display:table-cell;
+  padding:8px 9px;
+  border-collapse:collapse;
+  border-top:1px solid #cccccc;
+  border-left:1px dotted #b5b5b5;
+  border-right:1px dotted #b5b5b5;
+}
+.page-event-edit #volunteer-sessions .volunteer-session-form form div.ajax-progress, .page-event-edit #volunteer-sessions .volunteer-session-form form div.description, .page-event-edit #volunteer-sessions .volunteer-session-form form div.grippie, .page-event-edit #volunteer-sessions .volunteer-session-form form div.field-widget-options-onoff label, .page-event-create #volunteer-sessions .volunteer-session-form form div.ajax-progress, .page-event-create #volunteer-sessions .volunteer-session-form form div.description, .page-event-create #volunteer-sessions .volunteer-session-form form div.grippie, .page-event-create #volunteer-sessions .volunteer-session-form form div.field-widget-options-onoff label { display:none; }
+.page-event-edit #volunteer-sessions .volunteer-session-form form .form-item, .page-event-edit #volunteer-sessions .volunteer-session-form form .form-actions, .page-event-create #volunteer-sessions .volunteer-session-form form .form-item, .page-event-create #volunteer-sessions .volunteer-session-form form .form-actions { margin:0; }
+.page-event-edit #volunteer-sessions .field-name-field-session-user, .page-event-create #volunteer-sessions .field-name-field-session-user { width:150px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-user input, .page-event-create #volunteer-sessions .field-name-field-session-user input {
+  width:150px;
+  padding-right:16px;
+  background-position:100% 50px;
+}
+.page-event-edit #volunteer-sessions .field-name-field-session-user input.throbbing, .page-event-create #volunteer-sessions .field-name-field-session-user input.throbbing { background-position:100% -16px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-hours, .page-event-create #volunteer-sessions .field-name-field-session-hours { width:180px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-hours input, .page-event-edit #volunteer-sessions .field-name-field-session-hours select, .page-event-create #volunteer-sessions .field-name-field-session-hours input, .page-event-create #volunteer-sessions .field-name-field-session-hours select { width:80px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-hours .form-item, .page-event-create #volunteer-sessions .field-name-field-session-hours .form-item {
+  display:inline-block;
+  width:88px;
+}
+.page-event-edit #volunteer-sessions .field-name-field-session-hours .form-item-field-session-hours-und-0-value, .page-event-create #volunteer-sessions .field-name-field-session-hours .form-item-field-session-hours-und-0-value { margin-right:5px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-override-duration, .page-event-edit #volunteer-sessions .field-name-field-session-no-signout, .page-event-create #volunteer-sessions .field-name-field-session-override-duration, .page-event-create #volunteer-sessions .field-name-field-session-no-signout {
+  width:100px;
+  text-align:center;
+}
+.page-event-edit #volunteer-sessions .field-name-field-session-override-duration .form-item, .page-event-edit #volunteer-sessions .field-name-field-session-no-signout .form-item, .page-event-create #volunteer-sessions .field-name-field-session-override-duration .form-item, .page-event-create #volunteer-sessions .field-name-field-session-no-signout .form-item { text-align:center; }
+.page-event-edit #volunteer-sessions .field-name-field-session-duration, .page-event-create #volunteer-sessions .field-name-field-session-duration {
+  width:70px;
+  text-align:center;
+}
+.page-event-edit #volunteer-sessions .field-name-field-session-duration input, .page-event-create #volunteer-sessions .field-name-field-session-duration input {
+  width:70px;
+  text-align:right;
+}
+.page-event-edit #volunteer-sessions .field-name-field-session-role, .page-event-create #volunteer-sessions .field-name-field-session-role { width:100px; }
+.page-event-edit #volunteer-sessions .field-name-field-session-role select, .page-event-edit #volunteer-sessions .field-name-field-session-role option, .page-event-create #volunteer-sessions .field-name-field-session-role select, .page-event-create #volunteer-sessions .field-name-field-session-role option { width:100px; }
+

@@ -1,0 +1,141 @@
+body { padding-top: 68px; }
+#element-invisible { display: none; }
+#navigation .brand { font-size: 15px; line-height: 20px; }
+.form-actions, .form-horizontal .form-actions { padding: 9px 0; margin-top: 18px; background: transparent; }
+.form-actions input { margin-right: 5px; }
+
+
+#main-content * {
+  line-height: 1.6;
+}
+#main-content p, #main-content ul {
+  font-size: 15px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-bottom: 18px;
+}
+#main-content .biggest {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 50px;
+  line-height: 72px;
+  margin-bottom: 18px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+#navigation #admin-menu, #navigation #secondary-menu {
+  float: right;
+}
+.navbar .nav > li > a {
+  padding: 10px 6px 11px;
+}
+#navigation .user-picture, #navigation .account-label {
+  display: inline-block;
+}
+#navigation .user-picture img {
+  width: 28px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+  margin-left: 6px;
+  border: 1px solid #000;
+}
+
+.form-horizontal .form-item .control-label {
+  font-weight: bold;
+  text-align: left;
+  width: 190px;
+  margin-right: 20px;
+}
+.form-horizontal .form-type-radio label,
+.form-horizontal .form-type-checkbox label {
+  width: auto;
+  display: inline-block;
+  margin-left: 8px;
+}
+.form-horizontal .controls {
+  display: inline-block;
+  margin: 0;
+}
+.form-horizontal .form-type-textarea .controls {
+  display: block;
+  margin: 0;
+}
+.form-horizontal .help-block {
+  margin-left: 160px;
+  font-size: 13px;
+}
+
+.nav-bar input {
+  -moz-transition: none 0s ease 0s;
+  background-color: #626262;
+  border: 1px solid #151515;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  padding: 4px 9px;
+}
+
+#main-content p {
+  margin-bottom: 18px;
+}
+
+.node .content img {
+  margin: 36px auto 36px auto;
+  display: block;
+  max-width: 95%;
+  border: 1px solid #ccc;
+  padding: 6px;
+  -moz-box-shadow:    2px 1px 4px 0 #bbb;
+  -webkit-box-shadow: 2px 1px 4px 0 #bbb;
+  box-shadow:         2px 1px 4px 0 #bbb;
+}
+
+input, textarea, select, .uneditable-input {
+  height: auto;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+  #navigation .nav ul, #navigation .navbar ul {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #navigation .nav a, #navigation .navbar a {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+   #navigation .menu-wrapper > ul > li > a {
+    display: none;
+  }
+  #navigation .menu {
+    float: left;
+    margin: 0 5px;
+  }
+  #navigation .brand {
+    float: left;
+    font-size: 12px;
+    max-width: 80px;
+  }
+  #navigation .nav-collapse {
+    display: none;
+  }
+  #navigation .nav-collapse .dropdown-menu { min-width: 0; }
+  #navigation .nav-collapse.in {
+    display: block;
+  }
+  #navigation .btn-navbar {
+    float: none;
+    color: #fff;
+    text-shadow: none;
+    width: 40px;
+  }
+  #navigation i {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
