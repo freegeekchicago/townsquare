@@ -90,7 +90,8 @@ function townsquare_bootstrap_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   array_shift($breadcrumb);
   $crumbs = '';
-  if (!empty($breadcrumb) && arg(0) != 'node') {
+  // Only show breadcrumb for admin for now
+  if (!empty($breadcrumb) && arg(0) == 'admin') {
     // Stolen from Zen
     $item = menu_get_item();
     if (empty($item['tab_parent'])) {
