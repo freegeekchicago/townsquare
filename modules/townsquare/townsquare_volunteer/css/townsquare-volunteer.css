@@ -1,28 +1,3 @@
-#menu-link-event, #menu-link-volunteer, #menu-link-node-12, #menu-link-node-13 {
-  font-weight: bold;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#menu-link-event-create, #admin-menu {
-  border-right: 1px solid #222;
-  padding-right: 14px;
-  margin-right: 0;
-}
-#admin-menu {
-  padding-right: 3px;
-}
-#menu-link-volunteer, #secondary-menu {
-  border-left: 1px solid #333;
-  padding-left: 14px;
-  margin-left: 0;
-}
-.table td.checkbox {
-  text-align: center;
-}
-.table td.checkbox input {
-  margin: 0;
-  float: none;
-}
 .page-event-edit #main-content .node-event-form, .page-event-create #main-content .node-event-form {
   margin-bottom:25px;
   font-size:14px;

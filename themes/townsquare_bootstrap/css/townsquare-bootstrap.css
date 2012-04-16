@@ -3,9 +3,7 @@ body { padding-top: 68px; }
 #navigation .brand { font-size: 15px; line-height: 20px; }
 .form-actions, .form-horizontal .form-actions { padding: 9px 0; margin-top: 18px; background: transparent; }
 .form-actions input { margin-right: 5px; }
-
-
-#main-content * {
+body #main-content * {
   line-height: 1.6;
 }
 #main-content p, #main-content ul {
@@ -15,7 +13,6 @@ h1,h2,h3,h4,h5,h6 {
   margin-bottom: 18px;
 }
 #main-content .biggest {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 50px;
   line-height: 72px;
   margin-bottom: 18px;
@@ -23,9 +20,6 @@ h1,h2,h3,h4,h5,h6 {
   letter-spacing: -1px;
 }
 
-#navigation #admin-menu, #navigation #secondary-menu {
-  float: right;
-}
 .navbar .nav > li > a {
   padding: 10px 6px 11px;
 }
@@ -38,6 +32,11 @@ h1,h2,h3,h4,h5,h6 {
   margin-bottom: -8px;
   margin-left: 6px;
   border: 1px solid #000;
+}
+
+.dropdown-menu form {
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .form-horizontal .form-item .control-label {
@@ -78,6 +77,14 @@ h1,h2,h3,h4,h5,h6 {
   padding: 4px 9px;
 }
 
+.table td.checkbox {
+  text-align: center;
+}
+.table td.checkbox input {
+  margin: 0;
+  float: none;
+}
+
 #main-content p {
   margin-bottom: 18px;
 }
@@ -95,6 +102,27 @@ h1,h2,h3,h4,h5,h6 {
 
 input, textarea, select, .uneditable-input {
   height: auto;
+}
+
+body.page-admin-structure-views .views-edit-view .label {
+    background-color: transparent;
+    border-radius: 0;
+    color: #333;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0;
+    text-shadow: none; 
+}
+body.page-admin-structure-views #main-content * {
+  font-size: 14px;
+}
+body.page-admin-structure-views #main-content #edit-display-settings-content * {
+  line-height: 24px;
+}
+body.page-admin-structure-views .pager a {
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 @media (max-width: 979px) {

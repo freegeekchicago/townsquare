@@ -391,6 +391,10 @@ function townsquare_volunteer_user_account_form_validate($form, &$form_state) {
   }
 }
 
+function townsquare_volunteer_init() {
+  drupal_add_css(drupal_get_path('module', 'townsquare_volunteer') .'/css/townsquare-volunteer.css');
+}
+
 /**
  * Integrated, AJAXy form for event + session creation
  *
@@ -404,6 +408,13 @@ function townsquare_volunteer_user_account_form_validate($form, &$form_state) {
 module_load_include('inc', 'node', 'node.pages');
 function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
+
+  if ($node) {
+    drupal_set_title('Edit '. $node->title);
+  } else {
+    drupal_set_title('Create event');
+  }
+
 
   if ($node && $node->type != 'event') {
     return drupal_not_found();

@@ -20,5 +20,10 @@ regions[help] = Help
 regions[footer] = Footer
 regions[highlighted] = Highlighted
 
-stylesheets[all][] = system.menus.css
-stylesheets[screen][] = css/bootstrap-drupal.css
+stylesheets[all][] = css/system.menus.css
+stylesheets[all][] = css/user.css
+stylesheets[all][] = css/system.theme.css
+stylesheets[all][] = css/views.css
+stylesheets[screen][] = css/townsquare-bootstrap.css
+
+scripts[] = js/townsquare-bootstrap.js
