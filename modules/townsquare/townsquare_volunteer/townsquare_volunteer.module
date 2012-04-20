@@ -77,7 +77,7 @@ function townsquare_volunteer_libraries_info() {
  * Implements hook_form_alter().
  */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
-  // @TODO Apparently, these need to be attached late
+  // These handlers need to be added late, it seems
   if ($form_id == 'event_node_form' && arg(0) == 'event') {
     $form['actions']['submit']['#submit'][] = 'townsquare_volunteer_form_event_node_submit';
     $form['actions']['delete']['#submit'][] = 'townsquare_volunteer_form_event_node_delete';
@@ -125,22 +125,6 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       $form['field_event_location']['und'][0][$key]['#access'] = FALSE;
     }
     $form['actions']['preview']['#access'] = FALSE;
-
-
-    // Ugly markup manipulation for omega/960gs columns
-    // @TODO Refactor
-    $form['field_event_type']['#prefix'] = '<div class="grid-2 alpha">';
-    $form['field_event_type']['#suffix'] = '</div>';
-    
-    $form['field_event_date']['#prefix'] = '<div class="grid-3">';
-    $form['field_event_date']['#suffix'] = '</div>';
-
-    $form['field_event_location']['#prefix'] = '<div class="grid-4">';
-    $form['field_event_location']['#suffix'] = '</div>';
-
-    $form['field_event_description']['#prefix'] = '<div class="grid-3 omega">';
-    $form['field_event_description']['#suffix'] = '</div><div class="clearfix"></div>';
-    
   }
 }
 
@@ -403,8 +387,6 @@ function townsquare_volunteer_init() {
  * @return
  *   Edit form(s)
  */
-
-// @TODO include below is failing
 module_load_include('inc', 'node', 'node.pages');
 function townsquare_volunteer_edit_event($node = NULL) {
   global $user;
@@ -420,7 +402,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
     return drupal_not_found();
   }
 
-  module_load_include('inc', 'node', 'node.pages');
   libraries_load('scrollto');
 
   $session_form = array();

@@ -1,4 +1,13 @@
-.page-event-edit #main-content .node-event-form, .page-event-create #main-content .node-event-form {
+#edit-field-event-date, #edit-field-event-location, #edit-field-event-description {
+  float: left;
+  width: 31%;
+  margin-right: 3.5%;
+}
+#edit-field-event-description {
+  margin: 0;
+}
+
+/*.page-event-edit #main-content .node-event-form, .page-event-create #main-content .node-event-form {
   margin-bottom:25px;
   font-size:14px;
 }
@@ -81,4 +90,4 @@
 }
 .page-event-edit #volunteer-sessions .field-name-field-session-role, .page-event-create #volunteer-sessions .field-name-field-session-role { width:100px; }
 .page-event-edit #volunteer-sessions .field-name-field-session-role select, .page-event-edit #volunteer-sessions .field-name-field-session-role option, .page-event-create #volunteer-sessions .field-name-field-session-role select, .page-event-create #volunteer-sessions .field-name-field-session-role option { width:100px; }
-
+*/
