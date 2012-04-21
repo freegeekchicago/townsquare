@@ -15,7 +15,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'admin/people/create',
     'router_path' => 'admin/people/create',
-    'link_title' => '+',
+    'link_title' => '<i class="icon-user"></i>Add',
     'options' => array(
       'attributes' => array(
         'title' => 'Add a new volunteer.',
@@ -26,7 +26,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '20',
+    'weight' => '-47',
   );
   // Exported menu link: main-menu:event
   $menu_links['main-menu:event'] = array(
@@ -36,25 +36,7 @@ function townsquare_volunteer_menu_default_menu_links() {
     'link_title' => 'Events',
     'options' => array(
       'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '30',
-  );
-  // Exported menu link: main-menu:event/create
-  $menu_links['main-menu:event/create'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'event/create',
-    'router_path' => 'event/create',
-    'link_title' => '+',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Create a new event and track participation.',
+        'title' => 'Events',
       ),
     ),
     'module' => 'menu',
@@ -62,7 +44,25 @@ function townsquare_volunteer_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '40',
+    'weight' => '-50',
+  );
+  // Exported menu link: main-menu:event/create
+  $menu_links['main-menu:event/create'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'event/create',
+    'router_path' => 'event/create',
+    'link_title' => '<i class="icon-time"></i>Add',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Create event',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-49',
   );
   // Exported menu link: main-menu:volunteer
   $menu_links['main-menu:volunteer'] = array(
@@ -72,19 +72,20 @@ function townsquare_volunteer_menu_default_menu_links() {
     'link_title' => 'Volunteers',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Search volunteers, view reports',
       ),
     ),
-    'module' => 'system',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-5',
+    'weight' => '-48',
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('+');
+  t('<i class="icon-time"></i>Add');
+  t('<i class="icon-user"></i>Add');
   t('Events');
   t('Volunteers');
 
