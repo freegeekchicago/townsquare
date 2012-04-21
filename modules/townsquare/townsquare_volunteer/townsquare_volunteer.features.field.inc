@@ -571,7 +571,7 @@ function townsquare_volunteer_field_default_fields() {
         ),
       ),
       'indexes' => array(
-        'target_id' => array(
+        'target_entity' => array(
           0 => 'target_id',
         ),
       ),
