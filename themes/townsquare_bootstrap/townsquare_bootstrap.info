@@ -1,8 +1,9 @@
 name = Twitter Bootstrap
-description = Twitter Bootstrap (Tao subtheme)
+description = Twitter Bootstrap Theme for Townsquare distribution.
 core = 7.x
 engine = phptemplate
 screenshot = screenshot.png
+version = 1.x-dev
 
 ; REQUIRED CORE REGIONS
 
