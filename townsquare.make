@@ -94,12 +94,29 @@ libraries[htmlpurifier][download][type] = "get"
 libraries[htmlpurifier][download][url] = "http://htmlpurifier.org/releases/htmlpurifier-4.4.0.tar.gz"
 libraries[htmlpurifier][directory_name] = "htmlpurifier"
 
-;libraries[chosen][download][type] = "git"
-;libraries[chosen][download][url] = "https://github.com/harvesthq/chosen.git"
-;libraries[chosen][download][branch] = "master"
-;libraries[chosen][directory_name] = "chosen"
+libraries[chosen][download][type] = "git"
+libraries[chosen][download][url] = "https://github.com/harvesthq/chosen.git"
+libraries[chosen][download][branch] = "master"
+libraries[chosen][directory_name] = "chosen"
 
-;libraries[font_awesome][download][type] = "git"
-;libraries[font_awesome][download][url] = "https://github.com/FortAwesome/Font-Awesome.git"
-;libraries[font_awesome][download][branch] = "master"
-;libraries[font_awesome][directory_name] = "font-awesome"
+libraries[font_awesome][download][type] = "git"
+libraries[font_awesome][download][url] = "https://github.com/FortAwesome/Font-Awesome.git"
+libraries[font_awesome][download][branch] = "master"
+libraries[font_awesome][directory_name] = "font-awesome"
+
+; Twitter bootstrap - try putting this in own file
+
+projects[jquery_update][version] = "2.2"
+projects[jquery_update][subdir] = "contrib"
+
+libraries[jquery_17_min][download][type] = "get"
+libraries[jquery_17_min][download][url] = "http://code.jquery.com/jquery-1.7.1.min.js"
+libraries[jquery_17_min][destination] = "modules/contrib/jquery_update/replace/1.7/jquery.min.js"
+
+libraries[jquery_17_full][download][type] = "get"
+libraries[jquery_17_full][download][url] = "http://code.jquery.com/jquery-1.7.1.js"
+libraries[jquery_17_full][destination] = "modules/contrib/jquery_update/replace/1.7/jquery.js"
+
+libraries[twitter_bootstrap][download][type] = "get"
+libraries[twitter_bootstrap][download][url] = "http://twitter.github.com/bootstrap/assets/bootstrap.zip"
+libraries[twitter_bootstrap][directory_name] = "bootstrap"
