@@ -1,7 +1,7 @@
 name = Townsquare
 description = Townsquare distribution
 
-version = 7.x-1.0-alpha5
+version = 7.x-1.0-alpha8
 core = 7.x
 
 dependencies[] = block
@@ -19,16 +19,13 @@ dependencies[] = dashboard
 dependencies[] = toolbar
 
 dependencies[] = addressfield
-dependencies[] = combobox
-dependencies[] = context
-dependencies[] = context_ui
+dependencies[] = chosen
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_api
 dependencies[] = date_popup
 dependencies[] = date_views
 dependencies[] = dblog
-dependencies[] = delta
 dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entityreference
@@ -37,9 +34,8 @@ dependencies[] = features
 dependencies[] = fontyourface
 dependencies[] = google_fonts_api
 dependencies[] = gplib
-dependencies[] = gravatar
 dependencies[] = htmlpurifier
-dependencies[] = less
+dependencies[] = logintoboggan
 dependencies[] = libraries
 dependencies[] = markdown
 dependencies[] = markdownify

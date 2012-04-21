@@ -6,23 +6,20 @@ projects[drupal][version] = "7.12"
 projects[addressfield][version] = "1.0-beta2"
 projects[addressfield][subdir] = "contrib"
 
-projects[combobox][type] = "module"
-projects[combobox][subdir] = "contrib"
-projects[combobox][download][type] = "git"
-projects[combobox][download][url] = "http://github.com/ecenter/combobox"
-projects[combobox][download][branch] = "7.x-1.0-dev"
+;projects[combobox][type] = "module"
+;projects[combobox][subdir] = "contrib"
+;projects[combobox][download][type] = "git"
+;projects[combobox][download][url] = "http://github.com/ecenter/combobox"
+;projects[combobox][download][branch] = "7.x-1.0-dev"
 
-projects[context][version] = "3.0-beta2"
-projects[context][subdir] = "contrib"
+projects[chosen][version] = "1.0"
+projects[chosen][subdir] = "contrib"
 
 projects[ctools][version] = "1.0-rc1"
 projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.0-rc2"
 projects[date][subdir] = "contrib"
-
-projects[delta][version] = "3.0-beta9"
-projects[delta][subdir] = "contrib"
 
 projects[devel][version] = "1.2"
 projects[devel][subdir] = "contrib"
@@ -48,17 +45,14 @@ projects[fontyourface][subdir] = "contrib"
 projects[grammar_parser_lib][version] = "1.x-dev"
 projects[grammar_parser_lib][subdir] = "contrib"
 
-projects[gravatar][version] = "1.1"
-projects[gravatar][subdir] = "contrib"
-
 projects[htmlpurifier][version] = "2.x-dev"
 projects[htmlpurifier][subdir] = "contrib"
 
-projects[less][version] = "2.4"
-projects[less][subdir] = "contrib"
-
 projects[libraries][version] = "2.0-alpha2"
 projects[libraries][subdir] = "contrib"
+
+projects[logintoboggan][version] = "1.3"
+projects[logintoboggan][subdir] = "contrib"
 
 projects[markdown][version] = "1.0"
 projects[markdown][subdir] = "contrib"
@@ -68,9 +62,6 @@ projects[markdownify][subdir] = "contrib"
 projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "http://github.com/ecenter/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
-
-projects[omega_tools][version] = "3.0-rc3"
-projects[omega_tools][subdir] = "contrib"
 
 projects[pathologic][version] = "1.4"
 projects[pathologic][subdir] = "contrib"
@@ -92,7 +83,7 @@ projects[omega][version] = "3.0"
 
 ; Libraries
 libraries[tinymce][download][type] = "get"
-libraries[tinymce][download][url] = "http://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
+libraries[tinymce][download][url] = "https://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
 libraries[tinymce][directory_name] = "tinymce"
 
 libraries[scrollto][download][type] = "get"
@@ -102,3 +93,13 @@ libraries[scrollto][directory_name] = "scrollto"
 libraries[htmlpurifier][download][type] = "get"
 libraries[htmlpurifier][download][url] = "http://htmlpurifier.org/releases/htmlpurifier-4.4.0.tar.gz"
 libraries[htmlpurifier][directory_name] = "htmlpurifier"
+
+libraries[chosen][download][type] = "git"
+libraries[chosen][download][url] = "https://github.com/harvesthq/chosen.git"
+libraries[chosen][download][branch] = "master"
+libraries[chosen][directory_name] = "chosen"
+
+libraries[font_awesome][download][type] = "git"
+libraries[font_awesome][download][url] = "https://github.com/FortAwesome/Font-Awesome.git"
+libraries[font_awesome][download][branch] = "master"
+libraries[font_awesome][directory_name] = "font-awesome"
