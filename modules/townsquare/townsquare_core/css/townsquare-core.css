@@ -1,0 +1,17 @@
+#navigation .nav li a {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#navigation .nav li {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+#navigation .nav li.menu-240,
+#navigation .nav li.menu-365 {
+  margin-left: -7px;
+  margin-right: 10px;
+}
+#navigation .nav li.menu-240 a,
+#navigation .nav li.menu-365 a {
+  padding-left: 5px;
+}
