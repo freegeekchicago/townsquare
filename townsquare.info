@@ -16,7 +16,7 @@ dependencies[] = path
 dependencies[] = search
 dependencies[] = taxonomy
 dependencies[] = dashboard
-dependencies[] = toolbar
+
 
 dependencies[] = addressfield
 ; chosen has a bug which prevents installation
