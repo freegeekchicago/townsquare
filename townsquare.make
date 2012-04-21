@@ -6,12 +6,6 @@ projects[drupal][version] = "7.12"
 projects[addressfield][version] = "1.0-beta2"
 projects[addressfield][subdir] = "contrib"
 
-;projects[combobox][type] = "module"
-;projects[combobox][subdir] = "contrib"
-;projects[combobox][download][type] = "git"
-;projects[combobox][download][url] = "http://github.com/ecenter/combobox"
-;projects[combobox][download][branch] = "7.x-1.0-dev"
-
 projects[chosen][version] = "1.0"
 projects[chosen][subdir] = "contrib"
 
@@ -93,11 +87,6 @@ libraries[scrollto][directory_name] = "scrollto"
 libraries[htmlpurifier][download][type] = "get"
 libraries[htmlpurifier][download][url] = "http://htmlpurifier.org/releases/htmlpurifier-4.4.0.tar.gz"
 libraries[htmlpurifier][directory_name] = "htmlpurifier"
-
-libraries[chosen][download][type] = "git"
-libraries[chosen][download][url] = "https://github.com/harvesthq/chosen.git"
-libraries[chosen][download][branch] = "master"
-libraries[chosen][directory_name] = "chosen"
 
 libraries[font_awesome][download][type] = "git"
 libraries[font_awesome][download][url] = "https://github.com/FortAwesome/Font-Awesome.git"
