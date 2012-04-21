@@ -94,8 +94,7 @@ libraries[font_awesome][download][branch] = "master"
 libraries[font_awesome][directory_name] = "font-awesome"
 
 ; Twitter bootstrap - try putting this in own file
-
-projects[jquery_update][version] = "2.2"
+projects[jquery_update][version] = "2.x-dev"
 projects[jquery_update][subdir] = "contrib"
 
 libraries[jquery_17_min][download][type] = "get"
