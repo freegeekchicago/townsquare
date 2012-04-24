@@ -10,7 +10,7 @@ First, create an event by clicking the "+" icon in the top navigation bar:
 
 ![Click plus icon][1]
 
-Create an event: What kind of event, when it started and ended, where it happened, and any notes about the proceedings:
+Create an event: What kind of event was it? When did  it start and end? Where did it happen? Are there any notes about the proceedings?:
 
 ![Create event][2]
 
