@@ -3,4 +3,126 @@
  * @file
  */
 
-// Drupal needs this blank file.
+/**
+ * Implements hook_menu().
+ */
+function freegeek_townsquare_volunteer_menu() {
+  $items['signup'] = array(
+    'title' => 'Get started at FreeGeek',
+    'description' => 'Volunteer signup',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('freegeek_townsquare_volunteer_signup_form'),
+    'access callback' => 'user_register_access',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Create a signup form.
+ */
+function freegeek_townsquare_volunteer_signup_form($form, &$form_state) {
+  global $user;
+
+  $form['#user'] = drupal_anonymous_user();
+  $form['#user_category'] = 'register';
+
+  // Start with the default user account fields.
+  user_account_form($form, $form_state);
+
+  // Fades message
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'freegeek_townsquare_volunteer')
+        .'/js/freegeek-townsquare-volunteer.js'
+    ),
+  );
+
+  // Set and hide form values
+  $form['account']['roles']['#access'] = FALSE;
+  $form['account']['status']['#access'] = FALSE;
+  $form['account']['pass']['#access'] = FALSE;
+  $form['account']['pass']['#required'] = FALSE;
+  $form['account']['notify']['#access'] = FALSE;
+  $form['account']['name']['#title'] = t('Name');
+  $form['account']['name']['#description'] = t('What would you like to be called (e.g. "Tina Lopez")? You must use this name when signing in at programs and events.');
+  $form['account']['mail']['#required'] = FALSE;
+  $form['account']['mail']['#description'] = t('To track your achievements and follow FreeGeek news, please provide an email address. A verification email and password will be sent to your account. Providing an email address is not required but highly recommended.'); 
+
+  // Redirect back to signup form for easy operation during events
+  $form_state['redirect'] = 'signup';
+
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit', 
+    '#value' => t('Create my new account'),
+  );
+
+  $form['#validate'] = array('freegeek_townsquare_volunteer_signup_validate');
+  
+  // Add the final user registration form submit handler.
+  $form['#submit'][] = 'freegeek_townsquare_volunteer_signup_submit';
+
+  return $form;
+}
+
+/**
+ * Validate new volunteer
+ */
+function freegeek_townsquare_volunteer_signup_validate($form, &$form_state) {
+  $account = $form['#user'];
+  // Validate username.
+  if (isset($form_state['values']['name'])) {
+    if ($error = user_validate_name($form_state['values']['name'])) {
+      form_set_error('name', $error);
+    }
+    elseif ((bool) db_select('users')->fields('users', array('uid'))->condition('uid', $account->uid, '<>')->condition('name', db_like($form_state['values']['name']), 'LIKE')->range(0, 1)->execute()->fetchField()) {
+      form_set_error('name', t('The name %name is already taken.', array('%name' => $form_state['values']['name'])));
+    }
+  }
+}
+
+function freegeek_townsquare_volunteer_signup_submit($form, &$form_state) {
+  // Remove unneeded values.
+  form_state_values_clean($form_state);
+
+  $pass = user_password();
+  $form_state['values']['pass'] = $pass;
+  $form_state['values']['init'] = $form_state['values']['mail'];
+
+  $account = $form['#user'];
+
+  entity_form_submit_build_entity('user', $account, $form, $form_state);
+
+  // Populate $edit with the properties of $account, which have been edited on
+  // this form by taking over all values, which appear in the form values too.
+  $edit = array_intersect_key((array) $account, $form_state['values']);
+  $account = user_save($account, $edit);
+
+  // @TODO Notes
+
+  // Terminate if an error occurred during user_save().
+  if (!$account) {
+    drupal_set_message(t("Error saving user account."), 'error');
+    $form_state['redirect'] = '';
+    return;
+  }
+  $form_state['user'] = $account;
+  $form_state['values']['uid'] = $account->uid;
+
+  watchdog('user', 'New user: %name (%email).', array('%name' => $form_state['values']['name'], '%email' => $form_state['values']['mail']), WATCHDOG_NOTICE, l(t('edit'), 'user/' . $account->uid . '/edit'));
+
+  // Add plain text password into user account to generate mail tokens.
+  $account->password = $pass;
+
+  $uri = entity_uri('user', $account);
+
+  if (!empty($form_state['values']['mail'])) {
+    _user_mail_notify('register_no_approval_required', $account);
+    drupal_set_message(t('Thanks for signing up, %name! A message with further instructions has been sent to your email address.', array('@url' => url($uri['path'], $uri['options']), '%name' => $account->name)));
+  }
+  else {
+    drupal_set_message(t('Thanks for signing up, %name! If you\'d like to add an email address to your account, contact a FreeGeek staff person.', array('%name' => $account->name)));
+  }
+}
+
