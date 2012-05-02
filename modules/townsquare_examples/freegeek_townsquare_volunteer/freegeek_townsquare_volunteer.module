@@ -12,10 +12,22 @@ function freegeek_townsquare_volunteer_menu() {
     'description' => 'Volunteer signup',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('freegeek_townsquare_volunteer_signup_form'),
-    'access callback' => 'user_register_access',
+    'access arguments' => array('freegeek add bulk users'),
     'type' => MENU_CALLBACK,
   );
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function freegeek_townsquare_volunteer_permission() {
+  return array(
+    'freegeek add bulk users' => array(
+      'title' => t('FreeGeek: Add bulk users'), 
+      'description' => t('Grant this permission to accounts allowed to handle bulk user sign up.'),
+    ),
+  );
 }
 
 /**
