@@ -72,9 +72,6 @@ projects[views_php][subdir] = "contrib"
 projects[wysiwyg][version] = "2.x-dev"
 projects[wysiwyg][subdir] = "contrib"
 
-; Themes
-projects[omega][version] = "3.0"
-
 ; Libraries
 libraries[tinymce][download][type] = "get"
 libraries[tinymce][download][url] = "https://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
