@@ -129,6 +129,14 @@ html.js input.form-autocomplete {
   padding-right: 24px;
 }
 
+.form-required {
+  color: red;
+}
+
+legend {
+  padding-bottom: 18px;
+}
+
 @media (max-width: 979px) {
   body {
     padding-top: 0;

@@ -10,6 +10,7 @@ function volunteerUI() {
   $('.chzn-container').width(width);
   $('.chzn-search input').width(width - 40);
   $('.chzn-drop').width(width - 2);
+  $('#volunteer-sessions').css('padding-bottom', $('#volunteer-sessions').height() / 3 );
 }
 
 Drupal.behaviors.prepareVolunteerUI = {

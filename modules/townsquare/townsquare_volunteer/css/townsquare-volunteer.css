@@ -9,6 +9,32 @@ button label {
 @media ( min-width: 980px ) {
   button {
     width: auto;
+  } 
+  .page-event label, .page-event .controls, .page-event .control-group {
+    display: inline-block;
+  }
+  .page-event input, .page-event select {
+    width: auto;
+  }
+  .page-event label {
+    margin-right: 20px;
+  }
+  .page-event .control-group {
+    margin-bottom: 0;
+  }
+  .page-event legend {
+    border: none;
+  }
+  .page-event .form-actions {
+    clear: both;
+  }
+  .page-event .form-item-field-event-date-und-0-value > label,
+  .page-event .form-item-field-event-date-und-0-value2 > label {
+    width: 65px;
+    vertical-align: top;
+  }
+  .page-event table, .page-event .table {
+    width: auto;
   }
   #edit-field-event-type {
     padding: 0 2% 0 0;
@@ -25,27 +51,8 @@ button label {
     float: left; 
     width: 75px;
   }
-  #edit-field-event-location .controls {
-    float: left; 
-    width: 65%;
-  }
-  #edit-field-event-type label, #edit-field-event-type .controls {
-    display: inline-block;
-  }
-  #edit-field-event-type label {
-    margin-right: 20px;
-  }
-  .page-event .control-group {
-    margin-bottom: 0;
-  }
-  .page-event legend {
-    border: none;
-  }
-  .page-event .form-actions {
-    clear: both;
-  }
-  .page-event table, .page-event .table {
-    width: auto;
+  #edit-field-event-type {
+    margin-bottom: 18px;
   }
   #session-headers {
     display: block;

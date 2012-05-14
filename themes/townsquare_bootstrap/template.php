@@ -1,4 +1,7 @@
 <?php
+/**
+ * @file
+ */
 
 function townsquare_bootstrap_css_alter(&$css) {
   foreach ($css as $file => $settings) {
@@ -9,9 +12,6 @@ function townsquare_bootstrap_css_alter(&$css) {
   }
 }
 
-/**
- * @file
- */
 function townsquare_bootstrap_menu_link(array $variables) {
 /**
  * Implements theme_menu_link().
@@ -268,4 +268,23 @@ function townsquare_bootstrap_button($variables) {
   $title = isset($element['#button_text']) ? $element['#button_text'] : $element['#value'];
 
   return '<button' . drupal_attributes($element['#attributes']) . '>' . $title . '</button>';
+}
+
+function townsquare_bootstrap_date_popup($vars) {
+  $element = $vars['element'];
+  $attributes = !empty($element['#wrapper_attributes']) ? $element['#wrapper_attributes'] : array('class' => array());
+  $attributes['class'][] = 'container-inline-date';
+  // If there is no description, the floating date elements need some extra padding below them.
+  $wrapper_attributes = array('class' => array('date-padding'));
+  if (empty($element['date']['#description'])) {
+    $wrapper_attributes['class'][] = 'clearfix';
+  }
+  if (empty($element['#title'])) {
+    $element['#title'] = t('From:');
+  }
+  // Add an wrapper to mimic the way a single value field works, for ease in using #states.
+  if (isset($element['#children'])) {
+    $element['#children'] = '<div id="' . $element['#id'] . '" ' . drupal_attributes($wrapper_attributes) . '>' . $element['#children'] . '</div>';
+  }
+  return '<div ' . drupal_attributes($attributes) . '>' . theme('form_element', $element) . '</div>';
 }
