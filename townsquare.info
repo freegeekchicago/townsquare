@@ -19,8 +19,7 @@ dependencies[] = dashboard
 
 
 dependencies[] = addressfield
-; chosen has a bug which prevents installation
-;dependencies[] = chosen
+dependencies[] = combobox
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_api
