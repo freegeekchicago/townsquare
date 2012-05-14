@@ -117,13 +117,19 @@ function townsquare_volunteer_form_event_node_form_alter(&$form, &$form_state) {
       $form['field_event_date']['und'][0]['#default_value']['value2'] = date_format($end, 'Y-m-d H:i:s');
     }
 
-    // Strip out form elements; @TODO refine further
+    // Strip out form elements
     foreach (array('menu', 'comment_settings', 'path', 'author', 'options', 'revision_information', 'node_privacy_byrole', 'additional_Settings', 'buttons') as $key) {
       $form[$key]['#access'] = FALSE;
     }
-    foreach (array('premise', 'country') as $key) {
-      $form['field_event_location']['und'][0][$key]['#access'] = FALSE;
-    }
+
+    // Customize location
+    $form['field_event_location']['und'][0]['country']['#access'] = FALSE;
+    $form['field_event_location']['und'][0]['street_block']['premise']['#access'] = FALSE;
+    $form['field_event_location']['und'][0]['street_block']['thoroughfare']['#title'] = t('Address');
+    $form['field_event_location']['und'][0]['name_block']['name_line']['#title'] = t('Venue');
+
+  dpm($form);
+
     $form['actions']['preview']['#access'] = FALSE;
   }
 }
@@ -502,15 +508,15 @@ function townsquare_volunteer_edit_event($node = NULL) {
                 'class' => array('form-item', 'form-item-field-session-user-und-0-target-id'),
               ),
               array(
+                'data' => t('Role'),
+                'class' => array('form-item',),
+              ),
+              array(
                 'data' => t('Start'), 
                 'class' => array('form-item',),
               ),
               array(
                 'data' => t('End'), 
-                'class' => array('form-item',),
-              ),
-              array(
-                'data' => t('Role'),
                 'class' => array('form-item',),
               ),
               array(

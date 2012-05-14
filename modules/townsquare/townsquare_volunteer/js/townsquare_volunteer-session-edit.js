@@ -12,7 +12,6 @@ function volunteerUI() {
   $('.chzn-drop').width(width - 2);
 }
 
-// Hide save buttons
 Drupal.behaviors.prepareVolunteerUI = {
   attach: function(context) {
     volunteerUI();
@@ -25,7 +24,7 @@ $.fn.scrollSessions = function() {
   var pos = $(this).scrollTop();
   if ($(this).scrollTop() < $(window).height() - 100) {
     $.scrollTo( this, 400, {offset: -100} );
-    //$('.form-item-field-session-hours-und-0-value input.ui-widget', this).focus();
+    $('.form-item-field-session-hours-und-0-value input.ui-widget', this).focus();
   }
   return this;
 }

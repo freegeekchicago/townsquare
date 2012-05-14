@@ -2,9 +2,6 @@
 #session-headers, .page-event .inline-btn {
   display: none;
 }
-button {
-  width: 100%;
-}
 button label {
   display: inline;
 }
@@ -20,6 +17,26 @@ button label {
     float: left;
     width: 31.3333333%;
     padding: 0 2% 0 0;
+  }
+  #edit-field-event-description textarea {
+    height: 170px;
+  }
+  #edit-field-event-location label {
+    float: left; 
+    width: 75px;
+  }
+  #edit-field-event-location .controls {
+    float: left; 
+    width: 65%;
+  }
+  #edit-field-event-type label, #edit-field-event-type .controls {
+    display: inline-block;
+  }
+  #edit-field-event-type label {
+    margin-right: 20px;
+  }
+  .page-event .control-group {
+    margin-bottom: 0;
   }
   .page-event legend {
     border: none;
@@ -53,7 +70,7 @@ button label {
   }
   .page-event #volunteer-sessions .form-item input[type="text"],
   .page-event #volunteer-sessions .form-item select {
-    width: 100%;
+    width: 85%;
   }
   .page-event #volunteer-sessions .volunteer-session-form {
     clear: both;
@@ -76,10 +93,7 @@ button label {
     width: 19%;
     padding-right: 0;
   }
-  .page-event #volunteer-sessions .form-item.form-item-field-session-user-und-0-target-id input {
-    width: 85%;
-  }
-  /*.page-event #volunteer-sessions .ajax-progress { display: none; }*/
+  .page-event #volunteer-sessions .ajax-progress { display: none; }
   .page-event #volunteer-sessions .btn {
     margin: 0 2px;
     padding: 2px 7px;
@@ -87,6 +101,5 @@ button label {
   }
   .page-event #volunteer-sessions .btn:hover {
     color: #444;
-  }
-
+  } 
 }

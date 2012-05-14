@@ -1,9 +1,17 @@
 <?php
 
+function townsquare_bootstrap_css_alter(&$css) {
+  foreach ($css as $file => $settings) {
+    // Remove jQuery UI's theming, which messes up forms
+    if (strripos($file, 'date/date_api/date.css') !== FALSE) {
+      unset($css[$file]);
+    }
+  }
+}
+
 /**
  * @file
  */
-
 function townsquare_bootstrap_menu_link(array $variables) {
 /**
  * Implements theme_menu_link().
@@ -111,20 +119,6 @@ function townsquare_bootstrap_breadcrumb($variables) {
   }
   return $crumbs;
 }
-
-/*function townsquare_bootstrap_button(&$variables) {
-  $element = $variables['element'];
-  $element['#attributes']['type'] = 'submit';
-  element_set_attributes($element, array('id', 'name', 'value'));
-
-  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
-  $element['#attributes']['class'][] = 'btn';
-  if (!empty($element['#attributes']['disabled'])) {
-    $element['#attributes']['class'][] = 'form-button-disabled';
-  }
-
-  return '<input' . drupal_attributes($element['#attributes']) . ' />';
-}*/
 
 function townsquare_bootstrap_preprocess_table(&$variables) {
   $variables['attributes']['class'] = array('table');
@@ -236,6 +230,8 @@ function townsquare_bootstrap_preprocess_form(&$variables) {
   switch ($variables['element']['#id']) {
     case 'user-login-form':
       $variables['element']['#attributes']['class'] = array('form-inline');
+      return;
+    case 'event-node-form':
       return;
     default:
       $variables['element']['#attributes']['class'] = array('form-horizontal');
