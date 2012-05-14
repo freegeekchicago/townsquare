@@ -112,7 +112,7 @@ function townsquare_bootstrap_breadcrumb($variables) {
   return $crumbs;
 }
 
-function townsquare_bootstrap_button(&$variables) {
+/*function townsquare_bootstrap_button(&$variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'submit';
   element_set_attributes($element, array('id', 'name', 'value'));
@@ -124,7 +124,7 @@ function townsquare_bootstrap_button(&$variables) {
   }
 
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
-}
+}*/
 
 function townsquare_bootstrap_preprocess_table(&$variables) {
   $variables['attributes']['class'] = array('table');
@@ -243,7 +243,33 @@ function townsquare_bootstrap_preprocess_form(&$variables) {
   }
 }
 
-
 function townsquare_bootstrap_menu_tree__management($variables) {
   return '<ul class="dropdown-menu">' . $variables['tree'] . '</ul>';
+}
+
+function townsquare_bootstrap_button($variables) {
+  $element = $variables['element'];
+  $type = strtolower($element['#button_type']);
+  switch($type){
+    case 'submit':
+    case 'reset':
+    case 'button':
+      break;
+    default:
+      $type = 'submit';
+      break;
+  }
+  $element['#attributes']['type'] = $type;
+
+  element_set_attributes($element, array('id', 'name', 'value'));
+
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  $element['#attributes']['class'][] = 'btn';
+  if (!empty($element['#attributes']['disabled'])) {
+    $element['#attributes']['class'][] = 'form-button-disabled';
+  }
+
+  $title = isset($element['#button_text']) ? $element['#button_text'] : $element['#value'];
+
+  return '<button' . drupal_attributes($element['#attributes']) . '>' . $title . '</button>';
 }

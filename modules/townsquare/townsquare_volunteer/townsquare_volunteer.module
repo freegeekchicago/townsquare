@@ -184,9 +184,7 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
         $form[$field]['#suffix'] = '</div>';
 
         unset(
-          $form[$field]['und']['#title'], 
           $form[$field]['und']['#description'],
-          $form[$field]['und'][0][$key]['#title'], 
           $form[$field]['und'][0][$key]['#description']
         );
         
@@ -225,10 +223,32 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
 
     // Remove buttons
     foreach (element_children($form['actions']) as $key) {
-      if ($key != 'delete' && $key != 'submit') {
-        $form['actions'][$key]['#access'] = FALSE;
+      $form['actions'][$key]['#type'] = 'button';
+      switch($key) {
+        case 'delete':
+          $form['actions'][$key]['#button_text'] = t('<i class="icon-trash"></i><label> Delete session</label>');
+          $form['actions'][$key]['#attributes']['title'] = t('Delete row');
+          break;
+        default:
+          $form['actions'][$key]['#access'] = FALSE;
       }
     }
+
+    // Add basic user link button (replace with image)  
+    $form['actions']['user_link'] = array(
+      '#type' => 'link',
+      '#href' => 'user/'. $node->field_session_user['und'][0]['target_id'],
+      '#title' => t('<i class="icon-user"></i>'),
+      '#weight' => -10,
+      '#options' => array(
+        'html' => true,
+        'attributes' => array(
+          'class' => 'btn user-link',
+          'target' => '_blank',
+          'title' => t('View user details in new tab'),
+        ),
+      ),
+    );
   }
 }
 
@@ -274,9 +294,7 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
       $form['field_session_duration']['und'][0]['value']['#value'] = $form['field_session_duration']['und'][0]['value']['#default_value'];
       $commands[] = ajax_command_replace($replace, drupal_render($form['field_session_duration']));
     }
-    if ($element['#parents'][0] == 'field_session_user') {
-      $commands[] = ajax_command_invoke('#volunteer-session-form-'. $node->nid, 'scrollSessions');
-    }
+    //$commands[] = ajax_command_invoke('#volunteer-session-form-'. $node->nid, 'scrollSessions');
   }
   $commands[] = ajax_command_prepend('#volunteer-sessions', theme('status_messages'));
   return array(
@@ -481,27 +499,35 @@ function townsquare_volunteer_edit_event($node = NULL) {
             '#items' => array(
               array(
                 'data' => t('Volunteer name'), 
-                'class' => array('field-name-field-session-user'),
+                'class' => array('form-item', 'form-item-field-session-user-und-0-target-id'),
               ),
               array(
-                'data' => t('Hours'), 
-                'class' => array('field-name-field-session-hours',)
+                'data' => t('Start'), 
+                'class' => array('form-item',),
+              ),
+              array(
+                'data' => t('End'), 
+                'class' => array('form-item',),
               ),
               array(
                 'data' => t('Role'),
-                'class' => array('field-name-field-session-role',)
+                'class' => array('form-item',),
               ),
               array(
                 'data' => t('Set duration'),
-                'class' => array('field-name-field-session-override-duration',)
+                'class' => array('form-item', 'form-type-checkbox'),
               ),
               array(
                 'data' => t('Duration'),
-                'class' => array('field-name-field-session-duration',)
+                'class' => array('form-item',),
               ),
               array(
                 'data' => t('No signout'),
-                'class' => array('field-name-field-session-no-signout',)
+                'class' => array('form-item', 'form-type-checkbox'),
+              ),
+              array(
+                'data' => t('Actions'),
+                'class' => array('form-item', 'form-actions'),
               ),
             ),
           ),
@@ -815,6 +841,5 @@ function _townsquare_volunteer_date_options($start, $end) {
     $start->modify('+15 minutes');
     $utc->modify('+15 minutes');
   }
-  //dpm($options);
   return $options;
 }
