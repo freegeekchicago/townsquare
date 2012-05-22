@@ -181,12 +181,9 @@ function townsquare_core_menu_default_menu_links() {
     'menu_name' => 'user-menu',
     'link_path' => 'user',
     'router_path' => 'user',
-    'link_title' => 'My history',
+    'link_title' => 'User account',
     'options' => array(
       'alter' => TRUE,
-      'attributes' => array(
-        'title' => '',
-      ),
     ),
     'module' => 'system',
     'hidden' => '0',
@@ -234,9 +231,9 @@ function townsquare_core_menu_default_menu_links() {
   t('Log in');
   t('Log out');
   t('Modules');
-  t('My history');
   t('People');
   t('Structure');
+  t('User account');
 
 
   return $menu_links;

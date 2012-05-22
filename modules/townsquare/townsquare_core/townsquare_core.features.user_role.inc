@@ -10,7 +10,7 @@
 function townsquare_core_user_default_roles() {
   $roles = array();
 
-  // Exported role: administrator
+  // Exported role: administrator.
   $roles['administrator'] = array(
     'name' => 'administrator',
     'weight' => '5',
