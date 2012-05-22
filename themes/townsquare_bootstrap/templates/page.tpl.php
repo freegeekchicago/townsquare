@@ -23,8 +23,9 @@
       <ul class="nav pull-right" id="secondary-menu">
         <li class="dropdown nav-collapse" id="secondary-menu-children">
           <a class="dropdown-toggle" data-toggle="dropdown">
+            <i class="caret"></i> <?php print $user_name; ?>
             <?php if (isset($user_picture)): ?>
-            <?php print $user_name; ?><div class="user-picture"><?php print $user_picture; ?></div>
+            <div class="user-picture"><?php print $user_picture; ?></div>
             <?php endif; ?>
           </a>
           <?php print theme('links', array('links' => $secondary_menu, 'attributes' => array('class' => 'dropdown-menu'))) ?>
@@ -40,7 +41,7 @@
       <ul class="nav pull-right" id="admin-menu">
         <li class="dropdown nav-collapse" id="admin-menu-children">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-cog"></i><?php print t('Administer'); ?><i class="caret"></i>
+            <i class="caret"></i> <?php print t('Administer'); ?><i class="icon-cog"></i>
           </a>
           <?php print render($admin_menu); ?>
         </li>
