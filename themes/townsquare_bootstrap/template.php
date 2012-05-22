@@ -77,6 +77,9 @@ function townsquare_bootstrap_preprocess_page(&$vars) {
         $vars['user_picture'] = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
       }
     }
+    else {
+      $vars['user_picture'] = '<i class="icon-user"></i>';
+    }
   }
   // Otherwise, present the login form
   else {

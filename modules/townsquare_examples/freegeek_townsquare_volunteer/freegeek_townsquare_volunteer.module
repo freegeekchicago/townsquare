@@ -35,6 +35,8 @@ function freegeek_townsquare_volunteer_permission() {
  */
 function freegeek_townsquare_volunteer_signup_form($form, &$form_state) {
   global $user;
+  
+  drupal_set_title('Get started at FreeGeek');
 
   $form['#user'] = drupal_anonymous_user();
   $form['#user_category'] = 'register';
