@@ -20,6 +20,20 @@ function townsquare_core_theme() {
   );
 }
 
+/**
+ * Implemenets hook_init()
+ */
 function townsquare_core_init() {
   drupal_add_css(drupal_get_path('module', 'townsquare_core') .'/css/townsquare-core.css');
+}
+
+/**
+ * Implements hook_custom_theme().
+ *
+ * Fix silly features incompatibility with theme.
+ */
+function townsquare_core_custom_theme() {
+  if (arg(2) == 'features') {
+    return 'seven';
+  }
 }
