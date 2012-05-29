@@ -69,7 +69,7 @@ function freegeek_townsquare_volunteer_signup_form($form, &$form_state) {
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit', 
-    '#value' => t('Create my new account'),
+    '#value' => t('Create new account'),
   );
 
   $form['#validate'] = array('freegeek_townsquare_volunteer_signup_validate');
