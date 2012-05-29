@@ -4,8 +4,8 @@
 
 * * *
 
-<div class="clearfix">
-  <div class="grid-4 alpha">
+<div class="row-fluid">
+  <div class="span4">
     <h2>
       Create volunteers
     </h2>
@@ -15,7 +15,7 @@
     </p>
   </div>
   
-  <div class="grid-4">
+  <div class="span4">
     <h2>
       Create events
     </h2>
@@ -25,7 +25,7 @@
     </p>
   </div>
   
-  <div class="grid-4 omega">
+  <div class="span4">
     <h2>
       Manage participation
     </h2>

@@ -6,7 +6,7 @@
 <hr/>
 
 <div class="clearfix">
-  <div class="grid-5 alpha">
+  <div class="span5">
     <h2>
       Try Townsquare
     </h2>
@@ -64,7 +64,7 @@
     </ul>
   </div>
   
-  <div class="grid-6 push-1 omega">
+  <div class="span6 push-1">
     <p class="big">
       Townsquare helps community-based institutions manage events, track participation, and share institutional knowledge.
     </p>
@@ -106,15 +106,15 @@
 * * *
 
 <div class="clearfix">
-  <div class="grid-4 alpha">
+  <div class="span4">
     <a href="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png"> <img class="border" alt="volunteer-search" src="http://img.skitch.com/20120210-krgqbd9pmxkdxrnj275pxp28n4.png" width="300" height="192" /> <span class="caption">Manage volunteer hours: Quickly create or transcribe attendance records.</span> </a>
   </div>
   
-  <div class="grid-4">
+  <div class="span4">
     <a href="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png"> <img class="border" alt="Volunteer search" src="http://img.skitch.com/20120210-pruh33rwmtaeynuw13r6qwjeby.png" width="300" height="192" /> <span class="caption">Search for volunteers quickly from PCs, smartphones, and tablets.</span> </a>
   </div>
   
-  <div class="grid-4 omega">
+  <div class="span4">
     <a href="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png"> <img class="border" alt="WYSIWYG editor" src="http://img.skitch.com/20120210-t5eppqa44ywc951hymb5njx8sh.png" width="300" height="192" /> <span class="caption">An awesome WYSIWYG editor with Markdown source code.</span> </a>
   </div>
 </div>
