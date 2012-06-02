@@ -67,6 +67,10 @@ function freegeek_townsquare_volunteer_signup_form($form, &$form_state) {
   $form['account']['mail']['#required'] = FALSE;
   $form['account']['mail']['#description'] = t('To track your achievements and follow FreeGeek news, please provide an email address. A verification email and password will be sent to your account. Providing an email address is not required but highly recommended.'); 
 
+  // Stupid Drupal includes this even when signatures are disabled.
+  // We don't need it here ever.
+  unset($form['signature_settings']);
+  
   // Redirect back to signup form for easy operation during events
   $form_state['redirect'] = 'signup';
 
