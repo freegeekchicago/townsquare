@@ -1,0 +1,24 @@
+#main-content {
+  max-width: 500px;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-horizontal .form-item .control-label {
+  width: 160px;
+}
+#main-content .form-item label {
+  font-size: 20px;
+}
+#main-content .form-item input {
+  font-size: 18px;
+  width: 281px;
+}
+#main-content .form-actions {
+  border: none;
+  text-align: right;
+}
+#main-content .form-actions button {
+  font-size: 18px;
+  font-weight: bold;
+}
