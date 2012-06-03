@@ -6,14 +6,17 @@ button label {
   display: inline;
 }
 
-@media ( min-width: 980px ) {
+@media ( min-width: 768px ) {
+  #volunteer-sessions {
+    padding-bottom: 250px;
+  }
   button {
     width: auto;
   } 
   .page-event label, .page-event .controls, .page-event .control-group {
     display: inline-block;
   }
-  .page-event input, .page-event select {
+  .page-event input { 
     width: auto;
   }
   .page-event label {
@@ -75,9 +78,11 @@ button label {
     list-style-type: none;
     margin: 0;
   }
-  .page-event #volunteer-sessions .form-item input[type="text"],
-  .page-event #volunteer-sessions .form-item select {
+  .page-event #volunteer-sessions .form-item input[type="text"] {
     width: 85%;
+  }
+  .page-event #volunteer-sessions .form-item select {
+    width: 100%;
   }
   .page-event #volunteer-sessions .volunteer-session-form {
     clear: both;

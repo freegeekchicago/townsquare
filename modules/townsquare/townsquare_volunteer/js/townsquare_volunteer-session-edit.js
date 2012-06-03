@@ -1,34 +1,12 @@
 (function($) {
 
-// Tweak volunteer UI
-function volunteerUI() {
-  var width;
-  $('#volunteer-sessions select').each(function(i) {
-    width = $(this).parents('.form-item').width();
-    $(this).width(width);
-  });
-  $('.chzn-container').width(width);
-  $('.chzn-search input').width(width - 40);
-  $('.chzn-drop').width(width - 2);
-  $('#volunteer-sessions').css('padding-bottom', $('#volunteer-sessions').height() / 3 );
-}
-
 Drupal.behaviors.prepareVolunteerUI = {
   attach: function(context) {
-    volunteerUI();
-    $(window).resize(volunteerUI);
+    $('input[type="text"]', context).on('focus click', function() {
+      $(this).select()
+    });
   }
 };
-
-// jQuery plugin to invoke from AJAX callback
-$.fn.scrollSessions = function() {
-  var pos = $(this).scrollTop();
-  if ($(this).scrollTop() < $(window).height() - 100) {
-    $.scrollTo( this, 400, {offset: -100} );
-    $('.form-item-field-session-hours-und-0-value input.ui-widget', this).focus();
-  }
-  return this;
-}
 
 // Toggle fields
 Drupal.behaviors.toggleFields = {

@@ -59,21 +59,6 @@ function townsquare_volunteer_permission() {
 }
 
 /**
- * Implements hook_libraries_info().
- */
-function townsquare_volunteer_libraries_info() {
-  $libraries = array();
-  $libraries['scrollto'] = array(
-    'title' => 'jQuery Scroll to library',
-    'version' => '1.4.2',
-    'files' => array(
-      'js' => array('jquery.scrollTo.js'),
-    ),
-  );
-  return $libraries;
-}
-
-/**
  * Implements hook_form_alter().
  */
 function townsquare_volunteer_form_alter(&$form, &$form_state, $form_id) {
@@ -291,7 +276,6 @@ function townsquare_volunteer_session_ajax_callback($form, $form_state) {
     node_save($new_session);
     $new_form = drupal_get_form('volunteer_session_node_form', $new_session);
     $commands[] = ajax_command_append('#volunteer-sessions', drupal_render($new_form));
-    $commands[] = ajax_command_invoke('#volunteer-session-form-'. $node->nid, 'scrollSessions');
   }
   else { 
     if ($element['#parents'][0] == 'field_session_hours') {
