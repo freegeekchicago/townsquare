@@ -187,6 +187,9 @@ function townsquare_volunteer_form_volunteer_session_node_form_alter(&$form, &$f
             'wrapper' => 'volunteer-session-form-'. $nid,
             'callback' => 'townsquare_volunteer_session_ajax_callback',
           );
+          if ($nid == 'new') {
+            $ajax['effect'] = 'slide';
+          }
           $form[$field]['und']['#ajax'] = $ajax;
           $form[$field]['und'][0][$key]['#ajax'] = $ajax;
         }

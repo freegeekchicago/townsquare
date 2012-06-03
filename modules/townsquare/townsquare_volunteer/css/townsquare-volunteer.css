@@ -5,6 +5,7 @@
 button label {
   display: inline;
 }
+.page-event #volunteer-sessions .ajax-progress { display: none; }
 
 @media ( min-width: 768px ) {
   #volunteer-sessions {
@@ -105,7 +106,6 @@ button label {
     width: 19%;
     padding-right: 0;
   }
-  .page-event #volunteer-sessions .ajax-progress { display: none; }
   .page-event #volunteer-sessions .btn {
     margin: 0 2px;
     padding: 2px 7px;
