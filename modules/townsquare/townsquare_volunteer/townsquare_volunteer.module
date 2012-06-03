@@ -408,8 +408,6 @@ function townsquare_volunteer_edit_event($node = NULL) {
     return drupal_not_found();
   }
 
-  libraries_load('scrollto');
-
   $session_form = array();
 
   if (!$node) {
