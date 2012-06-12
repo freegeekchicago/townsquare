@@ -3,9 +3,6 @@ body { padding-top: 68px; }
 #navigation .brand { font-size: 15px; line-height: 20px; }
 .form-actions, .form-horizontal .form-actions { padding: 9px 0; margin-top: 18px; background: transparent; }
 .form-actions button, .form-actions input { margin-right: 5px; }
-body #main-content * {
-  line-height: 1.6;
-}
 #main-content p, #main-content ul {
   font-size: 15px;
 }

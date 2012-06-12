@@ -23,7 +23,7 @@
       <ul class="nav pull-right" id="secondary-menu">
         <li class="dropdown nav-collapse" id="secondary-menu-children">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="caret"></i> <?php print $user_name; ?>
+            <?php print $user_name; ?><i class="icon-caret-down"></i>
             <?php if (isset($user_picture)): ?>
             <div class="user-picture"><?php print $user_picture; ?></div>
             <?php endif; ?>
@@ -41,7 +41,7 @@
       <ul class="nav pull-right" id="admin-menu">
         <li class="dropdown nav-collapse" id="admin-menu-children">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="caret"></i> <?php print t('Administer'); ?><i class="icon-cog"></i>
+            <i class="icon-cog"></i><?php print t('Administer'); ?><i class="icon-caret-down"></i>
           </a>
           <?php print render($admin_menu); ?>
         </li>
@@ -52,7 +52,7 @@
     <div class="menu">
       <ul class="nav pull-right" id="login-block">
       <li class="dropdown">
-        <?php print t('<a class="dropdown-toggle" data-toggle="dropdown"><i class="icon-flag"></i> Want to participate? Login or sign up <i class="caret"></i></a>'); ?>
+        <?php print t('<a class="dropdown-toggle" data-toggle="dropdown"><i class="icon-flag"></i> Want to participate? Login or sign up <i class="icon-caret-down"></i></a>'); ?>
         <div class="dropdown-menu" id="login-block-form">
           <?php print render($login); ?>
         </div>
