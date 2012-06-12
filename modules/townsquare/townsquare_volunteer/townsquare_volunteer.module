@@ -491,15 +491,15 @@ function townsquare_volunteer_edit_event($node = NULL) {
                 'class' => array('form-item', 'form-item-field-session-user-und-0-target-id'),
               ),
               array(
+                'data' => t('Role'),
+                'class' => array('form-item',),
+              ),
+              array(
                 'data' => t('Start'), 
                 'class' => array('form-item',),
               ),
               array(
                 'data' => t('End'), 
-                'class' => array('form-item',),
-              ),
-              array(
-                'data' => t('Role'),
                 'class' => array('form-item',),
               ),
               array(

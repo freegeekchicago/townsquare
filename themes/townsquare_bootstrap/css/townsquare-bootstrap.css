@@ -137,6 +137,23 @@ legend {
   padding-bottom: 18px;
 }
 
+.ui-menu {
+  padding: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+#autocomplete li, .ui-autocomplete .ui-menu-item a {
+  padding: 2px 3px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+#autocomplete li.selected, .ui-autocomplete a.ui-state-hover {
+  background: #027ac6;
+  color: #fff;
+}
+
 @media (max-width: 979px) {
   body {
     padding-top: 0;

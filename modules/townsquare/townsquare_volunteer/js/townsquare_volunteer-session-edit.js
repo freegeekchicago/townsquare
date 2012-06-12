@@ -18,7 +18,7 @@ Drupal.behaviors.toggleFields = {
           .not(':submit')
           .attr('readonly', true);
         
-        $('input:checkbox, input:submit, button', form)
+        $('input:checkbox, input:submit, button, a', form)
           .attr('disabled', true);
       }
       $(this).change(function() {
@@ -34,19 +34,7 @@ Drupal.behaviors.toggleFields = {
   }
 };
 
-// Disable duration field if override button isn't checked
-Drupal.behaviors.disableDuration = {
-  attach: function(context) {
-    $('.field-name-field-session-override-duration', context)
-      .each(function(i) {
-        var field = this;
-        TownsquareVolunteer.toggleDuration(field);
-        $(field).click(function(e) {
-          TownsquareVolunteer.toggleDuration(field);
-        });
-      })
-  }
-};
+
 
 TownsquareVolunteer = {}
 TownsquareVolunteer.toggleDuration = function(field) {
@@ -110,7 +98,6 @@ Drupal.ajax.prototype.beforeSend = function (xmlhttprequest, options) {
   // the element from triggering a new request, but does not prevent the user
   // from changing its value.
   $(this.element).addClass('progress-disabled').attr('readonly', true);
-
   $(this.wrapper).find('input, select, textarea').addClass('progress-disabled').attr('readonly', true);
 };
 
