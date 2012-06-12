@@ -20,6 +20,9 @@ button label {
   .page-event input { 
     width: auto;
   }
+  .page-event .node-event-form input {
+    width: 210px;
+  }
   .page-event label {
     margin-right: 20px;
   }

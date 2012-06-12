@@ -6,6 +6,9 @@ body { padding-top: 68px; }
 #main-content p, #main-content ul {
   font-size: 15px;
 }
+.content * {
+  line-height: 1.6;
+}
 h1,h2,h3,h4,h5,h6 {
   margin-bottom: 18px;
 }
