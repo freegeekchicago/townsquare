@@ -3,7 +3,7 @@ core = 7.x
 projects[drupal][type] = core
 projects[drupal][version] = "7.12"
 
-projects[addressfield][version] = "1.0-beta2"
+projects[addressfield][version] = "1.0-beta3"
 projects[addressfield][subdir] = "contrib"
 
 projects[combobox][type] = "module"
@@ -18,7 +18,7 @@ projects[ctools][subdir] = "contrib"
 projects[date][version] = "2.2"
 projects[date][subdir] = "contrib"
 
-projects[devel][version] = "1.2"
+projects[devel][version] = "1.3"
 projects[devel][subdir] = "contrib"
 
 projects[diff][version] = "2.0"
@@ -27,7 +27,7 @@ projects[diff][subdir] = "contrib"
 projects[entity][version] = "1.0-rc1"
 projects[entity][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0-rc1"
+projects[entityreference][version] = "1.0-rc3"
 projects[entityreference][subdir] = "contrib"
 
 projects[eva][version] = "1.1"

@@ -24,6 +24,7 @@ Drupal.behaviors.toggleFields = {
       $(this).change(function() {
         $('input, select, textarea', form)
         .not('name="field_session_user[und][0][target_id]"')
+        .not('name="field_session_duration[und][0][value]"')
         .not(':submit')
         .removeAttr('readonly');
 
@@ -31,33 +32,21 @@ Drupal.behaviors.toggleFields = {
           .removeAttr('disabled');
       });
     });
+    $('.form-item-field-session-override-duration-und input').not(':disabled').each(function() {
+      var form = $(this).parents('form');
+      var duration = $('input[name="field_session_duration[und][0][value]"]', form);
+      var hours = $('.form-item-field-session-hours-und-0-value input, .form-item-field-session-hours-und-0-value2 input', form);
+      if ($(this).is(':checked')) {
+        duration.removeAttr('readonly');
+        hours.attr('readonly', true);
+      }
+      else {
+        duration.attr('readonly', true);
+        hours.removeAttr('readonly');
+      }
+    });
   }
 };
-
-
-
-TownsquareVolunteer = {}
-TownsquareVolunteer.toggleDuration = function(field) {
-  var form = $(field).parents('form');
-  var duration = $('.field-name-field-session-duration', form);
-  var hours = $('.form-item-field-session-hours-und-0-value, .form-item-field-session-hours-und-0-value2', form);
-  var checkbox = $('input:checked', field).not(':disabled'); //.attr('checked');
-  if (!checkbox.length) {
-    duration.addClass('form-disabled');
-    $('input', duration).attr('readonly', true);
-    
-    hours.removeClass('form-disabled');
-    $('input', hours).removeAttr('readonly');
-    $('button', hours).removeAttr('disabled');
-  } else {
-    duration.removeClass('form-disabled');
-    $('input', duration).removeAttr('readonly');
-    
-    hours.addClass('form-disabled');
-    $('input', hours).attr('readonly', true);
-    $('button', hours).attr('disabled', true);
-  }
-}
 
 /* Drupal AJAX overrides */
 

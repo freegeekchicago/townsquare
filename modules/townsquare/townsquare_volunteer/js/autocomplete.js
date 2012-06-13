@@ -1,6 +1,7 @@
 // Overide Drupal autocomplete methods
-(function($) {
-/**
+(function($) { if (Drupal.jsAC) {
+ 
+ /**
  * Handler for the "keydown" event.
  */
 Drupal.jsAC.prototype.onkeydown = function (input, e) {
@@ -115,4 +116,4 @@ Drupal.jsAC.prototype.found = function (matches) {
   }
 };
 
-})(jQuery);
+}})(jQuery);
