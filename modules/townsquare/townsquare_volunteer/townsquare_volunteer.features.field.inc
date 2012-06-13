@@ -253,7 +253,7 @@ function townsquare_volunteer_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'townsquare_session_date',
-        'weight' => '3',
+        'weight' => '4',
       ),
     ),
   );
@@ -476,7 +476,7 @@ function townsquare_volunteer_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_text',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -549,7 +549,7 @@ function townsquare_volunteer_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'options_select',
-        'weight' => '4',
+        'weight' => '3',
       ),
     ),
   );
