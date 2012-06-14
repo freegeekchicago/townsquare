@@ -3,22 +3,28 @@
  * @file
  */
 
-function freegeek_townsquare_rules_cron() {
-  dpm('cron ran!');
-}
-
 function freegeek_townsquare_rules_rules_event_info() {
   $items = array(
-    'freegeek_process_sessions' => array(
-       'variables' => array(
-         'totals' => array(
-           'type' => 'data',
-           'label' => t('Totals'),
-         ),
-         'account' => array(
-           'type' => 'user',
-           'label' => t('User'),
-         ),
+    // An event invoked for every volunteer record processed
+    'freegeek_townsquare_rules_process_sessions' => array(
+        'label' => t('After processing a volunteer\'s recent participation'),
+        'variables' => array(
+          'account' => array(
+            'type' => 'user',
+            'label' => t('User'),
+          ),
+          'hours_old' => array(
+            'type' => 'decimal',
+            'label' => t('Old hours'),
+          ),
+          'hours_new' => array(
+            'type' => 'decimal',
+            'label' => t('New hours'),
+          ),
+          'hours_difference' => array(
+            'type' => 'decimal',
+            'label' => t('Difference'),
+          ),
        ),
        'group' => t('Townsquare'),
      ),
@@ -26,46 +32,14 @@ function freegeek_townsquare_rules_rules_event_info() {
   return $items;
 }
 
-function freegeek_townsquare_rules_process_sessions($totals) {
-  dpm('called!');
-  dpm($totals);
-}
-
-function freegeek_townsquare_rules_rules_condition_info() {
-  return array();
-}
-
-/**
- * implementation of hook_rules_condition_info()
- */
-function freegeek_townsquare_rules_condition_info() {
-  return array(
-    'freegeek_townsquare_rules_condition_hours' => array(
-      'label' => t('Hours'),
-      'arguments' => array(
-        'hours' => array('type' => 'value', 'label' => t('Hours')),
-      ),
-      'module' => 'freegeek_townsquare_rules',
-    ),
-  );
-}
-
-/**
- * Condition packages_condition_packagetype
- */
-function freegeek_townsquare_rules_condition_hours($hours) {
-  return true;
-  //$package = package_load($pid);
-  
-  //return ($package->type == $type) ? true : false;
-}
-
 function freegeek_townsquare_rules_init() {
-  //dpm('run cron...');
-  //drupal_cron_run();
-
+  // Based on last cron run timestamp
+  // Get all sessions updated since last cron
+  // Get all users where processed date not since last cron 
+  // Sum hours for users in sessions
+  //
   $start = time();
-  $end = $start - 3600;
+  $end = variable_get('cron_last');
   $end = 0;
   $query = new EntityFieldQuery;
   $query
@@ -74,9 +48,12 @@ function freegeek_townsquare_rules_init() {
     ->propertyCondition('changed', $start, '<')
     ->propertyCondition('changed', $end, '>');
 
+
   $result = $query->execute();
   if ($result) {
     $sessions = entity_load('node', array_keys($result['node']));
+
+    // Calculate each user's new and old hours
     $durations = array();
     foreach ($sessions as $nid => $session) {
       if ($session->uid) {
@@ -105,14 +82,11 @@ function freegeek_townsquare_rules_init() {
       }
     }
 
-    dpm($durations);
     foreach ($durations as $uid => $hours) {
-      // Fire a rules action with variables?!
-      //dpm($hours);
-      //dpm('invoking event');
-      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $hours, $uid);
-      $user = user_load(array($uid));
-      rules_invoke_event('user_insert', $user, $hours);
+      $user = user_load($uid);
+      dpm($user);
+      $difference = $hours['new'] - $hours['old'];
+      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['new'], $hours['old'], $difference);
     }
   } 
 }
