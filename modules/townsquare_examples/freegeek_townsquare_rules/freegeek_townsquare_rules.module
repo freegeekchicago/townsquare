@@ -40,7 +40,6 @@ function freegeek_townsquare_rules_init() {
   //
   $start = time();
   $end = variable_get('cron_last');
-  $end = 0;
   $query = new EntityFieldQuery;
   $query
     ->entityCondition('entity_type', 'node')
@@ -52,7 +51,7 @@ function freegeek_townsquare_rules_init() {
   $result = $query->execute();
   if ($result) {
     $sessions = entity_load('node', array_keys($result['node']));
-
+    
     // Calculate each user's new and old hours
     $durations = array();
     foreach ($sessions as $nid => $session) {
@@ -84,9 +83,11 @@ function freegeek_townsquare_rules_init() {
 
     foreach ($durations as $uid => $hours) {
       $user = user_load($uid);
-      dpm($user);
-      $difference = $hours['new'] - $hours['old'];
-      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['new'], $hours['old'], $difference);
+      if (empty($user->field_freegeek_last_processed)) {
+        dpm($user);
+        $difference = $hours['new'] - $hours['old'];
+        rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['new'], $hours['old'], $difference);
+      }  
     }
   } 
 }

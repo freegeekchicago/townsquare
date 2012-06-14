@@ -39,6 +39,10 @@ projects[features][subdir] = "contrib"
 projects[fontyourface][version] = "2.3"
 projects[fontyourface][subdir] = "contrib"
 
+projects[rules][version] = "2.1"
+projects[rules][subdir] = "contrib"
+projects[rules][patch][] = "http://drupal.org/files/rules-illegal-offset-field-1463678-14.patch"
+
 projects[grammar_parser_lib][version] = "1.x-dev"
 projects[grammar_parser_lib][subdir] = "contrib"
 
