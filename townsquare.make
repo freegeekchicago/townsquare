@@ -33,7 +33,7 @@ projects[entityreference][subdir] = "contrib"
 projects[eva][version] = "1.1"
 projects[eva][subdir] = "contrib"
 
-projects[features][version] = "1.x-dev"
+projects[features][version] = "1.0-rc3"
 projects[features][subdir] = "contrib"
 
 projects[fontyourface][version] = "2.3"
