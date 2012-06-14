@@ -25,6 +25,7 @@ function townsquare_core_theme() {
  */
 function townsquare_core_init() {
   drupal_add_css(drupal_get_path('module', 'townsquare_core') .'/css/townsquare-core.css');
+  global $user;
 }
 
 /**

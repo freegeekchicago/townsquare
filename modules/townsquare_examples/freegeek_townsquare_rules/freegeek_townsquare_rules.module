@@ -3,4 +3,79 @@
  * @file
  */
 
-function freegeek_townsquare_rules_init() {}
+//function freegeek_townsquare_rules_init() {}
+function freegeek_townsquare_rules_rules_event_info() {
+  $defaults = array(
+   'parameter' => array(
+      'totals' => array(
+        'type' => 'data',
+        'label' => t('Totals'),
+      ),
+      'user' => array(
+        'type' => 'user',
+        'label' => t('User'),
+      ),
+    ),
+    'group' => t('Townsquare'),
+    //'access callback' => 'rules_user_integration_access',
+  );
+  $items = array();
+  $items['freegeek_townsquare_rules_process_sessions'] = $defaults + array(
+    'label' => t('Process recent sessions'),
+    'base' => 'freegeek_townsquare_rules_process_sessions',
+  );
+  return $items;
+}
+
+function freegeek_townsquare_rules_process_sessions($totals) {
+  dpm($totals);
+}
+
+function freegeek_townsquare_rules_init() {
+  $start = time();
+  $end = $start - 3600;
+  $query = new EntityFieldQuery;
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'volunteer_session')
+    ->propertyCondition('changed', $start, '<')
+    ->propertyCondition('changed', $end, '>');
+
+  $result = $query->execute();
+  if ($result) {
+    $sessions = entity_load('node', array_keys($result['node']));
+    $durations = array();
+    foreach ($sessions as $nid => $session) {
+      if ($session->uid) {
+        if (!isset($durations[$session->uid])) {
+          $durations[$session->uid] = array(
+            'old' => 0,
+            'new' => 0,
+          );
+        }
+        $durations[$session->uid]['new'] += $session->field_session_duration['und'][0]['value'];
+
+        $old_query = new EntityfieldQuery;
+        $old_query
+          ->entityCondition('entity_type', 'node')
+          ->propertyCondition('type', 'volunteer_session')
+          ->propertyCondition('uid', $session->uid, '=')
+          ->propertyCondition('changed', $end, '<');
+        $old_result = $old_query->execute();
+        if ($old_result) {
+          $old_sessions = entity_load('node', array_keys($old_result['node']));
+          foreach ($old_sessions as $old_session) {
+            $durations[$session->uid]['old'] += $old_session->field_session_duration['und'][0]['value'];
+            $durations[$session->uid]['new'] += $old_session->field_session_duration['und'][0]['value'];
+          }
+        }
+      }
+    }
+
+    foreach ($durations as $uid => $hours) {
+      // Fire a rules action with variables?!
+      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $hours, user_load(array($uid)));
+    }
+  } 
+}
+
