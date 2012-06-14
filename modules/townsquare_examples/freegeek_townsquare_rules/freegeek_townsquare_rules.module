@@ -3,37 +3,70 @@
  * @file
  */
 
-//function freegeek_townsquare_rules_init() {}
+function freegeek_townsquare_rules_cron() {
+  dpm('cron ran!');
+}
+
 function freegeek_townsquare_rules_rules_event_info() {
-  $defaults = array(
-   'parameter' => array(
-      'totals' => array(
-        'type' => 'data',
-        'label' => t('Totals'),
-      ),
-      'user' => array(
-        'type' => 'user',
-        'label' => t('User'),
-      ),
-    ),
-    'group' => t('Townsquare'),
-    //'access callback' => 'rules_user_integration_access',
-  );
-  $items = array();
-  $items['freegeek_townsquare_rules_process_sessions'] = $defaults + array(
-    'label' => t('Process recent sessions'),
-    'base' => 'freegeek_townsquare_rules_process_sessions',
+  $items = array(
+    'freegeek_process_sessions' => array(
+       'variables' => array(
+         'totals' => array(
+           'type' => 'data',
+           'label' => t('Totals'),
+         ),
+         'account' => array(
+           'type' => 'user',
+           'label' => t('User'),
+         ),
+       ),
+       'group' => t('Townsquare'),
+     ),
   );
   return $items;
 }
 
 function freegeek_townsquare_rules_process_sessions($totals) {
+  dpm('called!');
   dpm($totals);
 }
 
+function freegeek_townsquare_rules_rules_condition_info() {
+  return array();
+}
+
+/**
+ * implementation of hook_rules_condition_info()
+ */
+function freegeek_townsquare_rules_condition_info() {
+  return array(
+    'freegeek_townsquare_rules_condition_hours' => array(
+      'label' => t('Hours'),
+      'arguments' => array(
+        'hours' => array('type' => 'value', 'label' => t('Hours')),
+      ),
+      'module' => 'freegeek_townsquare_rules',
+    ),
+  );
+}
+
+/**
+ * Condition packages_condition_packagetype
+ */
+function freegeek_townsquare_rules_condition_hours($hours) {
+  return true;
+  //$package = package_load($pid);
+  
+  //return ($package->type == $type) ? true : false;
+}
+
 function freegeek_townsquare_rules_init() {
+  //dpm('run cron...');
+  //drupal_cron_run();
+
   $start = time();
   $end = $start - 3600;
+  $end = 0;
   $query = new EntityFieldQuery;
   $query
     ->entityCondition('entity_type', 'node')
@@ -72,9 +105,14 @@ function freegeek_townsquare_rules_init() {
       }
     }
 
+    dpm($durations);
     foreach ($durations as $uid => $hours) {
       // Fire a rules action with variables?!
-      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $hours, user_load(array($uid)));
+      //dpm($hours);
+      //dpm('invoking event');
+      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $hours, $uid);
+      $user = user_load(array($uid));
+      rules_invoke_event('user_insert', $user, $hours);
     }
   } 
 }

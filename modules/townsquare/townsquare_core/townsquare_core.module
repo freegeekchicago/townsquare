@@ -34,7 +34,7 @@ function townsquare_core_init() {
  * Fix silly features incompatibility with theme.
  */
 function townsquare_core_custom_theme() {
-  if (arg(2) == 'features' || arg(2) == 'views') {
+  if (arg(2) == 'workflow' || arg(2) == 'features' || arg(2) == 'views') {
     return 'seven';
   }
 }
