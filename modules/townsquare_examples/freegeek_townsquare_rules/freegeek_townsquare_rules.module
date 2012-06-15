@@ -45,7 +45,7 @@ function freegeek_townsquare_rules_init() {
   $max_hours = FREEGEEK_PROGRAM_COMPLETION_HOURS + FREEGEEK_PROGRAM_COMPLETION_CREDIT;
   
   $start = time() - FREEGEEK_PROCESSING_OFFSET;
-  $end = variable_get('cron_last');
+  $end = variable_get('cron_last') - FREEGEEK_PROCESSING_OFFSET;
   $query = new EntityFieldQuery;
   $query
     ->entityCondition('entity_type', 'node')
