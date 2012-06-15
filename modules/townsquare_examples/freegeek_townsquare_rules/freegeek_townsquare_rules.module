@@ -2,6 +2,10 @@
 /**
  * @file
  */
+define('FREEGEEK_PROGRAM_COMPLETION_HOURS', 24);
+define('FREEGEEK_PROGRAM_COMPLETION_CREDIT', 75);
+define('FREEGEEK_MAXIMUM_CREDIT', 150);
+define('FREEGEEK_PROCESSING_OFFSET', 0);
 
 function freegeek_townsquare_rules_rules_event_info() {
   $items = array(
@@ -33,12 +37,14 @@ function freegeek_townsquare_rules_rules_event_info() {
 }
 
 function freegeek_townsquare_rules_init() {
-  // Based on last cron run timestamp
-  // Get all sessions updated since last cron
-  // Get all users where processed date not since last cron 
-  // Sum hours for users in sessions
-  //
-  $start = time();
+  // Get all recently updated volunteer sessions, then generate
+  // a data structure reflecting new and old hours for all volunteers
+  // with recent activity.
+
+  // @TODO make this per-year
+  $max_hours = FREEGEEK_PROGRAM_COMPLETION_HOURS + FREEGEEK_PROGRAM_COMPLETION_CREDIT;
+  
+  $start = time() - FREEGEEK_PROCESSING_OFFSET;
   $end = variable_get('cron_last');
   $query = new EntityFieldQuery;
   $query
@@ -46,16 +52,14 @@ function freegeek_townsquare_rules_init() {
     ->propertyCondition('type', 'volunteer_session')
     ->propertyCondition('changed', $start, '<')
     ->propertyCondition('changed', $end, '>');
-
-
   $result = $query->execute();
   if ($result) {
     $sessions = entity_load('node', array_keys($result['node']));
-    
+
     // Calculate each user's new and old hours
     $durations = array();
     foreach ($sessions as $nid => $session) {
-      if ($session->uid) {
+      if ($session->uid > 0) {
         if (!isset($durations[$session->uid])) {
           $durations[$session->uid] = array(
             'old' => 0,
@@ -71,6 +75,7 @@ function freegeek_townsquare_rules_init() {
           ->propertyCondition('uid', $session->uid, '=')
           ->propertyCondition('changed', $end, '<');
         $old_result = $old_query->execute();
+
         if ($old_result) {
           $old_sessions = entity_load('node', array_keys($old_result['node']));
           foreach ($old_sessions as $old_session) {
@@ -80,15 +85,29 @@ function freegeek_townsquare_rules_init() {
         }
       }
     }
-
+    dpm($durations);
+    return;
     foreach ($durations as $uid => $hours) {
+      // Process credit here. A little crude and very bespoke.
       $user = user_load($uid);
-      if (empty($user->field_freegeek_last_processed)) {
-        dpm($user);
-        $difference = $hours['new'] - $hours['old'];
-        rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['new'], $hours['old'], $difference);
-      }  
+      $last_processed = field_get_items('user', $user, 'field_freegeek_last_processed');
+      $credit = field_get_items('user', $user, 'field_freegeek_volunteer_credit');
+
+      $difference = $hours['new'] - $hours['old'];
+
+      // Program completion: 75 bucks plus any extra hours
+      if ($hours['old'] < FREEGEEK_PROGRAM_COMPLETION_HOURS && $hours['new'] >= FREEGEEK_PROGRAM_COMPLETION_HOURS) {
+        $user->field_freegeek_volunteer_credit['und'][0]['value'] = FREEGEEK_PROGRAM_COMPLETION_CREDIT + ($hours['new'] - FREEGEEK_PROGRAM_COMPLETION_HOURS);
+      }
+      // Under maximum cap
+      else if ($hours['old'] > FREEGEEK_PROGRAM_COMPLETION_HOURS && $hours['old'] <= $max_hours) {
+        $user->field_freegeek_volunteer_credit['und'][0]['value'] += $difference;
+        if ($user->field_freegeek_volunteer_credit['und'][0]['value'] > FREEGEEK_MAXIMUM_CREDIT) {
+          $user->field_freegeek_volunteer_credit['und'][0]['value'] = FREEGEEK_MAXIMUM_CREDIT;
+        }  
+      }
+      user_save($user);
+      rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['old'], $hours['new'], $difference);
     }
   } 
 }
-
