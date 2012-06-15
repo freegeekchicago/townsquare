@@ -36,16 +36,17 @@ function freegeek_townsquare_rules_rules_event_info() {
   return $items;
 }
 
+/**
+ * Implements hook_cron().
+ */
 function freegeek_townsquare_rules_init() {
   // Get all recently updated volunteer sessions, then generate
   // a data structure reflecting new and old hours for all volunteers
   // with recent activity.
-
-  // @TODO make this per-year
   $max_hours = FREEGEEK_PROGRAM_COMPLETION_HOURS + FREEGEEK_PROGRAM_COMPLETION_CREDIT;
-  
   $start = time() - FREEGEEK_PROCESSING_OFFSET;
   $end = variable_get('cron_last') - FREEGEEK_PROCESSING_OFFSET;
+  
   $query = new EntityFieldQuery;
   $query
     ->entityCondition('entity_type', 'node')
@@ -57,6 +58,7 @@ function freegeek_townsquare_rules_init() {
     $sessions = entity_load('node', array_keys($result['node']));
 
     // Calculate each user's new and old hours
+    // @TODO use proper uid field
     $durations = array();
     foreach ($sessions as $nid => $session) {
       if ($session->uid > 0) {
@@ -79,16 +81,27 @@ function freegeek_townsquare_rules_init() {
         if ($old_result) {
           $old_sessions = entity_load('node', array_keys($old_result['node']));
           foreach ($old_sessions as $old_session) {
-            $durations[$session->uid]['old'] += $old_session->field_session_duration['und'][0]['value'];
-            $durations[$session->uid]['new'] += $old_session->field_session_duration['und'][0]['value'];
+            $old_session_duration = field_get_items('node', $old_session, 'field_session_duration');
+            $old_session_hours = field_get_items('node', $old_session, 'field_session_hours');
+            $old_session_date = date_create($old_session_hours[0]['value'], timezone_open($old_session_hours[0]['timezone']));
+            $year = $old_session_date->format('Y');
+            if (!isset($durations[$session->uid]['by_year'][$year])) {
+              $durations[$session->uid]['by_year'][$year] = 0;
+            }
+            $durations[$session->uid]['old'] += $old_session_duration[0]['value'];
+            $durations[$session->uid]['new'] += $old_session_duration[0]['value'];
+            $durations[$session->uid]['by_year'][$year]['old'] += $old_session_duration[0]['value'];
           }
         }
       }
     }
     dpm($durations);
     return;
+    // Process credit. There might be better ways to do this using Drupal
+    // rules module, but the logic is quite specific and complex. If an
+    // implementer's use case is roughly similar to FreeGeek, they can 
+    // redefine the constants.
     foreach ($durations as $uid => $hours) {
-      // Process credit here. A little crude and very bespoke.
       $user = user_load($uid);
       $last_processed = field_get_items('user', $user, 'field_freegeek_last_processed');
       $credit = field_get_items('user', $user, 'field_freegeek_volunteer_credit');
