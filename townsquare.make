@@ -1,7 +1,7 @@
 api = 2
 core = 7.x
 projects[drupal][type] = core
-projects[drupal][version] = "7.12"
+projects[drupal][version] = "7.14"
 
 projects[addressfield][version] = "1.0-beta3"
 projects[addressfield][subdir] = "contrib"
@@ -12,7 +12,7 @@ projects[combobox][download][type] = "git"
 projects[combobox][download][url] = "https://github.com/eads/combobox"
 projects[combobox][download][branch] = "master"
 
-projects[ctools][version] = "1.0-rc2"
+projects[ctools][version] = "1.0"
 projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.2"
@@ -24,7 +24,7 @@ projects[devel][subdir] = "contrib"
 projects[diff][version] = "2.0"
 projects[diff][subdir] = "contrib"
 
-projects[entity][version] = "1.0-rc1"
+projects[entity][version] = "1.0-rc3"
 projects[entity][subdir] = "contrib"
 
 projects[entityreference][version] = "1.0-rc3"
@@ -36,7 +36,7 @@ projects[eva][subdir] = "contrib"
 projects[features][version] = "1.x-dev"
 projects[features][subdir] = "contrib"
 
-projects[fontyourface][version] = "2.2"
+projects[fontyourface][version] = "2.3"
 projects[fontyourface][subdir] = "contrib"
 
 projects[grammar_parser_lib][version] = "1.x-dev"
@@ -63,7 +63,7 @@ projects[markdownify][download][branch] = "7.x-1.0-dev"
 projects[pathologic][version] = "1.4"
 projects[pathologic][subdir] = "contrib"
 
-projects[strongarm][version] = "2.0-beta5"
+projects[strongarm][version] = "2.0"
 projects[strongarm][subdir] = "contrib"
 
 projects[views][version] = "3.3"
