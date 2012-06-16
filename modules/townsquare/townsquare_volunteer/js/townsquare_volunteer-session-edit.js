@@ -148,6 +148,12 @@ Drupal.ajax.prototype.success = function (response, status) {
   }
 
   Drupal.unfreezeHeight();
+  
+  // Special case: Drop down autocomplete
+  var ac = $('*:focus').get(0);
+  if (ac && ac.autocomplete) {
+    $(ac).autocomplete('search', '');
+  }
 
   // Remove any response-specific settings so they don't get used on the next
   // call by mistake.
