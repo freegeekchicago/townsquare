@@ -44,25 +44,11 @@ ruled by how much each area hurts. Townsquare has replaced FreeGeek's
 "Spreadsheet of Doom" for volunteer tracking, while the email list and wiki
 remain.
 
-# Roadmap
 
-* 1.0-alpha-6 (Jan, 2011): Functional wiki prototype.
-* 1.0-alpha-5 (Dec, 2011): Rules for assigning perks based on volunteer
-performance.
-* 1.0-alpha-4 (Nov, 2011): Volunteer sign-up and creation tools, volunteer perk 
-tracking architecture.
-* 1.0-alpha-3 (Oct/Nov, 2011): Volunteer manager bug fixes, better displays for
-administrators.
-
-## Version history
-
-* 1.0-alpha-2 (Oct, 2011): Volunteer manager interface and performance enhancements.
-* 1.0-alpha-1 (Sept, 2011): Functional volunteer manager system.
-* First prototype (Mar, 2011).
 
 # Authors
 
 Contributors: Jimmie Glover, James Slater, Shinda Williams, Alex Hanson, Scott
-Lewis, Eric Tendian.
+Lewis, Eric Tendian, Sabine Ye, Aaron Howze.
 
 Developers: David Eads <davideads@gmail.com> 
