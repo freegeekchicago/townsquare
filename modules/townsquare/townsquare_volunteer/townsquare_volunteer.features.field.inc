@@ -10,7 +10,7 @@
 function townsquare_volunteer_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-volunteer_session-field_session_duration'
+  // Exported field: 'node-volunteer_session-field_session_duration'.
   $fields['node-volunteer_session-field_session_duration'] = array(
     'field_config' => array(
       'active' => '1',
@@ -20,6 +20,7 @@ function townsquare_volunteer_field_default_fields() {
       'field_name' => 'field_session_duration',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(
         'decimal_separator' => '.',
@@ -80,7 +81,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_event'
+  // Exported field: 'node-volunteer_session-field_session_event'.
   $fields['node-volunteer_session-field_session_event'] = array(
     'field_config' => array(
       'active' => '1',
@@ -101,6 +102,7 @@ function townsquare_volunteer_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -157,7 +159,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_hours'
+  // Exported field: 'node-volunteer_session-field_session_hours'.
   $fields['node-volunteer_session-field_session_hours'] = array(
     'field_config' => array(
       'active' => '1',
@@ -167,6 +169,7 @@ function townsquare_volunteer_field_default_fields() {
       'field_name' => 'field_session_hours',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -258,7 +261,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_no_signout'
+  // Exported field: 'node-volunteer_session-field_session_no_signout'.
   $fields['node-volunteer_session-field_session_no_signout'] = array(
     'field_config' => array(
       'active' => '1',
@@ -272,6 +275,7 @@ function townsquare_volunteer_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -326,7 +330,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_override_duration'
+  // Exported field: 'node-volunteer_session-field_session_override_duration'.
   $fields['node-volunteer_session-field_session_override_duration'] = array(
     'field_config' => array(
       'active' => '1',
@@ -340,6 +344,7 @@ function townsquare_volunteer_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -401,7 +406,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_processed_date'
+  // Exported field: 'node-volunteer_session-field_session_processed_date'.
   $fields['node-volunteer_session-field_session_processed_date'] = array(
     'field_config' => array(
       'active' => '1',
@@ -411,6 +416,7 @@ function townsquare_volunteer_field_default_fields() {
       'field_name' => 'field_session_processed_date',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'granularity' => array(
@@ -481,7 +487,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_role'
+  // Exported field: 'node-volunteer_session-field_session_role'.
   $fields['node-volunteer_session-field_session_role'] = array(
     'field_config' => array(
       'active' => '1',
@@ -502,6 +508,7 @@ function townsquare_volunteer_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -554,7 +561,7 @@ function townsquare_volunteer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-volunteer_session-field_session_user'
+  // Exported field: 'node-volunteer_session-field_session_user'.
   $fields['node-volunteer_session-field_session_user'] = array(
     'field_config' => array(
       'active' => '1',
@@ -578,6 +585,7 @@ function townsquare_volunteer_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
