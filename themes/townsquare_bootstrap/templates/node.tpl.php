@@ -79,7 +79,7 @@
  */
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
+<div class="clearfix">
   <?php print $user_picture; ?>
 
   <?php print render($title_prefix); ?>
@@ -93,7 +93,7 @@
       <?php print $submitted; ?>
     </div>
   <?php endif; ?>
-
+</div>
   <div class="content"<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
