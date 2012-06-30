@@ -346,7 +346,10 @@ function freegeek_townsquare_roles_user_default_permissions() {
   $permissions['freegeek add bulk users'] = array(
     'name' => 'freegeek add bulk users',
     'roles' => array(
-      0 => 'volunteer signup',
+      0 => 'administrator',
+      1 => 'staff',
+      2 => 'volunteer manager',
+      3 => 'volunteer signup',
     ),
     'module' => 'freegeek_townsquare_volunteer',
   );
