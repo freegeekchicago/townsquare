@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Townsquare News feature.
+ */
+
+include_once 'townsquare_news.features.inc';
