@@ -15,7 +15,7 @@ projects[combobox][download][branch] = "master"
 projects[ctools][version] = "1.0"
 projects[ctools][subdir] = "contrib"
 
-projects[date][version] = "2.2"
+projects[date][version] = "2.5"
 projects[date][subdir] = "contrib"
 
 projects[devel][version] = "1.3"
