@@ -258,15 +258,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: disable own gravatar.
-  $permissions['disable own gravatar'] = array(
-    'name' => 'disable own gravatar',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'gravatar',
-  );
-
   // Exported permission: edit any event content.
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
