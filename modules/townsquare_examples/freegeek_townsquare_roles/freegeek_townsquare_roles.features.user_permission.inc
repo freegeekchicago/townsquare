@@ -385,15 +385,6 @@ function freegeek_townsquare_roles_user_default_permissions() {
     'module' => 'search',
   );
 
-  // Exported permission: use gravatar.
-  $permissions['use gravatar'] = array(
-    'name' => 'use gravatar',
-    'roles' => array(
-      0 => 'authenticated user',
-    ),
-    'module' => 'gravatar',
-  );
-
   // Exported permission: use text format markdown.
   $permissions['use text format markdown'] = array(
     'name' => 'use text format markdown',
