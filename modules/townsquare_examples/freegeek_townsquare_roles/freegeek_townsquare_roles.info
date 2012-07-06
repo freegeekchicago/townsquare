@@ -8,7 +8,6 @@ project = freegeek_townsquare_roles
 dependencies[] = block
 dependencies[] = features
 dependencies[] = freegeek_townsquare_volunteer
-dependencies[] = gravatar
 dependencies[] = markdownify
 dependencies[] = menu
 dependencies[] = path
