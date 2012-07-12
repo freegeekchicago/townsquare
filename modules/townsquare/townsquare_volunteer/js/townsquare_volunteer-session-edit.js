@@ -55,7 +55,7 @@ Drupal.behaviors.toggleFields = {
       if ($(this).is(':checked')) {
         duration.removeAttr('readonly');
         hours.attr('readonly', true);
-        setDuration('readonly',true);
+        setDuration.attr('readonly',true);
       }
       
     });
