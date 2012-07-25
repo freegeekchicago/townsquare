@@ -8,6 +8,17 @@ Drupal.behaviors.prepareVolunteerUI = {
   }
 };
 
+Drupal.behaviors.dropdownTimeSelector = {
+  attach: function(context) {
+    var input = $(".form-item-field-session-hours-und-0-value input, .form-item-field-session-hours-und-0-value2 input",context)
+      .on('focus', function() {
+        if ( !$(this).attr("readonly") ) {
+          $(this).autocomplete('search', '');
+        }
+      });
+  }
+};
+
 // Toggle fields
 Drupal.behaviors.toggleFields = {
   attach: function(context) {
