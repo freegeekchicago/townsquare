@@ -122,7 +122,7 @@ function freegeek_townsquare_rules_init() {
 
       foreach ($years as $year => $hours) {
         $new_total = $hours['new'] + $hours['old'];
-
+        dpm($hours);
         // Program completion: 75 bucks plus any extra hours
         if ($first_year && $hours[$current_year]['old'] < FREEGEEK_PROGRAM_COMPLETION_HOURS && $hours[$current_year]['new'] >= FREEGEEK_PROGRAM_COMPLETION_HOURS) {
           $user->field_freegeek_volunteer_credit['und'][0]['value'] = FREEGEEK_PROGRAM_COMPLETION_CREDIT + ($hours['new'] - FREEGEEK_PROGRAM_COMPLETION_HOURS);

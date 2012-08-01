@@ -12,7 +12,7 @@ projects[combobox][download][type] = "git"
 projects[combobox][download][url] = "https://github.com/eads/combobox"
 projects[combobox][download][branch] = "master"
 
-projects[ctools][version] = "1.0"
+projects[ctools][version] = "1.1"
 projects[ctools][subdir] = "contrib"
 
 projects[date][version] = "2.5"
@@ -30,13 +30,13 @@ projects[entity][subdir] = "contrib"
 projects[entityreference][version] = "1.0-rc3"
 projects[entityreference][subdir] = "contrib"
 
-projects[eva][version] = "1.1"
+projects[eva][version] = "1.2"
 projects[eva][subdir] = "contrib"
 
-projects[features][version] = "1.0-rc3"
+projects[features][version] = "1.0"
 projects[features][subdir] = "contrib"
 
-projects[fontyourface][version] = "2.3"
+projects[fontyourface][version] = "2.4"
 projects[fontyourface][subdir] = "contrib"
 
 projects[rules][version] = "2.1"
@@ -49,7 +49,7 @@ projects[grammar_parser_lib][subdir] = "contrib"
 projects[htmlpurifier][version] = "2.x-dev"
 projects[htmlpurifier][subdir] = "contrib"
 
-projects[libraries][version] = "2.0-alpha2"
+projects[libraries][version] = "2.0"
 projects[libraries][subdir] = "contrib"
 
 projects[logintoboggan][version] = "1.3"
@@ -64,8 +64,11 @@ projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "https://github.com/eads/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
-projects[pathologic][version] = "1.4"
+projects[pathologic][version] = "2.1"
 projects[pathologic][subdir] = "contrib"
+
+projects[rules][version] = "2.2"
+projects[rules][subdir] = "contrib"
 
 projects[strongarm][version] = "2.0"
 projects[strongarm][subdir] = "contrib"

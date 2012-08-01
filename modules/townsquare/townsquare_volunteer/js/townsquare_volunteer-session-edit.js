@@ -8,6 +8,17 @@ Drupal.behaviors.prepareVolunteerUI = {
   }
 };
 
+Drupal.behaviors.dropdownTimeSelector = {
+  attach: function(context) {
+    var input = $(".form-item-field-session-hours-und-0-value input, .form-item-field-session-hours-und-0-value2 input",context)
+      .on('focus', function() {
+        if ( !$(this).attr("readonly") ) {
+          $(this).autocomplete('search', $(this).val());
+        }
+      });
+  }
+};
+
 // Toggle fields
 Drupal.behaviors.toggleFields = {
   attach: function(context) {
@@ -137,6 +148,12 @@ Drupal.ajax.prototype.success = function (response, status) {
   }
 
   Drupal.unfreezeHeight();
+  
+  // Special case: Drop down autocomplete
+  var ac = $('*:focus').get(0);
+  if (ac && ac.autocomplete) {
+    $(ac).autocomplete('search', $(ac).val());
+  }
 
   // Remove any response-specific settings so they don't get used on the next
   // call by mistake.
