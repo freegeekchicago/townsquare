@@ -21,9 +21,9 @@ regions[footer] = Footer
 regions[highlighted] = Highlighted
 
 ; FONTS
-fonts[google_fonts_api][] = "PT Sans&subset=latin#bold"
-fonts[google_fonts_api][] = "PT Sans&subset=latin#bolditalic"
-fonts[google_fonts_api][] = "PT Sans&subset=latin#italic"
-fonts[google_fonts_api][] = "PT Sans&subset=latin#regular"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#700"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#700italic"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#italic"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#regular"
 
 stylesheets[screen][] = css/freegeek.css

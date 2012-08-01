@@ -1,7 +1,10 @@
+body * {
+  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 a {
   color: #05f;
 }
-a:hover {
+#content a:hover {
   color: #000;
   background-color: #fff988;
 }
