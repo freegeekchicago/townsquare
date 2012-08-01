@@ -1,8 +1,9 @@
 a {
-  color: #267E26;
+  color: #05f;
 }
 a:hover {
   color: #000;
+  background-color: #fff988;
 }
 
 .navbar {
@@ -31,7 +32,14 @@ a:hover {
 #autocomplete li.selected, .ui-autocomplete a.ui-state-hover {
   color: #ffffff;
   text-decoration: none;
-  background-color: #267E26;
+  background-color: #05f;
+}
+
+.ui-autocomplete {
+  height: 130px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
 }
 
 #navigation div.user-picture {
