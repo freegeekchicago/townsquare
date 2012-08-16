@@ -1,0 +1,9 @@
+/* name = Twitter Bootstrap Print */
+
+#navigation .brand {
+    font-size: 36pt;
+}
+
+#navigation .menu {
+    display: none;
+}
