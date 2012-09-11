@@ -23,15 +23,27 @@ h1,h2,h3,h4,h5,h6 {
 .navbar .nav > li > a {
   padding: 10px 6px 11px;
 }
-#navigation .user-picture, #navigation .account-label {
-  display: inline-block;
+
+#navigation .account-label {
+  padding-right: 35px;
+}
+
+#navigation .user-picture {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 35px; 
+  width: 35px;
+  background-color: #000;
 }
 #navigation .user-picture img {
-  width: 28px;
-  margin-top: -8px;
-  margin-bottom: -8px;
-  margin-left: 6px;
-  border: 1px solid #000;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+}
+#navigation .user-picture i {
+  margin-top: 8px;
+  margin-left: 9px;
 }
 
 .dropdown-menu form {

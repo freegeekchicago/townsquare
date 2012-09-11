@@ -23,7 +23,7 @@
       <ul class="nav pull-right" id="secondary-menu">
         <li class="dropdown nav-collapse" id="secondary-menu-children">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <?php print $user_name; ?><i class="icon-caret-down"></i>
+            <span class="account-label"><?php print $user_name; ?><i class="icon-caret-down"></i></span>
             <?php if (isset($user_picture)): ?>
             <div class="user-picture"><?php print $user_picture; ?></div>
             <?php endif; ?>
