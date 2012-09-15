@@ -2,11 +2,7 @@
 /**
  * @file
  */
-define('FREEGEEK_PROGRAM_COMPLETION_HOURS', 10);
-define('FREEGEEK_PROGRAM_COMPLETION_CREDIT', 75);
-define('FREEGEEK_MAX_YEARLY_HOURS', 75);
-define('FREEGEEK_MAXIMUM_CREDIT', 150);
-define('FREEGEEK_PROCESSING_OFFSET', 0);
+define('FREEGEEK_PROCESSING_OFFSET', 3600);
 
 function freegeek_townsquare_rules_rules_event_info() {
   $items = array(
@@ -48,16 +44,19 @@ function freegeek_townsquare_rules_rules_event_info() {
  * Assign perks
  */
 
+/**
+ * Initialize durations array and populate with latest sessions
+ */
 function _freegeek_townsquare_rules_get_new_sessions(&$durations) {
   $end = time() - FREEGEEK_PROCESSING_OFFSET;
   $start = variable_get('cron_last') - FREEGEEK_PROCESSING_OFFSET;
   
-  $query = new EntityFieldQuery;
+  $query = new entityfieldquery;
   $query
-    ->entityCondition('entity_type', 'node')
-    ->propertyCondition('type', 'volunteer_session')
-    ->propertyCondition('changed', $start, '>')
-    ->propertyCondition('changed', $end, '<');
+    ->entitycondition('entity_type', 'node')
+    ->propertycondition('type', 'volunteer_session')
+    ->propertycondition('changed', $start, '>')
+    ->propertycondition('changed', $end, '<');
   $result = $query->execute();
 
   if ($result) {
@@ -70,7 +69,10 @@ function _freegeek_townsquare_rules_get_new_sessions(&$durations) {
       $session_uid = $session_uids[0]['target_id'];
 
       if (!isset($durations[$session_uid])) {
-        $durations[$session_uid]['new'] = 0; 
+        $durations[$session_uid] = array(
+          'new' => 0,
+          'old' => 0,
+        ); 
       }
       $session_duration = field_get_items('node', $session, 'field_session_duration');
       $durations[$session_uid]['new'] += $session_duration[0]['value'];
@@ -78,50 +80,9 @@ function _freegeek_townsquare_rules_get_new_sessions(&$durations) {
   }
 }
 
-function _freegeek_townsquare_rules_get_old_sessions(&$durations) {
-  $end = variable_get('cron_last') - FREEGEEK_PROCESSING_OFFSET;
-  $end_date = new DateTime(date('Y-m-d H:i:s', $end));
-  $query_end = date_format($end_date, 'Y-m-d H:i:s');
-
-  foreach ($durations as $uid=>$row) {
-    $query_start = date_format($row['start'], 'Y-m-d H:i:s');
-    $sessions = townsquare_volunteer_volunteer_sessions(array($uid), $query_start, $query_end);
-    dpm($sessions);
-  }
-
-  /*foreach ($durations as $uid=>$duration) {
-    dpm($duration, $uid);
-    $query = new EntityFieldQuery;
-    $query
-      ->entityCondition('entity_type', 'node')
-      ->propertyCondition('type', 'volunteer_session')
-      ->propertyCondition('uid', $uid, '=')
-      ->propertyCondition('changed', date_format('U', $duration['start']), '>')
-      ->propertyCondition('changed', date_format('U', $end), '<');
-      //->propertyCondition('changed', $durations, '>');
-
-    $result = $query->execute();
-
-    if ($result) {
-      $sessions = entity_load('node', array_keys($result['node']));
-      dpm($sessions);
-      foreach ($sessions as $nid => $session) {
-        if (!$session->uid) {
-          break;
-        }
-        $session_uids = field_get_items('node', $session, 'field_session_user');
-        $session_uid = $session_uids[0]['target_id'];
-
-        if (!isset($durations[$session_uid])) {
-          $durations[$session_uid]['new'] = 0; 
-        }
-        $session_duration = field_get_items('node', $session, 'field_session_duration');
-        $durations[$session_uid]['new'] += $session_duration[0]['value'];
-      }
-    }
-  }*/
-}
-
+/**
+ * Calculate dates for querying and first year status
+ */
 function _freegeek_townsquare_rules_calculate_dates(&$durations) {
   $users = user_load_multiple(array_keys($durations));
   $now = new DateTime();
@@ -143,41 +104,58 @@ function _freegeek_townsquare_rules_calculate_dates(&$durations) {
 }
 
 /**
+ * For a list of users with new sessions, calculate their last year's hours.
+ */
+function _freegeek_townsquare_rules_get_old_sessions(&$durations) {
+  $end = variable_get('cron_last') - FREEGEEK_PROCESSING_OFFSET;
+  $end_date = new DateTime(date('Y-m-d H:i:s', $end));
+  $query_end = date_format($end_date, 'Y-m-d H:i:s');
+
+  foreach ($durations as $uid=>$row) {
+    $query_start = date_format($row['start'], 'Y-m-d H:i:s');
+    $sessions = townsquare_volunteer_volunteer_sessions(array($uid), $query_start, $query_end);
+    foreach ($sessions as $session) {
+      $session_duration = field_get_items('node', $session, 'field_session_duration');
+      $durations[$uid]['old'] += $session_duration[0]['value'];
+    }
+  }
+}
+
+/**
+ * Apply credit to user sessions
+ */
+function _freegeek_townsquare_rules_process_rewards(&$durations) {
+  foreach ($durations as $uid=>$row) {
+    $user = user_load($uid);
+    $rewards = 0;
+
+    // Initial rewards = $75 + ($1/hr * (new_hours - 24 hours))
+    if ($row['first_year'] && $row['old'] <= 24 && $row['new'] >= 24) {
+      $rewards = 75 + ($row['new'] - 24);
+    }
+    // Otherwise add 
+    else if ( ($row['first_year'] && $row['old'] < 100 && $row['new'] >= 24) || 
+              (!$row['first_year'] && $row['old'] < 75) ) {
+      $rewards = $row['new']; 
+    }
+
+    $rewards = ($rewards > 150) ? 150 : $rewards;
+    
+    $user->field_freegeek_rewards['und'][0]['value'] += $rewards;
+    entity_save('user', $user);
+    
+    rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, 
+      $row['old'], $row['old'] + $row['new'], $row['new']);
+  }  
+}
+
+/**
  * Implements hook_cron().
  */
-function freegeek_townsquare_rules_init() {
-
+function freegeek_townsquare_rules_cron() {
   $durations = array();
   _freegeek_townsquare_rules_get_new_sessions($durations);
   _freegeek_townsquare_rules_calculate_dates($durations); 
   _freegeek_townsquare_rules_get_old_sessions($durations); 
-  dpm($durations);
-     // Process credit. There might be better ways to do this using Drupal
-    // rules module, but the logic is quite specific and complex. If an
-    // implementer's use case is roughly similar to FreeGeek, they can 
-    // redefine the constants.
-
-    // Get current year
-          // Program completion: 75 bucks plus any extra hours
-    /*  if ($first_year && $hours_by_year[$current_year]['old'] < FREEGEEK_PROGRAM_COMPLETION_HOURS 
-        && $hours_by_year[$current_year]['new'] >= FREEGEEK_PROGRAM_COMPLETION_HOURS) {
-
-        $user->field_freegeek_volunteer_credit['und'][0]['value'] = 
-          FREEGEEK_PROGRAM_COMPLETION_CREDIT + ($hours_by_year[$current_year]['new'] - FREEGEEK_PROGRAM_COMPLETION_HOURS);
-
-        dpm($user->field_freegeek_volunteer_credit['und'][0]['value'], $user->name);
-      }
-
-      if (($first_year && $hours_by_year[$current_year]['old'] >= FREEGEEK_PROGRAM_COMPLETION_HOURS) || !$first_year) {
-        $credit += $difference;
-        if ($credit > FREEGEEK_MAXIMUM_CREDIT) { 
-          $user->field_freegeek_volunteer_credit['und'][0]['value'] = MAXIMUM_CREDIT;
-        }
-        else {
-          $user->field_freegeek_volunteer_credit['und'][0]['value'] = $credit;
-        } 
-      }*/
-
-      //user_save($user);
-      //rules_invoke_event('freegeek_townsquare_rules_process_sessions', $user, $hours['old'], $hours['new'], $difference);
+  _freegeek_townsquare_rules_process_rewards($durations); 
 }

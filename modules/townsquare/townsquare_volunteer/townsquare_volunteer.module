@@ -672,10 +672,10 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
     ->fieldCondition('field_session_user', 'target_id', $users, 'in');
 
   if ($start) {
-    $query->fieldCondition('field_session_hours', 'value', $start, '>');
+    $query->fieldCondition('field_session_hours', 'value', $start, '>=', 0);
   }
   if ($end) {
-    $query->fieldCondition('field_session_hours', 'value2', $end, '<');
+    $query->fieldCondition('field_session_hours', 'value2', $end, '<=', 0);
   }
 
   $result = $query->execute();

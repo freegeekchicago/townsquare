@@ -11,13 +11,13 @@ function freegeek_townsquare_volunteer_field_default_fields() {
   $fields = array();
 
   // Exported field: 'user-user-field_credit'
-  $fields['user-user-field_credit'] = array(
+  $fields['user-user-field_freegeek_rewards'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_credit',
+      'field_name' => 'field_freegeek_rewards',
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'number',
@@ -51,8 +51,8 @@ function freegeek_townsquare_volunteer_field_default_fields() {
         ),
       ),
       'entity_type' => 'user',
-      'field_name' => 'field_credit',
-      'label' => 'Credit',
+      'field_name' => 'field_freegeek_rewards',
+      'label' => 'Rewards',
       'required' => 0,
       'settings' => array(
         'max' => '',
