@@ -1,7 +1,7 @@
 api = 2
 core = 7.x
 projects[drupal][type] = core
-projects[drupal][version] = "7.14"
+projects[drupal][version] = "7.15"
 
 projects[addressfield][version] = "1.0-beta3"
 projects[addressfield][subdir] = "contrib"
@@ -12,10 +12,10 @@ projects[combobox][download][type] = "git"
 projects[combobox][download][url] = "https://github.com/eads/combobox"
 projects[combobox][download][branch] = "master"
 
-projects[ctools][version] = "1.1"
+projects[ctools][version] = "1.2"
 projects[ctools][subdir] = "contrib"
 
-projects[date][version] = "2.5"
+projects[date][version] = "2.6"
 projects[date][subdir] = "contrib"
 
 projects[devel][version] = "1.3"
@@ -64,7 +64,7 @@ projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "https://github.com/eads/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
-projects[pathologic][version] = "2.1"
+projects[pathologic][version] = "2.2"
 projects[pathologic][subdir] = "contrib"
 
 projects[rules][version] = "2.2"
@@ -73,13 +73,13 @@ projects[rules][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
 projects[strongarm][subdir] = "contrib"
 
-projects[views][version] = "3.3"
+projects[views][version] = "3.5"
 projects[views][subdir] = "contrib"
 
 projects[views_php][version] = "1.x-dev"
 projects[views_php][subdir] = "contrib"
 
-projects[wysiwyg][version] = "2.x-dev"
+projects[wysiwyg][version] = "2.1"
 projects[wysiwyg][subdir] = "contrib"
 
 ; Libraries
