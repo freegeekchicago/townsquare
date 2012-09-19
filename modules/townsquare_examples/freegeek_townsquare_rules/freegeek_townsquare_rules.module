@@ -133,12 +133,13 @@ function _freegeek_townsquare_rules_process_rewards(&$durations) {
     if ($row['first_year'] && $row['old'] <= 24 && $row['new'] >= 24) {
       $rewards = 75 + ($row['new'] - 24);
     }
-    // Otherwise add 
+    // Otherwise add credit based on # of hours 
     else if ( ($row['first_year'] && $row['old'] < 100 && $row['new'] >= 24) || 
               (!$row['first_year'] && $row['old'] < 75) ) {
       $rewards = $row['new']; 
     }
 
+    // Upper cap of $150
     $rewards = ($rewards > 150) ? 150 : $rewards;
     
     $user->field_freegeek_rewards['und'][0]['value'] += $rewards;
