@@ -21,8 +21,8 @@ regions[footer] = Footer
 regions[highlighted] = Highlighted
 
 ; FONTS
-fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#700"
-fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#700italic"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#bold"
+fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#bolditalic"
 fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#italic"
 fonts[google_fonts_api][] = "PT Sans&subset=latin-ext#regular"
 
