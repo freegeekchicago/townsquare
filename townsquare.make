@@ -27,7 +27,7 @@ projects[diff][subdir] = "contrib"
 projects[entity][version] = "1.0-rc3"
 projects[entity][subdir] = "contrib"
 
-projects[entityreference][version] = "1.0-rc3"
+projects[entityreference][version] = "1.0-rc5"
 projects[entityreference][subdir] = "contrib"
 
 projects[eva][version] = "1.2"
@@ -64,7 +64,7 @@ projects[markdownify][download][type] = "git"
 projects[markdownify][download][url] = "https://github.com/eads/markdownify"
 projects[markdownify][download][branch] = "7.x-1.0-dev"
 
-projects[pathologic][version] = "2.2"
+projects[pathologic][version] = "2.3"
 projects[pathologic][subdir] = "contrib"
 
 projects[rules][version] = "2.2"
@@ -79,7 +79,7 @@ projects[views][subdir] = "contrib"
 projects[views_php][version] = "1.x-dev"
 projects[views_php][subdir] = "contrib"
 
-projects[wysiwyg][version] = "2.1"
+projects[wysiwyg][version] = "2.2"
 projects[wysiwyg][subdir] = "contrib"
 
 ; Libraries
@@ -101,7 +101,7 @@ libraries[font_awesome][download][branch] = "master"
 libraries[font_awesome][directory_name] = "font-awesome"
 
 ; Twitter bootstrap - try putting this in own file
-projects[jquery_update][version] = "2.x-dev"
+projects[jquery_update][version] = "2.2"
 projects[jquery_update][subdir] = "contrib"
 
 libraries[jquery_17_min][download][type] = "get"

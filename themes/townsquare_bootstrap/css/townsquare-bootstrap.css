@@ -182,6 +182,19 @@ legend {
   background-image: none;
 }
 
+.progress .bar {
+  background: #ccc;
+  border-color: #666;
+  margin: 0 0.2em;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.progress .filled {
+  background: #0072b9 url(../img/progress.gif);
+}
+
+
 @media (max-width: 979px) {
   body {
     padding-top: 0;
