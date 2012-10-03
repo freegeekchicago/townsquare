@@ -12,7 +12,7 @@ a {
 .navbar {
   background-image: url(../img/tex2res4.png);
 }
-.navbar-inner {
+.navbar .navbar-inner {
   min-height: 34px;
   background: -moz-linear-gradient(top, rgba(84,84,84,0.75) 0%, rgba(84,84,84,0.76) 10%, rgba(17,17,17,0.8) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(84,84,84,0.75)), color-stop(10%,rgba(84,84,84,0.76)), color-stop(100%,rgba(17,17,17,0.8))); /* Chrome,Safari4+ */
@@ -26,6 +26,18 @@ a {
   color: #ddd;
   padding-top: 7px;
   padding-bottom: 8px;
+  text-shadow: none;
+}
+.navbar .brand {
+  color: #ddd;
+}
+.navbar .brand:hover, .navbar .nav > li > a:hover {
+  color: #fff;
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus,
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
 }
 
 .dropdown-menu li > a:hover,
@@ -48,12 +60,6 @@ a {
 .nav-tabs > li > a, .nav-pills > li > a {
   line-height: 14px;
   font-weight: bold;
-}
-.navbar .nav > li > a {
-  text-shadow: none;
-}
-.navbar .nav > li > a:hover {
-  color: #fff;
 }
 input:focus,
 textarea:focus {
