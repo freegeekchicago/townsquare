@@ -229,19 +229,6 @@ function townsquare_bootstrap_form_element($variables) {
   return $output;
 }
 
-function townsquare_bootstrap_preprocess_form(&$variables) {
-  switch ($variables['element']['#id']) {
-    case 'user-login-form':
-      $variables['element']['#attributes']['class'] = array('form-inline');
-      return;
-    case 'event-node-form':
-      return;
-    default:
-      $variables['element']['#attributes']['class'] = array('form-horizontal');
-      return;
-  }
-}
-
 function townsquare_bootstrap_menu_tree__management($variables) {
   return '<ul class="dropdown-menu">' . $variables['tree'] . '</ul>';
 }
@@ -266,6 +253,29 @@ function townsquare_bootstrap_button($variables) {
   $element['#attributes']['class'][] = 'btn';
   if (!empty($element['#attributes']['disabled'])) {
     $element['#attributes']['class'][] = 'form-button-disabled';
+  }
+  
+  switch ($element['#id']) {
+    case 'edit-submit':
+      $element['#value'] = '<i class="icon icon-bolt"></i> ' . $element['#value']; 
+      $element['#attributes']['class'][] = 'btn-primary';
+      break;
+    case 'edit-submit-townsquare-volunteers':
+      $element['#value'] .= ' <i class="icon icon-search"></i>';
+      $element['#attributes']['class'][] = 'btn-primary';
+      break;
+    case 'edit-preview':
+      $element['#value'] = '<i class="icon icon-eye-open"></i> ' . $element['#value']; 
+      $element['#attributes']['class'][] = 'btn-info';
+      break;
+    case 'edit-delete':
+      $element['#value'] = '<i class="icon icon-trash"></i> ' . $element['#value']; 
+      $element['#attributes']['class'][] = 'btn-danger';
+      break;
+    case 'edit-preview-changes':
+      $element['#value'] = '<i class="icon icon-columns"></i> ' . $element['#value']; 
+      $element['#attributes']['class'][] = 'btn-inverse';
+      break;
   }
 
   $title = isset($element['#button_text']) ? $element['#button_text'] : $element['#value'];

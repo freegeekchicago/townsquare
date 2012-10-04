@@ -8,6 +8,20 @@ a {
   color: #000;
   background-color: #fff988;
 }
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  margin-bottom: 0;
+}
+.btn {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+}
+.btn .icon {
+  font-size: 18px;
+  padding-top: 2px;
+  display: inline-block;
+  margin-right: 3px;
+}
 
 .navbar {
   background-image: url(../img/tex2res4.png);
@@ -54,7 +68,6 @@ a {
   height: 130px;
   overflow-y: scroll;
   overflow-x: hidden;
-  
 }
 
 .nav-tabs > li > a, .nav-pills > li > a {
@@ -67,11 +80,55 @@ textarea:focus {
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
-
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(150, 150, 150, 0.6);
 }
 
 /* Clear default bootstrap styles for font-awesome */
 [class^="icon-"], [class*=" icon-"] {
   background-image: none;
+}
+
+#edit-date-wrapper, #edit-field-session-duration-value-wrapper, .views-widget-per-page {
+  float: left;
+  width: 32%;
+  padding-right: 1%;
+}
+#views-exposed-form-townsquare-volunteers-report select {
+  width: 150px;
+}
+#views-exposed-form-townsquare-volunteers-report input {
+  width: 180px;
+}
+#views-exposed-form-townsquare-volunteers-report .views-widget-per-page .control-label {
+  display: block;
+  width: 100%;
+  padding-top: 0;
+}
+.views-exposed-widget {
+  display: inline-block;
+}
+
+#views-exposed-form-townsquare-volunteers-report #edit-date-wrapper .control-label,
+#views-exposed-form-townsquare-volunteers-report #edit-field-session-duration-value-wrapper .control-label {
+  display: none;
+}
+#views-exposed-form-townsquare-volunteers-report .control-group {
+  margin-bottom: 5px;
+}
+#views-exposed-form-townsquare-volunteers-report .views-operator,
+#views-exposed-form-townsquare-volunteers-report .views-widget {
+  display: inline-block;
+}
+
+#views-exposed-form-townsquare-volunteers-report .views-submit-button {
+  clear: left;
+}
+#views-exposed-form-townsquare-volunteers-report .views-submit-button,
+#views-exposed-form-townsquare-volunteers-report .views-reset-button {
+  float: left;
+  margin-right: 10px;
+}
+
+label {
+ font-weight: bold; 
 }

@@ -26,9 +26,6 @@ button label {
   .page-event label {
     margin-right: 20px;
   }
-  .page-event .control-group {
-    margin-bottom: 0;
-  }
   .page-event legend {
     border: none;
   }

@@ -40,9 +40,6 @@ h1,h2,h3,h4,h5,h6 {
   width: 35px;
   overflow: hidden;
 }
-#navigation i {
-  padding-top: 2px;
-}
 #navigation .user-picture i {
   margin-top: 8px;
   margin-left: 9px;
