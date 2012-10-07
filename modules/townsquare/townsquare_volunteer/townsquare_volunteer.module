@@ -678,8 +678,9 @@ function townsquare_volunteer_volunteer_sessions($users = array(), $start = NULL
     $query->fieldCondition('field_session_hours', 'value2', $end, '<=', 0);
   }
 
+  $query->fieldOrderBy('field_session_hours', 'value', 'ASC');
   $result = $query->execute();
-  
+
   if ($result) {
     return entity_load('node', array_keys($result['node']));
   }  
