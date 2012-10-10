@@ -88,16 +88,19 @@ textarea:focus {
   background-image: none;
 }
 
-#edit-date-wrapper, #edit-field-session-duration-value-wrapper, .views-widget-per-page {
+#edit-date-wrapper, #edit-field-session-duration-value-wrapper, #edit-field-freegeek-rewards-value-wrapper { 
   float: left;
-  width: 32%;
+  width: 27%;
   padding-right: 1%;
 }
-#views-exposed-form-townsquare-volunteers-report select {
-  width: 150px;
+.views-widget-per-page {
+  float: left;
+  width: 14%; 
 }
+#views-exposed-form-townsquare-volunteers-report select,
 #views-exposed-form-townsquare-volunteers-report input {
-  width: 180px;
+  width: auto;
+  max-width: 95%;
 }
 #views-exposed-form-townsquare-volunteers-report .views-widget-per-page .control-label {
   display: block;
@@ -109,7 +112,8 @@ textarea:focus {
 }
 
 #views-exposed-form-townsquare-volunteers-report #edit-date-wrapper .control-label,
-#views-exposed-form-townsquare-volunteers-report #edit-field-session-duration-value-wrapper .control-label {
+#views-exposed-form-townsquare-volunteers-report #edit-field-session-duration-value-wrapper .control-label,
+#views-exposed-form-townsquare-volunteers-report #edit-field-freegeek-rewards-value-wrapper .control-label {
   display: none;
 }
 #views-exposed-form-townsquare-volunteers-report .control-group {
@@ -117,9 +121,17 @@ textarea:focus {
 }
 #views-exposed-form-townsquare-volunteers-report .views-operator,
 #views-exposed-form-townsquare-volunteers-report .views-widget {
-  display: inline-block;
+  float: left;
+  display: block;
 }
-
+#views-exposed-form-townsquare-volunteers-report .views-operator {
+  width: 46%;
+  padding-right: 1%;
+}
+#views-exposed-form-townsquare-volunteers-report .views-widget {
+  width: 52%;
+  padding-right: 1%;
+}
 #views-exposed-form-townsquare-volunteers-report .views-submit-button {
   clear: left;
 }
