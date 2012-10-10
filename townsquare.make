@@ -84,7 +84,7 @@ projects[wysiwyg][subdir] = "contrib"
 
 ; Libraries
 libraries[tinymce][download][type] = "get"
-libraries[tinymce][download][url] = "https://github.com/downloads/tinymce/tinymce/tinymce_3_3_9_3.zip"
+libraries[tinymce][download][url] = "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.7.zip"
 libraries[tinymce][directory_name] = "tinymce"
 
 libraries[scrollto][download][type] = "get"
@@ -105,11 +105,11 @@ projects[jquery_update][version] = "2.2"
 projects[jquery_update][subdir] = "contrib"
 
 libraries[jquery_17_min][download][type] = "get"
-libraries[jquery_17_min][download][url] = "http://code.jquery.com/jquery-1.7.1.min.js"
+libraries[jquery_17_min][download][url] = "http://code.jquery.com/jquery-1.7.2.min.js"
 libraries[jquery_17_min][destination] = "modules/contrib/jquery_update/replace/1.7/jquery.min.js"
 
 libraries[jquery_17_full][download][type] = "get"
-libraries[jquery_17_full][download][url] = "http://code.jquery.com/jquery-1.7.1.js"
+libraries[jquery_17_full][download][url] = "http://code.jquery.com/jquery-1.7.2.js"
 libraries[jquery_17_full][destination] = "modules/contrib/jquery_update/replace/1.7/jquery.js"
 
 libraries[twitter_bootstrap][download][type] = "get"
