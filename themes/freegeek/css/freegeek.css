@@ -1,5 +1,5 @@
 body * {
-  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 a {
   color: #05f;
@@ -143,4 +143,10 @@ textarea:focus {
 
 label {
  font-weight: bold; 
+}
+
+#main-content .big {
+  font-size: 36px;
+  line-height: 54px;
+  letter-spacing: -1px;
 }
