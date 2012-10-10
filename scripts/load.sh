@@ -1,2 +1,2 @@
 #!/bin/bash
-drush sqlc < data/townsquare-fake-names.sql
+drush sqlc < ./townsquare-fake-names.sql
