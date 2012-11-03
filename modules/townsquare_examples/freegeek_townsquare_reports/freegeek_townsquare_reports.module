@@ -75,7 +75,7 @@ function freegeek_townsquare_reports() {
         try {
           $event_date_field = array_pop(field_get_items('node', $event, 'field_event_date'));
           $event_date = new DateObject($event_date_field['value'], $event_date_field['timezone']);
-          _freegeek_townsquare_rules_reports_process_session($session, $event, $event_date, $results);
+          _freegeek_townsquare_reports_process_session($session, $event, $event_date, $results);
         } 
         catch (Exception $e) {
           $skipped++;
