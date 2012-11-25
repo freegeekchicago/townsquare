@@ -1,94 +1,111 @@
 <?php
 /**
  * @file
+ *
+ * Reports for FreeGeek
  */
 
+/**
+ * Implements hook_menu().
+ */
 function freegeek_townsquare_reports_menu() {
   $items = array();
   $items['townsquare/reports'] = array(
     'title' => 'Reports', 
     'description' => 'Generate reports', 
     'page callback' => 'freegeek_townsquare_reports', 
-    'page arguments' => array(), 
+    'page arguments' => array(2, 3), 
     'access callback' => TRUE,
   );
-
   return $items;
 }
 
 
-function _freegeek_townsquare_reports_process_session($session, $event, $event_date, &$results) {
-  $duration = array_pop(field_get_items('node', $session, 'field_session_duration'));
 
-  $formats = array(
-    'by_year' => 'Y',
-    'by_month' => 'm-F',
-    'by_day' => 'l',
-    'by_year_and_month' => 'Y-m-F',
-    'by_year_and_day' => 'Y-l',
-  );
-  foreach ($formats as $key=>$format) {
-    $value = $event_date->format($format);
-    $value = str_replace(array('0201', '0209'), array('2010', '2009'), $value);
-    if (empty($results[$key][$value])) {
-      $results[$key][$value] = array( 
-        array(
-          'data' => $value,
-          'header' => true,
-        ),
-        $duration['value'],
-        1, // sessions
-      );
-    } else {
-      $results[$key][$value][1] += $duration['value']; 
-      $results[$key][$value][2] += 1;
-    }
-  }
-}
-
-function freegeek_townsquare_reports() {
-  $result = array(
-    'by_year' => array(),
-    'by_month' => array(),
-    'by_month_and_year' => array(),
-    'by_day_and_year' => array(),
-  );
-
+function freegeek_townsquare_reports($format, $limit = 500) {
+  $result = array();
   $skipped = 0;
-  for ($i = 0; $i < 2500; $i += 500) {
-    $query = new entityfieldquery;
-    $query
-      ->entitycondition('entity_type', 'node')
-      ->propertycondition('type', 'volunteer_session')
-      ->range($i, $i + 500);
+  $total_sessions = 0;
+  $total_hours = 0;
+  $query = new entityfieldquery;
+  $query
+    ->entitycondition('entity_type', 'node')
+    ->propertycondition('type', 'volunteer_session')
+    ->range(0, $limit);
 
-    $result = $query->execute();
-
-    if ($result) {
-      $sessions = entity_load('node', array_keys($result['node']));
-      foreach ($sessions as $nid => $session) {
-        if (!$session->uid) {
-          break; 
+  $i += $inc;
+  $result = $query->execute();
+  if ($result) {
+    $sessions = entity_load('node', array_keys($result['node']));
+    foreach ($sessions as $nid => $session) {
+      $event_node = array_pop(field_get_items('node', $session, 'field_session_event'));
+      $event = array_pop(entity_load('node', array($event_node['target_id'])));
+      try {
+        $event_date_field = array_pop(field_get_items('node', $event, 'field_event_date'));
+        $event_date = new DateObject($event_date_field['value'], $event_date_field['timezone']);
+        $duration = array_pop(field_get_items('node', $session, 'field_session_duration'));
+        $value = $event_date->format($format);
+        $value = str_replace(array('0201', '0209'), array('2010', '2009'), $value);
+        if (empty($results[$value])) {
+          $results[$value] = array( 
+            array(
+              'data' => $value,
+              'header' => true,
+            ),
+            (float) $duration['value'],
+            1, // sessions
+          );
+        } else {
+          $total_sessions += 1;
+          $total_hours += (float) $duration['value'];
+          $results[$value][1] += (float) $duration['value']; 
+          $results[$value][2] += 1;
         }
-        $event_node = array_pop(field_get_items('node', $session, 'field_session_event'));
-        $event = array_pop(entity_load('node', array($event_node['target_id'])));
-        try {
-          $event_date_field = array_pop(field_get_items('node', $event, 'field_event_date'));
-          $event_date = new DateObject($event_date_field['value'], $event_date_field['timezone']);
-          _freegeek_townsquare_reports_process_session($session, $event, $event_date, $results);
-        } 
-        catch (Exception $e) {
-          $skipped++;
-        }
+      } 
+      catch (Exception $e) {
+        $skipped++;
       }
     }
   }
-  $output = '';
   $header = array('', 'Hours', 'Sessions');
-  foreach ($results as $type=>$result) {
-    $output .= '<h1>'. $type .'</h1>';
-    ksort($result);
-    $output .= theme('table', array('header' => $header, 'rows' => $result));
-  }
+  ksort($results);
+  $markup = array(
+    '#type' => 'markup',
+    '#prefix' => '<p>',
+    '#suffix' => '</p>',
+  );
+
+  $output = array(
+    $markup + array(
+      '#markup' => t('Total sessions: !n sessions', array('!n' => $total_sessions)),
+    ),
+    $markup + array(
+      '#type' => 'markup',
+      '#markup' => t('Total hours: !n hours', array('!n' => $total_hours)),
+    ),
+    $markup + array(
+      '#type' => 'markup',
+      '#markup' => t('Average session length: !n hours', array('!n' => round($total_hours / $total_sessions, 1))),
+    ),
+    $markup + array(
+      '#type' => 'markup',
+      '#markup' => t('Debug: Skipped !n bad sessions', array('!n' => $skipped)),
+    ),
+    array(
+      '#attributes' => array('id' => 'freegeek-report-' . $format),
+      '#prefix' => '<h1>'. $format .'</h1>',
+      '#theme' => 'table',
+      '#header' => $header, 
+      '#rows' => $results,
+    ),
+  );
+  drupal_add_js(libraries_get_path('jqplot') . '/jquery.jqplot.min.js');
+  drupal_add_js(libraries_get_path('jqplot') . '/plugins/jqplot.categoryAxisRenderer.js');
+  drupal_add_js(libraries_get_path('jqplot') . '/plugins/jqplot.barRenderer.js');
+  drupal_add_js(libraries_get_path('jqplot') . '/plugins/jqplot.canvasTextRenderer.js');
+  drupal_add_js(libraries_get_path('jqplot') . '/plugins/jqplot.canvasAxisTickRenderer.js');
+  drupal_add_css(libraries_get_path('jqplot') . '/jquery.jqplot.css');
+  drupal_add_js(libraries_get_path('tablechart') . '/jquery.tablechart.js');
+  drupal_add_js(drupal_get_path('module', 'freegeek_townsquare_reports') . '/js/freegeek_townsquare_reports.js');
   return $output;
 }
