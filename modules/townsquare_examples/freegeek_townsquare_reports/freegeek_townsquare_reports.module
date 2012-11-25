@@ -95,8 +95,14 @@ function freegeek_townsquare_reports($format, $limit = 500) {
       '#attributes' => array('id' => 'freegeek-report-' . $format),
       '#prefix' => '<h1>'. $format .'</h1>',
       '#theme' => 'table',
-      '#header' => $header, 
+      '#header' => $header,
       '#rows' => $results,
+    ),
+    '#cache' => array(
+      'keys' => array('freegeek_townsquare_reports'),
+      'bin' => 'cache',
+      'expire' => time() + 60000,
+      'granularity' => DRUPAL_CACHE_PAGE,
     ),
   );
   drupal_add_js(libraries_get_path('jqplot') . '/jquery.jqplot.min.js');
